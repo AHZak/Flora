@@ -4,7 +4,88 @@ use Database\Db;
 class Category{
     //MESSAGES HANDLER
     private $messages;
+    private $categoryId;
+    private $name;
+    private $createdAt;
+    private $updatedAt;
+    private $visibility;
 
+
+    public function __construct($categoryId)
+    {
+        $this->setMessageHandler();
+        $this->setCategoryId($categoryId);
+        $category=$this->getCategoryFullInfo();
+        if($category){
+            $this->setName($category['name']);
+            $this->setCreatedAt($category['created_at']);
+            $this->setUpdatedAt($category['updated_at']);
+            $this->setVisibility($category['visibility']);
+            $this->setCreatorId($category['creator_id']);
+        }
+
+    }
+
+    //SET VARIABELS
+    private function setCategoryId($categoryId){
+        $this->categoryId=$categoryId;
+    }
+
+    private function setName($categoryName){
+        $this->name=$categoryName;
+    }
+
+    private function setCreatorId($creatorId){
+        $this->creatorId=$creatorId;
+    }
+
+    private function setCreatedAt($createdAt){
+        $this->createdAt=$createdAt;
+    }
+
+    private function setUpdatedAt($updatedAt){
+        $this->updatedAt=$updatedAt;
+    }
+
+    private function setVisibility($visibility){
+        $this->visibility=$visibility;
+    }
+
+    private function setMessageHandler(){
+        $messageHandler=new Message();
+        $this->messages=$messageHandler;
+    }
+
+
+
+    //GET VARIABELS
+    public function getCategoryId(){
+        return $this->categoryId;
+    }
+
+    public function getCreatorId(){
+        return $this->creatorId;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getCreatedAt(){
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt(){
+        return $this->updatedAt;
+    }
+
+    public function getVisibility(){
+        return $this->visibility;
+    }
+
+    public function getMessageHandler(){
+        return $this->messages;
+    }
 
     //CREATE A NEW CATEGORY
     //this function , create a category and return this category id
@@ -40,11 +121,35 @@ class Category{
 
     }
 
-    private function message(){
-        $this->messages= new Message();
+    //GET A CATEGORY FULL INFO
+    private function getCategoryFullInfo(){
+        return Db::select(CATEGORY_TABLE_NAME,"id='$this->categoryId'","single");
     }
 
-    public function getMessages(){
-        return $this->messages;
+    //DELETE A CATEGORY
+    public function delete(){
+        $result=Db::delete(CATEGORY_TABLE_NAME,"id='$this->categoryId'");
+        if($result){
+            $this->getMessageHandler()->setErrorMessage(ERR_CATEGORY_DELETE);
+            return true;
+        }
+        return false;
     }
+
+    //GET COLLECTION OF CATEGORIES
+    public static function getCategories(&$messages=""){
+        $messages=new Message();
+        $result=Db::select(CATEGORY_TABLE_NAME);
+        if($result){
+            return $result;
+        }
+        $messages->setErrorMessage(ERR_GET_CATEGORIES_COLLECTION);
+        return false;
+        
+    }
+    
+
+    //+++++++++++ TOOLS ++++++++++++++
+
+    
 }
