@@ -1,8 +1,8 @@
 <?php
 
 include_once '../config.php';
-
-Category::create(['name'=>'کاکتوس','creator_id'=>1],$message);
-$message->showMessages();
-SubCategory::create(['name'=>'خیار'],$message);
-$message->showMessages();
+// Category::create(['name'=>'انار','creator_id'=>1]);
+// var_dump(Category::getCategories($mes));
+// var_dump($mes);
+$sub=new SubCategory(3);
+show($sub->getName());
