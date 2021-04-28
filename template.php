@@ -13,13 +13,8 @@
     <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    This is where we start Flora
-    
 
-
-
-
-
+    <!-- code here -->
 
 
 
