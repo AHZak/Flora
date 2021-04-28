@@ -61,6 +61,9 @@ define('ERR_CATEGORY_EXISTS', 'این دسته بندی قبلا در سیستم
 define('ERR_SUB_CATEGORY_EXISTS', 'این زیردسته بندی قبلا در سیستم ثبت شده است');
 define('ERR_SUB_CATEGORY_CREATE', 'خطا!زیر دسته بندی ساخته نشد');
 define('ERR_CATEGORY_CREATE', 'خطا!دسته بندی ساخته نشد');
+define('ERR_GET_CATEGORIES_COLLECTION', 'خطا!دسته بندی ای پیدا نشد');
+define('ERR_CATEGORY_DELETE', 'خطا!دسته بندی حذف نشد');
+
 
 
 
