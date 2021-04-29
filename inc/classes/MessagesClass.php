@@ -1,6 +1,6 @@
 <?php
 //STATIC MESSAGES
-class Message{
+class Message {
    // public static $err='text';
    private $errorMessages=[];
    private $warningMessages=[];

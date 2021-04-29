@@ -42,6 +42,10 @@ define('CATEGORY_TABLE_NAME', 'categories');
 define('SUB_CATEGORY_TABLE_NAME', 'sub_categories');
 define('USER_TABLE_NAME', 'users');
 
+//VARIABELS
+define('PHONE_NUMBER_LEN', 11);
+
+
 
 
 
@@ -55,6 +59,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/DbClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/UserClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/CategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/SubCategoryClass.php';
+require_once public_html().PROJECT_NAME.'/inc/classes/AccountClass.php';
 
 //ERROR MESSAGES
 define('ERR_CATEGORY_EXISTS', 'این دسته بندی قبلا در سیستم ثبت شده است');
@@ -63,6 +68,17 @@ define('ERR_SUB_CATEGORY_CREATE', 'خطا!زیر دسته بندی ساخته ن
 define('ERR_CATEGORY_CREATE', 'خطا!دسته بندی ساخته نشد');
 define('ERR_GET_CATEGORIES_COLLECTION', 'خطا!دسته بندی ای پیدا نشد');
 define('ERR_CATEGORY_DELETE', 'خطا!دسته بندی حذف نشد');
+define('ERR_CREATE_ACCOUNT', 'خطایی در هنگام ساخت حساب کاربری شما رخ داده است.لطفا دوباره امتحان کنید');
+define('ERR_PHONE_NUMBER_EMPTY', 'حطا!شماره تلفن را وارد کنید');
+define('ERR_PHONE_NUMBER_FORMAT', 'خطا!فرمت شماره تلفن وارد شده اشتباه است');
+define('ERR_PHONE_NUMBER_LEN', 'خطا!تعداد اعداد وارد شده شماره تلفن،صحیح نمی باشد');
+define('ERR_CREATE_INIT_ACCOUNT', 'خطا!اکانت شما ساخته نشد');
+define('ERR_PHONE_NUMBER_ALREADY_EXISTS', 'خطا!این شماره تلفن قبلا در سیستم ثبت شده است');
+
+
+
+
+
 
 
 
@@ -71,5 +87,8 @@ define('ERR_CATEGORY_DELETE', 'خطا!دسته بندی حذف نشد');
 //SUCCESS MESSAGES
 define('SUCCESS_CREATE_CATEGORY', 'دسته بندی با موفقیت ثبت شد');
 define('SUCCESS_CREATE_SUB_CATEGORY', 'زیر دسته بندی با موفقیت ساخته شد');
+define('SUCCESS_CREATE_ACCOUNT', 'اکانت شما با موفقیت ساخته شد');
+define('SUCCES_CREATE_INIT_ACCOUNT', 'اکانت شما با موفقیت ایجاد شد');
+
 
 
