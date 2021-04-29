@@ -79,7 +79,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="categories.php">
             <i class="fas fa-archive feather"></i>
             دسته بندی ها
             </a>
