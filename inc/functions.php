@@ -19,3 +19,7 @@ function validArrayInputs(array $inputs){
         return false;
     }
 }
+
+function addToLog($message,$logFileName="web.log"){
+    file_put_contents($logFileName,$message,FILE_APPEND);
+}
