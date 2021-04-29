@@ -42,6 +42,7 @@
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
+
           <li class="nav-item">
             <a class="nav-link border-bottom" aria-current="page" href="#">
             <i class="fas fa-home"></i>
@@ -108,12 +109,15 @@
             تنظیمات نقشه
             </a>
           </li>
+
         </ul>
         
       </div>
     </nav>
 
     <!----------------------------- left panel --------------------------->
+
+    <!-- ++++++++++++++++++++++++++ add category +++++++++++++++++++++++ -->
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="container">
@@ -140,91 +144,106 @@
               <button class="btn btn-primary btn-lg my-3" type="submit">افزودن دسته</button>
             </form>
           </div>
+
+           <!-- ++++++++++++++++++++++++++ categories +++++++++++++++++++++++ -->
+
           <div class="col-md g-3">
-          <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
-            <i class="fas fa-list mx-2"></i>
-            <p class="h5">دسته بندی ها</p>
-          </div>
-          <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">
-            <div>
-              <h6 class="my-0">دسته اول</h6>
-            </div>
-            <div>
-              <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-              <button type="button" class="btn btn-outline-danger">حذف</button>
-            </div>
-          </li>
-          
-          <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">
-            <div>
-              <h6 class="my-0">دسته دوم</h6>
-            </div>
-            <div>
-              <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-              <button type="button" class="btn btn-outline-danger">حذف</button>
-            </div>
-          </li>
 
-          <!-- collapse example for sub-categories -->
+          <!-- ++++++ header START ++++++ -->
 
-          <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">
-            <div>
-              <a class="text-decoration-none text-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              <div class="d-flex flex-row align-items-center">
-              <h6 class="my-0">دسته سوم</h6>
-              <i class="fas fa-chevron-down mx-2"></i>
+            <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
+              <i class="fas fa-list mx-2"></i>
+              <p class="h5">دسته بندی ها</p>
             </div>
-              </a>
-            </div>
-            <div>
-              <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-              <button type="button" class="btn btn-outline-danger">حذف</button>
-            </div>
+
+          <!-- ++++++ header END ++++++ -->
+
+          <!-- ++++++ Listing categories START ++++++ -->
+
+            <ul class="list-group">
+
+              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                <div>
+                  <h6 class="my-0">دسته اول</h6>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
+                  <button type="button" class="btn btn-outline-danger">حذف</button>
+                </div>
+              </li>
+              
+              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                <div>
+                  <h6 class="my-0">دسته دوم</h6>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
+                  <button type="button" class="btn btn-outline-danger">حذف</button>
+                </div>
+              </li>
+
+              <!-- +++++++ collapse example for sub-categories START ++++++++ -->
+
+              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                <div>
+                  <a class="text-decoration-none text-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <div class="d-flex flex-row align-items-center">
+                      <h6 class="my-0">دسته سوم</h6>
+                      <i class="fas fa-chevron-down mx-2"></i>
+                    </div>
+                  </a>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
+                  <button type="button" class="btn btn-outline-danger">حذف</button>
+                </div>
+              </li>
+
+              <!-- ++++++ Collapsing Section START ++++++ -->
+              
+              <div class="collapse" id="collapseExample">
+
+                <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                  <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-minus mx-3"></i>
+                    <h6 class="my-0">زیردسته اول</h6>
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
+                  </div>
+                </li>
+
+                <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-minus mx-3"></i>
+                    <h6 class="my-0">زیردسته دوم</h6>
+                  </div>
+                  <div>
+                    <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
+                  </div>
+                </li>
+
+              </div>
+
+              <!-- ++++++ Collapsing Section End ++++++ -->
+
+              <!-- collapse example for sub-categories End -->
+
+              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                <div>
+                  <h6 class="my-0">دسته چهارم</h6>
+                </div>
+                <div>
+                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
+                  <button type="button" class="btn btn-outline-danger">حذف</button>
+                </div>
+              </li>
             
-          </li>
-          <div class="collapse" id="collapseExample">
-          <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">
-          <div class="d-flex flex-row align-items-center">
-              <i class="fas fa-minus mx-3"></i>
-              <h6 class="my-0">زیردسته اول</h6>
-              
-            </div>
-            <div>
-              <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
-              <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
-            </div>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">
-          <div class="d-flex flex-row align-items-center">
-              <i class="fas fa-minus mx-3"></i>
-              <h6 class="my-0">زیردسته دوم</h6>
-              
-            </div>
-            <div>
-              <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
-              <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
-            </div>
-          </li>
-            </div>
+            </ul>
 
-          <!-- collapse example for sub-categories -->
-
-          <li class="list-group-item d-flex justify-content-between lh-sm align-items-center">
-            <div>
-              <h6 class="my-0">دسته چهارم</h6>
-            </div>
-            <div>
-              <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-              <button type="button" class="btn btn-outline-danger">حذف</button>
-            </div>
-          </li>
-          
-          
-          </ul>
-          
-
-
+            <!-- ++++++ Listing categories End ++++++ -->
 
           </div>
       </div>
@@ -238,5 +257,3 @@
 
   </body>
 </html>
-
-<!-- adding this line of code to test rebase -->
