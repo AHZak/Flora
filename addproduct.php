@@ -43,7 +43,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active border-bottom" aria-current="page" href="#">
+            <a class="nav-link border-bottom" aria-current="page" href="#">
             <i class="fas fa-home"></i>
             خانه
             </a>
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link" href="addproduct.php">
+            <a class="nav-link active" href="#">
             <i class="fas fa-plus feather"></i>
             افزودن محصول
             </a>
@@ -79,7 +79,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link" href="categories.php">
+            <a class="nav-link" href="#">
             <i class="fas fa-archive feather"></i>
             دسته بندی ها
             </a>
