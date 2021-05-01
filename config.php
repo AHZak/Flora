@@ -74,6 +74,7 @@ define('ERR_PHONE_NUMBER_FORMAT', 'خطا!فرمت شماره تلفن وارد 
 define('ERR_PHONE_NUMBER_LEN', 'خطا!تعداد اعداد وارد شده شماره تلفن،صحیح نمی باشد');
 define('ERR_CREATE_INIT_ACCOUNT', 'خطا!اکانت شما ساخته نشد');
 define('ERR_PHONE_NUMBER_ALREADY_EXISTS', 'خطا!این شماره تلفن قبلا در سیستم ثبت شده است');
+define('ERR_GET_SUB_CATEGORIES_COLLECTION', 'خطا!زیردسته بندی ای پیدا نشد');
 
 
 
@@ -92,3 +93,5 @@ define('SUCCES_CREATE_INIT_ACCOUNT', 'اکانت شما با موفقیت ایج
 
 
 
+//include controller 
+include_once public_html().PROJECT_NAME.'/http/controller.php';
