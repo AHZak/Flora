@@ -149,9 +149,9 @@ class SubCategory{
     }
 
     //GET COLLECTION OF SUB CATEGORIES
-    public static function getSUbCategories(&$messages=""){
+    public static function getSUbCategories($conditions="1",&$messages=""){
         $messages=new Message();
-        $result=Db::select(CATEGORY_TABLE_NAME);
+        $result=Db::select(SUB_CATEGORY_TABLE_NAME,$conditions);
         if($result){
             return $result;
         }

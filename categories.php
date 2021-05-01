@@ -1,3 +1,10 @@
+<?php
+
+    //webpage config
+    $pageUi="addCategory";
+    include 'config.php';
+?>
+
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -127,21 +134,21 @@
               <i class="fas fa-plus feather mx-2"></i>
               <p class="h5">افزودن دسته</p>
             </div>
-            <form action="">
+            <form action="" method="post">
               <div class="col-12 my-2">
                 <label for="firstName" class="form-label">نام دسته بندی :</label>
-                <input type="text" class="form-control" id="cat-name" placeholder="گیاهان آپارتمانی ..." value="" required="">
+                <input name="name" type="text" class="form-control" id="cat-name" placeholder="گیاهان آپارتمانی ..." value="" required="">
               </div>
               <div class="col-12 my-2">
                 <label for="state" class="form-label">دسته مادر :</label>
-                <select class="form-select" id="state" required="">
-                  <option value="">دسته اصلی</option>
-                  <option>دسته اول</option>
-                  <option>دسته دوم</option>
-                  <option>دسته سوم</option>
+                <select name="catType" class="form-select" id="state" required>
+                  <option value="parent">دسته اصلی</option>
+                  <?php foreach($categories as $category): ?>
+                    <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+                  <?php endforeach; ?>
                 </select>
               </div>
-              <button class="btn btn-primary btn-lg my-3" type="submit">افزودن دسته</button>
+              <button name="addCategory" class="btn btn-primary btn-lg my-3" type="submit">افزودن دسته</button>
             </form>
           </div>
 
@@ -161,86 +168,88 @@
           <!-- ++++++ Listing categories START ++++++ -->
 
             <ul class="list-group">
+              <?php
+              //CHECK CATEGORY IS FULL OR EMPTY
+                if($categories):
+              ?>
+                  <?php
+                      //LIST CATEGORIS
+                      foreach($categories as $category):
+                  ?>
+                  <?php
+                      //GET SUBCATEGORY OF CURRENT CATEGORY
+                      $categoryObject=new Category($category['id']);
+                      $subCategories=$categoryObject->getSubCategories();
+                  ?>
+                      <?php
+                          //CHECK SUB_CATEGORY IS FULL OR EMPTY
+                          if($subCategories):
+                      ?>
+                            <!-- +++++++ collapse example for sub-categories START ++++++++ -->
+                            <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                              <div>
+                                <a class="text-decoration-none text-dark" data-bs-toggle="collapse" href="#collapse<?php echo $category['id']?>" role="button" aria-expanded="false" aria-controls="collapse<?php echo $category['id']?>">
+                                  <div class="d-flex flex-row align-items-center">
+                                    <h6 class="my-0"><?php echo $category['name']; ?></h6>
+                                    <i class="fas fa-chevron-down mx-2"></i>
+                                  </div>
+                                </a>
+                              </div>
+                              <div>
+                                <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
+                                <button type="button" class="btn btn-outline-danger">حذف</button>
+                              </div>
+                            </li>
 
-              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
-                <div>
-                  <h6 class="my-0">دسته اول</h6>
-                </div>
-                <div>
-                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                  <button type="button" class="btn btn-outline-danger">حذف</button>
-                </div>
-              </li>
-              
-              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
-                <div>
-                  <h6 class="my-0">دسته دوم</h6>
-                </div>
-                <div>
-                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                  <button type="button" class="btn btn-outline-danger">حذف</button>
-                </div>
-              </li>
+                            <!-- ++++++ Collapsing Section START ++++++ -->
+                            
+                            <div class="collapse" id="collapse<?php echo $category['id']?>">
+                        <?php 
+                            //LIST SUB CATEGORIES OF CURRENT CATEGORY
+                            foreach($subCategories as $subCategory):
+                        ?>
+                              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                                <div class="d-flex flex-row align-items-center">
+                                  <i class="fas fa-minus mx-3"></i>
+                                  <h6 class="my-0"><?php echo $subCategory['name'];?></h6>
+                                </div>
+                                <div>
+                                  <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
+                                  <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
+                                </div>
+                              </li>
+                        <?php
+                          //END OF LIST SUB CATEGORIES 
+                            endforeach;
+                        ?>
+                            </div>
 
-              <!-- +++++++ collapse example for sub-categories START ++++++++ -->
+                            <!-- ++++++ Collapsing Section End ++++++ -->
 
-              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
-                <div>
-                  <a class="text-decoration-none text-dark" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    <div class="d-flex flex-row align-items-center">
-                      <h6 class="my-0">دسته سوم</h6>
-                      <i class="fas fa-chevron-down mx-2"></i>
-                    </div>
-                  </a>
-                </div>
-                <div>
-                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                  <button type="button" class="btn btn-outline-danger">حذف</button>
-                </div>
-              </li>
+                            <!-- collapse example for sub-categories End -->
+ 
 
-              <!-- ++++++ Collapsing Section START ++++++ -->
-              
-              <div class="collapse" id="collapseExample">
+                      <?php else: ?>
+                            <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
+                            <div>
+                              <h6 class="my-0"><?php echo $category['name'] ?></h6>
+                            </div>
+                            <div>
+                              <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
+                              <button type="button" class="btn btn-outline-danger">حذف</button>
+                            </div>
+                          </li>
+                      <?php endif; ?>
 
-                <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
-                  <div class="d-flex flex-row align-items-center">
-                    <i class="fas fa-minus mx-3"></i>
-                    <h6 class="my-0">زیردسته اول</h6>
-                  </div>
-                  <div>
-                    <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
-                  </div>
-                </li>
 
-                <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
-                <div class="d-flex flex-row align-items-center">
-                    <i class="fas fa-minus mx-3"></i>
-                    <h6 class="my-0">زیردسته دوم</h6>
-                  </div>
-                  <div>
-                    <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
-                    <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
-                  </div>
-                </li>
+                  <?php endforeach; ?>
 
-              </div>
+              <?php 
+                else: echo 'دسته بندی ای وجود ندارد';
+              ?>
 
-              <!-- ++++++ Collapsing Section End ++++++ -->
+              <?php endif; ?>
 
-              <!-- collapse example for sub-categories End -->
-
-              <li class="list-group-item d-flex text-nowrap justify-content-between lh-sm align-items-center">
-                <div>
-                  <h6 class="my-0">دسته چهارم</h6>
-                </div>
-                <div>
-                  <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                  <button type="button" class="btn btn-outline-danger">حذف</button>
-                </div>
-              </li>
-            
             </ul>
 
             <!-- ++++++ Listing categories End ++++++ -->

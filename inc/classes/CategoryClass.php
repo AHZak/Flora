@@ -9,7 +9,7 @@ class Category{
     private $createdAt;
     private $updatedAt;
     private $visibility;
-
+    private $subCategories;
 
     public function __construct($categoryId)
     {
@@ -22,6 +22,7 @@ class Category{
             $this->setUpdatedAt($category['updated_at']);
             $this->setVisibility($category['visibility']);
             $this->setCreatorId($category['creator_id']);
+            $this->setSubCategories();
         }
 
     }
@@ -56,6 +57,10 @@ class Category{
         $this->messages=$messageHandler;
     }
 
+    private function setSubCategories(){
+        $this->subCategories=SubCategory::getSUbCategories("category_id='$this->categoryId'");
+    }
+
 
 
     //GET VARIABELS
@@ -85,6 +90,10 @@ class Category{
 
     public function getMessageHandler(){
         return $this->messages;
+    }
+
+    public function getSubCategories(){
+        return $this->subCategories;
     }
 
     //CREATE A NEW CATEGORY
