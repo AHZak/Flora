@@ -107,7 +107,7 @@ class Category{
         $params=validArrayInputs($params);
 
         //category name
-        $name=$params['name'];
+        $name=str_replace("'","\'",$params['name']);
 
         //check to category already exists or not
         if(!Db::checkExists(CATEGORY_TABLE_NAME,"name='$name'")){
@@ -146,9 +146,9 @@ class Category{
     }
 
     //GET COLLECTION OF CATEGORIES
-    public static function getCategories(&$messages=""){
+    public static function getCategories($conditions='1',&$messages=""){
         $messages=new Message();
-        $result=Db::select(CATEGORY_TABLE_NAME);
+        $result=Db::select(CATEGORY_TABLE_NAME,$conditions);
         if($result){
             return $result;
         }
