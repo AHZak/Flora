@@ -1,5 +1,6 @@
 <?php
 
+
 if(isset($pageUi)){
     if(isset($_POST['addCategory'])){
         $catName=isset($_POST['name']) ? $_POST['name'] : "";

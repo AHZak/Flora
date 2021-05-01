@@ -41,6 +41,14 @@ define('DB_NAME', PROJECT_NAME);
 define('CATEGORY_TABLE_NAME', 'categories');
 define('SUB_CATEGORY_TABLE_NAME', 'sub_categories');
 define('USER_TABLE_NAME', 'users');
+define('PRODUCT_TABLE_NAME', 'products');
+define('CATEGORY_PRODUCT_TABLE_NAME', 'category_product');
+define('SUB_CATEGORY_PRODUCT_TABLE_NAME', 'subcategory_product');
+
+
+
+
+
 
 //VARIABELS
 define('PHONE_NUMBER_LEN', 11);
@@ -60,6 +68,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/UserClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/CategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/SubCategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AccountClass.php';
+require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
 
 //ERROR MESSAGES
 define('ERR_CATEGORY_EXISTS', 'این دسته بندی قبلا در سیستم ثبت شده است');
@@ -75,6 +84,10 @@ define('ERR_PHONE_NUMBER_LEN', 'خطا!تعداد اعداد وارد شده ش�
 define('ERR_CREATE_INIT_ACCOUNT', 'خطا!اکانت شما ساخته نشد');
 define('ERR_PHONE_NUMBER_ALREADY_EXISTS', 'خطا!این شماره تلفن قبلا در سیستم ثبت شده است');
 define('ERR_GET_SUB_CATEGORIES_COLLECTION', 'خطا!زیردسته بندی ای پیدا نشد');
+define('ERR_PRODUCT_EXISTS', 'این محصول قبلا در سیستم ثبت شده است');
+define('ERR_PRODUCT_CREATE', 'خطا!محصول اضافه نشد');
+define('ERR_PRODUCT_COLLECTION', 'خطا!محصولی یافت نشد');
+
 
 
 
@@ -90,6 +103,8 @@ define('SUCCESS_CREATE_CATEGORY', 'دسته بندی با موفقیت ثبت ش
 define('SUCCESS_CREATE_SUB_CATEGORY', 'زیر دسته بندی با موفقیت ساخته شد');
 define('SUCCESS_CREATE_ACCOUNT', 'اکانت شما با موفقیت ساخته شد');
 define('SUCCES_CREATE_INIT_ACCOUNT', 'اکانت شما با موفقیت ایجاد شد');
+define('SUCCESS_CREATE_PRODUCT', 'محصول مورد نظر با موفقیت ساخته شد');
+
 
 
 

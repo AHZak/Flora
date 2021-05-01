@@ -116,7 +116,8 @@ class SubCategory{
         //messages handler
         $message=new Message();
 
-        $name=$params['name'];
+        $name=str_replace("'","\'",$params['name']);
+        
         if(!Db::checkExists(SUB_CATEGORY_TABLE_NAME,"name='$name'")){
             $subCategoryId=Db::insert(SUB_CATEGORY_TABLE_NAME,$params);
             if($subCategoryId){
