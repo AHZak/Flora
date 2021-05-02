@@ -1,0 +1,8 @@
+PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '0='Array' WHERE id='1'' at line 1 in C:\xampp\htdocs\flora\inc\classes\DbClass.php:139
+Stack trace:
+#0 C:\xampp\htdocs\flora\inc\classes\DbClass.php(139): PDO->query('UPDATE sub_cate...')
+#1 C:\xampp\htdocs\flora\inc\classes\SubCategoryClass.php(156): Database\Db::update('sub_categories', Array, 'id='1'')
+#2 C:\xampp\htdocs\flora\http\controller.php(93): SubCategory->update(Array)
+#3 C:\xampp\htdocs\flora\config.php(127): include_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\flora\admin\editsubcat.php(4): include_once('C:\\xampp\\htdocs...')
+#5 {main}
