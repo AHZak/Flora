@@ -44,7 +44,7 @@ if(isset($pageUi)){
         //get categories 
         $categories=Category::getCategories();
     }elseif($pageUi=='editProduct'){
-        if(isset($_GET['id']) && preg_match("/[0-9]/",$_GET['id'])){
+        if(isset($_GET['id'])){
 
             $product=new Product($_GET['id']);
 
@@ -74,6 +74,29 @@ if(isset($pageUi)){
             //get categories 
             $categories=Category::getCategories();
         }
+    }elseif($pageUi=='editCategory'){
+
+        if(isset($_GET['id']) ){
+            $category=new Category($_GET['id']);
+            if(isset($_POST['editCategory'])){
+                $category->update(['name'=>$_POST['name']]);
+            }
+        }
+        $category=new Category($_GET['id']);
+
+        //get categories 
+        $categories=Category::getCategories();
+    }elseif($pageUi=='editSubCategory'){
+        if(isset($_GET['id']) ){
+            $subCategory=new SubCategory($_GET['id']);
+            if(isset($_POST['editSubCategory'])){
+                $subCategory->update(['name'=>$_POST['name'],'category_id'=>$_POST['category_id']]);
+            }
+        }
+        $subCategory=new SubCategory($_GET['id']);
+
+        //get categories 
+        $categories=Category::getCategories();
     }
 
 

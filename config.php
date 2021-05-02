@@ -99,7 +99,7 @@ define('ERR_PRODUCT_EMPTY_INSTOCK', 'خطا!موجودی محصول خالی ا�
 define('ERR_PRODUCT_INSTOCK_FORMAT', 'خطا!فرمت موجودی وارد شده اشتباه است');
 define('ERR_UNSUPPORT_IMAGE_FORMAT', 'خطا!لطفا تصاویری با فرمت jpg یا png وارد کنید');
 define('ERR_FAILED_UPLOAD', 'خطا!فایل آپلود نشد');
-
+define('ERR_SUB_CATEGORY_DELETE', 'خطا!زیردسته بندی حذف نشد');
 
 
 
