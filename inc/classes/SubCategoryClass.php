@@ -149,6 +149,13 @@ class SubCategory{
         return false;
     }
 
+    //update
+    public function update(array $params){
+        //SECURITY OPTION
+        $params=validArrayInputs($params);
+        return Db::update(SUB_CATEGORY_TABLE_NAME,$params,"id='$this->subCategoryId'");
+    }
+
     //GET COLLECTION OF SUB CATEGORIES
     public static function getSUbCategories($conditions="1",&$messages=""){
         $messages=new Message();
