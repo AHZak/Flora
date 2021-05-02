@@ -45,6 +45,11 @@ define('PRODUCT_TABLE_NAME', 'products');
 define('CATEGORY_PRODUCT_TABLE_NAME', 'category_product');
 define('SUB_CATEGORY_PRODUCT_TABLE_NAME', 'subcategory_product');
 
+//ACCESS FILE TYPES
+define('ACCESS_IMAGES_MIME_TYPE',['image/jpeg','image/png']);
+
+//UPLOAD PATH
+define('UPLOAD_PATH', 'upload/images/');
 
 
 
@@ -87,6 +92,16 @@ define('ERR_GET_SUB_CATEGORIES_COLLECTION', 'خطا!زیردسته بندی ای
 define('ERR_PRODUCT_EXISTS', 'این محصول قبلا در سیستم ثبت شده است');
 define('ERR_PRODUCT_CREATE', 'خطا!محصول اضافه نشد');
 define('ERR_PRODUCT_COLLECTION', 'خطا!محصولی یافت نشد');
+define('ERR_PRODUCT_EMPTY_TITLE', 'خطا!نام محصول خالی است');
+define('ERR_PRODUCT_EMPTY_PRICE', 'خطا!قیمت محصول خالی است');
+define('ERR_PRODUCT_PRICE_FORMAT', 'خطا!فرمت قیمت وارد شده صحیح نمی باشد');
+define('ERR_PRODUCT_EMPTY_INSTOCK', 'خطا!موجودی محصول خالی است');
+define('ERR_PRODUCT_INSTOCK_FORMAT', 'خطا!فرمت موجودی وارد شده اشتباه است');
+define('ERR_UNSUPPORT_IMAGE_FORMAT', 'خطا!لطفا تصاویری با فرمت jpg یا png وارد کنید');
+define('ERR_FAILED_UPLOAD', 'خطا!فایل آپلود نشد');
+
+
+
 
 
 
