@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
 
     <title>فلورا</title>
     <!-- Fontawesome kit -->
@@ -118,13 +118,146 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="container">
         <div class="row">
-          <!----------------------------- cards --------------------------->
-          <div class="d-flex flex-wrap justify-content-center m-3">
-            <div class="bg-dark rounded tmp-card"></div>
-            <div class="bg-warning rounded tmp-card"></div>
-            <div class="bg-info rounded tmp-card"></div>
+          <!----------------------------- add product --------------------------->
+
+          <!---- header ---->
+
+          <div class="row">
+
+            <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
+              <i class="fas fa-plus feather mx-2"></i>
+              <p class="h5">افزودن محصول</p>
+            </div>
+          
+          </div>
+
+          <!---- header ---->
+
+          <!---- addproduct form + product image ---->
+
+          <div class="row g-3">
+
+            <!---- product image ---->
+
+            <div class="col-md-5 col-lg-4 order-md-last text-center">
+
+              <img src="../assets/images/sample-image-min.png" alt="" class="img-thumbnail">
+
+            </div>
+
+            <!---- product image ---->
+
+            <!---- add product form ---->
+
+            <div class="col-md-7 col-lg-8">
+
+              <form class="needs-validation" novalidate="">
+
+                <div class="row g-3">
+
+                  <!-- category selection -->
+
+                  <div class="col-md-8">
+                    <label for="country" class="form-label">دسته بندی</label>
+                    <select class="form-select" id="s_category" required="">
+                      <option selected disabled>یک دسته بندی انتخاب کنید</option>
+                      <optgroup label="دسته بندی اول">
+                        <option value="">زیردسته اول</option>
+                        <option value="">زیردسته دوم</option>
+                      </optgroup>
+                      <optgroup label="دسته بندی دوم">
+                        <option value="">زیردسته اول</option>
+                      </optgroup>
+                      <optgroup label="دسته بندی سوم">
+                        <option value="">زیردسته اول</option>
+                        <option value="">زیردسته دوم</option>
+                        <option value="">زیردسته سوم</option>
+                      </optgroup>
+                    </select>
+                  </div>
+
+                  <!-- category selection -->
+
+                  <!-- product name -->
+
+                  <div class="col-md-6">
+                    <label for="firstName" class="form-label">نام محصول</label>
+                    <input type="text" class="form-control" id="product-name" placeholder="نام محصول..." value="" required="">
+                  </div>
+
+                  <!-- product name -->
+
+                  <!-- product description -->
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="addproductFormControlTextarea1">توضیحات محصول</label>
+                      <textarea class="form-control my-2" id="addproductFormControlTextarea1" rows="3" placeholder="توضیحات محصول"></textarea>
+                    </div>
+                  </div>
+
+                  <!-- product description -->
+
+                  <!-- product price -->
+
+                  <div class="col-md-4">
+                    <label for="firstName" class="form-label">قیمت محصول (تومان)</label>
+                    <input type="text" class="form-control" id="product-price" placeholder="قیمت محصول" value="" required="">
+                  </div>
+
+                  <!-- product price -->
+
+                  <!-- product inventory -->
+
+                  <div class="col-md-4">
+                    <label for="firstName" class="form-label">موجودی</label>
+                    <input type="text" class="form-control" id="product-inventory" placeholder="مثال : 12" value="" required="">
+                  </div>
+
+                  <!-- product inventory -->
+
+                  <!-- product image selection -->
+
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">تصویر محصول</label>
+                    <input class="form-control" type="file" id="formFile">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="firstName" class="form-label">متن جایگزین تصویر</label>
+                    <input type="text" class="form-control" id="product-price" placeholder="متن جایگزین" value="" required="">
+                  </div>
+                  
+                  <!-- product image selection -->
+
+                  <hr class="my-4">  
+
+                  <!-- add product button -->
+
+                  <button class="w-100 btn btn-primary btn-lg mb-5" type="submit">افزودن محصول</button>
+
+                  <!-- add product button -->
+
+                </div>
+                
+              </form>
+            
+            </div>
+
+            <!---- add product form ---->
+
+          </div>
+
+          <!---- addproduct form + product image ---->
+
+          <!----------------------------- add product --------------------------->
+
+        </div>
       </div>
     </main>
+    
+    <!----------------------------- left panel --------------------------->
+
   </div>
 </div>
 
