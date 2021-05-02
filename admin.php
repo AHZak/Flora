@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link" href="addproduct.php">
+            <a class="nav-link" href="admin/addproduct.php">
             <i class="fas fa-plus feather"></i>
             افزودن محصول
             </a>
