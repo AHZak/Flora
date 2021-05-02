@@ -133,7 +133,7 @@
               <!---- product image ---->
 
               <div class="col-md-5 col-lg-4 order-md-last text-center">
-                <img src="../assets/images/sample-image.png" alt="" class="img-thumbnail">
+                <img src="../assets/images/sample-image-min.png" alt="" class="img-thumbnail">
               </div>
 
               <!---- cat + name ---->
