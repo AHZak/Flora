@@ -118,15 +118,15 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="container">
         <div class="row">
-          <!----------------------------- add product --------------------------->
+          <!----------------------------- edit product --------------------------->
 
           <!---- header ---->
 
           <div class="row">
 
             <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
-              <i class="fas fa-plus feather mx-2"></i>
-              <p class="h5">افزودن محصول</p>
+              <i class="fas fa-edit feather mx-2"></i>
+              <p class="h5">ویرایش محصول</p>
             </div>
           
           </div>
