@@ -14,9 +14,11 @@ class Product{
     private $updated_at;
     private $creator_id;
     private $image;
+    private $image_alt;
     private $visibility;
     private $category;
     private $subCategory;
+    private $messages;
 
     public function __construct($productId)
     {
@@ -24,6 +26,7 @@ class Product{
         if($product){
             $this->setId($product['id']);
             $this->setPrice($product['price']);
+            $this->setTitle($product['title']);
             $this->setDescription($product['description']);
             $this->setInstock($product['instock']);
             $this->setCreated_at($product['created_at']);
@@ -33,6 +36,7 @@ class Product{
             $this->setVisibility($product['visibility']);
             $this->setCategory();
             $this->setSubCategory();
+            $this->setImageAlt($product['image_alt']);
 
         }
     }
@@ -78,6 +82,10 @@ class Product{
         $this->creator_id=$creatorId;
     }
 
+    public function setMessageHandler(){
+        $this->messages=new Message();
+    }
+
     public function setCategory(){
         $category_product=Db::select('category_product',"product_id='$this->id'",'single','*',1);
         if($category_product){
@@ -92,6 +100,10 @@ class Product{
             $this->subCategory=new SubCategory($subCategory_product['subcategory_id']);
         }
         
+    }
+
+    public function setImageAlt($image_alt){
+        $this->image_alt=$image_alt;
     }
 
 
@@ -145,6 +157,10 @@ class Product{
         return $this->subCategory;
     }
 
+    public function getMessageHandler(){
+        return $this->messages;
+    }
+
     //GET PRODUCT FULL INFO
     private function getProductFullInfo($productId){
         $product=Db::select(PRODUCT_TABLE_NAME,"id='$productId'",'single');
@@ -153,6 +169,10 @@ class Product{
         }else{
             return false;
         }
+    }
+
+    public function getImageAlt(){
+        return $this->image_alt;
     }
 
 
@@ -264,7 +284,24 @@ class Product{
     }
 
     //update a product
-    public function update(array $params){
+    public function update(array $params,&$message=""){
+        //VALID IMAGE
+        if($params['image']){
+            $old_img=$this->getImage();
+            if(!$image=uploadImage($params['image'],$msg)){
+                $this->getMessageHandler()->setErrorMessage($msg);
+                return false;
+            }
+            $params['image']=$image;
+            //delete old img
+            unlink($old_img);
+        }else{
+            $params['image']=$this->getImage();
+        }
+
+
+        //SECURITY OPTION
+        $params=validArrayInputs($params);
         return Db::update(PRODUCT_TABLE_NAME,$params,"id='$this->id'");
     }
 
