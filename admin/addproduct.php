@@ -158,7 +158,7 @@
                   <!-- category selection -->
 
                   <div class="col-md-8">
-                    <label for="country" class="form-label">دسته بندی</label>
+                    <label for="s_category" class="form-label">دسته بندی</label>
                     <select class="form-select" id="s_category" required="">
                       <option selected disabled>یک دسته بندی انتخاب کنید</option>
                       <optgroup label="دسته بندی اول">
@@ -181,7 +181,7 @@
                   <!-- product name -->
 
                   <div class="col-md-6">
-                    <label for="firstName" class="form-label">نام محصول</label>
+                    <label for="product-name" class="form-label">نام محصول</label>
                     <input type="text" class="form-control" id="product-name" placeholder="نام محصول..." value="" required="">
                   </div>
 
@@ -201,7 +201,7 @@
                   <!-- product price -->
 
                   <div class="col-md-4">
-                    <label for="firstName" class="form-label">قیمت محصول (تومان)</label>
+                    <label for="product-price" class="form-label">قیمت محصول (تومان)</label>
                     <input type="text" class="form-control" id="product-price" placeholder="قیمت محصول" value="" required="">
                   </div>
 
@@ -210,7 +210,7 @@
                   <!-- product inventory -->
 
                   <div class="col-md-4">
-                    <label for="firstName" class="form-label">موجودی</label>
+                    <label for="product-inventory" class="form-label">موجودی</label>
                     <input type="text" class="form-control" id="product-inventory" placeholder="مثال : 12" value="" required="">
                   </div>
 
@@ -219,13 +219,13 @@
                   <!-- product image selection -->
 
                   <div class="mb-3">
-                    <label for="formFile" class="form-label">تصویر محصول</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <label for="product-image" class="form-label">تصویر محصول</label>
+                    <input class="form-control" type="file" id="product-image">
                   </div>
 
                   <div class="col-md-4">
-                    <label for="firstName" class="form-label">متن جایگزین تصویر</label>
-                    <input type="text" class="form-control" id="product-price" placeholder="متن جایگزین" value="" required="">
+                    <label for="image-alt" class="form-label">متن جایگزین تصویر</label>
+                    <input type="text" class="form-control" id="image-alt" placeholder="متن جایگزین" value="" required="">
                   </div>
                   
                   <!-- product image selection -->
