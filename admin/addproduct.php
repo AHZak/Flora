@@ -1,3 +1,8 @@
+<?php 
+  //page controller
+  $pageUi='addProduct';
+  include_once '../config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -151,29 +156,42 @@
 
             <div class="col-md-7 col-lg-8">
 
-              <form class="needs-validation" novalidate="">
+              <form class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
 
                 <div class="row g-3">
 
                   <!-- category selection -->
 
                   <div class="col-md-8">
+
                     <label for="country" class="form-label">دسته بندی</label>
-                    <select class="form-select" id="s_category" required="">
-                      <option selected disabled>یک دسته بندی انتخاب کنید</option>
-                      <optgroup label="دسته بندی اول">
-                        <option value="">زیردسته اول</option>
-                        <option value="">زیردسته دوم</option>
-                      </optgroup>
-                      <optgroup label="دسته بندی دوم">
-                        <option value="">زیردسته اول</option>
-                      </optgroup>
-                      <optgroup label="دسته بندی سوم">
-                        <option value="">زیردسته اول</option>
-                        <option value="">زیردسته دوم</option>
-                        <option value="">زیردسته سوم</option>
-                      </optgroup>
+                    <select name="subCategoryId" class="form-select" id="s_category" required="">
+                        <option selected disabled>یک دسته بندی انتخاب کنید</option>
+                        <?php if($categories): ?>
+
+                            <?php foreach($categories as $category): ?>
+
+                                <?php
+                                    //get sub categories
+                                    $categoryObj=new Category($category['id']);
+                                    $subCategories=$categoryObj->getSubCategories();
+                                ?>
+
+                                <optgroup label="<?php echo $categoryObj->getName(); ?>">
+                                      
+                                    <?php if($subCategories): ?>
+                                        <?php foreach($subCategories as $subCategory): ?>
+                                          <option value="<?php echo $subCategory['id'] ?>"><?php echo $subCategory['name'] ?></option>
+                                        <?php endforeach;?>
+                                    <?php endif; ?>
+
+                                </optgroup>
+
+                            <?php endforeach; ?>
+
+                        <?php endif; ?>
                     </select>
+
                   </div>
 
                   <!-- category selection -->
@@ -182,7 +200,7 @@
 
                   <div class="col-md-6">
                     <label for="firstName" class="form-label">نام محصول</label>
-                    <input type="text" class="form-control" id="product-name" placeholder="نام محصول..." value="" required="">
+                    <input name="title" type="text" class="form-control" id="product-name" placeholder="نام محصول..." value="" required="">
                   </div>
 
                   <!-- product name -->
@@ -192,7 +210,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="addproductFormControlTextarea1">توضیحات محصول</label>
-                      <textarea class="form-control my-2" id="addproductFormControlTextarea1" rows="3" placeholder="توضیحات محصول"></textarea>
+                      <textarea name="description" class="form-control my-2" id="addproductFormControlTextarea1" rows="3" placeholder="توضیحات محصول"></textarea>
                     </div>
                   </div>
 
@@ -202,7 +220,7 @@
 
                   <div class="col-md-4">
                     <label for="firstName" class="form-label">قیمت محصول (تومان)</label>
-                    <input type="text" class="form-control" id="product-price" placeholder="قیمت محصول" value="" required="">
+                    <input name="price" type="text" class="form-control" id="product-price" placeholder="قیمت محصول" value="" required="">
                   </div>
 
                   <!-- product price -->
@@ -211,7 +229,7 @@
 
                   <div class="col-md-4">
                     <label for="firstName" class="form-label">موجودی</label>
-                    <input type="text" class="form-control" id="product-inventory" placeholder="مثال : 12" value="" required="">
+                    <input name="instock" type="text" class="form-control" id="product-inventory" placeholder="مثال : 12" value="" required="">
                   </div>
 
                   <!-- product inventory -->
@@ -220,12 +238,12 @@
 
                   <div class="mb-3">
                     <label for="formFile" class="form-label">تصویر محصول</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" name="img" type="file" id="formFile">
                   </div>
 
                   <div class="col-md-4">
                     <label for="firstName" class="form-label">متن جایگزین تصویر</label>
-                    <input type="text" class="form-control" id="product-price" placeholder="متن جایگزین" value="" required="">
+                    <input name="image_alt" type="text" class="form-control" id="product-price" placeholder="متن جایگزین" value="" required="">
                   </div>
                   
                   <!-- product image selection -->
@@ -234,7 +252,7 @@
 
                   <!-- add product button -->
 
-                  <button class="w-100 btn btn-primary btn-lg mb-5" type="submit">افزودن محصول</button>
+                  <button name="addProduct" class="w-100 btn btn-primary btn-lg mb-5" type="submit">افزودن محصول</button>
 
                   <!-- add product button -->
 
