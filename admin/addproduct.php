@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
 
     <title>فلورا</title>
     <!-- Fontawesome kit -->
@@ -118,13 +118,97 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="container">
         <div class="row">
-          <!----------------------------- cards --------------------------->
-          <div class="d-flex flex-wrap justify-content-center m-3">
-            <div class="bg-dark rounded tmp-card"></div>
-            <div class="bg-warning rounded tmp-card"></div>
-            <div class="bg-info rounded tmp-card"></div>
+          <!----------------------------- add product --------------------------->
+
+          <div class="row">
+            <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
+              <i class="fas fa-plus feather mx-2"></i>
+              <p class="h5">افزودن محصول</p>
+            </div>
+
+              <!---- cat + name + product image ---->
+
+              <div class="row g-3">
+
+              <!---- product image ---->
+
+              <div class="col-md-5 col-lg-4 order-md-last text-center">
+                <img src="../assets/images/sample-image.png" alt="" class="img-thumbnail">
+              </div>
+
+              <!---- cat + name ---->
+
+              <div class="col-md-7 col-lg-8">
+              <form class="needs-validation" novalidate="">
+          <div class="row g-3">
+            <div class="col-md-8">
+              <label for="country" class="form-label">دسته بندی</label>
+              <select class="form-select" id="s_category" required="">
+                <option selected disabled>یک دسته بندی انتخاب کنید</option>
+                <optgroup label="دسته بندی اول">
+                  <option value="">زیردسته اول</option>
+                  <option value="">زیردسته دوم</option>
+                </optgroup>
+                <optgroup label="دسته بندی دوم">
+                  <option value="">زیردسته اول</option>
+                </optgroup>
+                <optgroup label="دسته بندی سوم">
+                  <option value="">زیردسته اول</option>
+                  <option value="">زیردسته دوم</option>
+                  <option value="">زیردسته سوم</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">نام محصول</label>
+              <input type="text" class="form-control" id="product-name" placeholder="نام محصول..." value="" required="">
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="addproductFormControlTextarea1">توضیحات محصول</label>
+                <textarea class="form-control my-2" id="addproductFormControlTextarea1" rows="3" placeholder="توضیحات محصول"></textarea>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="firstName" class="form-label">قیمت محصول (تومان)</label>
+              <input type="text" class="form-control" id="product-price" placeholder="قیمت محصول" value="" required="">
+            </div>
+            <div class="col-md-4">
+              <label for="firstName" class="form-label">موجودی</label>
+              <input type="text" class="form-control" id="product-inventory" placeholder="مثال : 12" value="" required="">
+            </div>
+
+            <div class="mb-3">
+            <label for="formFile" class="form-label">تصویر محصول</label>
+            <input class="form-control" type="file" id="formFile">
+            </div>
+
+            <div class="col-md-4">
+              <label for="firstName" class="form-label">متن جایگزین تصویر</label>
+              <input type="text" class="form-control" id="product-price" placeholder="متن جایگزین" value="" required="">
+            </div>
+            
+
+
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg mb-5" type="submit">افزودن محصول</button>
+        </form>
+              
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
       </div>
     </main>
+
   </div>
 </div>
 
