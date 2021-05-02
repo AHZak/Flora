@@ -145,6 +145,13 @@ class Category{
         return false;
     }
 
+    //UPDATE A CATEGORY
+    public function update(array $params){
+        //SECURITY OPTION
+        $params=validArrayInputs($params);
+        return Db::update(CATEGORY_TABLE_NAME,['name'=>$params['name']],"id='$this->categoryId'");
+    }
+
     //GET COLLECTION OF CATEGORIES
     public static function getCategories($conditions='1',&$messages=""){
         $messages=new Message();
