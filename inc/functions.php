@@ -38,7 +38,7 @@ function uploadImage(array $image,&$message=""){
     $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.$imageName;
     $result=move_uploaded_file($imageTmpName,$newFileName);
     if($result){
-        return UPLOAD_PATH.$imageName;
+        return $newFileName;
     }else{
         $message=ERR_FAILED_UPLOAD;
         return false;

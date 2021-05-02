@@ -132,6 +132,7 @@ class Db {
     public static function update(string $table,array $values,string $conditions="id='-1'"){
         $validValues=self::createValidValuesForUpdate($values);
         $sql="UPDATE $table SET $validValues WHERE $conditions";
+        
         // global $bot;
         // $bot->sendMessage(['text'=>$sql]);
         try{
