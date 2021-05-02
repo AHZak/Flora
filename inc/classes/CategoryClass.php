@@ -154,7 +154,6 @@ class Category{
         }
         $messages->setErrorMessage(ERR_GET_CATEGORIES_COLLECTION);
         return false;
-        
     }
     
 

@@ -162,11 +162,35 @@ class Product{
         //messages handler
         $message=new Message();
 
+        //VALID IMAGE
+        if(!$image=uploadImage($params['image'],$msg)){
+            $message->setErrorMessage($msg);
+            return false;
+        }
+        $params['image']=$image;
+
         //SECURITY OPTION
         $params=validArrayInputs($params);
 
         //product title
         $title=str_replace("'","\'",$params['title']);
+        
+        //VALID INPUT PARAMS
+        if(!self::validProductTitle($params['title'],$msg)){
+            $message->setErrorMessage($msg);
+            return false;
+        }
+      
+        if(! self::validProductPrice($params['price'],$msg)){
+            $message->setErrorMessage($msg);
+            return false;
+        }
+        
+        if(! self::validProductInstock($params['instock'],$msg)){
+            $message->setErrorMessage($msg);
+            return false; 
+        }
+
 
         //check to product already exists or not
         if(!Db::checkExists(PRODUCT_TABLE_NAME,"title='$title'")){
@@ -186,6 +210,46 @@ class Product{
             $message->setErrorMessage(ERR_PRODUCT_EXISTS);
             return false;
         }
+    }
+
+    //valid title
+    public static function validProductTitle($title,&$messages){   
+        if(empty($title)){
+            $messages=ERR_PRODUCT_EMPTY_TITLE;
+            return false;
+        }
+        return true;
+        //some options to valid title 
+    }
+
+    //valid price
+    public static function validProductPrice($price,&$messages=""){
+        if(empty($price)){
+            $messages=ERR_PRODUCT_EMPTY_PRICE;
+            return false;
+        }
+
+        if(!preg_match("/[0-9]/",$price)){
+            $messages=ERR_PRODUCT_PRICE_FORMAT;
+            return false;
+        }
+
+        return true;
+    }
+
+    //valid instock
+    public static function validProductInstock($instock,&$messages=""){
+        if(empty($instock)){
+            $messages=ERR_PRODUCT_EMPTY_INSTOCK;
+            return false;
+        }
+
+        if(!preg_match("/[0-9]/",$instock)){
+            $messages=ERR_PRODUCT_INSTOCK_FORMAT;
+            return false;
+        }
+
+        return true;
     }
 
     //GET PRODUCTS COLLECTION
@@ -208,6 +272,7 @@ class Product{
     public function delete(){
         return Db::delete(PRODUCT_TABLE_NAME,"id='$this->id'");
     }
+
 
 
 

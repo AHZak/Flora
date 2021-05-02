@@ -1,6 +1,0 @@
-PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'title' in 'field list' in C:\xampp\htdocs\flora\inc\classes\DbClass.php:46
-Stack trace:
-#0 C:\xampp\htdocs\flora\inc\classes\DbClass.php(46): PDO->query('INSERT INTO cat...')
-#1 C:\xampp\htdocs\flora\inc\classes\ProductClass.php(167): Database\Db::insert('categories', Array)
-#2 C:\xampp\htdocs\flora\test.php(5): Product::create(Array)
-#3 {main}
