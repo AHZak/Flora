@@ -139,3 +139,7 @@ html {
       height: 200px;
       margin: 40px;
   }
+
+  .productlist-img {
+    width: 50px;
+  }
