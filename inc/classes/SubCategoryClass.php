@@ -143,9 +143,10 @@ class SubCategory{
     public function delete(){
         $result=Db::delete(SUB_CATEGORY_TABLE_NAME,"id='$this->subCategoryId'");
         if($result){
-            $this->getMessageHandler()->setErrorMessage(ERR_SUB_CATEGORY_DELETE);
+            $this->getMessageHandler()->setSuccessMessage(SUCCESS_DELETE_SUB_CATEGORY);
             return true;
         }
+        $this->getMessageHandler()->setErrorMessage(ERR_CATEGORY_DELETE);
         return false;
     }
 

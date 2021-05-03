@@ -134,7 +134,7 @@
               <i class="fas fa-plus feather mx-2"></i>
               <p class="h5">افزودن دسته</p>
             </div>
-            <form action="" method="post">
+            <form action="<?php echo DOMAIN.'categories.php'; ?>" method="post">
               <div class="col-12 my-2">
                 <label for="firstName" class="form-label">نام دسته بندی :</label>
                 <input name="name" type="text" class="form-control" id="cat-name" placeholder="گیاهان آپارتمانی ..." value="" required="">
@@ -196,8 +196,8 @@
                                 </a>
                               </div>
                               <div>
-                                <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                                <button type="button" class="btn btn-outline-danger">حذف</button>
+                              <a href="<?php echo DOMAIN.'admin/editmaincat.php?id='.$category['id']; ?>" class="btn btn-outline-warning mx-2">ویرایش</a>
+                              <a href="?rm_cat=<?php echo $category['id'] ?>" class="btn btn-outline-danger">حذف</a>
                               </div>
                             </li>
 
@@ -214,8 +214,8 @@
                                   <h6 class="my-0"><?php echo $subCategory['name'];?></h6>
                                 </div>
                                 <div>
-                                  <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
-                                  <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
+                                  <a href="<?php echo DOMAIN.'admin/editsubcat.php?id='.$subCategory['id'] ?>" class="btn btn-outline-warning btn-sm mx-2">ویرایش</a>
+                                  <a href="?rm_sub=<?php echo $subCategory['id']; ?>"  class="btn btn-outline-danger btn-sm">حذف</a>
                                 </div>
                               </li>
                         <?php
@@ -235,8 +235,8 @@
                               <h6 class="my-0"><?php echo $category['name'] ?></h6>
                             </div>
                             <div>
-                              <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                              <button type="button" class="btn btn-outline-danger">حذف</button>
+                              <a href="<?php echo DOMAIN.'admin/editmaincat.php?id='.$category['id']; ?>" class="btn btn-outline-warning mx-2">ویرایش</a>
+                              <a href="?rm_cat=<?php echo $category['id'] ?>" class="btn btn-outline-danger">حذف</a>
                             </div>
                           </li>
                       <?php endif; ?>
