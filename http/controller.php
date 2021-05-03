@@ -3,7 +3,19 @@ use Database\Db;
 
 if(isset($pageUi)){
     if($pageUi=='addCategory'){
-        if(isset($_POST['addCategory'])){
+
+        if(isset($_GET['rm_cat'])){
+            $category=new Category($_GET['rm_cat']);
+            $category->delete();
+            $category->deleteSubCategories();
+ 
+            $category->getMessageHandler()->showMessages();
+        }elseif(isset($_GET['rm_sub'])){
+            $subCategory=new SubCategory($_GET['rm_sub']);
+            $subCategory->delete();
+            
+            $subCategory->getMessageHandler()->showMessages();
+        }elseif(isset($_POST['addCategory'])){
             $catName=isset($_POST['name']) ? $_POST['name'] : "";
             $catType=isset($_POST['catType']) ? $_POST['catType'] : "";
             
@@ -18,6 +30,9 @@ if(isset($pageUi)){
                 }
             }
         }
+
+
+
         //get categories and sub categories
         $categories=Category::getCategories();
     }elseif($pageUi=='addProduct'){
