@@ -2,7 +2,7 @@
 
     //webpage config
     $pageUi="addCategory";
-    include 'config.php';
+    include '../config.php';
 ?>
 
 <!doctype html>
@@ -134,7 +134,7 @@
               <i class="fas fa-plus feather mx-2"></i>
               <p class="h5">افزودن دسته</p>
             </div>
-            <form action="<?php echo DOMAIN.'categories.php'; ?>" method="post">
+            <form action="<?php echo DOMAIN.'admin/categories.php'; ?>" method="post">
               <div class="col-12 my-2">
                 <label for="firstName" class="form-label">نام دسته بندی :</label>
                 <input name="name" type="text" class="form-control" id="cat-name" placeholder="گیاهان آپارتمانی ..." value="" required="">

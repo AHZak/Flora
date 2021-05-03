@@ -37,6 +37,7 @@ class Product{
             $this->setCategory();
             $this->setSubCategory();
             $this->setImageAlt($product['image_alt']);
+            $this->setMessageHandler();
 
         }
     }
