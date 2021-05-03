@@ -113,13 +113,16 @@ define('ERR_SUB_CATEGORY_DELETE', 'خطا!زیردسته بندی حذف نشد'
 
 
 
+
+
 //SUCCESS MESSAGES
 define('SUCCESS_CREATE_CATEGORY', 'دسته بندی با موفقیت ثبت شد');
 define('SUCCESS_CREATE_SUB_CATEGORY', 'زیر دسته بندی با موفقیت ساخته شد');
 define('SUCCESS_CREATE_ACCOUNT', 'اکانت شما با موفقیت ساخته شد');
 define('SUCCES_CREATE_INIT_ACCOUNT', 'اکانت شما با موفقیت ایجاد شد');
 define('SUCCESS_CREATE_PRODUCT', 'محصول مورد نظر با موفقیت ساخته شد');
-
+define('SUCCESS_DELETE_SUB_CATEGORY', 'زیردسته بندی با موفقیت حذف شد');
+define('SUCCESS_DELETE_CATEGORY', 'دسته بندی با موفقیت حذف شد');
 
 
 
