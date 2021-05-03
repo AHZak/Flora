@@ -308,6 +308,8 @@ class Product{
 
     //delete a product
     public function delete(){
+            Db::delete(CATEGORY_PRODUCT_TABLE_NAME,"product_id='$this->id'");
+            Db::delete(SUB_CATEGORY_PRODUCT_TABLE_NAME,"product_id='$this->id'");
         return Db::delete(PRODUCT_TABLE_NAME,"id='$this->id'");
     }
 
