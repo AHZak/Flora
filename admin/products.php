@@ -1,6 +1,7 @@
 <?php
-
-include 'adminheader.php';
+  $pageUi="listProducts";
+  include_once '../config.php';
+  include 'adminheader.php';
 
 ?>
 
@@ -108,85 +109,44 @@ include 'adminheader.php';
           <div class="table-responsive">
           
           <table class="table table-striped table-sm align-middle">
-          <thead>
-            <tr>
-              <th>تصویر </th>
-              <th>نام</th>
-              <th>دسته بندی</th>
-              <th>موجودی</th>
-              <th>قیمت</th>
-              <th>اعمال تغییر</th>
-            </tr>
-          </thead>
+          <?php if($products): ?>
+            <thead>
+              <tr>
+                <th>تصویر </th>
+                <th>نام</th>
+                <th>دسته بندی</th>
+                <th>موجودی</th>
+                <th>قیمت</th>
+                <th>اعمال تغییر</th>
+              </tr>
+            </thead>
+          
           <tbody>
+
+            <?php foreach($products as $product): 
+                $productObj=new Product($product['id']);
+            ?>
+
             <tr>
-              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
-              <td>مامیلاریا</td>
-              <td>کاکتوس ها</td>
-              <td>25</td>
-              <td>15000</td>
+              <td><img width="150px" height="150px" src="<?php echo $product['image']; ?>" alt="<?php echo $product['image_alt'] ?>" class="productlist-img"></td>
+              <td><?php echo $product['title']; ?></td>
+              <td><?php echo '<b>'.$productObj->getCategory()->getName().'</b><br>'.$productObj->getSubCategory()->getName(); ?></td>
+              <td><?php echo $product['instock']; ?></td>
+              <td><?php echo $product['price']; ?></td>
               <td>
-              <div class="">
-                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
-                <a href="" class="btn btn-danger my-2">حذف</a>
+                <div class="">
+                  <a href="<?php echo DOMAIN.'admin/editproduct.php?id='.$product['id']; ?>" class="btn btn-warning my-2 me-2">ویرایش</a>
+                  <a href="?del_pro=<?php echo $product['id']; ?>" class="btn btn-danger my-2">حذف</a>
                 </div>
               </td>
             </tr>
-            <tr>
-              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
-              <td>اچینو</td>
-              <td>کاکتوس ها</td>
-              <td>40</td>
-              <td>7000</td>
-              <td>
-              <div class="">
-                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
-                <a href="" class="btn btn-danger my-2">حذف</a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
-              <td>نخل شامادورا</td>
-              <td>کاکتوس ها</td>
-              <td>10</td>
-              <td>35000</td>
-              <td>
-              <div class="">
-                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
-                <a href="" class="btn btn-danger my-2">حذف</a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
-              <td>گل رز</td>
-              <td>گل</td>
-              <td>90</td>
-              <td>22000</td>
-              <td>
-              <div class="">
-                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
-                <a href="" class="btn btn-danger my-2">حذف</a>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
-              <td>درخت موز</td>
-              <td>دوست دارم</td>
-              <td>1000</td>
-              <td>100000</td>
-              <td>
-              <div class="">
-                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
-                <a href="" class="btn btn-danger my-2">حذف</a>
-                </div>
-              </td>
-            </tr>
+            
+            <?php endforeach; ?>
+ 
           </tbody>
         </table>
-
+        <?php else: echo 'محصولی وجود ندارد';?>
+        <?php endif;?>
           </div>
         </div>
           

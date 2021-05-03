@@ -52,7 +52,9 @@ if(isset($pageUi)){
             
             //add subcategory_product
             if($product_id && $subCategoryId){
+                $subCategoryObj=new SubCategory($subCategoryId);
                 $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
+                $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
             }
         }
 
@@ -112,6 +114,16 @@ if(isset($pageUi)){
 
         //get categories 
         $categories=Category::getCategories();
+    }elseif($pageUi=='listProducts'){
+
+        if(isset($_GET['del_pro'])){
+            $productObj=new Product($_GET['del_pro']);
+            $productObj->delete();
+        }
+
+        //get products
+        $products=Product::getProducts();
+
     }
 
 
