@@ -25,7 +25,7 @@
       <ul class="navbar-nav px-3 d-flex flex-row align-items-center justify-content-end w-100">
       <li class="nav-item text-nowrap text-light me-auto">
           <p class="m-0">
-          یکشنبه 1400/02/12
+          <?php echo jdate("l Y/m/d"); ?>
           </p>
       </li>
       <li class="nav-item text-nowrap">

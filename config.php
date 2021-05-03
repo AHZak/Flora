@@ -52,16 +52,12 @@ define('ACCESS_IMAGES_MIME_TYPE',['image/jpeg','image/png']);
 define('UPLOAD_PATH', 'upload/images/');
 
 
-
-
-
 //VARIABELS
 define('PHONE_NUMBER_LEN', 11);
 
 
-
-
-
+//require libs
+require_once public_html().PROJECT_NAME.'/inc/libs/jdf.php';
 
 //include functions
 include_once(public_html().PROJECT_NAME.'/inc/functions.php');
@@ -74,6 +70,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/CategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/SubCategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AccountClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
+
 
 //ERROR MESSAGES
 define('ERR_CATEGORY_EXISTS', 'این دسته بندی قبلا در سیستم ثبت شده است');
