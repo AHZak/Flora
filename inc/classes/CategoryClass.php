@@ -139,9 +139,10 @@ class Category{
     public function delete(){
         $result=Db::delete(CATEGORY_TABLE_NAME,"id='$this->categoryId'");
         if($result){
-            $this->getMessageHandler()->setErrorMessage(ERR_CATEGORY_DELETE);
+            $this->getMessageHandler()->setSuccessMessage(SUCCESS_DELETE_CATEGORY);
             return true;
         }
+        $this->getMessageHandler()->setErrorMessage(ERR_CATEGORY_DELETE);
         return false;
     }
 
@@ -160,6 +161,16 @@ class Category{
             return $result;
         }
         $messages->setErrorMessage(ERR_GET_CATEGORIES_COLLECTION);
+        return false;
+    }
+
+    //DELETE SUBCATEGORIES
+    public function deleteSubCategories(){
+        $result=Db::delete(SUB_CATEGORY_TABLE_NAME,"category_id='$this->categoryId'");
+        if($result){
+            return true;
+        }
+        
         return false;
     }
     
