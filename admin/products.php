@@ -163,6 +163,27 @@
             </div>
         </div>
         <!----------------------------- filters --------------------------->
+
+        <!----------------------------- applied filters --------------------------->
+        <div class="container">
+          <div class="row p-3">
+            <div class="d-flex flex-row justify-content-start flex-wrap">
+            <div class="col-auto me-1 my-1">
+              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x متن جستجو</a>
+            </div>
+            <div class="col-auto me-1 my-1">
+              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x دسته اول</a>
+            </div>
+            <div class="col-auto me-1 my-1">
+              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x گرانترین</a>
+            </div>
+            <div class="col-auto me-1 my-1">
+              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x موجود</a>
+            </div>
+            </div>
+          </div>
+        </div>
+        <!----------------------------- applied filters --------------------------->
        
 
         <!----------------------------- table of products --------------------------->
