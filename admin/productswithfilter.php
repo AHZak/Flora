@@ -80,7 +80,7 @@
             </a>
           </li>
         </ul>
-        
+
       </div>
     </nav>
 
@@ -163,56 +163,96 @@
             </div>
         </div>
         <!----------------------------- filters --------------------------->
-       
 
         <!----------------------------- table of products --------------------------->
 
         <div class="row">
           <div class="table-responsive">
-          
+
           <table class="table table-striped table-sm align-middle">
-          <?php if($products): ?>
-            <thead>
-              <tr>
-                <th>تصویر </th>
-                <th>نام</th>
-                <th>دسته بندی</th>
-                <th>موجودی</th>
-                <th>قیمت</th>
-                <th>اعمال تغییر</th>
-              </tr>
-            </thead>
-          
-          <tbody>
-
-            <?php foreach($products as $product): 
-                $productObj=new Product($product['id']);
-            ?>
-
+          <thead>
             <tr>
-              <td><img width="150px" height="150px" src="<?php echo $product['image']; ?>" alt="<?php echo $product['image_alt'] ?>" class="productlist-img"></td>
-              <td><?php echo $product['title']; ?></td>
-              <td><?php echo '<b>'.$productObj->getCategory()->getName().'</b><br>'.$productObj->getSubCategory()->getName(); ?></td>
-              <td><?php echo $product['instock']; ?></td>
-              <td><?php echo $product['price']; ?></td>
+              <th>تصویر </th>
+              <th>نام</th>
+              <th>دسته بندی</th>
+              <th>موجودی</th>
+              <th>قیمت</th>
+              <th>اعمال تغییر</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
+              <td>مامیلاریا</td>
+              <td>کاکتوس ها</td>
+              <td>25</td>
+              <td>15000</td>
               <td>
-                <div class="">
-                  <a href="<?php echo DOMAIN.'admin/editproduct.php?id='.$product['id']; ?>" class="btn btn-warning my-2 me-2">ویرایش</a>
-                  <a href="?del_pro=<?php echo $product['id']; ?>" class="btn btn-danger my-2">حذف</a>
+              <div class="">
+                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
+                <a href="" class="btn btn-danger my-2">حذف</a>
                 </div>
               </td>
             </tr>
-            
-            <?php endforeach; ?>
- 
+            <tr>
+              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
+              <td>اچینو</td>
+              <td>کاکتوس ها</td>
+              <td>40</td>
+              <td>7000</td>
+              <td>
+              <div class="">
+                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
+                <a href="" class="btn btn-danger my-2">حذف</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
+              <td>نخل شامادورا</td>
+              <td>کاکتوس ها</td>
+              <td>10</td>
+              <td>35000</td>
+              <td>
+              <div class="">
+                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
+                <a href="" class="btn btn-danger my-2">حذف</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
+              <td>گل رز</td>
+              <td>گل</td>
+              <td>90</td>
+              <td>22000</td>
+              <td>
+              <div class="">
+                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
+                <a href="" class="btn btn-danger my-2">حذف</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><img src="../assets/images/sample-image-min.png" alt="" class="productlist-img"></td>
+              <td>درخت موز</td>
+              <td>دوست دارم</td>
+              <td>1000</td>
+              <td>100000</td>
+              <td>
+              <div class="">
+                <a href="#" class="btn btn-warning my-2 me-2">ویرایش</a>
+                <a href="" class="btn btn-danger my-2">حذف</a>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
-        <?php else: echo 'محصولی وجود ندارد';?>
-        <?php endif;?>
+
           </div>
         </div>
-          
-          
+
+
 
         </div>
       </div>
@@ -220,11 +260,9 @@
   </div>
 </div>
 
-    
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
   </body>
 </html>
-
-<!-- adding this line of code to test rebase -->
