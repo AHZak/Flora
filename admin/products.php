@@ -96,6 +96,12 @@
           <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
             <i class="fas fa-list feather mx-2"></i>
             <p class="h5">محصولات</p>
+            
+            <!----------------------------- search box --------------------------->
+            <form class="flex-fill ms-2 ">
+        <input type="search" class="form-control rounded-pill" placeholder="جستجو در محصولات ...">
+      </form>
+          <!----------------------------- search box --------------------------->
           </div>
 
         </div>
@@ -174,16 +180,16 @@
         <div class="container">
           <div class="row p-3">
             <div class="d-flex flex-row justify-content-start flex-wrap">
-            <div class="col-auto me-1 my-1">
+            <div class="col-auto me-1 my-1 d-none">
               <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x متن جستجو</a>
             </div>
-            <div class="col-auto me-1 my-1">
+            <div class="col-auto me-1 my-1 d-none">
               <a id="selected-cat-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x دسته اول</a>
             </div>
-            <div class="col-auto me-1 my-1">
+            <div class="col-auto me-1 my-1 d-none">
               <a id="selected-order-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x گرانترین</a>
             </div>
-            <div class="col-auto me-1 my-1">
+            <div class="col-auto me-1 my-1 d-none">
               <a id="selected-instock-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x موجود</a>
             </div>
             </div>
