@@ -9,6 +9,7 @@ $(document).ready(function(){
         updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?cat="+cat+"&instock="+instockstatus+"&order="+order);
 
         //SHOW CURRENT SELECTED OPTION TEXT IN INLINE BUTTON
+        
         document.getElementById("selected-cat-btn").style.display = "inline-block";
         document.getElementById("selected-cat-btn").innerHTML=$("#cat option:selected").text();
     });
@@ -28,7 +29,7 @@ $(document).ready(function(){
 
         //SHOW CURRENT SELECTED OPTION TEXT IN INLINE BUTTON
         document.getElementById("selected-instock-btn").style.display = "inline-block";
-        document.getElementById("selected-indtock-btn").innerHTML=$("#instockstatus option:selected").text();
+        document.getElementById("selected-instock-btn").innerHTML=$("#instockstatus option:selected").text();
     });
 
     $("#selected-cat-btn").on('click',function(event){

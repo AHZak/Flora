@@ -97,10 +97,14 @@
           
             <i class="fas fa-list feather mx-2"></i>
             <p class="h5">محصولات</p>
+
+          <!----------------------------- search box --------------------------->
          
             <form class="flex-fill ms-2 ">
         <input type="search" class="form-control rounded-pill" placeholder="جستجو در محصولات ...">
       </form>
+
+          <!----------------------------- search box --------------------------->
 
           </div>
 
