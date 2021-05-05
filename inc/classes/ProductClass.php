@@ -274,9 +274,9 @@ class Product{
     }
 
     //GET PRODUCTS COLLECTION
-    public static function getProducts($conditions='1',&$messages=""){
+    public static function getProducts($conditions='1',$order="id",$orderby="DESC",&$messages=""){
         $messages=new Message();
-        $result=Db::select(PRODUCT_TABLE_NAME,$conditions);
+        $result=Db::select(PRODUCT_TABLE_NAME,$conditions,'All',"*",0,$order,$orderby);
         if($result){
             return $result;
         }

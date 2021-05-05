@@ -96,7 +96,6 @@ class Db {
             $sql="SELECT $disdinct FROM $table WHERE $conditions ORDER BY $orderBy $orderType";
         }
         
-
         if($sql){
             $result=Db::connect()->query($sql);
             if(strtolower($fetchType)=='all'){
@@ -165,6 +164,16 @@ class Db {
         }else{
             return false;
         }
+    }
+
+    public static function query($sql){
+        
+        try{
+            return Db::connect()->query($sql);
+        }catch(PDOException $e){
+            file_put_contents('DatabaseExeptions.log',$e);
+            return false;
+        } 
     }
 
 

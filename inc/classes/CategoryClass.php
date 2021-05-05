@@ -9,6 +9,7 @@ class Category{
     private $createdAt;
     private $updatedAt;
     private $visibility;
+    private $creatorId;
     private $subCategories;
 
     public function __construct($categoryId)
@@ -59,6 +60,18 @@ class Category{
 
     private function setSubCategories(){
         $this->subCategories=SubCategory::getSUbCategories("category_id='$this->categoryId'");
+    }
+
+    public function getProducts($conditionsQuery="1",$order="id",$orderBy='ASC'){
+            
+        //get product details by subcategory id
+        $products=Db::query("SELECT * FROM ".PRODUCT_TABLE_NAME." WHERE id IN ( SELECT product_id FROM ".CATEGORY_PRODUCT_TABLE_NAME." WHERE category_id='$this->categoryId') AND $conditionsQuery ORDER BY $order $orderBy");
+
+        if($products=$products->fetchAll(PDO::FETCH_NAMED)){
+            return $products;
+        }else{
+            return false;
+        }
     }
 
 

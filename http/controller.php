@@ -120,9 +120,55 @@ if(isset($pageUi)){
             $productObj=new Product($_GET['del_pro']);
             $productObj->delete();
         }
+        
+        $term=isset($_GET['term']) && $_GET['term'] ? str_replace(' ','%',$_GET['term']) : "";
+        $orderBy=isset($_GET['order']) && $_GET['order'] ? $_GET['order'] : "ASC";
+        if($orderBy=='cheapest'){
+            $orderTarget="price";
+            $orderBy=SORT_ASC;
+        }elseif($orderBy=="mostexpensive"){
+            $orderTarget="price";
+            $orderBy=SORT_DESC;
+        }elseif($orderBy=='newest'){
+            $orderTarget="created_at";
+            $orderBy=SORT_DESC;
+        }elseif($orderBy=='mostInstock'){
+            $orderTarget="instock";
+            $orderBy=SORT_DESC;
+        }elseif($orderBy=='leastInstock'){
+            $orderTarget="instock";
+            $orderBy=SORT_ASC;
+        }else{
+            $orderTarget="id";
+            $orderBy=SORT_ASC;
+        }
+    
+        $category=isset($_GET['category']) && $_GET['category'] ? $_GET['category'] : false;
+        $subCategory=isset($_GET['subCategory']) && $_GET['subCategory'] ? $_GET['subCategory'] : false;
 
+        if($category){
+            $category=new Category($category);
+            $products=$category->getProducts($orderTarget,$orderBy);
+            //get products
+            show($products);
+            die();
+        }elseif($subCategory){
+            $subCategory=new SubCategory($subCategory);
+            $products=$subCategory->getProducts();
+        }else{
+            if($orderBy==SORT_ASC){
+                $orderBy="ASC";
+            }elseif($orderBy==SORT_DESC){
+                $orderBy="DESC";
+            }
+            $products=Db::select(PRODUCT_TABLE_NAME,"title LIKE '%$term%'",'All',"*",0,$orderTarget,$orderBy);
+        }
+        
+       
+        
         //get products
-        $products=Product::getProducts();
+        show($products);
+        die();
 
     }
 
