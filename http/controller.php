@@ -120,9 +120,9 @@ if(isset($pageUi)){
             $productObj=new Product($_GET['del_pro']);
             $productObj->delete();
         }
-
-        //get products
         $products=Product::getProducts();
+        $categories=Category::getCategories();
+
 
     }
 

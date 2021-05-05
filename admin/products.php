@@ -121,21 +121,27 @@
               <!----------------------------- categories --------------------------->
               <div class="col-11 col-md-4 d-flex flex-row align-items-center me-2 my-1">
                 <p class="h6 me-2 text-nowrap">نمایش محصولات</p>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm">
-                  <option selected disabled>دسته بندی ها</option>
-                  <option disabled>____________</option>
-                  <option value="1" style="font-weight: bold" >دسته اصلی 1</option>
-                  <option value="2">-- زیردسته یک</option>
-                  <option value="2">-- زیردسته دو</option>
-                  <option disabled>________</option>
-                  <option value="1" style="font-weight: bold" >دسته اصلی 2</option>
-                  <option value="2">-- زیردسته یک</option>
-                  <option value="2">-- زیردسته دو</option>
-                  <option value="2">-- زیردسته سه</option>
-                  <option disabled>________</option>
-                  <option value="1" style="font-weight: bold" >دسته اصلی 3</option>
-                  <option value="2">-- زیردسته یک</option>
-                  <option value="2">-- زیردسته دو</option>
+
+                <select id="cat" class="form-select form-select-sm" aria-label=".form-select-sm">
+
+                  <option value="all" selected>دسته بندی ها</option>
+                  <?php if($categories):?>
+                      <?php foreach($categories as $category): 
+                        $categoryObj=new Category($category['id']);
+                        $subcategories=$categoryObj->getSubCategories();
+                      ?>
+                            <option disabled>____________</option>
+                            <option value="<?php echo 'cat_'.$categoryObj->getCategoryId(); ?>" style="font-weight: bold" ><?php echo $categoryObj->getName(); ?></option>
+                          <?php if($subcategories):?>
+                              <?php foreach($subcategories as $subCategory): ?>
+                                <option class="subcat" value="<?php echo 'subcat_'.$subCategory['id']; ?>">-- <?php echo $subCategory['name'] ?></option>
+                              <?php endforeach; ?>
+                          <?php endif;?>
+
+                      <?php endforeach; ?>
+                  <?php endif; ?>
+
+                  
                 </select>
               </div>
               <!----------------------------- categories --------------------------->
@@ -143,14 +149,14 @@
               <!----------------------------- order --------------------------->
               <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap me-2">
                 <p class="h6 me-2">به ترتیب :</p>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm">
-                  <option selected>جدیدترین</option>
-                  <option>قدیمی ترین</option>  
-                  <option>گران ترین</option>   
-                  <option>ارزان ترین</option>     
-                  <option>بیشترین موجودی</option>  
-                  <option>کمترین موجودی</option>
-                  <option>پرفروش ترین</option>
+                <select id="order" class="form-select form-select-sm" aria-label=".form-select-sm">
+                  <option value="newest" selected>جدیدترین</option>
+                  <option value="oldest">قدیمی ترین</option>  
+                  <option value="mostexpensive">گران ترین</option>   
+                  <option value="cheapest">ارزان ترین</option>     
+                  <option value="mostinstock">بیشترین موجودی</option>  
+                  <option value="leastinstock">کمترین موجودی</option>
+                  <option value="mostsells">پرفروش ترین</option>
                 </select>
               </div>
               <!----------------------------- categories --------------------------->
@@ -158,10 +164,10 @@
               <!----------------------------- categories --------------------------->
               <div class="col-10 col-md-2 d-flex flex-row align-items-center text-nowrap">
                 <p class="h6 me-2">موجودی :</p>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm">
-                  <option selected disabled>فقط نمایش...</option>
-                  <option>موجود</option>  
-                  <option>ناموجود</option>   
+                <select id="instockstatus" class="form-select form-select-sm" aria-label=".form-select-sm">
+                  <option selected value="all">فقط نمایش...</option>
+                  <option value="instock">موجود</option>  
+                  <option value="unavilable">ناموجود</option>   
                 </select>
               </div>
               <!----------------------------- categories --------------------------->
@@ -178,13 +184,13 @@
               <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x متن جستجو</a>
             </div>
             <div class="col-auto me-1 my-1">
-              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x دسته اول</a>
+              <a id="selected-cat-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x دسته اول</a>
             </div>
             <div class="col-auto me-1 my-1">
-              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x گرانترین</a>
+              <a id="selected-order-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x گرانترین</a>
             </div>
             <div class="col-auto me-1 my-1">
-              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x موجود</a>
+              <a id="selected-instock-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x موجود</a>
             </div>
             </div>
           </div>
@@ -194,7 +200,7 @@
 
         <!----------------------------- table of products --------------------------->
 
-        <div class="row">
+        <div id="pro-tb-list-content" class="row">
           <div class="table-responsive">
           
           <table class="table table-striped table-sm align-middle">
@@ -236,7 +242,7 @@
         </table>
         <?php else: echo 'محصولی وجود ندارد';?>
         <?php endif;?>
-          </div>
+        </div>
         </div>
           
           
@@ -247,10 +253,12 @@
   </div>
 </div>
 
-    
+    <!--JQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-
+    <!--Filter js -->  
+    <script src="../assets/js/filter.js"></script> 
   </body>
 </html>
 
