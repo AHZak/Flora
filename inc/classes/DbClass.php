@@ -95,6 +95,7 @@ class Db {
         }else{
             $sql="SELECT $disdinct FROM $table WHERE $conditions ORDER BY $orderBy $orderType";
         }
+    
         
         if($sql){
             $result=Db::connect()->query($sql);
