@@ -3,10 +3,15 @@
 include '../../config.php';
 use Database\Db;
 
-if(isset($_POST)){
+if(isset($_GET)){
+   
+    if(isset($_GET['order']) && $_GET['order']){
+        $orderBy=$_GET['order'];
+    }else{
+        $orderBy="all";
+    }
 
-    $orderBy=isset($_POST['order']) && $_POST['order'] ? $_POST['order'] : null;
-
+   
     if($orderBy=='cheapest'){
         $order="price";
         $orderBy="ASC";
@@ -16,11 +21,14 @@ if(isset($_POST)){
     }elseif($orderBy=='newest'){
         $order="created_at";
         $orderBy="DESC";
-    }elseif($orderBy=='mostInstock'){
+    }elseif($orderBy=='oldest'){
+        $order="created_at";
+        $orderBy="ASC";
+    }elseif($orderBy=='mostinstock'){
         $order="instock";
         $orderBy="DESC";
-    }elseif($orderBy=='leastInstock'){
-        $ordert="instock";
+    }elseif($orderBy=='leastinstock'){
+        $order="instock";
         $orderBy="ASC";
     }else{
         $order="id";
@@ -28,28 +36,46 @@ if(isset($_POST)){
     }
 
     //CAT
-    $category=isset($_POST['category']) && $_POST['category'] ? $_POST['category'] : false;
-    $subCategory=isset($_POST['subCategory']) && $_POST['subCategory'] ? $_POST['subCategory'] : false;
-    $instock=isset($_POST['instock']) && $_POST['instock'] ? $_POST['instock'] : false;
+    if(isset($_GET['cat']) && $_GET['cat']){
+        $cat=$_GET['cat'];
+    }else{
+        $cat=false;
+    }
+    
+    if($cat){
+        if(strpos($cat,"subcat_")!==false){
+            sscanf($cat,"subcat_%d",$subCategory);
+        }elseif(strpos($cat,"cat_")!==false){
+            sscanf($cat,"cat_%d",$category);
+        }
+    }
+    //INSTOCK
+    if(isset($_GET['instock']) && $_GET['instock']){
+        $instock=$_GET['instock'];
+    }else{
+        $instock=false;
+    }
     
 
-    if($category){
-
+    if(isset($category) && $category ){
         $category=new Category($category);
         if($instock){
             if($instock=='unavilable'){
                 $products=$category->getProducts("instock=0",$order,$orderBy);
+            }else{
+                $products=$category->getProducts("instock > 0",$order,$orderBy);
             }
         }else{
             $products=$category->getProducts(1,$order,$orderBy);
         }
 
-    }elseif($subCategory){
-
+    }elseif(isset($subCategory) && $subCategory!=""){
         $subCategory=new SubCategory($subCategory);
         if($instock){
             if($instock=='unavilable'){
                 $products=$subCategory->getProducts("instock=0",$order,$orderBy);
+            }else{
+                $products=$subCategory->getProducts("instock != 0",$order,$orderBy);
             }
         }else{
             $products=$subCategory->getProducts(1,$order,$orderBy);
@@ -59,17 +85,14 @@ if(isset($_POST)){
         if($instock){
             if($instock=='unavilable'){
                 $products=Db::select(PRODUCT_TABLE_NAME,"instock=0",'All',"*",0,$order,$orderBy);
+            }elseif($instock=='instock'){
+                $products=Db::select(PRODUCT_TABLE_NAME,"instock>0",'All',"*",0,$order,$orderBy);
+            }else{
+                $products=Db::select(PRODUCT_TABLE_NAME,1,'All',"*",0,$order,$orderBy);
             }
         }else{
             $products=Db::select(PRODUCT_TABLE_NAME,1,'All',"*",0,$order,$orderBy);
         }
        
     }
-
-    if($products){
-        echo json_encode(['ok'=>'true','result'=>$products]);
-    }else{
-        json_encode(['ok'=>'false','result'=>'Not Found Records']);
-    }
-
 }
