@@ -185,13 +185,13 @@
               <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x متن جستجو</a>
             </div>-->
             <div class="col-auto me-1 my-1">
-              <a id="selected-cat-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x دسته اول</a>
+              <a id="selected-cat-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر" style="display:none;">x دسته اول</a>
             </div>
             <div class="col-auto me-1 my-1">
-              <a id="selected-order-btn" href="" class="btn btn-outline-secondary rounded-pill " title="حذف فیلتر">x گرانترین</a>
+              <a id="selected-order-btn" href="" class="btn btn-outline-secondary rounded-pill " title="حذف فیلتر" style="display:none;">x گرانترین</a>
             </div>
             <div class="col-auto me-1 my-1">
-              <a id="selected-instock-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x موجود</a>
+              <a id="selected-instock-btn" href="" class="btn btn-outline-secondary rounded-pill"  title="حذف فیلتر" style="display:none;">x موجود</a>
             </div>
             </div>
           </div>
