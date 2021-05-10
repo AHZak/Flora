@@ -96,10 +96,10 @@
         <!-- header -->
 
         <!-- slider -->
-        <div class="row" style="direction: ltr">
-          <div class="slider">
+        <div class="row slider" style="direction: ltr">
+          
 
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -111,7 +111,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -123,7 +123,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -135,7 +135,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -147,7 +147,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -159,7 +159,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -171,7 +171,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -183,7 +183,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -195,7 +195,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -207,7 +207,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -219,7 +219,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -233,14 +233,8 @@
             </div>
             <!-- slider -->
             
-            
-  
-          </div>
         </div>
       </div>
-      
-      
-
       <!-- most purchased -->
 
       <!-- category 1 -->
@@ -255,10 +249,10 @@
         <!-- header -->
 
         <!-- slider -->
-        <div class="row" style="direction: ltr">
-          <div class="slider">
+        <div class="row slider" style="direction: ltr">
+          
 
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -270,7 +264,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -282,7 +276,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -294,7 +288,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -306,7 +300,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -318,7 +312,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -330,7 +324,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -342,7 +336,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -354,7 +348,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -366,7 +360,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -378,7 +372,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -392,14 +386,8 @@
             </div>
             <!-- slider -->
             
-            
-  
-          </div>
         </div>
       </div>
-      
-      
-
       <!-- category 1 -->
 
       <!-- category 2 -->
@@ -414,10 +402,10 @@
         <!-- header -->
 
         <!-- slider -->
-        <div class="row" style="direction: ltr">
-          <div class="slider">
+        <div class="row slider" style="direction: ltr">
+          
 
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -429,7 +417,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -441,7 +429,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -453,7 +441,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -465,7 +453,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -477,7 +465,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -489,7 +477,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -501,7 +489,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -513,7 +501,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -525,7 +513,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -537,7 +525,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -551,14 +539,8 @@
             </div>
             <!-- slider -->
             
-            
-  
-          </div>
         </div>
       </div>
-      
-      
-
       <!-- category 2 -->
 
       <!-- category 3 -->
@@ -573,10 +555,10 @@
         <!-- header -->
 
         <!-- slider -->
-        <div class="row" style="direction: ltr">
-          <div class="slider">
+        <div class="row slider" style="direction: ltr">
+          
 
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -588,7 +570,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -600,7 +582,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -612,7 +594,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -624,7 +606,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -636,7 +618,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -648,7 +630,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -660,7 +642,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -672,7 +654,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -684,7 +666,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -696,7 +678,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -710,14 +692,8 @@
             </div>
             <!-- slider -->
             
-            
-  
-          </div>
         </div>
       </div>
-      
-      
-
       <!-- category 3 -->
 
       <!-- new products -->
@@ -725,17 +701,17 @@
         <!-- header -->
         <div class="row p-3 border-bottom border-secondary border-3">
           <div class="col-md-10">
-            <p class="h3">جدیدترین محصولات</p>
+            <p class="h3">جدید ترین محصولات</p>
           </div>
 
         </div>
         <!-- header -->
 
         <!-- slider -->
-        <div class="row" style="direction: ltr">
-          <div class="slider">
+        <div class="row slider" style="direction: ltr">
+          
 
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -747,7 +723,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -759,7 +735,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -771,7 +747,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -783,7 +759,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -795,7 +771,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -807,7 +783,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -819,7 +795,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -831,7 +807,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -843,7 +819,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -855,7 +831,7 @@
                 </div>
               </div>
             </div>
-            <div class=" p-3">
+            <div class="col-md-12 p-3">
               <div class="card product-sliding-item">
                 <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
                 <div class="card-body p-1">
@@ -869,14 +845,8 @@
             </div>
             <!-- slider -->
             
-            
-  
-          </div>
         </div>
       </div>
-      
-      
-
       <!-- new products -->
     
     </main>
