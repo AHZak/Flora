@@ -28,12 +28,15 @@
           <!----------------------------- fisrt header ------------------------------------>
           <div class="row">
 
-            <div class="d-flex flex-row justify-content-between bg-warning p-3">
-              <div class="">
-                logo
+            <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
+              <div class="col-md-4 ms-2">
+                <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
               </div>
-              <div>
-                login + cart
+              <div class="d-flex align-items-center">
+              <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
+              </a> <i class="me-2">|</i>
+              <a href="#"><i class="fas fa-shopping-cart cart-cart"></i></a>
+              
               </div>
             </div>
 
