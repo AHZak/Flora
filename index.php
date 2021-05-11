@@ -1,3 +1,8 @@
+<?php 
+  //page controller
+  $pageUi='index';
+  include_once 'config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -101,603 +106,71 @@
         <!-- slider -->
         <div class="row slider" style="direction: ltr">
           
+            <?php if($mostSelesProducts): ?>
+               <?php foreach($mostSelesProducts as $mostSelesProduct): ?>
+                <div class="col-md-12 p-3">
+                  <div class="card product-sliding-item">
+                    <img src="<?php echo $mostSelesProduct['image'] ?>" class="card-img-top" alt="<?php echo $mostSelesProduct['image_alt'] ?>">
+                    <div class="card-body p-1">
+                      <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $mostSelesProduct['title'] ?></p>
+                      <div class="d-flex" style="color: coral;">
+                        <p class="ms-1 m-0">تومان</p>
+                        <p class="m-0"><?php echo number_format($mostSelesProduct['price']) ?></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               <?php endforeach; ?>
+            <?php else: ?>
+                <p>محصولی پیدا نشد</p>
+            <?php endif; ?>
 
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
             <!-- slider -->
             
         </div>
       </div>
       <!-- most purchased -->
 
-      <!-- category 1 -->
-      <div class="container p-3" >
-        <!-- header -->
-        <div class="row p-3 border-bottom border-secondary border-3">
-          <div class="col-md-10">
-            <p class="h5">دسته بندی اول</p>
-          </div>
-
-        </div>
-        <!-- header -->
-
-        <!-- slider -->
-        <div class="row slider" style="direction: ltr">
-          
-
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
+      <?php if($indexCategories): ?>
+        <?php foreach($indexCategories as $indexCategory): 
+            $categoryObj=new Category($indexCategory['id']);
+            $products=$categoryObj->getProducts("instock>0");
+        ?>
+            <!-- category 1 -->
+            <div class="container p-3" >
+                <!-- header -->
+                <div class="row p-3 border-bottom border-secondary border-3">
+                  <div class="col-md-10">
+                    <p class="h5"><?php echo $categoryObj->getName(); ?></p>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- slider -->
+                <!-- header -->
+                <!-- slider -->
+                <div class="row slider" style="direction: ltr">
             
-        </div>
-      </div>
-      <!-- category 1 -->
+                    <?php foreach($products as $product): ?>
+                        <div class="col-md-12 p-3">
+                          <div class="card product-sliding-item">
+                            <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt']; ?>">
+                            <div class="card-body p-1">
+                              <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $product['title']; ?></p>
+                              <div class="d-flex" style="color: coral;">
+                                <p class="ms-1 m-0">تومان</p>
+                                <p class="m-0"><?php echo number_format($product['price']); ?></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+         <!-- category 1 -->
+        <?php endforeach ?>
 
-      <!-- category 2 -->
-      <div class="container p-3" >
-        <!-- header -->
-        <div class="row p-3 border-bottom border-secondary border-3">
-          <div class="col-md-10">
-            <p class="h5">دسته بندی دوم</p>
-          </div>
+      <?php else: ?>
+            <p>دسته بندی خالی است</p>
+      <?php endif;?>
 
-        </div>
-        <!-- header -->
-
-        <!-- slider -->
-        <div class="row slider" style="direction: ltr">
-          
-
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- slider -->
-            
-        </div>
-      </div>
-      <!-- category 2 -->
-
-      <!-- category 3 -->
-      <div class="container p-3" >
-        <!-- header -->
-        <div class="row p-3 border-bottom border-secondary border-3">
-          <div class="col-md-10">
-            <p class="h5">دسته بندی سوم</p>
-          </div>
-
-        </div>
-        <!-- header -->
-
-        <!-- slider -->
-        <div class="row slider" style="direction: ltr">
-          
-
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- slider -->
-            
-        </div>
-      </div>
-      <!-- category 3 -->
 
       <!-- new products -->
       <div class="container p-3" >
@@ -710,145 +183,31 @@
         </div>
         <!-- header -->
 
-        <!-- slider -->
-        <div class="row slider" style="direction: ltr">
-          
-
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- slider -->
+          <!-- slider -->
+          <div class="row slider" style="direction: ltr">
             
-        </div>
+              <?php if($latestProducts): ?>
+                <?php foreach($latestProducts as $latestProduct): ?>
+                  <div class="col-md-12 p-3">
+                    <div class="card product-sliding-item">
+                      <img src="<?php echo $latestProduct['image'] ?>" class="card-img-top" alt="<?php echo $latestProduct['image_alt'] ?>">
+                      <div class="card-body p-1">
+                        <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $latestProduct['title'] ?></p>
+                        <div class="d-flex" style="color: coral;">
+                          <p class="ms-1 m-0">تومان</p>
+                          <p class="m-0"><?php echo number_format($latestProduct['price']) ?></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              <?php else: ?>
+                  <p>محصولی پیدا نشد</p>
+              <?php endif; ?>
+
+              <!-- slider -->
+              
+          </div>
       </div>
       <!-- new products -->
     

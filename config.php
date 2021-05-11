@@ -1,5 +1,6 @@
 <?php
-//DEFINE
+//SESIION
+session_start();
 
 //domain
 define('DOMAIN','http://localhost/flora/');

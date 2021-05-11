@@ -108,10 +108,10 @@ class SubCategory{
             return $this->category;
         }
 
-        public function getProducts($conditionsQuery="1",$order="id",$orderBy='ASC'){
+        public function getProducts($conditionsQuery="1"){
 
             //get product details by subcategory id
-            $products=Db::query("SELECT * FROM ".PRODUCT_TABLE_NAME." WHERE id IN ( SELECT product_id FROM ".SUB_CATEGORY_PRODUCT_TABLE_NAME." WHERE subcategory_id='$this->subCategoryId') AND $conditionsQuery ORDER BY $order $orderBy");
+            $products=Db::query("SELECT * FROM ".PRODUCT_TABLE_NAME." WHERE id IN ( SELECT product_id FROM ".SUB_CATEGORY_PRODUCT_TABLE_NAME." WHERE subcategory_id='$this->subCategoryId') AND $conditionsQuery");
 
             if($products=$products->fetchAll(PDO::FETCH_NAMED)){
                 return $products;

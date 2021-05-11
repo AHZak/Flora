@@ -228,7 +228,7 @@
               <td><?php echo $product['title']; ?></td>
               <td><?php echo '<b>'.$productObj->getCategory()->getName().'</b><br>'.$productObj->getSubCategory()->getName(); ?></td>
               <td><?php echo $product['instock']; ?></td>
-              <td><?php echo $product['price']; ?></td>
+              <td><?php echo number_format($product['price']); ?></td>
               <td>
                 <div class="">
                   <a href="<?php echo DOMAIN.'admin/editproduct.php?id='.$product['id']; ?>" class="btn btn-warning my-2 me-2">ویرایش</a>

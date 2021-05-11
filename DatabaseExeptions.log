@@ -1,6 +1,0 @@
-PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'description LIKE '%no%' ORDER BY id ASC' at line 1 in C:\xampp\htdocs\flora\inc\classes\DbClass.php:173
-Stack trace:
-#0 C:\xampp\htdocs\flora\inc\classes\DbClass.php(173): PDO->query('SELECT * FROM p...')
-#1 C:\xampp\htdocs\flora\inc\classes\DbClass.php(199): Database\Db::query('SELECT * FROM p...')
-#2 C:\xampp\htdocs\flora\test.php(9): Database\Db::simpleSearch('products', 'title,descripti...')
-#3 {main}

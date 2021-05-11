@@ -132,6 +132,12 @@ if(isset($pageUi)){
 
 
     }
+    //INDEX
+    elseif($pageUi=='index'){
+        $mostSelesProducts=Product::getProducts("instock>0","sales","DESC",20);
+        $indexCategories=Category::getCategories("show_index='yes'",$message);
+        $latestProducts=Product::getProducts("instock>0","id","DESC",10);
+    }
 
 
 }

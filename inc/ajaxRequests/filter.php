@@ -63,23 +63,23 @@ if(isset($_GET)){
         if($instock){
             if($instock=='unavilable'){
                 if($term){
-                    $products=$category->getProducts("instock=0 AND title LIKE '%$term%'",$order,$orderBy);
+                    $products=$category->getProducts("instock=0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
                 }else{
-                    $products=$category->getProducts("instock=0",$order,$orderBy);
+                    $products=$category->getProducts("instock=0 ORDER BY $order $orderBy");
                 }
                 
             }else{
                 if($term){
-                    $products=$category->getProducts("instock > 0",$order,$orderBy);
+                    $products=$category->getProducts("instock > 0 ORDER BY $order $orderBy");
                 }else{
-                    $products=$category->getProducts("instock > 0 AND title LIKE '%$term%'",$order,$orderBy);
+                    $products=$category->getProducts("instock > 0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
                 }
             }
         }else{
             if($term){
-                $products=$category->getProducts("title LIKE '%$term%'",$order,$orderBy);
+                $products=$category->getProducts("title LIKE '%$term%' ORDER BY $order $orderBy");
             }else{
-                $products=$category->getProducts(1,$order,$orderBy);
+                $products=$category->getProducts("1 ORDER BY $order $orderBy");
             }
             
         }
@@ -89,24 +89,24 @@ if(isset($_GET)){
         if($instock){
             if($instock=='unavilable'){
                 if($term){
-                    $products=$subCategory->getProducts("instock=0 AND title LIKE '%$term%'",$order,$orderBy);
+                    $products=$subCategory->getProducts("instock=0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
                 }else{
-                    $products=$subCategory->getProducts("instock=0",$order,$orderBy);
+                    $products=$subCategory->getProducts("instock=0 ORDER BY $order $orderBy");
                 }
                
             }else{
                 if($term){
-                    $products=$subCategory->getProducts("instock != 0 AND title LIKE '%$term%'",$order,$orderBy);
+                    $products=$subCategory->getProducts("instock != 0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
                 }else{
-                    $products=$subCategory->getProducts("instock != 0",$order,$orderBy);
+                    $products=$subCategory->getProducts("instock != 0 ORDER BY $order $orderBy");
                 }
                 
             }
         }else{
             if($term){
-                $products=$subCategory->getProducts("title LIKE '%$term%'",$order,$orderBy);
+                $products=$subCategory->getProducts("title LIKE '%$term%' ORDER BY $order $orderBy");
             }else{
-                $products=$subCategory->getProducts(1,$order,$orderBy);
+                $products=$subCategory->getProducts("1 ORDER BY $order $orderBy");
             }
             
         }
