@@ -9,3 +9,8 @@ body {
 .cart-cart {
     color: rgb(255, 93, 35);
 }
+
+.slider a {
+    text-decoration: none;
+    color: currentColor;
+}
