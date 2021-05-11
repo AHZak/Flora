@@ -92,7 +92,7 @@
         <!-- header -->
         <div class="row p-3 border-bottom border-secondary border-3">
           <div class="col-md-10">
-            <p class="h3">پرفروش ترین محصولات</p>
+            <p class="h5">پرفروش ترین محصولات</p>
           </div>
 
         </div>
@@ -245,7 +245,7 @@
         <!-- header -->
         <div class="row p-3 border-bottom border-secondary border-3">
           <div class="col-md-10">
-            <p class="h3">دسته بندی اول</p>
+            <p class="h5">دسته بندی اول</p>
           </div>
 
         </div>
@@ -398,7 +398,7 @@
         <!-- header -->
         <div class="row p-3 border-bottom border-secondary border-3">
           <div class="col-md-10">
-            <p class="h3">دسته بندی دوم</p>
+            <p class="h5">دسته بندی دوم</p>
           </div>
 
         </div>
@@ -551,7 +551,7 @@
         <!-- header -->
         <div class="row p-3 border-bottom border-secondary border-3">
           <div class="col-md-10">
-            <p class="h3">دسته بندی سوم</p>
+            <p class="h5">دسته بندی سوم</p>
           </div>
 
         </div>
@@ -704,7 +704,7 @@
         <!-- header -->
         <div class="row p-3 border-bottom border-secondary border-3">
           <div class="col-md-10">
-            <p class="h3">جدید ترین محصولات</p>
+            <p class="h5">جدید ترین محصولات</p>
           </div>
 
         </div>
