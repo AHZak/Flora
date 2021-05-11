@@ -16,7 +16,7 @@
     <title>فلورا - نام محصول</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/product.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
   </head>
@@ -65,20 +65,52 @@
     <!-- category mapping -->
 
     <!-- product -->
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 bg-info text-center" style="height: 400px;">
-            product
+      <div class="container bg-light">
+        <div class="row justify-content-center">
+
+          <!-- image -->
+          <div class="col-md p-3">
+            <img src="assets/images/product-sample.jpg" class="rounded mx-auto d-block" alt="">
           </div>
+          <!-- image -->
+
+          <!-- name + description -->
+          <div class="col-md p-3">
+            <div class="d-flex flex-column align-items-start">
+              <p class="h5 mb-5">نام محصول</p>
+              <p>توضیحات:</p>
+              <p>توضیحات محصول در این قسمت نمایش داده میشود</p>
+            </div>
+          </div>
+          <!-- name + description -->
+
+          <!-- price card -->
+          <div class="col-auto p-3">
+            <div class="p-5 price-card d-flex flex-column align-items-center shadow">
+              <div class="d-flex flex-row">
+                <p class="me-3">قیمت:</p>
+                <p>22000 تومان</p>
+              </div>
+              <div class="d-flex flex-row mb-3 align-items-center">
+                <p class="me-3 mb-0">تعداد:</p>
+                <div class="input-group spinner">
+                  <button class="btn btn-primary btn-2" type="button"><i class="fas fa-plus"></i></button>
+                  <button class="btn btn-danger btn-1" type="button"><i class="fas fa-minus"></i></button>
+                  <input type="text" class="form-control" value="1" min="1" max="10" step="1" id="a">  
+                </div>
+              </div>
+              <div class="align-self-center">
+                <button class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
+              </div>
+            </div>
+          </div>
+          <!-- price card -->
+
         </div>
       </div>
-
-
-
     <!-- product -->
     
-      
-
+    
       <!-- similar products -->
       <div class="container p-3" >
         <!-- header -->
@@ -294,6 +326,35 @@
             ]
           });
                   });
+      </script>
+      <script>
+        (function ($) {
+  $('.spinner .btn-1').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
+  });
+  $('.spinner .btn-2').on('click', function() {
+    $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
+  });
+})(jQuery);
+
+(function ($) {
+  $('.spinner2 .btn-3').on('click', function() {
+    $('.spinner2 input').val( parseInt($('.spinner2 input').val(), 10) - 1);
+  });
+  $('.spinner2 .btn-4').on('click', function() {
+    $('.spinner2 input').val( parseInt($('.spinner2 input').val(), 10) + 1);
+  });
+})(jQuery);
+
+(function ($) {
+       $("#submit").on("click", function(){
+        var a = parseInt($('.spinner input').val());
+        var b = parseInt($('.spinner2 input').val());
+        var sum = a + b;
+        $('#sum').val(sum);
+         
+    })
+})(jQuery);
       </script>
   </body>
 </html>
