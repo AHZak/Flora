@@ -224,7 +224,7 @@
             ?>
 
             <tr>
-              <td><img width="150px" height="150px" src="<?php echo $product['image']; ?>" alt="<?php echo $product['image_alt'] ?>" class="productlist-img"></td>
+              <td><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['image_alt'] ?>" class="productlist-img"></td>
               <td><?php echo $product['title']; ?></td>
               <td><?php echo '<b>'.$productObj->getCategory()->getName().'</b><br>'.$productObj->getSubCategory()->getName(); ?></td>
               <td><?php echo $product['instock']; ?></td>
