@@ -108,6 +108,7 @@
           
             <?php if($mostSelesProducts): ?>
                <?php foreach($mostSelesProducts as $mostSelesProduct): ?>
+              <a href="#">
                 <div class="col-md-12 p-3">
                   <div class="card product-sliding-item">
                     <img src="<?php echo $mostSelesProduct['image'] ?>" class="card-img-top" alt="<?php echo $mostSelesProduct['image_alt'] ?>">
@@ -120,6 +121,7 @@
                     </div>
                   </div>
                 </div>
+              </a>
                <?php endforeach; ?>
             <?php else: ?>
                 <p>محصولی پیدا نشد</p>
@@ -149,6 +151,7 @@
                 <div class="row slider" style="direction: ltr">
             
                     <?php foreach($products as $product): ?>
+                      <a href="#">
                         <div class="col-md-12 p-3">
                           <div class="card product-sliding-item">
                             <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt']; ?>">
@@ -161,6 +164,7 @@
                             </div>
                           </div>
                         </div>
+                        </a>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -188,6 +192,7 @@
             
               <?php if($latestProducts): ?>
                 <?php foreach($latestProducts as $latestProduct): ?>
+                <a href="#">
                   <div class="col-md-12 p-3">
                     <div class="card product-sliding-item">
                       <img src="<?php echo $latestProduct['image'] ?>" class="card-img-top" alt="<?php echo $latestProduct['image_alt'] ?>">
@@ -200,6 +205,7 @@
                       </div>
                     </div>
                   </div>
+                </a>
                 <?php endforeach; ?>
               <?php else: ?>
                   <p>محصولی پیدا نشد</p>
