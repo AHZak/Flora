@@ -16,7 +16,7 @@
     <title>فلورا - نام محصول</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/product.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
   </head>
@@ -65,20 +65,48 @@
     <!-- category mapping -->
 
     <!-- product -->
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 bg-info text-center" style="height: 400px;">
-            product
+      <div class="container bg-light">
+        <div class="row justify-content-center">
+
+          <!-- image -->
+          <div class="col-md p-3">
+            <img src="assets/images/product-sample.jpg" class="rounded mx-auto d-block" alt="">
           </div>
+          <!-- image -->
+
+          <!-- name + description -->
+          <div class="col-md p-3">
+            <div class="d-flex flex-column align-items-start">
+              <p class="h5 mb-5">نام محصول</p>
+              <p>توضیحات:</p>
+              <p>توضیحات محصول در این قسمت نمایش داده میشود</p>
+            </div>
+          </div>
+          <!-- name + description -->
+
+          <!-- price card -->
+          <div class="col-auto p-3">
+            <div class="p-5 price-card d-flex flex-column align-items-center">
+              <div class="d-flex flex-row">
+                <p class="me-3">قیمت:</p>
+                <p>22000 تومان</p>
+              </div>
+              <div class="d-flex flex-row mb-3">
+                <p class="me-3">تعداد:</p>
+                انتخاب تعداد
+              </div>
+              <div class="align-self-center">
+                <button class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
+              </div>
+            </div>
+          </div>
+          <!-- price card -->
+
         </div>
       </div>
-
-
-
     <!-- product -->
     
-      
-
+    
       <!-- similar products -->
       <div class="container p-3" >
         <!-- header -->
