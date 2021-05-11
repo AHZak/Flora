@@ -120,10 +120,23 @@ if(isset($pageUi)){
             $productObj=new Product($_GET['del_pro']);
             $productObj->delete();
         }
-        $products=Product::getProducts();
+
+        if(isset($_GET['term'])){
+            $term=Db::correctTermFormat($_GET['term']);
+            $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"title LIKE '%$term%'");
+        }else{
+            $products=Product::getProducts();
+        }
+        
         $categories=Category::getCategories();
 
 
+    }
+    //INDEX
+    elseif($pageUi=='index'){
+        $mostSelesProducts=Product::getProducts("instock>0","sales","DESC",20);
+        $indexCategories=Category::getCategories("show_index='yes'",$message);
+        $latestProducts=Product::getProducts("instock>0","id","DESC",10);
     }
 
 

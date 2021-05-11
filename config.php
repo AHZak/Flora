@@ -1,5 +1,6 @@
 <?php
-//DEFINE
+//SESIION
+session_start();
 
 //domain
 define('DOMAIN','http://localhost/flora/');
@@ -70,6 +71,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/CategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/SubCategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AccountClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
+
 
 
 //ERROR MESSAGES

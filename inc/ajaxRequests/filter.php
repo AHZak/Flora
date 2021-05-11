@@ -11,6 +11,7 @@ if(isset($_GET)){
         $orderBy="all";
     }
 
+    $term=isset($_GET['term']) && $_GET['term']!='' ? Db::correctTermFormat($_GET['term'],'simple') : false;
    
     if($orderBy=='cheapest'){
         $order="price";
@@ -61,37 +62,85 @@ if(isset($_GET)){
         $category=new Category($category);
         if($instock){
             if($instock=='unavilable'){
-                $products=$category->getProducts("instock=0",$order,$orderBy);
+                if($term){
+                    $products=$category->getProducts("instock=0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
+                }else{
+                    $products=$category->getProducts("instock=0 ORDER BY $order $orderBy");
+                }
+                
             }else{
-                $products=$category->getProducts("instock > 0",$order,$orderBy);
+                if($term){
+                    $products=$category->getProducts("instock > 0 ORDER BY $order $orderBy");
+                }else{
+                    $products=$category->getProducts("instock > 0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
+                }
             }
         }else{
-            $products=$category->getProducts(1,$order,$orderBy);
+            if($term){
+                $products=$category->getProducts("title LIKE '%$term%' ORDER BY $order $orderBy");
+            }else{
+                $products=$category->getProducts("1 ORDER BY $order $orderBy");
+            }
+            
         }
 
     }elseif(isset($subCategory) && $subCategory!=""){
         $subCategory=new SubCategory($subCategory);
         if($instock){
             if($instock=='unavilable'){
-                $products=$subCategory->getProducts("instock=0",$order,$orderBy);
+                if($term){
+                    $products=$subCategory->getProducts("instock=0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
+                }else{
+                    $products=$subCategory->getProducts("instock=0 ORDER BY $order $orderBy");
+                }
+               
             }else{
-                $products=$subCategory->getProducts("instock != 0",$order,$orderBy);
+                if($term){
+                    $products=$subCategory->getProducts("instock != 0 AND title LIKE '%$term%' ORDER BY $order $orderBy");
+                }else{
+                    $products=$subCategory->getProducts("instock != 0 ORDER BY $order $orderBy");
+                }
+                
             }
         }else{
-            $products=$subCategory->getProducts(1,$order,$orderBy);
+            if($term){
+                $products=$subCategory->getProducts("title LIKE '%$term%' ORDER BY $order $orderBy");
+            }else{
+                $products=$subCategory->getProducts("1 ORDER BY $order $orderBy");
+            }
+            
         }
     }else{
        
         if($instock){
             if($instock=='unavilable'){
-                $products=Db::select(PRODUCT_TABLE_NAME,"instock=0",'All',"*",0,$order,$orderBy);
+                if($term){
+                    $products=Db::select(PRODUCT_TABLE_NAME,"instock=0 AND title LIKE '$term'",'All',"*",0,$order,$orderBy);
+                }else{
+                    $products=Db::select(PRODUCT_TABLE_NAME,"instock=0",'All',"*",0,$order,$orderBy);
+                }
+               
             }elseif($instock=='instock'){
-                $products=Db::select(PRODUCT_TABLE_NAME,"instock>0",'All',"*",0,$order,$orderBy);
+                if($term){
+                    $products=Db::select(PRODUCT_TABLE_NAME,"instock>0",'All',"*",0,$order,$orderBy);
+                }else{
+                    $products=Db::select(PRODUCT_TABLE_NAME,"instock>0 AND title LIKE '%$term%'",'All',"*",0,$order,$orderBy);
+                }
+            }else{
+                if($term){
+                    $products=Db::select(PRODUCT_TABLE_NAME,"title LIKE '%$term%'",'All',"*",0,$order,$orderBy);
+                }else{
+                    $products=Db::select(PRODUCT_TABLE_NAME,1,'All',"*",0,$order,$orderBy);
+                }
+                
+            }
+        }else{
+            if($term){
+                $products=Db::select(PRODUCT_TABLE_NAME,"title LIKE '%$term%'",'All',"*",0,$order,$orderBy);
             }else{
                 $products=Db::select(PRODUCT_TABLE_NAME,1,'All',"*",0,$order,$orderBy);
             }
-        }else{
-            $products=Db::select(PRODUCT_TABLE_NAME,1,'All',"*",0,$order,$orderBy);
+            
         }
        
     }

@@ -176,6 +176,53 @@ class Db {
             return false;
         } 
     }
+	
+	
+	//SIMPLE TEXT SEARCH
+    public static function simpleSearch($table,$conditions="1",$disdinct="*",$limit=0,$orderBy='id',$orderType='ASC',$perPage="",$offset=1){
+      
+        if($limit){
+            if($perPage!=="" && is_numeric($perPage) && $perPage>0 && $offset>=1){
+                //for paginations
+                $start=($offset-1)*$perPage; //start of limit 
+                $len=$perPage; //length of limit
+                $sql="SELECT $disdinct FROM $table WHERE $conditions ORDER BY $orderBy $orderType LIMIT $start,$len";
+            }elseif($limit){
+                $sql="SELECT $disdinct FROM $table WHERE $conditions ORDER BY $orderBy $orderType LIMIT $limit";
+            }
+        }else{
+            $sql="SELECT $disdinct FROM $table WHERE $conditions ORDER BY $orderBy $orderType";
+        }
+        
+        if(isset($sql) && $sql){
+
+            $result=self::query($sql);
+            if($res=$result->fetchAll(PDO::FETCH_NAMED)){
+                return $res;
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
+        
+    }
+	
+
+    //CORRECT TERM FORMAT
+    public static function correctTermFormat($term,$termType="simple or fulltext"){
+        $term=str_replace("'","\'",$term);
+        if(strtolower($termType)=='simple'){
+            $term=str_replace(" ","%",$term);
+        }elseif(strtolower($termType)=='fulltext'){
+            $term=str_replace(" ",",",$term);
+        }else{
+            echo 'fill $termType with one of these words: simple or fulltext';
+        }
+        
+        return $term;
+    }
 
 
 
