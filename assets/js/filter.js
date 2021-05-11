@@ -3,20 +3,35 @@ $(document).ready(function(){
     var cat="";
     var instockstatus="";
     var order="";
+    var term="";
+    //LIVE SEARCH WITH AJAX
+    $("#termbox").keyup(function(){
+        term=$(this).val();
+        //SEND LOAD PAGE REQUEST
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
+        
+        //SHOW CURRENT SELECTED OPTION TEXT IN INLINE BUTTON
+        document.getElementById("selected-termbox-btn").style.display = "inline-block";
+        document.getElementById("selected-termbox-btn").innerHTML=$("#termbox").val();
+        if($("#termbox").val()==""){
+            document.getElementById("selected-termbox-btn").style.display = "none";
+        }
+    });
+
+    //FILTER CONTENT
     $("#cat").change(function(){
         cat=$(this).val();
         //SEND LOAD PAGE REQUEST
-        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?cat="+cat+"&instock="+instockstatus+"&order="+order);
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
 
         //SHOW CURRENT SELECTED OPTION TEXT IN INLINE BUTTON
-        
         document.getElementById("selected-cat-btn").style.display = "inline-block";
         document.getElementById("selected-cat-btn").innerHTML=$("#cat option:selected").text();
     });
     $("#order").change(function(){
         order=$(this).val();
         //SEND LOAD PAGE REQUEST
-        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?cat="+cat+"&instock="+instockstatus+"&order="+order);
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
 
         //SHOW CURRENT SELECTED OPTION TEXT IN INLINE BUTTON
         document.getElementById("selected-order-btn").style.display = "inline-block";
@@ -25,7 +40,7 @@ $(document).ready(function(){
     $("#instockstatus").change(function(){
         instockstatus=$(this).val();
         //SEND LOAD PAGE REQUEST
-        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?cat="+cat+"&instock="+instockstatus+"&order="+order);
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
 
         //SHOW CURRENT SELECTED OPTION TEXT IN INLINE BUTTON
         document.getElementById("selected-instock-btn").style.display = "inline-block";
@@ -39,7 +54,7 @@ $(document).ready(function(){
         document.getElementById("cat").selectedIndex ="all";
         document.getElementById("selected-cat-btn").style.display = "none";
         //SEND LOAD PAGE REQUEST
-        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?cat="+cat+"&instock="+instockstatus+"&order="+order);
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
     });
 
     $("#selected-order-btn").on('click',function(event){
@@ -49,7 +64,7 @@ $(document).ready(function(){
         document.getElementById("order").selectedIndex ="all";
         document.getElementById("selected-order-btn").style.display = "none";
         //SEND LOAD PAGE REQUEST
-        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?cat="+cat+"&instock="+instockstatus+"&order="+order);
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
     });
 
     $("#selected-instock-btn").on('click',function(event){
@@ -59,7 +74,17 @@ $(document).ready(function(){
         document.getElementById("instockstatus").selectedIndex ="all";
         document.getElementById("selected-instock-btn").style.display = "none";
         //SEND LOAD PAGE REQUEST
-        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?cat="+cat+"&instock="+instockstatus+"&order="+order);
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
+    });
+
+    $("#selected-searchbox-btn").on('click',function(event){
+        //make custom a property
+        event.preventDefault();
+        instockstatus="";
+        //document.getElementById("instockstatus").selectedIndex ="all";
+        document.getElementById("selected-termbox-btn").style.display = "none";
+        //SEND LOAD PAGE REQUEST
+        updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
     });
 });
 

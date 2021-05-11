@@ -99,7 +99,7 @@
             
             <!----------------------------- search box --------------------------->
             <form class="flex-fill ms-2 ">
-        <input type="search" class="form-control rounded-pill" placeholder="جستجو در محصولات ...">
+        <input name="term" id="termbox" type="search" class="form-control rounded-pill" placeholder="جستجو در محصولات ...">
       </form>
           <!----------------------------- search box --------------------------->
           </div>
@@ -181,9 +181,9 @@
           <div class="row p-3">
             <div class="d-flex flex-row justify-content-start flex-wrap">
 
-            <!--<div class="col-auto me-1 my-1 d-none">
-              <a href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر">x متن جستجو</a>
-            </div>-->
+            <div class="col-auto me-1 my-1">
+              <a id="selected-termbox-btn" href="" class="btn btn-outline-secondary rounded-pill" style="display:none;" title="حذف فیلتر">x متن جستجو</a>
+            </div>
             <div class="col-auto me-1 my-1">
               <a id="selected-cat-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر" style="display:none;">x دسته اول</a>
             </div>

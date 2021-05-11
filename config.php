@@ -72,6 +72,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/AccountClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
 
 
+
 //ERROR MESSAGES
 define('ERR_CATEGORY_EXISTS', 'این دسته بندی قبلا در سیستم ثبت شده است');
 define('ERR_SUB_CATEGORY_EXISTS', 'این زیردسته بندی قبلا در سیستم ثبت شده است');
