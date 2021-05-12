@@ -107,8 +107,11 @@
         <div class="row slider" style="direction: ltr">
           
             <?php if($mostSelesProducts): ?>
-               <?php foreach($mostSelesProducts as $mostSelesProduct): ?>
-              <a href="#">
+              <?php foreach($mostSelesProducts as $mostSelesProduct): 
+                  $mostSelesProductId=$mostSelesProduct['id'];
+                  $mostSelesProductTitle=$mostSelesProduct['title'];
+              ?>
+              <a href="<?php echo DOMAIN."product.php?pid=$mostSelesProductId&slug=$mostSelesProductTitle"?>">
                 <div class="col-md-12 p-3">
                   <div class="card product-sliding-item">
                     <img src="<?php echo $mostSelesProduct['image'] ?>" class="card-img-top" alt="<?php echo $mostSelesProduct['image_alt'] ?>">
@@ -150,8 +153,11 @@
                 <!-- slider -->
                 <div class="row slider" style="direction: ltr">
             
-                    <?php foreach($products as $product): ?>
-                      <a href="#">
+                    <?php foreach($products as $product):
+                        $productId=$product['id'];
+                        $productTitle=$product['title'];
+                    ?>
+                      <a href="<?php echo DOMAIN."product.php?pid=$productId&slug=$productTitle" ?>">
                         <div class="col-md-12 p-3">
                           <div class="card product-sliding-item">
                             <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt']; ?>">
@@ -191,8 +197,11 @@
           <div class="row slider" style="direction: ltr">
             
               <?php if($latestProducts): ?>
-                <?php foreach($latestProducts as $latestProduct): ?>
-                <a href="#">
+                <?php foreach($latestProducts as $latestProduct):
+                      $latestProductId=$latestProduct['id'];
+                      $latestProductTitle=$latestProduct['title'];
+                ?>
+                <a href="<?php echo DOMAIN."product.php?pid=$latestProductId&slug=$latestProductTitle" ?>">
                   <div class="col-md-12 p-3">
                     <div class="card product-sliding-item">
                       <img src="<?php echo $latestProduct['image'] ?>" class="card-img-top" alt="<?php echo $latestProduct['image_alt'] ?>">
