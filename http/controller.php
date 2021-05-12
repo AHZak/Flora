@@ -138,6 +138,21 @@ if(isset($pageUi)){
         $indexCategories=Category::getCategories("show_index='yes'",$message);
         $latestProducts=Product::getProducts("instock>0","id","DESC",10);
     }
+    //PRODUCT DETAILS
+    elseif($pageUi=='product'){
+        if(isset($_GET['pid']) && isset($_GET['slug'])){
+            $slug=$_GET['slug'];
+            $productId=$_GET['pid'];
+
+            $findProduct=Db::select(PRODUCT_TABLE_NAME,"title='$slug' AND id='$productId'",'single');
+            if($findProduct){
+                $product=new Product($findProduct['id']);
+            }else{
+                $product=false;
+            }
+            
+        }
+    }
 
 
 }
