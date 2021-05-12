@@ -1,3 +1,8 @@
+<?php 
+  //page controller
+  $pageUi='product';
+  include_once 'config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -66,201 +71,92 @@
 
     <!-- product -->
       <div class="container bg-light">
-        <div class="row justify-content-center">
+        <?php if(isset($product) && $product): ?>
+            <div class="row justify-content-center">
 
-          <!-- image -->
-          <div class="col-md p-3">
-            <img src="assets/images/product-sample.jpg" class="rounded mx-auto d-block" alt="">
-          </div>
-          <!-- image -->
-
-          <!-- name + description -->
-          <div class="col-md p-3">
-            <div class="d-flex flex-column align-items-start">
-              <p class="h5 mb-5">نام محصول</p>
-              <p>توضیحات:</p>
-              <p>توضیحات محصول در این قسمت نمایش داده میشود</p>
-            </div>
-          </div>
-          <!-- name + description -->
-
-          <!-- price card -->
-          <div class="col-auto p-3">
-            <div class="p-5 price-card d-flex flex-column align-items-center shadow">
-              <div class="d-flex flex-row">
-                <p class="me-3">قیمت:</p>
-                <p>22000 تومان</p>
+              <!-- image -->
+              <div class="col-md p-3">
+                <img src="<?php echo $product->getImage(); ?>" height="200" width="200" class="rounded mx-auto d-block" alt="">
               </div>
-              <div class="d-flex flex-row mb-3 align-items-center">
-                <p class="me-3 mb-0">تعداد:</p>
-                <div class="input-group spinner">
-                  <button class="btn btn-primary btn-2" type="button"><i class="fas fa-plus"></i></button>
-                  <button class="btn btn-danger btn-1" type="button"><i class="fas fa-minus"></i></button>
-                  <input type="text" class="form-control" value="1" min="1" max="10" step="1" id="a">  
+              <!-- image -->
+
+              <!-- name + description -->
+              <div class="col-md p-3">
+                <div class="d-flex flex-column align-items-start">
+                  <p class="h5 mb-5"><?php echo $product->getTitle(); ?></p>
+                  <p>توضیحات:</p>
+                  <p><?php echo $product->getDescription(); ?></p>
                 </div>
               </div>
-              <div class="align-self-center">
-                <button class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
-              </div>
-            </div>
-          </div>
-          <!-- price card -->
+              <!-- name + description -->
 
-        </div>
+              <!-- price card -->
+              <div class="col-auto p-3">
+                <div class="p-5 price-card d-flex flex-column align-items-center shadow">
+                  <div class="d-flex flex-row">
+                    <p class="me-3">قیمت:</p>
+                    <p><?php echo number_format($product->getPrice()); ?> تومان</p>
+                  </div>
+                  <div class="d-flex flex-row mb-3 align-items-center">
+                    <p class="me-3 mb-0">تعداد:</p>
+                    <div class="input-group spinner">
+                      <button class="btn btn-primary btn-2" type="button"><i class="fas fa-plus"></i></button>
+                      <button class="btn btn-danger btn-1" type="button"><i class="fas fa-minus"></i></button>
+                      <input type="text" class="form-control" value="1" min="1" max="10" step="1" id="a">  
+                    </div>
+                  </div>
+                  <div class="align-self-center">
+                    <button class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
+                  </div>
+                </div>
+              </div>
+              <!-- price card -->
+
+            </div>
+        <?php else: ?>
+            <p>محصول پیدا نشد</p>
+        <?php endif; ?>
       </div>
     <!-- product -->
     
     
       <!-- similar products -->
       <div class="container p-3" >
+
         <!-- header -->
-        <div class="row p-3 border-bottom border-secondary border-3">
-          <div class="col-md-10">
-            <p class="h5">محصولات مشابه</p>
-          </div>
+        <?php if(isset($product) && $product && $product->getCategory()->getProducts("instock>0") ): ?>
 
-        </div>
-        <!-- header -->
+            <div class="row p-3 border-bottom border-secondary border-3">
+              <div class="col-md-10">
+                <p class="h5">محصولات مشابه</p>
+              </div>
 
-        <!-- slider -->
-        <div class="row slider" style="direction: ltr">
-          
+            </div>
+            <!-- header -->
 
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12 p-3">
-              <div class="card product-sliding-item">
-                <img src="assets/images/product-sample.jpg" class="card-img-top" alt="...">
-                <div class="card-body p-1">
-                  <p class="card-title text-center mb-3" style="font-weight:bold;">اپونتیا</p>
-                  <div class="d-flex" style="color: coral;">
-                    <p class="ms-1 m-0">تومان</p>
-                    <p class="m-0">22000</p>
-                  </div>
-                </div>
-              </div>
-            </div>
             <!-- slider -->
-            
-        </div>
+            <div class="row slider" style="direction: ltr">
+                <?php foreach($product->getCategory()->getProducts("instock>0") as $product): ?>
+                
+                    <div class="col-md-12 p-3">
+                      <div class="card product-sliding-item">
+                        <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt'] ?>">
+                        <div class="card-body p-1">
+                          <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $product['title'] ?></p>
+                          <div class="d-flex" style="color: coral;">
+                            <p class="ms-1 m-0">تومان</p>
+                            <p class="m-0"><?php echo number_format($product['price']); ?></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- slider -->
+
+                <?php endforeach; ?>
+            </div>
+
+        <?php endif; ?>
+
       </div>
       <!-- similar products -->
     
