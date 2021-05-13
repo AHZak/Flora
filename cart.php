@@ -1,6 +1,6 @@
 <?php 
   //page controller
-  $pageUi='index';
+  $pageUi='cart';
   include_once 'config.php';
 ?>
 <!doctype html>
@@ -74,81 +74,42 @@
 
       <!-- cart items -->
       <div class="container">
-        <!-- Item in cart -->
-        <div class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
-          <div class="d-flex flex-row align-items-center flex-start">
-            <div class="p-2 me-3">
-              <img src="assets/images/product-sample.jpg" style="height: 9rem;" alt="" class="img-thumbnail">
-            </div>    
-            <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
-              <p class="h5 mb-4">نام محصول</p>
-              <div class="d-flex flex-row align-items-center">
-                <p class="m-0">تعداد:</p>
-                <input type="email" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="2" value="1">
-                <button class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
-                <button class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
-              </div>
-              <div class="d-flex flex-row align-items-center">
-              <i class="fas fa-trash-alt me-2"></i>
-              <p class="m-0">حذف از سبد خرید</p>
-              </div>
-            </div>
-            <div class="ms-auto align-self-end rounded bg-info p-2 text-nowrap">
-              <p class="m-0">17000 تومان</p>
-            </div>
-          </div>
-        </div>
-        <!-- Item in cart -->
-        <!-- Item in cart -->
-        <div class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
-          <div class="d-flex flex-row align-items-center flex-start">
-            <div class="p-2 me-3">
-              <img src="assets/images/product-sample.jpg" style="height: 9rem;" alt="" class="img-thumbnail">
-            </div>    
-            <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
-              <p class="h5 mb-4">نام محصول</p>
-              <div class="d-flex flex-row align-items-center">
-                <p class="m-0">تعداد:</p>
-                <input type="email" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="2" value="1">
-                <button class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
-                <button class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
-              </div>
-              <div class="d-flex flex-row align-items-center">
-              <i class="fas fa-trash-alt me-2"></i>
-              <p class="m-0">حذف از سبد خرید</p>
+      <?php if(isset($productsId) && $productsId): ?>
+          <?php foreach($productsId as $productId):
+              //product object
+              $product=new Product($productId);
+              $number=$_SESSION['cart']['number'][$product->getId()];
+          ?>
+            <!-- Item in cart -->
+            <div class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
+              <div class="d-flex flex-row align-items-center flex-start">
+                <div class="p-2 me-3">
+                  <img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail">
+                </div>    
+                <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
+                  <p class="h5 mb-4"><?php echo $product->getTitle(); ?></p>
+                  <div class="d-flex flex-row align-items-center">
+                    <p class="m-0">تعداد:</p>
+                    <input id="<?php echo $product->getId();?>_number" type="email" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="2" value="<?php echo $number; ?>">
+                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'increase')" class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
+                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease')" class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
+                  </div>
+                  <div class="d-flex flex-row align-items-center">
+                  <i class="fas fa-trash-alt me-2"></i>
+                  <p class="m-0">حذف از سبد خرید</p>
+                  </div>
+                </div>
+                <div class="ms-auto align-self-end rounded bg-info p-2 text-nowrap">
+                  <p id="<?php echo $product->getId();?>_sumprice" class="m-0"><?php echo number_format($product->getPrice()*$number) ?> تومان</p>
+                </div>
               </div>
             </div>
-            <div class="ms-auto align-self-end rounded bg-info p-2 text-nowrap">
-              <p class="m-0">17000 تومان</p>
-            </div>
-          </div>
-        </div>
-        <!-- Item in cart -->
-        <!-- Item in cart -->
-        <div class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
-          <div class="d-flex flex-row align-items-center flex-start">
-            <div class="p-2 me-3">
-              <img src="assets/images/product-sample.jpg" style="height: 9rem;" alt="" class="img-thumbnail">
-            </div>    
-            <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
-              <p class="h5 mb-4">نام محصول</p>
-              <div class="d-flex flex-row align-items-center">
-                <p class="m-0">تعداد:</p>
-                <input type="email" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="2" value="1">
-                <button class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
-                <button class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
-              </div>
-              <div class="d-flex flex-row align-items-center">
-              <i class="fas fa-trash-alt me-2"></i>
-              <p class="m-0">حذف از سبد خرید</p>
-              </div>
-            </div>
-            <div class="ms-auto align-self-end rounded bg-info p-2 text-nowrap">
-              <p class="m-0">17000 تومان</p>
-            </div>
-          </div>
-        </div>
-        <!-- Item in cart -->
+            <!-- Item in cart -->
+          <?php endforeach; ?>
+      <?php else: ?>
+          <p>سبد خالی است</p>
+      <?php endif; ?>
+
         
       </div>
       <!-- cart items -->
@@ -166,6 +127,8 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="assets/js/cart.js"></script>
    
   </body>
 </html>
