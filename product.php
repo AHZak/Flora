@@ -102,11 +102,11 @@
                     <div class="input-group spinner">
                       <button class="btn btn-primary btn-2" type="button"><i class="fas fa-plus"></i></button>
                       <button class="btn btn-danger btn-1" type="button"><i class="fas fa-minus"></i></button>
-                      <input type="text" class="form-control" value="1" min="1" max="10" step="1" id="a">  
+                      <input id="a" type="text" class="form-control" value="1" min="1" max="10" step="1">  
                     </div>
                   </div>
                   <div class="align-self-center">
-                    <button class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
+                    <button onclick="addToCart(<?php echo $product->getId(); ?>)" class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
                   </div>
                 </div>
               </div>
@@ -183,6 +183,7 @@
     <!-- slick carousel needed files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous"></script>
+    <script src="assets/js/cart.js"></script>
     <!-- slick carousel script TEMPORARY -->
     <script type="text/javascript">
         $(document).ready(function(){
