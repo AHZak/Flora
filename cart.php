@@ -94,10 +94,12 @@
                     <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'increase')" class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
                     <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease')" class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
                   </div>
+                  <a href="#" style="text-decoration: none; color: currentColor;">
                   <div class="d-flex flex-row align-items-center">
                   <i class="fas fa-trash-alt me-2"></i>
                   <p class="m-0">حذف از سبد خرید</p>
                   </div>
+                  </a>
                 </div>
                 <div class="ms-auto align-self-end rounded bg-info p-2 text-nowrap">
                   <p id="<?php echo $product->getId();?>_sumprice" class="m-0"><?php echo number_format($product->getPrice()*$number) ?> تومان</p>
@@ -115,7 +117,19 @@
       <!-- cart items -->
 
       <!-- summary -->
-
+      <div class="container-fluid bottom-0 bg-light">
+        <div class="col-md-12">
+          <div class="d-flex flex-row justify-content-between p-3">
+            <div>
+              <p>جمع قیمت کالاها</p>
+              <p>173000 تومان</p>
+            </div>
+            <div class="align-self-end">
+              <button class="btn btn-primary">ادامه خرید</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- summary -->
   
     </main>
