@@ -9,12 +9,12 @@ if(isset($pageUi)){
             $category->delete();
             $category->deleteSubCategories();
  
-            $category->getMessageHandler()->showMessages();
+           // $category->getMessageHandler()->showMessages();
         }elseif(isset($_GET['rm_sub'])){
             $subCategory=new SubCategory($_GET['rm_sub']);
             $subCategory->delete();
             
-            $subCategory->getMessageHandler()->showMessages();
+           // $subCategory->getMessageHandler()->showMessages();
         }elseif(isset($_POST['addCategory'])){
             $catName=isset($_POST['name']) ? $_POST['name'] : "";
             $catType=isset($_POST['catType']) ? $_POST['catType'] : "";
@@ -23,16 +23,14 @@ if(isset($pageUi)){
                 if($catType=='parent'){
                     //add category
                     Category::create(['name'=>$catName,'creator_id'=>1],$message);
-                    $message->showMessages();
+                    //$message->showMessages();
                 }else{
                     //add sub category
                     SubCategory::create(['name'=>$catName,'creator_id'=>1,'category_id'=>$catType]);
                 }
             }
         }
-
-
-
+        
         //get categories and sub categories
         $categories=Category::getCategories();
     }elseif($pageUi=='addProduct'){
@@ -61,6 +59,9 @@ if(isset($pageUi)){
         //get categories 
         $categories=Category::getCategories();
     }elseif($pageUi=='editProduct'){
+        if(isset($_POST['cancelEditProduct'])){
+            redirectTo("products.php");
+        }
         if(isset($_GET['id'])){
 
             $product=new Product($_GET['id']);
@@ -84,9 +85,10 @@ if(isset($pageUi)){
                     $product_id=$product->getId();
                     $result=Db::update(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product->getId(),'subcategory_id'=>$subCategoryId],"product_id='$product_id'");
                 }
+                //or redirect to list
+                redirectTo("products.php");
             }
-            //or redirect to list
-            $product=new Product($_GET['id']);
+
 
             //get categories 
             $categories=Category::getCategories();

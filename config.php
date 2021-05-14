@@ -8,7 +8,6 @@ define('HOST_ROOT','/home/aabotsir/public_html/');
 define('PROJECT_NAME', 'flora');
 
 
-
 //my public_html function here
 function public_html(){
     
@@ -99,16 +98,6 @@ define('ERR_PRODUCT_INSTOCK_FORMAT', 'خطا!فرمت موجودی وارد شد
 define('ERR_UNSUPPORT_IMAGE_FORMAT', 'خطا!لطفا تصاویری با فرمت jpg یا png وارد کنید');
 define('ERR_FAILED_UPLOAD', 'خطا!فایل آپلود نشد');
 define('ERR_SUB_CATEGORY_DELETE', 'خطا!زیردسته بندی حذف نشد');
-
-
-
-
-
-
-
-
-
-
 
 
 

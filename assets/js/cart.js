@@ -2,7 +2,7 @@ function addToCart(productId){
     var number=$("#a").val();
     
     $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{productid:productId,number:number},function(response){
-        alert(response['ok']);
+        alert("محصول مورد نظر به سبد خرید اضافه شد");
     });
 }
 
@@ -21,8 +21,9 @@ function updateNumberOfCart(productId,type){
 
     $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{productid:productId,number:number},function(response){
         var response=JSON.parse(response);
-
+        
         //update price text
-        $("#"+productId+"_sumprice").text(response['sumprice']+" تومان ")
+        $("#"+productId+"_sumprice").text(response['sumprice']+" تومان ");
+        $("#fullsum").text(response['fullsum']+" تومان");
     });
 }
