@@ -62,3 +62,16 @@ function array_orderby()
     call_user_func_array('array_multisort', $args);
     return array_pop($args);
 }
+
+//ACTIVE CLASS
+function active($fileName){
+    if(basename($_SERVER['PHP_SELF'])==$fileName){
+        echo "active";
+    }
+}
+
+//REDIRECT
+function redirectTo($fileName){
+    header("Location:$fileName");
+    die();
+}
