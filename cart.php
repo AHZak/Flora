@@ -73,7 +73,7 @@
       <!-- heading -->
 
       <!-- cart items -->
-      <div class="container">
+      <div class="container" style="min-height:50vh">
       <?php if(isset($productsId) && $productsId): ?>
           <?php foreach($productsId as $productId):
               //product object
@@ -117,7 +117,7 @@
       <!-- cart items -->
 
       <!-- summary -->
-      <div class="container-fluid bottom-0 bg-light">
+      <div class="container-fluid bg-light">
         <div class="col-md-12">
           <div class="d-flex flex-row justify-content-between p-3">
             <div>
