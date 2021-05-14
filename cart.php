@@ -79,6 +79,7 @@
               //product object
               $product=new Product($productId);
               $number=$_SESSION['cart']['number'][$product->getId()];
+
           ?>
             <!-- Item in cart -->
             <div class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
@@ -122,7 +123,7 @@
           <div class="d-flex flex-row justify-content-between p-3">
             <div>
               <p>جمع قیمت کالاها</p>
-              <p>173000 تومان</p>
+              <p id="fullsum"><?php echo number_format($_SESSION['cart']['fullsum']);?> تومان</p>
             </div>
             <div class="align-self-end">
               <button class="btn btn-primary">ادامه خرید</button>

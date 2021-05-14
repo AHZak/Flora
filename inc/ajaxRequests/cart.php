@@ -27,7 +27,19 @@ if(isset($_POST)){
         $sumprice=$product->getPrice()*$number;
     }
 
+    //SUM OF ALL PRODUCTS
+    $sum=0;
+    if($_SESSION['cart']['products']){
+        foreach($_SESSION['cart']['products'] as $productId){
+            //product object
+            $product=new Product($productId);
+            $sum=$sum+$product->getPrice()*$_SESSION['cart']['number'][$productId];
+        }
+        $_SESSION['cart']['fullsum']=$sum;
+    }
+    echo json_encode(['ok'=>true,'sumprice'=>number_format($sumprice),'fullsum'=>number_format($sum)]);
 
 
-    echo json_encode(['ok'=>true,'sumprice'=>number_format($sumprice)]);
+
+    
 }
