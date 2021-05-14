@@ -30,9 +30,7 @@ if(isset($pageUi)){
                 }
             }
         }
-
-
-
+        
         //get categories and sub categories
         $categories=Category::getCategories();
     }elseif($pageUi=='addProduct'){
