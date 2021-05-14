@@ -23,8 +23,8 @@ include 'adminheader.php';
         <div class="row">
         <div class="col-md g-3">
             <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
-              <i class="fas fa-plus feather mx-2"></i>
-              <p class="h5">افزودن دسته</p>
+            <i class="fas fa-edit feather mx-2"></i>
+              <p class="h5">ویرایش زیردسته</p>
             </div>
             <form action="" method="post">
               <div class="col-12 my-2">
@@ -39,7 +39,10 @@ include 'adminheader.php';
                   <?php endforeach; ?>
                 </select>
               </div>
-              <button name="editSubCategory" class="btn btn-primary btn-lg my-3" type="submit">ویرایش زیردسته</button>
+              <div class="my-4">
+                  <button name="editCategory" type="submit" class="btn btn-success">ثبت تغییرات</button>
+                  <button name="cancelEditCategory" type="submit" class="btn btn-danger mx-2">لغو</button>
+              </div>
             </form>
           </div>
 
