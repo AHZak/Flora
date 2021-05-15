@@ -70,7 +70,7 @@
     <!-- category mapping -->
 
     <!-- product -->
-      <div class="container bg-light">
+      <div class="container bg-light mt-3">
         <?php if(isset($product) && $product): ?>
             <div class="row justify-content-center">
 
@@ -92,7 +92,7 @@
 
               <!-- price card -->
               <div class="col-auto p-3">
-                <div class="p-5 price-card d-flex flex-column align-items-center shadow">
+                <div class="p-5 price-card d-flex flex-column shadow">
                   <div class="d-flex flex-row">
                     <p class="me-3">قیمت:</p>
                     <p><?php echo number_format($product->getPrice()); ?> تومان</p>
@@ -102,10 +102,10 @@
                     <div class="input-group spinner">
                       <button class="btn btn-primary btn-2" type="button"><i class="fas fa-plus"></i></button>
                       <button class="btn btn-danger btn-1" type="button"><i class="fas fa-minus"></i></button>
-                      <input id="a" type="text" class="form-control" value="1" min="1" max="10" step="1">  
+                      <input id="a" type="text" class="form-control" value="1" min="1" max="10" step="1" size="2">  
                     </div>
                   </div>
-                  <div class="align-self-center">
+                  <div class="align-self-center mt-3">
                     <button onclick="addToCart(<?php echo $product->getId(); ?>)" class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
                   </div>
                 </div>
