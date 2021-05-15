@@ -40,7 +40,7 @@
               <div class="d-flex align-items-center">
               <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
               </a> <i class="me-2">|</i>
-              <a href="#"><i class="fas fa-shopping-cart cart-cart"></i></a>
+              <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
               
               </div>
             </div>

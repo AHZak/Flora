@@ -96,16 +96,31 @@ if(isset($pageUi)){
     }elseif($pageUi=='editCategory'){
 
         if(isset($_GET['id']) ){
+            //cancel edit
+            if(isset($_POST['cancelEdit'])){
+                redirectTo("categories.php");
+            }
+
+            //do edit
             $category=new Category($_GET['id']);
-            if(isset($_POST['editCategory'])){
+            if(isset($_POST['cancelEditCategory'])){
                 $category->update(['name'=>$_POST['name']]);
+                redirectTo("categories.php");
             }
         }
+
+        //get updated category
         $category=new Category($_GET['id']);
 
         //get categories 
         $categories=Category::getCategories();
     }elseif($pageUi=='editSubCategory'){
+
+        //cancel edit sub category
+        if(isset($_POST['cancelEditSubCategory'])){
+            redirectTo("categories.php");
+        }
+
         if(isset($_GET['id']) ){
             $subCategory=new SubCategory($_GET['id']);
             if(isset($_POST['editSubCategory'])){

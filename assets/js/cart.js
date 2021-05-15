@@ -27,3 +27,12 @@ function updateNumberOfCart(productId,type){
         $("#fullsum").text(response['fullsum']+" تومان");
     });
 }
+
+function deleteFromCart(productId){
+    $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{delcart:productId},function(response){
+        var response=JSON.parse(response);
+       // console.log(response);
+        $("#delcart_"+productId).remove();
+        $("#fullsum").text(response['fullsum']+" تومان");
+    });
+}
