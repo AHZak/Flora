@@ -35,7 +35,7 @@
 
             <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
               <div class="col-md-4 ms-2">
-                <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
+                <a href="index.php"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
               </div>
               <div class="d-flex align-items-center">
               <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
@@ -82,7 +82,7 @@
 
           ?>
             <!-- Item in cart -->
-            <div class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
+            <div id="delcart_<?php echo $product->getId(); ?>" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
               <div class="d-flex flex-row align-items-center flex-start">
                 <div class="p-2 me-3">
                   <img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail">
@@ -98,7 +98,7 @@
                   <a href="#" style="text-decoration: none; color: currentColor;">
                   <div class="d-flex flex-row align-items-center">
                   <i class="fas fa-trash-alt me-2"></i>
-                  <p class="m-0">حذف از سبد خرید</p>
+                  <p onclick="deleteFromCart(<?php echo $product->getId();?>)" class="m-0">حذف از سبد خرید</p>
                   </div>
                   </a>
                 </div>
