@@ -176,6 +176,26 @@ if(isset($pageUi)){
             $productsId=$_SESSION['cart']['products'];
         }
     }
+    //USER SIGNIN
+    elseif($pageUi='signin'){
+        if(isset($_SESSION['phone'])){
+            $phone=$_SESSION['phone'];
+            $checkUserExistsOrNot=Db::checkExists('users',"phone='$phone'");
+            if($checkUserExistsOrNot==true){
+                //create a register code
+                //update register code in db
+                //send register code
+                //redirect to check code page
+            }else{
+                //create init account
+                //create register code
+                //update register code
+                //send register code
+                //redirect to check code page
+            }
+        }
+        
+    }
 
 
 }
