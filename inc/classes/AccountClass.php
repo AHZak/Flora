@@ -58,6 +58,9 @@ class Account{
             }
             $this->getMessageHandler()->setErrorMessage(ERR_CREATE_INIT_ACCOUNT);
             return false;
+        }else{
+            $this->getMessageHandler()->setErrorMessage(ERR_PHONE_NUMBER_LEN);
+            return false;
         }
     }
 

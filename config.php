@@ -62,6 +62,14 @@ require_once public_html().PROJECT_NAME.'/inc/libs/jdf.php';
 //include functions
 include_once(public_html().PROJECT_NAME.'/inc/functions.php');
 
+//SMS PANEL SETUP
+define('USERNAME_TREZ','sharifschool');
+define('PASSWORD_TREZ','reza1356');
+define('FROM_PHONE_TREZ', '50002210003000');
+
+
+
+
 //require classes
 require_once public_html().PROJECT_NAME.'/inc/classes/MessagesClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/DbClass.php';

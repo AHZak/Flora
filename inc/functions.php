@@ -77,6 +77,13 @@ function redirectTo($fileName){
 }
 
 //TREZ.IR API
-function sendMessageTrez($fromPhone,$toPhone,$message){
+function sendMessageTrez($Phone,$message){
+    $url="https://SmsPanel.Trez.ir/SendMessageWithPost.ashx";
+    $params=['UserName'=>USERNAME_TREZ,'Password'=>PASSWORD_TREZ,'PhoneNumber'=>FROM_PHONE_TREZ,'MessageBody'=>$message,'Recnumber'=>$Phone,'Smsclass'=>1];
+    return json_decode(Server::sendRequest($url,$params,'post'),true);
+}
+
+//example sms
+function send_example_sms(){
     
 }

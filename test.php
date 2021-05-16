@@ -7,9 +7,7 @@ include 'config.php';
 
 if(isset($_POST['phone'])){
     //send code
-    $url="https://raygansms.com/FastSend.asmx";
-    $params=['UserName'=>'arash0078','Password'=>"252@arash*—*42:)","Mobile"=>'09215919027','Footer'=>'تست'];
-    show(Server::sendRequest($url,$params,'post'));
+    show(sendMessageTrez("09215919027","تستی"));
 }
 
 if(isset($_POST['code'])){
