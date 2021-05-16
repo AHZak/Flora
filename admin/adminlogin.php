@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
 
     <title>فلورا</title>
-    <link rel="stylesheet" href="assets/css/adminlogin.css">
+    <link rel="stylesheet" href="../assets/css/adminlogin.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
   </head>
   <body class="text-center d-flex flex-column align-items-center p-4">
     <main class="form-signin shadow rounded">
         <form>
-            <img class="mb-4" src="assets/images/logo/flora-lo.png" alt="" width="72" height="72">
+            <img class="mb-4" src="../assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal text-white">ورود ادمین</h1>
 
             <div class="form-floating my-2">
