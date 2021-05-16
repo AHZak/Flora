@@ -75,3 +75,8 @@ function redirectTo($fileName){
     header("Location:$fileName");
     die();
 }
+
+//TREZ.IR API
+function sendMessageTrez($fromPhone,$toPhone,$message){
+    
+}
