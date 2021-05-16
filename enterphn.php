@@ -1,3 +1,7 @@
+<?php
+    $pageUi="enterphn";
+    include_once 'config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -16,12 +20,12 @@
   <body class="text-center d-flex flex-column align-items-center p-4">
 
     <main class="form-signin shadow rounded">
-        <form>
+        <form method="post">
             <img class="mb-4" src="assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal">لطفا شماره موبایل خود را وارد کنید</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="phone-number">
+                <input name="phone" type="text" class="form-control" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">شماره موبایل</label>
             </div>
         
