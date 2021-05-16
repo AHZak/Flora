@@ -1,3 +1,7 @@
+<?php
+    $pageUi='signup'; 
+    include_once 'config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -15,26 +19,26 @@
   </head>
   <body class="text-center d-flex flex-column align-items-center p-4">
     <main class="form-signin shadow rounded">
-        <form>
+        <form method="post">
             <img class="mb-4" src="assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal">ثبت نام</h1>
 
             <div class="form-floating my-2">
-                <input type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
+                <input name="code" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">کد تایید ارسال شده</label>
             </div>
 
             <div class="form-floating my-2">
-                <input type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
+                <input name="first_name" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">نام</label>
             </div>
 
             <div class="form-floating my-2">
-                <input type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
+                <input name="last_name" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">نام خانوادگی</label>
             </div>
         
-            <button class="w-100 btn btn-lg btn-primary my-3" type="submit">ثبت نام</button>
+            <button name="signup" class="w-100 btn btn-lg btn-primary my-3" type="submit">ثبت نام</button>
             <p class="mt-5 mb-3 text-muted">فلورا - فروشگاه آنلاین گل و گیاه</p>
         </form>  
     </main>

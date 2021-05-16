@@ -1,3 +1,7 @@
+<?php
+    $pageUi='entercode';
+    include_once 'config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -15,16 +19,16 @@
   </head>
   <body class="text-center d-flex flex-column align-items-center p-4">
     <main class="form-signin shadow rounded">
-        <form>
+        <form method="post">
             <img class="mb-4" src="assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal">کد تایید را وارد کنید</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInput" placeholder="phone-number">
+                <input name="code" type="text" class="form-control" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">کد تایید</label>
             </div>
         
-            <button class="w-100 btn btn-lg btn-primary my-3" type="submit">ورود</button>
+            <button name="login" class="w-100 btn btn-lg btn-primary my-3" type="submit">ورود</button>
             <p class="mt-5 mb-3 text-muted">فلورا - فروشگاه آنلاین گل و گیاه</p>
         </form>  
     </main>

@@ -23,11 +23,12 @@ class Account{
 
 
 
-    public static function create($userId,$firstName,$lastName,&$messages=""){
+    public static function create($phone,$firstName,$lastName,&$messages=""){
         //MESSAGES HANDLER
         $messages=new Message();
 
         $data=[
+            'is_varified'=>"done",
             'FName'=>$firstName,
             'LName'=>$lastName,
         ];
@@ -36,7 +37,7 @@ class Account{
         $data=validArrayInputs($data);
 
         //do create tmp account
-        $account=Db::update(USER_TABLE_NAME,$data,"id='$userId'");
+        $account=Db::update(USER_TABLE_NAME,$data,"phone='$phone'");
         if($account){
             $messages->setSuccessMessage(SUCCESS_CREATE_ACCOUNT);
             return $account;
@@ -47,11 +48,11 @@ class Account{
     }
 
     //create a init account
-    public function createInitialaizeAccount($phoneNumber){
+    public function createInitialaizeAccount($phoneNumber,$registercode){
         //phone number validation & create a init account
         if($this->validPhoneNumber($phoneNumber)){
             //do create
-            $result=Db::insert(USER_TABLE_NAME,['phone'=>$phoneNumber]);
+            $result=Db::insert(USER_TABLE_NAME,['phone'=>$phoneNumber,'register_code'=>$registercode,'is_varified'=>'none']);
             if($result){
                 $this->getMessageHandler()->setSuccessMessage(SUCCES_CREATE_INIT_ACCOUNT);
                 return true;
@@ -61,6 +62,37 @@ class Account{
         }else{
             $this->getMessageHandler()->setErrorMessage(ERR_PHONE_NUMBER_LEN);
             return false;
+        }
+
+        
+    }
+
+    //LOGIN
+    public function login($phone,$code){
+        //valid phone
+
+        //get account
+        $account=Db::select(USER_TABLE_NAME,"phone='$phone'","single");
+        if($account){
+            if($account['register_code']!='expired'){
+                
+                if($account['register_code']==$code){
+                    $_SESSION['login']=true;
+                    $_SESSION['FName']=$account['FName'];
+                    $_SESSION['userId']=$account['id'];
+                    $_SESSION['phone']=$account['phone'];
+                    
+                    //destroy register code
+                    Db::update(USER_TABLE_NAME,['register_code'=>"expired"],"phone='$phone'");
+                    //redirect to dashboard
+                    redirectTo("index.php");
+                }
+            }else{
+                redirectTo("enterphn.php");
+            }
+        }else{
+            //err message
+            
         }
     }
 
@@ -106,4 +138,7 @@ class Account{
     //VALID PASSWORD
 
     //VALID REGISTER CODE
+    private function validRegistercode($registercode){
+        
+    }
 }
