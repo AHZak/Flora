@@ -75,7 +75,73 @@
             </div>
           </div>
           <div class="tab-pane fade" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
-            test text 1
+            
+          <div class="table-responsive">
+        <table class="table table-striped table-sm text-nowrap">
+          <thead>
+            <tr>
+              <th>#شماره سفارش</th>
+              <th>مبلغ</th>
+              <th>تاریخ سفارش</th>
+              <th>وضعیت</th>
+              <th>جزئیات/فاکتور</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10001</td>
+              <td>300,000 تومان</td>
+              <td>1400/03/12</td>
+              <td><i class="far fa-question-circle me-1"></i>در انتظار پرداخت</td>
+              <td>
+                <div class="d-flex flex-row">
+                  <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
+                  <a href="#" class="btn btn-outline-danger">فاکتور</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>10002</td>
+              <td>110,000 تومان</td>
+              <td>1400/02/01</td>
+              <td><i class="far fa-question-circle me-1"></i>در حال انجام</td>
+              <td>
+                <div class="d-flex flex-row">
+                  <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
+                  <a href="#" class="btn btn-outline-danger">فاکتور</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>10003</td>
+              <td>74,000 تومان</td>
+              <td>1400/01/13</td>
+              <td><i class="far fa-question-circle me-1"></i>تحویل شده</td>
+              <td>
+                <div class="d-flex flex-row">
+                  <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
+                  <a href="#" class="btn btn-outline-danger">فاکتور</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>10003</td>
+              <td>25,000 تومان</td>
+              <td>1400/01/01</td>
+              <td><i class="far fa-question-circle me-1"></i>تحویل شده</td>
+              <td>
+                <div class="d-flex flex-row">
+                  <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
+                  <a href="#" class="btn btn-outline-danger">فاکتور</a>
+                </div>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+          
+
           </div>
           <div class="tab-pane fade" id="nav-addresses" role="tabpanel" aria-labelledby="nav-addresses-tab">
             test text
