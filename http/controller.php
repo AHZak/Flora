@@ -176,25 +176,92 @@ if(isset($pageUi)){
             $productsId=$_SESSION['cart']['products'];
         }
     }
-    //USER SIGNIN
-    elseif($pageUi='signin'){
-        if(isset($_SESSION['phone'])){
-            $phone=$_SESSION['phone'];
-            $checkUserExistsOrNot=Db::checkExists('users',"phone='$phone'");
+    //ENTER PHONE
+    elseif($pageUi=='enterphn'){
+
+        if(isset($_POST['phone'])){
+
+            $_SESSION['phone']=$_POST['phone'];
+            $phone=$_POST['phone'];
+            
+            //check user sign up or not
+            $checkUserExistsOrNot=Db::checkExists('users',"phone='$phone'","is_varified");
+
             if($checkUserExistsOrNot==true){
                 //create a register code
+                $registerCode=rand(1000,9999);
+
                 //update register code in db
+                Db::update(USER_TABLE_NAME,['register_code'=>$registerCode],"phone='$phone'");
+
                 //send register code
+                sendMessageTrez($phone,"کد شما: $registerCode");
+
                 //redirect to check code page
+                redirectTo("entercode.php");
             }else{
-                //create init account
                 //create register code
-                //update register code
+                $registerCode=rand(1000,9999);
+
+                //create init account
+                $account=new Account();
+                $account->createInitialaizeAccount($phone,$registerCode);
+
                 //send register code
+                sendMessageTrez($phone,"کد ثبت نام شما: $registerCode");
                 //redirect to check code page
+                redirectTo("signup.php");
             }
         }
         
+    }
+    //SIGNUP USER
+    elseif($pageUi=='signup'){
+
+        if(isset($_POST['signup'])){
+
+            if(isset($_SESSION['phone'])){
+                $phone=$_SESSION['phone'];
+                $code=isset($_POST['code']) && $_POST['code'] ? $_POST['code'] : "";
+                $FName=isset($_POST['first_name']) && $_POST['first_name'] ? $_POST['first_name'] : "";
+                $LName=isset($_POST['last_name']) && $_POST['last_name'] ? $_POST['last_name'] : "";
+
+                //get init account data
+                $initAccount=Db::select(USER_TABLE_NAME,"phone='$phone'","single");
+                if(!$initAccount){
+                    redirectTo("enterphn.php");
+                }
+
+                if($code==$initAccount['register_code']){
+                    //ACCOUNT OBJECT
+                    $account=new Account();
+                    $result=$account->create($phone,$FName,$LName,$messages);
+                    if($result){
+                        //do login
+                        
+                        //redirect to dashboard
+                    }else{
+                        //show err
+                    }
+                }else{
+                    echo 'کد وارد شده اشتباه است';
+                }
+
+            }else{
+                redirectTo("enterphn.php");
+            }
+        }
+    }elseif($pageUi=='entercode'){
+        if(isset($_POST['login'])){
+
+            $phone=$_SESSION['phone'];
+            $code=isset($_POST['code']) && $_POST['code'] ? $_POST['code'] : "";
+
+            //ACCOUNT OBJECT
+            $account=new Account();
+            $account->login($phone,$code);
+            
+        }
     }
 
 
