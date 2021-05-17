@@ -21,9 +21,17 @@ class Account{
         return $this->messages;
     }
 
+    //AUTH
+    public function checkAuth(){
+        if($this->checkUserLogedIn()==false){
+            //do logout & redirect to login page
+            $this->logout();
+            redirectTo("enterphn.php");
+        }
+    }
 
 
-    public static function create($phone,$firstName,$lastName,&$messages=""){
+    public function create($phone,$firstName,$lastName,$code,&$messages=""){
         //MESSAGES HANDLER
         $messages=new Message();
 
@@ -40,7 +48,9 @@ class Account{
         $account=Db::update(USER_TABLE_NAME,$data,"phone='$phone'");
         if($account){
             $messages->setSuccessMessage(SUCCESS_CREATE_ACCOUNT);
-            return $account;
+
+            //do login
+            $this->login($phone,$code);
         }
         
         $messages->setErrorMessage(ERR_CREATE_ACCOUNT);
@@ -85,7 +95,9 @@ class Account{
                     //destroy register code
                     Db::update(USER_TABLE_NAME,['register_code'=>"expired"],"phone='$phone'");
                     //redirect to dashboard
-                    redirectTo("index.php");
+                    redirectTo("userprofile.php");
+                }else{
+                    echo 'کد وارد شده اشتباه است';
                 }
             }else{
                 redirectTo("enterphn.php");
@@ -96,6 +108,20 @@ class Account{
         }
     }
 
+    //check user loged in
+    public function checkUserLogedIn(){
+        if($_SESSION['login']==true){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //LOGOUT
+    public function logout(){
+        $_SESSION['login']=false;
+        unset($_SESSION['userId'],$_SESSION['FName'],$_SESSION['phone']);
+    }
 
     //VALID FIRSTNAME
 
