@@ -87,3 +87,12 @@ function sendMessageTrez($Phone,$message){
 function send_example_sms(){
     
 }
+
+//check user loged in
+function checkUserLogedIn(){
+    if($_SESSION['login']==true){
+        return true;
+    }else{
+        return false;
+    }
+}

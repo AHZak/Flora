@@ -123,7 +123,7 @@
           <div class="d-flex flex-row justify-content-between p-3">
             <div>
               <p>جمع قیمت کالاها</p>
-              <p id="fullsum"><?php echo number_format($_SESSION['cart']['fullsum']);?> تومان</p>
+              <p id="fullsum"><?php echo isset($_SESSION['cart']['fullsum']) ? number_format($_SESSION['cart']['fullsum']) : 0;?> تومان</p>
             </div>
             <div class="align-self-end">
               <button class="btn btn-primary">ادامه خرید</button>

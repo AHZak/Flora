@@ -195,7 +195,9 @@ if(isset($pageUi)){
                 Db::update(USER_TABLE_NAME,['register_code'=>$registerCode],"phone='$phone'");
 
                 //send register code
-                sendMessageTrez($phone,"کد شما: $registerCode");
+               // sendMessageTrez($phone,"کد شما: $registerCode");
+               //similor
+               $_SESSION['sim-code']=$registerCode;
 
                 //redirect to check code page
                 redirectTo("entercode.php");
@@ -208,7 +210,10 @@ if(isset($pageUi)){
                 $account->createInitialaizeAccount($phone,$registerCode);
 
                 //send register code
-                sendMessageTrez($phone,"کد ثبت نام شما: $registerCode");
+                //sendMessageTrez($phone,"کد ثبت نام شما: $registerCode");
+                //similor
+                $_SESSION['sim-code']=$registerCode;
+
                 //redirect to check code page
                 redirectTo("signup.php");
             }
@@ -235,7 +240,7 @@ if(isset($pageUi)){
                 if($code==$initAccount['register_code']){
                     //ACCOUNT OBJECT
                     $account=new Account();
-                    $result=$account->create($phone,$FName,$LName,$messages);
+                    $result=$account->create($phone,$FName,$LName,$code,$messages);
                     if($result){
                         //do login
                         
@@ -262,6 +267,16 @@ if(isset($pageUi)){
             $account->login($phone,$code);
             
         }
+    }
+    //USER PROFILE
+    elseif($pageUi=='userProfile'){
+        $account=new Account();
+
+        //AUTHENTICATION
+        $account->checkAuth();
+
+        $user=new User($_SESSION['userId']);
+
     }
 
 

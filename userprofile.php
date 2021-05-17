@@ -1,3 +1,7 @@
+<?php
+    $pageUi="userProfile";
+    include_once 'config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -57,19 +61,19 @@
               <div class="row">
               <div class="col-md-5 p-2">
                 <label for="name" class="form-label">نام<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
-                <input type="text" id="name" class="form-control" aria-describedby="name" value="آرش">
+                <input type="text" id="name" placeholder="نامتان را وارد کنید" class="form-control" aria-describedby="name" value="<?php echo $user->getFirstName(); ?>">
               </div>
               <div class="col-md-5 p-2">
                 <label for="name" class="form-label">نام خانوادگی<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
-                <input type="text" id="name" class="form-control" aria-describedby="name" value="عابدی">
+                <input type="text" placeholder="نام خانودگی تان را وارد کنید" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getLastName(); ?>">
               </div>
               <div class="col-md-5 p-2">
                 <label for="name" class="form-label">شماره تلفن</label>
-                <input disabled type="text" id="name" class="form-control" aria-describedby="name" value="09112223344">
+                <input disabled type="text" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getPhone(); ?>">
               </div>
               <div class="col-md-5 p-2">
                 <label for="name" class="form-label">ایمیل<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
-                <input type="text" id="name" class="form-control" aria-describedby="name" placeholder="example@email.com">
+                <input type="text" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getEmail(); ?>" placeholder="example@email.com">
               </div>
               </div>
             </div>

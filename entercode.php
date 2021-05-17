@@ -1,6 +1,7 @@
 <?php
     $pageUi='entercode';
     include_once 'config.php';
+    show("code: ".$_SESSION['sim-code']);
 ?>
 <!doctype html>
 <html dir="rtl">
