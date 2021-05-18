@@ -16,6 +16,12 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
+            <a class="nav-link <?php active("#") ?>" href="adminman.php">
+            <i class="fas fa-users-cog"></i>
+            ادمین ها
+            </a>
+          </li>
+          <li class="nav-item border-bottom">
             <a class="nav-link <?php active("#") ?>" href="#">
             <i class="fas fa-cart-arrow-down feather"></i>
             سفارشات
