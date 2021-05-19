@@ -1,3 +1,7 @@
+<?php
+  $pageUi="adminlogin";
+  include_once '../config.php';
+?>
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -15,25 +19,25 @@
   </head>
   <body class="text-center d-flex flex-column align-items-center p-4">
     <main class="form-signin shadow rounded">
-        <form>
+        <form method="post">
             <img class="mb-4" src="../assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal text-white">ورود ادمین</h1>
 
             <div class="form-floating my-2">
-                <input type="email" class="form-control rounded" id="floatingInput" placeholder="example-email.com">
-                <label for="floatingInput">ایمیل</label>
+                <input name="phone" type="text" class="form-control rounded" id="floatingInput" placeholder="0911...">
+                <label for="floatingInput">شماره تلفن</label>
             </div>
 
             <div class="form-floating">
-              <input type="password" class="form-control rounded" id="floatingPassword" placeholder="Password">
+              <input name="password" type="password" class="form-control rounded" id="floatingPassword" placeholder="Password">
               <label for="floatingPassword">کلمه عبور</label>
             </div>
   
-            <button class="w-100 btn btn-lg btn-primary my-3" type="submit">ثبت نام</button>
+            <button name="adminlogin" class="w-100 btn btn-lg btn-primary my-3" type="submit">ورود</button>
             <p class="mt-5 mb-3 text-muted">فلورا - صفحه ورود ادمین</p>
         </form>  
     </main>
-    <a class="back-link text-white" href="#">
+    <a class="back-link text-white" href="../index.php">
         <p>صفحه اصلی</p>
         <i class="fas fa-home"></i>
     </a>

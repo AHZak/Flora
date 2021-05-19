@@ -81,6 +81,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/SubCategoryClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AccountClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/server/lib/ServerClass.php';
+require_once public_html().PROJECT_NAME.'/inc/classes/AdminClass.php';
 
 
 
@@ -112,6 +113,8 @@ define('ERR_SUB_CATEGORY_DELETE', 'خطا!زیردسته بندی حذف نشد'
 define('ERR_EMAIL_EXISTS', 'خطا!این ادمین با این ایمیل قبلا در سیستم ثبت شده است');
 define('ERR_PHONE_EXISTS', 'خطا! این شماره تلفن قبلا ثبت شده است');
 define('ERR_CREATE_ADMIN', 'خطا! اکانت ادمین مورد نظر ساخته نشد.لطفا دوباره امتحان کنید');
+define('ERR_ACCESS_DENIED', 'خطا!شما دسترسی لازم به این بخش را ندارید');
+
 
 
 

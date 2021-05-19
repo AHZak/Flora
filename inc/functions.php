@@ -88,11 +88,48 @@ function send_example_sms(){
     
 }
 
-//check user loged in
+//check user logged in
 function checkUserLogedIn(){
     if($_SESSION['login']==true){
         return true;
     }else{
         return false;
     }
+}
+
+//check admin logged in
+function checkAdminLoggedIn(){
+    if(isset($_SESSION['admin_login']) && $_SESSION['admin_login']==true){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+//IS MASTER
+function isMaster(){
+    if(!checkAdminLoggedIn()){
+        //redirect to admin login page
+        $account=new Account();
+        $account->logout();
+        redirectTo(public_html().PROJECT_NAME."/admin/adminlogin.php");
+    }
+    if(isset($_SESSION['permission']) && $_SESSION['permission']=='master'){
+        return true;
+    }
+    return false;
+}
+
+//IS ADMIN
+function isAdmin(){
+    if(!checkAdminLoggedIn()){
+        //redirect to admin login page
+        $account=new Account();
+        $account->logout();
+        redirectTo(public_html().PROJECT_NAME."/admin/adminlogin.php");
+    }
+    if(isset($_SESSION['permission']) && $_SESSION['permission']=='admin'){
+        return true;
+    }
+    return false;
 }

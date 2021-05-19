@@ -78,7 +78,7 @@ class Account{
     }
 
     //LOGIN
-    public function login($phone,$code){
+    public function login($phone,$code,$redirect='editprofile.php'){
         //valid phone
 
         //get account
@@ -89,7 +89,9 @@ class Account{
                 if($account['register_code']==$code){
                     $_SESSION['login']=true;
                     $_SESSION['FName']=$account['FName'];
+                    $_SESSION['LName']=$account['LName'];
                     $_SESSION['userId']=$account['id'];
+                    $_SESSION['password']=$account['password'];
                     $_SESSION['phone']=$account['phone'];
                     
                     //destroy register code
@@ -100,14 +102,42 @@ class Account{
                     echo 'کد وارد شده اشتباه است';
                 }
             }else{
-                redirectTo("enterphn.php");
+                redirectTo($redirect);
             }
         }else{
             //err message
-            
         }
     }
 
+    //ADMIN LOGIN
+    public function adminLogin($phone,$password,$redirect="admin.php"){
+        //valid phone
+
+        $this->logout();
+    
+        //get account
+        $account=Db::select(ADMIN_TABLE_NAME,"phone='$phone'","single");
+        if($account){
+                if($account['password']==$password){
+                    $_SESSION['admin_login']=true;
+                    $_SESSION['login']=true;
+                    $_SESSION['FName']=$account['FName'];
+                    $_SESSION['password']=$account['password'];
+                    $_SESSION['LName']=$account['LName'];
+                    $_SESSION['userId']=$account['id'];
+                    $_SESSION['phone']=$account['phone'];
+                    $_SESSION['permission']=$account['permission'];
+                    
+                    //redirect to dashboard
+                    redirectTo($redirect);
+                }else{
+                    echo 'نام کاربری یا رمز عبور اشتباه است';
+                }
+            
+        }else{
+            //err message
+        }
+    }
     //check user loged in
     public function checkUserLogedIn(){
         if($_SESSION['login']==true){
@@ -120,9 +150,23 @@ class Account{
     //LOGOUT
     public function logout(){
         $_SESSION['login']=false;
-        unset($_SESSION['userId'],$_SESSION['FName'],$_SESSION['phone']);
+        unset($_SESSION['userId'],$_SESSION['FName'],$_SESSION['LName'],$_SESSION['phone'],$_SESSION['password']);
+        if(isset($_SESSION['permission'])){
+            unset($_SESSION['permission']);
+        }
+        if(isset($_SESSION['admin_login'])){
+            unset($_SESSION['admin_login']);
+        }
     }
 
+    //UPDATE LOGIN DATA
+    public function updateAdminLoginData($redirect='admin.php'){
+        $this->adminLogin($_SESSION['phone'],$_SESSION['password'],$redirect);
+    }
+
+    public function updateUserLoginData($redirect='editprofile.php'){
+        $this->login($_SESSION['phone'],$_SESSION['password'],$redirect);
+    }
     //VALID FIRSTNAME
 
     //VALID LASTNAME
@@ -165,6 +209,6 @@ class Account{
 
     //VALID REGISTER CODE
     private function validRegistercode($registercode){
-        
+        //code
     }
 }

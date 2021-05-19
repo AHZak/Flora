@@ -38,7 +38,7 @@
                 <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
               </div>
               <div class="d-flex align-items-center">
-              <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
+              <a href="enterphn.php" class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></a> 
               </a> <i class="me-2">|</i>
               <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
               

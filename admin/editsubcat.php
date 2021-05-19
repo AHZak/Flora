@@ -40,7 +40,7 @@ include 'adminheader.php';
                 </select>
               </div>
               <div class="my-4">
-                  <button name="editCategory" type="submit" class="btn btn-success">ثبت تغییرات</button>
+                  <button name="editSubCategory" type="submit" class="btn btn-success">ثبت تغییرات</button>
                   <button name="cancelEditSubCategory" type="submit" class="btn btn-danger mx-2">لغو</button>
               </div>
             </form>

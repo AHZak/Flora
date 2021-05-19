@@ -3,6 +3,83 @@ use Database\Db;
 
 //ADMIN CLASS
 class Admin{
+    private $id;
+    private $phone;
+    private $email;
+    private $firstName;
+    private $lastName;
+    private $permission;
+
+    public function __construct($adminId)
+    {
+        $admin=$this->getAdminfullInfo($adminId);
+        if($admin){
+            $this->setId($admin['id']);
+            $this->setFirstName($admin['FName']);
+            $this->setlastName($admin['LName']);
+            $this->setEmail($admin['email']);
+            $this->setPhone($admin['phone']);
+            $this->setPermission($admin['permission']);
+        }else{
+            return false;
+        }   
+    }
+
+    //SETERS
+    public function setId($id){
+        $this->id=$id;
+    }
+
+    public function setPhone($phone){
+        $this->phone=$phone;
+    }
+
+    public function setFirstName($name){
+        $this->firstName=$name;
+    }
+
+    public function setlastName($lastName){
+        $this->lastName=$lastName;
+    }
+
+    public function setEmail($email){
+        $this->email=$email;
+    }
+
+    public function setPermission($permission){
+        $this->permission=$permission;
+    }
+
+    //GETERS
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getFirstName(){
+        return $this->firstName;
+    }
+
+    public function getLastName(){
+        return $this->lastName;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+
+    public function getPhone(){
+        return $this->phone;
+    }
+
+    public function getPermission(){
+        return $this->permission;
+    }
+
+
+    //GET ADMIN FULL INFO
+    private function getAdminfullInfo($id){
+        return Db::select(ADMIN_TABLE_NAME,"id='$id'","single");
+    }
 
     public static function create(array $params,&$messages){
         $messages=new Message();
@@ -34,6 +111,16 @@ class Admin{
         }
         $messages->setErrorMessage(ERR_CREATE_ADMIN);
         return false;
+    }
+
+    //GET ADMINS
+    public static function getAdmins($conditions="1"){
+        return Db::select(ADMIN_TABLE_NAME,$conditions);
+    }
+
+    //UPDATE
+    public function update(array $params){
+        return Db::update(ADMIN_TABLE_NAME,$params,"id='$this->id'");
     }
 
     
