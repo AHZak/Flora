@@ -44,6 +44,8 @@ define('USER_TABLE_NAME', 'users');
 define('PRODUCT_TABLE_NAME', 'products');
 define('CATEGORY_PRODUCT_TABLE_NAME', 'category_product');
 define('SUB_CATEGORY_PRODUCT_TABLE_NAME', 'subcategory_product');
+define('ADMIN_TABLE_NAME', 'admins');
+
 
 //ACCESS FILE TYPES
 define('ACCESS_IMAGES_MIME_TYPE',['image/jpeg','image/png']);
@@ -107,6 +109,11 @@ define('ERR_PRODUCT_INSTOCK_FORMAT', 'خطا!فرمت موجودی وارد شد
 define('ERR_UNSUPPORT_IMAGE_FORMAT', 'خطا!لطفا تصاویری با فرمت jpg یا png وارد کنید');
 define('ERR_FAILED_UPLOAD', 'خطا!فایل آپلود نشد');
 define('ERR_SUB_CATEGORY_DELETE', 'خطا!زیردسته بندی حذف نشد');
+define('ERR_EMAIL_EXISTS', 'خطا!این ادمین با این ایمیل قبلا در سیستم ثبت شده است');
+define('ERR_PHONE_EXISTS', 'خطا! این شماره تلفن قبلا ثبت شده است');
+define('ERR_CREATE_ADMIN', 'خطا! اکانت ادمین مورد نظر ساخته نشد.لطفا دوباره امتحان کنید');
+
+
 
 
 
@@ -120,6 +127,8 @@ define('SUCCES_CREATE_INIT_ACCOUNT', 'اکانت شما با موفقیت ایج
 define('SUCCESS_CREATE_PRODUCT', 'محصول مورد نظر با موفقیت ساخته شد');
 define('SUCCESS_DELETE_SUB_CATEGORY', 'زیردسته بندی با موفقیت حذف شد');
 define('SUCCESS_DELETE_CATEGORY', 'دسته بندی با موفقیت حذف شد');
+define('SUCCESS_CREATE_ADMIN', 'اکانت ادمین مورد نظر با موفقیت ایجاد شد');
+
 
 
 
