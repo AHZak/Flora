@@ -30,12 +30,12 @@
       </li>
       <li class="nav-item text-nowrap">
           <a class="nav-link mx-2 mb-0" href="#">
-          <i class="fas fa-user px-2"></i>
-          <span>امیر ذکریا</span>
+          <i class="fas fa-user px-2"></i> 
+          <span><?php echo $_SESSION['FName']." ".$_SESSION['LName'] ?></span>
           </a>
         </li>
         <li class="nav-item text-nowrap">
-          <a class="nav-link" href="#"><button type="button" class="btn btn-danger pb-2 mx-2">خروج</button></a>
+          <a class="nav-link" href="?logout=true"><button type="button" class="btn btn-danger pb-2 mx-2">خروج</button></a>
         </li>
       </ul>
     </header>

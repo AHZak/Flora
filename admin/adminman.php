@@ -1,11 +1,10 @@
 <?php
-  //$pageUi="listProducts";
+  $pageUi="adminman";
   include_once '../config.php';
   include 'adminheader.php';
-
 ?>
 
-    <div class="container-fluid">
+  <div class="container-fluid">
   <div class="row">
 
 <?php
@@ -30,61 +29,60 @@
         <!----------------------------- header --------------------------->
 
         <!----------------------------- add admin form --------------------------->
-        <div class="row">
-          <div class="col-md-7 col-lg-8 my-2">
-            <form class="needs-validation" novalidate="">
-              <div class="row g-3">
-                <div class="col-sm-6">
-                  <label for="firstName" class="form-label">نام</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                </div>
+        <?php if(isMaster()):?>
+            <div class="row">
+              <div class="col-md-7 col-lg-8 my-2">
+                <form class="needs-validation" method="post" novalidate="">
+                  <div class="row g-3">
+                    <div class="col-sm-6">
+                      <label for="firstName" class="form-label">نام</label>
+                      <input name="first_name" type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                    </div>
 
-                <div class="col-sm-6">
-                  <label for="lastName" class="form-label">نام خانوادگی</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-                </div>
-
-
-                <div class="col-12">
-                  <label for="email" class="form-label">ایمیل</label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                </div>
-
-                <div class="col-12">
-                  <label for="password" class="form-label">کلمه عبور</label>
-                  <input type="password" class="form-control" id="password" placeholder="" required="">
-                </div>
-
-                <div class="col-12">
-                  <label for="phone" class="form-label">شماره موبایل</label>
-                  <input type="text" class="form-control" id="phone" placeholder="" required="">
-                </div>
+                    <div class="col-sm-6">
+                      <label for="lastName" class="form-label">نام خانوادگی</label>
+                      <input name="last_name" type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                    </div>
 
 
-                <hr class="my-3">
+                    <div class="col-12">
+                      <label for="email" class="form-label">ایمیل</label>
+                      <input name="email" type="email" class="form-control" id="email" placeholder="you@example.com">
+                    </div>
 
-                <h5 class="mb-2 mt-0">سمت ادمین</h5>
+                    <div class="col-12">
+                      <label for="password" class="form-label">کلمه عبور</label>
+                      <input name="password" type="password" class="form-control" id="password" placeholder="" required="">
+                    </div>
 
-                <div class="my-3">
-                <div class="form-check">
-                  <input id="master" name="adminpermission" type="radio" class="form-check-input" checked="" required="">
-                  <label class="form-check-label" for="master">مدیرکل</label>
-                </div>
-                <div class="form-check">
-                  <input id="shop-manager" name="adminpermission" type="radio" class="form-check-input" required="">
-                  <label class="form-check-label" for="shop-manager">مدیر فروشگاه</label>
-                </div>
-                <div class="form-check">
-                  <input id="cashier" name="adminpermission" type="radio" class="form-check-input" required="">
-                  <label class="form-check-label" for="cashier">فروشنده</label>
-                </div>
+                    <div class="col-12">
+                      <label for="phone" class="form-label">شماره موبایل</label>
+                      <input name="phone" type="text" class="form-control" id="phone" placeholder="" required="">
+                    </div>
+
+
+                    <hr class="my-3">
+
+                    <h5 class="mb-2 mt-0">سمت ادمین</h5>
+
+                    <div class="my-3">
+                    <div class="form-check">
+                      <input id="master" name="adminpermission" type="radio" class="form-check-input" value="master" checked="" required="">
+                      <label class="form-check-label" for="master">مدیرکل</label>
+                    </div>
+                    <div class="form-check">
+                      <input id="shop-manager" name="adminpermission" type="radio" class="form-check-input" value="admin" required="">
+                      <label class="form-check-label" for="shop-manager">مدیر فروشگاه</label>
+                    </div>
+
+                  </div>
+                  <hr class="my-4">
+
+                  <button name="addadmin" class="w-100 btn btn-primary btn-lg m-0" type="submit">افزودن ادمین</button>
+                </form>
               </div>
-              <hr class="my-4">
-
-              <button class="w-100 btn btn-primary btn-lg m-0" type="submit">افزودن ادمین</button>
-            </form>
-          </div>
-        </div>
+            </div>
+        <?php endif; ?>
         <!----------------------------- add admin form --------------------------->
 
         <!----------------------------- admins --------------------------->
@@ -103,47 +101,38 @@
                   <th>سمت</th>
                   <th>ایمیل</th>
                   <th>موبایل</th>
-                  <th>عملیات</th>
+                  <?php if(isMaster()): ?><th>عملیات</th><?php endif; ?>
                 </tr>
               </thead>
               
               <tbody>
-                <tr>
-                  <td>حمید جان برار</td>
-                  <td>مدیرکل</td>
-                  <td>nebula@gmail.com</td>
-                  <td>09112232323</td>
-                  <td>
-                    <div class="d-flex flex-row">
-                      <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
-                      <a href="#" class="btn btn-outline-danger">حذف</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>هوشنگ ابتهاج</td>
-                  <td>مدیر فروشگاه</td>
-                  <td>morvarid@gmail.com</td>
-                  <td>09114432424</td>
-                  <td>
-                    <div class="d-flex flex-row">
-                      <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
-                      <a href="#" class="btn btn-outline-danger">حذف</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>سپهر قدوسی</td>
-                  <td>فروشنده</td>
-                  <td>nomeme@gmail.com</td>
-                  <td>09369544112</td>
-                  <td>
-                    <div class="d-flex flex-row">
-                      <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
-                      <a href="#" class="btn btn-outline-danger">حذف</a>
-                    </div>
-                  </td>
-                </tr>
+              <?php if($admins): ?>
+                  <?php foreach($admins as $admin): ?>
+                    <tr>
+                      <td><?php echo $admin['FName']; ?></td>
+                      <td>
+                        <?php 
+                            if($admin['permission']=='master'){
+                              echo 'مدیر کل';
+                            }elseif($admin['permission']=='admin'){
+                              echo 'مدیر فروشگاه';
+                            }
+                        ?>
+                      </td>
+                      <td><?php echo $admin['email'] ?></td>
+                      <td><?php echo $admin['phone'] ?></td>
+                      <?php if(isMaster()): ?><td>
+                        <div class="d-flex flex-row">
+                          <a href="editadmin.php?aid=<?php echo $admin['id']; ?>" class="btn btn-outline-primary me-1">ویرایش</a>
+                          <a href="?del_admin=<?php echo $admin['id'] ?>" class="btn btn-outline-danger">حذف</a>
+                        </div>
+                      </td><?php endif; ?>
+                    </tr>
+                  <?php endforeach; ?>
+              <?php else: ?>
+                  <p>ادمینی وجود ندارد</p>
+              <?php endif; ?>
+               
 
               </tbody>
             </table>

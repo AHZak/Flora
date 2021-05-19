@@ -1,11 +1,14 @@
 <?php
-  //$pageUi="listProducts";
+  $pageUi="editadmin";
   include_once '../config.php';
+  if(!isMaster()){
+    echo $message->showError(ERR_ACCESS_DENIED);
+    die();
+  }
   include 'adminheader.php';
-
 ?>
 
-    <div class="container-fluid">
+  <div class="container-fluid">
   <div class="row">
 
 <?php
@@ -32,32 +35,33 @@
         <!----------------------------- edit admin form --------------------------->
         <div class="row">
           <div class="col-md-7 col-lg-8 my-2">
-            <form class="needs-validation" novalidate="">
+            <form class="needs-validation" method="post" novalidate="">
+              <input type="hidden" name="admin_id" value="<?php echo $admin->getId(); ?>">
               <div class="row g-3">
                 <div class="col-sm-6">
-                  <label for="firstName" class="form-label">نام</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="سپهر" required="">
+                  <label  for="firstName" class="form-label">نام</label>
+                  <input name="first_name" type="text" class="form-control" id="firstName" placeholder="" value="<?php echo $admin->getFirstName(); ?>" required="">
                 </div>
 
                 <div class="col-sm-6">
                   <label for="lastName" class="form-label">نام خانوادگی</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="قدوسی" required="">
+                  <input name="last_name" type="text" class="form-control" id="lastName" placeholder="" value="<?php echo $admin->getLastName(); ?>" required="">
                 </div>
 
 
                 <div class="col-12">
                   <label for="email" class="form-label">ایمیل</label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com" value="nebula@gmail.com">
+                  <input name="email" type="email" class="form-control" id="email" placeholder="you@example.com" value="<?php echo $admin->getEmail(); ?>">
                 </div>
 
                 <div class="col-12">
                   <label for="password" class="form-label">کلمه عبور</label>
-                  <input type="password" class="form-control" id="password" placeholder="" required="">
+                  <input name="password" type="password" class="form-control" id="password" placeholder="" required="">
                 </div>
 
                 <div class="col-12">
                   <label for="phone" class="form-label">شماره موبایل</label>
-                  <input type="text" class="form-control" id="phone" placeholder="" required="" value="09112232323">
+                  <input name="phone" type="text" class="form-control" id="phone" placeholder="" required="" value="<?php echo $admin->getPhone(); ?>">
                 </div>
 
 
@@ -67,29 +71,26 @@
 
                 <div class="my-3">
                 <div class="form-check">
-                  <input id="master" name="adminpermission" type="radio" class="form-check-input" checked="" required="">
+                  <input id="master" name="adminpermission" type="radio" class="form-check-input" value="master" <?php if($admin->getPermission()=='master'){ echo 'checked';} ?> required="">
                   <label class="form-check-label" for="master">مدیرکل</label>
                 </div>
                 <div class="form-check">
-                  <input id="shop-manager" name="adminpermission" type="radio" class="form-check-input" required="">
+                  <input id="shop-manager" name="adminpermission" type="radio" class="form-check-input" value="admin" <?php if($admin->getPermission()=='admin'){ echo 'checked';} ?> required="">
                   <label class="form-check-label" for="shop-manager">مدیر فروشگاه</label>
                 </div>
-                <div class="form-check">
-                  <input id="cashier" name="adminpermission" type="radio" class="form-check-input" required="">
-                  <label class="form-check-label" for="cashier">فروشنده</label>
-                </div>
+
               </div>
               <hr class="my-4">
               <div class="d-flex flex-row mt-0">
-              <button class="w-100 btn btn-success btn-lg m-0 mx-2" type="submit">ثبت تغییرات</button>
-              <button class="w-100 btn btn-danger btn-lg m-0 mx-2" type="submit">لغو</button>
+              <button name="editadmin" class="w-100 btn btn-success btn-lg m-0 mx-2" type="submit">ثبت تغییرات</button>
+              <button name="canceledit" class="w-100 btn btn-danger btn-lg m-0 mx-2" type="submit">لغو</button>
               </div>
             </form>
           </div>
         </div>
         <!----------------------------- edit admin form --------------------------->
 
-        <!----------------------------- admins --------------------------->
+        <!----------------------------- admins --------------------------
         <div class="row g-3">
           <div class="d-flex flex-row align-items-center">
             <i class="fas fa-users-cog me-2"></i>
@@ -152,7 +153,7 @@
           </div>
         </div>
 
-        <!----------------------------- admins --------------------------->
+        ----------------------------- admins --------------------------->
 
         
           

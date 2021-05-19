@@ -1,153 +1,246 @@
 <?php
 use Database\Db;
 
+//DO LOGOUT
+if(isset($_GET['logout']) && $_GET['logout']==true){
+    $account=new Account();
+    $account->logout();
+}
+
 if(isset($pageUi)){
     if($pageUi=='addCategory'){
-
-        if(isset($_GET['rm_cat'])){
-            $category=new Category($_GET['rm_cat']);
-            $category->delete();
-            $category->deleteSubCategories();
- 
-           // $category->getMessageHandler()->showMessages();
-        }elseif(isset($_GET['rm_sub'])){
-            $subCategory=new SubCategory($_GET['rm_sub']);
-            $subCategory->delete();
-            
-           // $subCategory->getMessageHandler()->showMessages();
-        }elseif(isset($_POST['addCategory'])){
-            $catName=isset($_POST['name']) ? $_POST['name'] : "";
-            $catType=isset($_POST['catType']) ? $_POST['catType'] : "";
-            
-            if($catType!=""){
-                if($catType=='parent'){
-                    //add category
-                    Category::create(['name'=>$catName,'creator_id'=>1],$message);
-                    //$message->showMessages();
-                }else{
-                    //add sub category
-                    SubCategory::create(['name'=>$catName,'creator_id'=>1,'category_id'=>$catType]);
+        if(isAdmin() || isMaster()){
+            if(isset($_GET['rm_cat'])){
+                $category=new Category($_GET['rm_cat']);
+                $category->delete();
+                $category->deleteSubCategories();
+    
+            // $category->getMessageHandler()->showMessages();
+            }elseif(isset($_GET['rm_sub'])){
+                $subCategory=new SubCategory($_GET['rm_sub']);
+                $subCategory->delete();
+                
+            // $subCategory->getMessageHandler()->showMessages();
+            }elseif(isset($_POST['addCategory'])){
+                $catName=isset($_POST['name']) ? $_POST['name'] : "";
+                $catType=isset($_POST['catType']) ? $_POST['catType'] : "";
+                
+                if($catType!=""){
+                    if($catType=='parent'){
+                        //add category
+                        Category::create(['name'=>$catName,'creator_id'=>1],$message);
+                        //$message->showMessages();
+                    }else{
+                        //add sub category
+                        SubCategory::create(['name'=>$catName,'creator_id'=>1,'category_id'=>$catType]);
+                    }
                 }
             }
-        }
-        
-        //get categories and sub categories
-        $categories=Category::getCategories();
-    }elseif($pageUi=='addProduct'){
-
-        if(isset($_POST['addProduct'])){
-            //add product actions
-            $title=isset($_POST['title']) ? $_POST['title'] : null;
-            $price=isset($_POST['price']) ? $_POST['price'] : null;
-            $description=isset($_POST['description']) ? $_POST['description'] : null;
-            $image=isset($_FILES['img']) ? $_FILES['img'] : null;
-            $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
-            $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
-            $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
-            //admin Id
-            $creator_id=1;
-            $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
             
-            //add subcategory_product
-            if($product_id && $subCategoryId){
-                $subCategoryObj=new SubCategory($subCategoryId);
-                $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
-                $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
-            }
+            //get categories and sub categories
+            $categories=Category::getCategories();
         }
-
-        //get categories 
-        $categories=Category::getCategories();
-    }elseif($pageUi=='editProduct'){
-        if(isset($_POST['cancelEditProduct'])){
-            redirectTo("products.php");
-        }
-        if(isset($_GET['id'])){
-
-            $product=new Product($_GET['id']);
-
-            if(isset($_POST['editProduct'])){
+    }elseif($pageUi=='addProduct'){
+        //check auth
+        if(isAdmin() || isMaster()){
+            if(isset($_POST['addProduct'])){
                 //add product actions
                 $title=isset($_POST['title']) ? $_POST['title'] : null;
                 $price=isset($_POST['price']) ? $_POST['price'] : null;
                 $description=isset($_POST['description']) ? $_POST['description'] : null;
-                $image=isset($_FILES['img']['name']) && $_FILES['img']['name']!="" ? $_FILES['img'] : null;
+                $image=isset($_FILES['img']) ? $_FILES['img'] : null;
                 $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
                 $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
                 $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
                 //admin Id
                 $creator_id=1;
-                $result=$product->update(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
-                
+                $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
                 
                 //add subcategory_product
-                if($result && $subCategoryId){
-                    $product_id=$product->getId();
-                    $result=Db::update(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product->getId(),'subcategory_id'=>$subCategoryId],"product_id='$product_id'");
+                if($product_id && $subCategoryId){
+                    $subCategoryObj=new SubCategory($subCategoryId);
+                    $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
+                    $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
                 }
-                //or redirect to list
-                redirectTo("products.php");
             }
-
 
             //get categories 
             $categories=Category::getCategories();
         }
+    }elseif($pageUi=='editProduct'){
+        //check auth
+        if(isAdmin() || isMaster()){
+            if(isset($_POST['cancelEditProduct'])){
+                redirectTo("products.php");
+            }
+            if(isset($_GET['id'])){
+
+                $product=new Product($_GET['id']);
+
+                if(isset($_POST['editProduct'])){
+                    //add product actions
+                    $title=isset($_POST['title']) ? $_POST['title'] : null;
+                    $price=isset($_POST['price']) ? $_POST['price'] : null;
+                    $description=isset($_POST['description']) ? $_POST['description'] : null;
+                    $image=isset($_FILES['img']['name']) && $_FILES['img']['name']!="" ? $_FILES['img'] : null;
+                    $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
+                    $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
+                    $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
+                    //admin Id
+                    $creator_id=1;
+                    $result=$product->update(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    
+                    
+                    //add subcategory_product
+                    if($result && $subCategoryId){
+                        $product_id=$product->getId();
+                        $result=Db::update(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product->getId(),'subcategory_id'=>$subCategoryId],"product_id='$product_id'");
+                    }
+                    //or redirect to list
+                    redirectTo("products.php");
+                }
+
+
+                //get categories 
+                $categories=Category::getCategories();
+            }
+        }
     }elseif($pageUi=='editCategory'){
+        //check auth
+        if(isAdmin() || isMaster()){
+            if(isset($_GET['id']) ){
+                //cancel edit
+                if(isset($_POST['cancelEditCategory'])){
+                    redirectTo("categories.php");
+                }
 
-        if(isset($_GET['id']) ){
-            //cancel edit
-            if(isset($_POST['cancelEdit'])){
-                redirectTo("categories.php");
+                //do edit
+                if(isset($_POST['editCategory'])){
+                    $category=new Category($_GET['id']);
+                    $category->update(['name'=>$_POST['name']]);
+                    redirectTo("categories.php");
+                }
             }
 
-            //do edit
+            //get updated category
             $category=new Category($_GET['id']);
-            if(isset($_POST['cancelEditCategory'])){
-                $category->update(['name'=>$_POST['name']]);
+
+            //get categories 
+            $categories=Category::getCategories();
+        }
+    }elseif($pageUi=='editSubCategory'){
+        //check auth
+        if(isAdmin() || isMaster()){
+            //cancel edit sub category
+            if(isset($_POST['cancelEditSubCategory'])){
                 redirectTo("categories.php");
             }
-        }
 
-        //get updated category
-        $category=new Category($_GET['id']);
-
-        //get categories 
-        $categories=Category::getCategories();
-    }elseif($pageUi=='editSubCategory'){
-
-        //cancel edit sub category
-        if(isset($_POST['cancelEditSubCategory'])){
-            redirectTo("categories.php");
-        }
-
-        if(isset($_GET['id']) ){
-            $subCategory=new SubCategory($_GET['id']);
-            if(isset($_POST['editSubCategory'])){
-                $subCategory->update(['name'=>$_POST['name'],'category_id'=>$_POST['category_id']]);
+            if(isset($_POST['editSubCategory']) ){
+                $subCategory=new SubCategory($_GET['id']);
+                $subCategory->update(['name'=>$_POST['name'],'category_id'=>$_POST['category_id']]);     
             }
-        }
-        $subCategory=new SubCategory($_GET['id']);
+            $subCategory=new SubCategory($_GET['id']);
 
-        //get categories 
-        $categories=Category::getCategories();
+            //get categories 
+            $categories=Category::getCategories();
+        }
     }elseif($pageUi=='listProducts'){
+        //check auth
+        if(isAdmin() || isMaster()){
+            if(isset($_GET['del_pro'])){
+                $productObj=new Product($_GET['del_pro']);
+                $productObj->delete();
+            }
 
-        if(isset($_GET['del_pro'])){
-            $productObj=new Product($_GET['del_pro']);
-            $productObj->delete();
+            if(isset($_GET['term'])){
+                $term=Db::correctTermFormat($_GET['term']);
+                $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"title LIKE '%$term%'");
+            }else{
+                $products=Product::getProducts();
+            }
+            
+            $categories=Category::getCategories();
         }
 
-        if(isset($_GET['term'])){
-            $term=Db::correctTermFormat($_GET['term']);
-            $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"title LIKE '%$term%'");
+    }
+    //ADD ADMIN
+    elseif($pageUi=='adminman'){
+        //check auth
+        if(isMaster() || isAdmin()){       
+            if(isset($_GET['del_admin']) && is_numeric($_GET['del_admin'])){
+                $adminId=$_GET['del_admin'];
+                $result=Db::delete(ADMIN_TABLE_NAME,"id='$adminId'");
+                if($result){
+                    redirectTo($_SERVER['PHP_SELF']);
+                    //show('ادمین مورد نظر با موفقیت حذف شد');
+                }
+            }
+            if(isset($_POST['addadmin'])){
+                $firstName=isset($_POST['first_name']) && $_POST['first_name'] ? $_POST['first_name'] : "";
+                $lastName=isset($_POST['last_name']) && $_POST['last_name'] ? $_POST['last_name'] : "";
+                $password=isset($_POST['password']) && $_POST['password'] ? sha1($_POST['password']) : "";
+                $email=isset($_POST['email']) && $_POST['email'] ? $_POST['email'] : "";
+                $phone=isset($_POST['phone']) && $_POST['phone'] ? $_POST['phone'] : "";
+                $adminpermission=isset($_POST['adminpermission']) && $_POST['adminpermission'] ? $_POST['adminpermission'] : "";
+                //create a nee admin
+                Admin::create(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email,'admined_by'=>1,'phone'=>$phone,'password'=>$password,'permission'=>$adminpermission],$messages);
+                //$messages->showMessages();
+            }
+
+            //get admins
+            $admins=Admin::getAdmins();
+        }
+    }
+    //EDIT ADMIN
+    elseif($pageUi=='editadmin'){
+        //check auth
+        if(isMaster()){
+            if(isset($_GET['aid'])){
+                $admin=new Admin($_GET['aid']);
+            }
+            if(isset($_POST['editadmin'])){
+                $adminId=$_POST['admin_id'];
+                $firstName=isset($_POST['first_name']) && $_POST['first_name'] ? $_POST['first_name'] : "";
+                $lastName=isset($_POST['last_name']) && $_POST['last_name'] ? $_POST['last_name'] : "";
+                $password=isset($_POST['password']) && $_POST['password'] ? $_POST['password'] : "";
+                $email=isset($_POST['email']) && $_POST['email'] ? $_POST['email'] : "";
+                $phone=isset($_POST['phone']) && $_POST['phone'] ? $_POST['phone'] : "";
+                $adminpermission=isset($_POST['adminpermission']) && $_POST['adminpermission'] ? $_POST['adminpermission'] : "";
+
+                $admin=new Admin($adminId);
+                if($password && $password!=""){
+                    $result=$admin->update(['FName'=>$firstName,'LName'=>$lastName,'password'=>sha1($password),'email'=>$email,'admined_by'=>1,'phone'=>$phone,'permission'=>$adminpermission]);
+                }else{
+                    $result=$admin->update(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email,'admined_by'=>1,'phone'=>$phone,'permission'=>$adminpermission]);
+                }
+                
+                if($result){
+                    //update login data
+                    $account=new Account();
+                    $account->updateAdminLoginData("adminman.php");
+
+                    $admin=new Admin($adminId);
+                    //redirect to admins list
+                   // redirectTo("admin.php");
+                }
+
+            }
         }else{
-            $products=Product::getProducts();
+            $message=new Message();
+            $message->setErrorMessage(ERR_ACCESS_DENIED);
         }
-        
-        $categories=Category::getCategories();
+    }
+    //LOGIN ADMIN
+    elseif($pageUi=='adminlogin'){
+        if(isset($_POST['adminlogin'])){
+            $phone=isset($_POST['phone']) ? $_POST['phone'] : "";
+            $password=isset($_POST['password']) ? sha1($_POST['password']) : "";
+            $account=new Account();
 
-
+            //do admin login
+            $account->adminLogin($phone,$password);
+        }
     }
     //INDEX
     elseif($pageUi=='index'){
@@ -166,8 +259,7 @@ if(isset($pageUi)){
                 $product=new Product($findProduct['id']);
             }else{
                 $product=false;
-            }
-            
+            }    
         }
     }
     //CART
@@ -270,14 +362,21 @@ if(isset($pageUi)){
     }
     //USER PROFILE
     elseif($pageUi=='userProfile'){
+    
         $account=new Account();
-
         //AUTHENTICATION
         $account->checkAuth();
-
-        $user=new User($_SESSION['userId']);
+        if(isset($_SESSION['permission'])){
+            $user=new Admin($_SESSION['userId']);
+        }else{
+            $user=new User($_SESSION['userId']);
+        }
+        
 
     }
+
+
+
 
 
 }
