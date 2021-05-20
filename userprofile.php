@@ -59,22 +59,31 @@
           <div class="tab-pane fade active show" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
             <div class="container">
               <div class="row">
-              <div class="col-md-5 p-2">
-                <label for="name" class="form-label">نام<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
-                <input type="text" id="name" placeholder="نامتان را وارد کنید" class="form-control" aria-describedby="name" value="<?php echo $user->getFirstName(); ?>">
-              </div>
-              <div class="col-md-5 p-2">
-                <label for="name" class="form-label">نام خانوادگی<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
-                <input type="text" placeholder="نام خانودگی تان را وارد کنید" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getLastName(); ?>">
-              </div>
-              <div class="col-md-5 p-2">
-                <label for="name" class="form-label">شماره تلفن</label>
-                <input disabled type="text" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getPhone(); ?>">
-              </div>
-              <div class="col-md-5 p-2">
-                <label for="name" class="form-label">ایمیل<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
-                <input type="text" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getEmail(); ?>" placeholder="example@email.com">
-              </div>
+                <div class="col-md-5 p-2">
+                  <label for="name" class="form-label">نام<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
+                  <input type="text" id="name" placeholder="نامتان را وارد کنید" class="form-control" aria-describedby="name" value="<?php echo $user->getFirstName(); ?>">
+                </div>
+                <div class="col-md-5 p-2">
+                  <label for="name" class="form-label">نام خانوادگی<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
+                  <input type="text" placeholder="نام خانودگی تان را وارد کنید" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getLastName(); ?>">
+                </div>
+                <div class="col-md-5 p-2">
+                  <label for="name" class="form-label">شماره تلفن</label>
+                  <input disabled type="text" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getPhone(); ?>">
+                </div>
+                <div class="col-md-5 p-2">
+                  <label for="name" class="form-label">ایمیل<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>
+                  <input type="text" id="name" class="form-control" aria-describedby="name" value="<?php echo $user->getEmail(); ?>" placeholder="example@email.com">
+                </div>
+                <div class="col-md-12 p-2">
+                  <a href="#" class="btn btn-primary">بروزرسانی اطلاعات</a>
+                  <div class="my-2">
+                  <p class="text-muted"><i class="fas fa-info-circle me-2"></i>برای ثبت تغییرات کلیک کنید</p>
+                  
+                  </div>
+                  
+                </div>
+                
               </div>
             </div>
           </div>
