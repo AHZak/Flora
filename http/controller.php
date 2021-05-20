@@ -247,6 +247,27 @@ if(isset($pageUi)){
             $account->adminLogin($phone,$password);
         }
     }
+    //MANAGE USERS 
+    elseif($pageUi=='users'){
+        if(isAdmin() || isMaster()){
+            if(isset($_GET['rm_user'])){
+                //DELETE A USER
+                $user=new User($_GET['rm_user']);
+                if($user){
+                    $user->delete();
+                }
+                
+            }
+            //get users id
+            $users=User::getUsesrs("ORDER BY created_at DESC","id");
+        }else{
+            $message=new Message();
+            $message->setErrorMessage(ERR_ACCESS_DENIED);
+            $message->showError(ERR_ACCESS_DENIED);
+            die();
+        }
+
+    }
     //INDEX
     elseif($pageUi=='index'){
         $mostSelesProducts=Product::getProducts("instock>0","sales","DESC",20);

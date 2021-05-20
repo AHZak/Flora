@@ -18,6 +18,14 @@ $(document).ready(function(){
         }
     });
 
+    //SEARCH USERS
+    $("#termboxusers").keyup(function(){
+        term=$(this).val();
+        //console.log(term);
+        //SEND LOAD PAGE REQUEST
+        updateContent("http://localhost/flora/inc/ajaxRequests/searchUsers.php?term="+term,"#tb-users");
+    });
+
     //FILTER CONTENT
     $("#cat").change(function(){
         cat=$(this).val();
@@ -94,4 +102,11 @@ function updateProTbContent(url){
     $("#pro-tb-list-content").load(encodedUrl);
     $('body').scrollTop(0);
     //history.pushState(null,null,url);
+}
+
+function updateContent(url,divId){
+    var encodedUrl=encodeURI(url);
+    
+    $(divId).load(encodedUrl);
+    $('body').scrollTop(0);
 }
