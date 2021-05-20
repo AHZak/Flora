@@ -1,5 +1,5 @@
 <?php
-  $pageUi="adminman";
+  $pageUi="users";
   include_once '../config.php';
   include 'adminheader.php';
 ?>

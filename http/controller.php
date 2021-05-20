@@ -167,7 +167,7 @@ if(isset($pageUi)){
     //ADD ADMIN
     elseif($pageUi=='adminman'){
         //check auth
-        if(isMaster() || isAdmin()){       
+        if(isMaster()){       
             if(isset($_GET['del_admin']) && is_numeric($_GET['del_admin'])){
                 $adminId=$_GET['del_admin'];
                 $result=Db::delete(ADMIN_TABLE_NAME,"id='$adminId'");
@@ -190,6 +190,11 @@ if(isset($pageUi)){
 
             //get admins
             $admins=Admin::getAdmins();
+        }else{
+            $message=new Message();
+            $message->setErrorMessage(ERR_ACCESS_DENIED);
+            $message->showError(ERR_ACCESS_DENIED);
+            die();
         }
     }
     //EDIT ADMIN
