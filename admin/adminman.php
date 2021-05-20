@@ -29,7 +29,6 @@
         <!----------------------------- header --------------------------->
 
         <!----------------------------- add admin form --------------------------->
-        <?php if(isMaster()):?>
             <div class="row">
               <div class="col-md-7 col-lg-8 my-2">
                 <form class="needs-validation" method="post" novalidate="">
@@ -82,7 +81,6 @@
                 </form>
               </div>
             </div>
-        <?php endif; ?>
         <!----------------------------- add admin form --------------------------->
 
         <!----------------------------- admins --------------------------->
