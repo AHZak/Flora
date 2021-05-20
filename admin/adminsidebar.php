@@ -10,7 +10,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="users.php">
+            <a class="nav-link <?php active("users.php") ?>" href="users.php">
             <i class="fas fa-users feather"></i>
             کاربران
             </a>

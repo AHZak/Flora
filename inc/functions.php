@@ -133,3 +133,22 @@ function isAdmin(){
     }
     return false;
 }
+
+//CONVERT TIME STAMP
+function convertTimeStamp($timestamp){
+    $timestamp = strtotime($timestamp);
+    $date = date('d-m-Y', $timestamp);
+    $time = date('Gi.s', $timestamp);
+    return ['date'=>$date,'time'=>$time];
+}
+
+//convert timestamp to jalali
+function timestampToJalaliDate($timestamp){
+    $current_gdate = $timestamp;
+    $arr_parts = explode('-', $current_gdate);
+    $gYear  = $arr_parts[2];
+    $gMonth = $arr_parts[1];
+    $gDay   = $arr_parts[0];
+ 
+    return gregorian_to_jalali($gYear, $gMonth, $gDay, '/');
+}

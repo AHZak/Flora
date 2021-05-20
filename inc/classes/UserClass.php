@@ -23,6 +23,7 @@ class User {
             $this->setLastName($user['LName']);
             $this->setEmail($user['email']);
             $this->setPhone($user['phone']);
+            $this->setCreatedAt($user['created_at']);
         }
     }
 
@@ -51,6 +52,10 @@ class User {
         $this->email=$em;
     }
 
+    public function setCreatedAt($createdAt){
+        $this->createdAt=$createdAt;
+    }
+
     //GETERS
     public function getId(){
         return $this->id;
@@ -70,6 +75,25 @@ class User {
 
     public function getEmail(){
         return $this->email;
+    }
+
+    public function getCreatedAt(){
+        return $this->createdAt;
+    }
+
+    //get users
+    public static function getUsesrs($condition,$distinct="*"){
+        $result=Db::query("SELECT $distinct FROM ".USER_TABLE_NAME." $condition");
+        if($res=$result->fetchAll(PDO::FETCH_NAMED)){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    //delete
+    public function delete(){
+        return Db::delete(USER_TABLE_NAME,"id='$this->id'");
     }
 
 }

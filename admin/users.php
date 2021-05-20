@@ -1,6 +1,7 @@
 <?php
   $pageUi="users";
   include_once '../config.php';
+  
   include 'adminheader.php';
 ?>
 
@@ -8,7 +9,7 @@
   <div class="row">
 
 <?php
-  include 'adminsidebar.php'
+  include 'adminsidebar.php';
 ?>
 
     <!----------------------------- left panel --------------------------->
@@ -25,7 +26,7 @@
             <p class="h5">کاربران</p>
             <!----------------------------- search box --------------------------->
             <form class="flex-fill ms-2 ">
-              <input name="term" id="termbox" type="search" class="form-control rounded-pill" placeholder="جستجو در کاربران ...">
+              <input name="term" id="termboxusers" type="search" class="form-control rounded-pill" placeholder="جستجو در کاربران ...">
             </form>
             <!----------------------------- search box --------------------------->
           </div>
@@ -34,61 +35,47 @@
         <!----------------------------- header --------------------------->
 
         <!----------------------------- users --------------------------->
-        <div class="row g-3 my-3">
+        <div id="tb-users" class="row g-3 my-3">
           
-        
-          <div class="table-responsive">
-            <table class="table table-striped table-sm text-nowrap align-middle">
+                <div class="table-responsive">
+                  <?php if($users): ?>
+                      <table class="table table-striped table-sm text-nowrap align-middle">
+                          <thead>
+                              <tr>
+                              <th>نام و نام خانوادگی</th>
+                              <th>موبایل</th>
+                              <th>ایمیل</th>
+                              <th>تاریخ عضویت</th>
+                              <th>عملیات</th>
+                              </tr>
+                          </thead>
 
-              <thead>
-                <tr>
-                  <th>نام و نام خانوادگی</th>
-                  <th>موبایل</th>
-                  <th>ایمیل</th>
-                  <th>تاریخ عضویت</th>
-                  <th>عملیات</th>
-                </tr>
-              </thead>
-              
-              <tbody>
-                <tr>
-                  <td>علی گرایلی</td>
-                  <td>09111122313</td>
-                  <td>-</td>
-                  <td>1400/2/2</td>
-                  <td>
-                    <div class="d-flex flex-row">
-                      <a href="#" class="btn btn-outline-danger">حذف از پایگاه داده</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>شانار پاکان</td>
-                  <td>09304425556</td>
-                  <td>shan@hotmail.com</td>
-                  <td>1400/3/3</td>
-                  <td>
-                    <div class="d-flex flex-row">
-                      <a href="#" class="btn btn-outline-danger">حذف از پایگاه داده</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>جف بزوس</td>
-                  <td>09111111111</td>
-                  <td>cash@gmail.com</td>
-                  <td>1400/4/4</td>
-                  <td>
-                    <div class="d-flex flex-row">
-                      <a href="#" class="btn btn-outline-danger">حذف از پایگاه داده</a>
-                    </div>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
+                          <tbody>
+                              <?php foreach($users as $user):
+                                  //CREATE USER OBJECT
+                                  $userObj=new User($user['id']);
+                              ?>
+                                  <tr>
+                                  <td><?php echo $userObj->getFirstName()." ".$userObj->getLastName(); ?></td>
+                                  <td><?php echo $userObj->getPhone(); ?></td>
+                                  <td><?php echo $userObj->getEmail(); ?></td>
+                                  <td><?php $timestampDate=convertTimeStamp($userObj->getCreatedAt())['date'];
+                                          echo timestampToJalaliDate($timestampDate);
+                                  ?></td>
+                                  <td>
+                                      <div class="d-flex flex-row">
+                                      <a href="?rm_user=<?php echo $userObj->getId(); ?>" class="btn btn-outline-danger">حذف از پایگاه داده</a>
+                                      </div>
+                                  </td>
+                                  </tr>
+                              <?php endforeach; ?>
+                          </tbody>
+                      </table>
+                  <?php else:?>
+                      <p>کاربری وجود ندارد</p>
+                  <?php endif; ?>      
           </div>
-        </div>
+  </div>
 
         <!----------------------------- users --------------------------->
 
