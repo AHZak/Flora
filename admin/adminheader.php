@@ -29,7 +29,7 @@
           </p>
       </li>
       <li class="nav-item text-nowrap">
-          <a class="nav-link mx-2 mb-0" href="#">
+          <a class="nav-link mx-2 mb-0" href="../userprofile.php">
           <i class="fas fa-user px-2"></i> 
           <span><?php echo $_SESSION['FName']." ".$_SESSION['LName'] ?></span>
           </a>

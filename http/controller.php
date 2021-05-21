@@ -397,6 +397,38 @@ if(isset($pageUi)){
         }else{
             $user=new User($_SESSION['userId']);
         }
+
+        if(isset($_POST['edit'])){
+            //edit user data
+            $firstName=isset($_POST['first_name']) && $_POST['first_name'] ? $_POST['first_name'] : "";
+            $lastName=isset($_POST['last_name']) && $_POST['last_name'] ? $_POST['last_name'] : "";
+            $email=isset($_POST['email']) && $_POST['email'] ? $_POST['email'] : "";
+
+            //check email 
+            if(isset($_SESSION['permission'])){
+                $res=Db::checkExists(ADMIN_TABLE_NAME,"email='$email'");
+            }else{
+                $res=Db::checkExists(USER_TABLE_NAME,"email='$email'");
+            }
+
+            if($res){
+                if($res['id']!=$_SESSION['userId']){
+                    $email="";
+                    echo "این ایمیل قبلا ثبت شده است";
+                }
+
+            }
+
+            //update user data
+            $result=$user->update(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email]);
+        }
+
+        //refresh update data
+        if(isset($_SESSION['permission'])){
+            $user=new Admin($_SESSION['userId']);
+        }else{
+            $user=new User($_SESSION['userId']);
+        }
         
 
     }
