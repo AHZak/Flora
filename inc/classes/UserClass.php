@@ -96,4 +96,9 @@ class User {
         return Db::delete(USER_TABLE_NAME,"id='$this->id'");
     }
 
+    //UPDATE
+    public function update(array $params){
+        return Db::update(USER_TABLE_NAME,$params,"id='$this->id'");
+    }
+
 }
