@@ -154,12 +154,121 @@
           </tbody>
         </table>
       </div>
-          
-
           </div>
+
           <div class="tab-pane fade" id="nav-addresses" role="tabpanel" aria-labelledby="nav-addresses-tab">
-            test text
-        </div>
+            <div class="row g-3" style="ltr">
+              
+              <!-- map box -->
+              <div class="col-md-6 border border-3 text-center bg-warning" style="height:27rem;">map here</div>
+              <!-- map box -->
+
+              <!-- address fields -->
+              <div class="col-md-6 order-md-first">
+                <form class="needs-validation" novalidate="">
+                  <div class="row g-3">
+
+                    <div class="col-12">
+                      <label for="address" class="form-label">آدرس</label>
+                      <input type="text" class="form-control" id="address" placeholder="" required="">
+                    </div>
+
+                    <div class="col-sm-6">
+                      <label for="address-floor" class="form-label">طبقه</label>
+                      <input type="text" class="form-control" id="address-floor" placeholder="2" value="" required="">
+                    </div>
+
+                    <div class="col-sm-6">
+                      <label for="address-unit" class="form-label">واحد</label>
+                      <input type="text" class="form-control" id="address-unit" placeholder="3" value="" required="">
+                    </div>
+
+                    <div class="col-sm-6">
+                      <label for="address-postalcode" class="form-label">کد پستی</label>
+                      <input type="text" class="form-control" id="address-postalcode" placeholder="" value="" required="">
+                    </div>
+
+                    <div class="col-sm-6">
+                      <label for="address-title" class="form-label">عنوان آدرس</label>
+                      <input type="text" class="form-control" id="address-title" placeholder="خانه" value="" required="">
+                    </div>
+
+                    <div class="col-12">      
+                      <label for="address-note" class="form-label">توضیحات<span class="text-muted">(اختیاری)</span></label>
+                      <textarea name="description" class="form-control" id="address-note" rows="3" placeholder=""></textarea> 
+                    </div>
+
+
+                    <div class="d-flex flex-row justify-content-between">
+                      <button class="w-100 btn btn-primary mx-2" type="submit">ثبت آدرس</button>
+                      <button class="w-100 btn btn-outline-danger mx-2" type="submit">انصراف</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- address fields -->
+              
+              <hr class="my-4">
+
+              <div class="container-fluid">
+                <div class="row m-3">
+                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
+                    <div class="dflex flex-column">
+                      <div class="d-flex flex-row align-items-center justify-content-between">
+                        <strong>خانه</strong>
+                        <div class="d-flex flex-row my-2">
+                          <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
+                          <a href="#" class="btn btn-outline-danger">حذف</a>
+                        </div>
+                      </div>
+                      <p>قائمشهر - خ تهران - جنب باشگاه تختی- مجتمع نیلو - طبقه 2 واحد 3</p>
+                      <p>کد پستی: 4765444129</p>
+                      <p>توضیحات: -</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row m-3">
+                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
+                    <div class="dflex flex-column">
+                      <div class="d-flex flex-row align-items-center justify-content-between">
+                        <strong>محل کار</strong>
+                        <div class="d-flex flex-row my-2">
+                          <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
+                          <a href="#" class="btn btn-outline-danger">حذف</a>
+                        </div>
+                      </div>
+                      <p>قائمشهر - خ تهران - جنب باشگاه تختی- مجتمع نیلو - طبقه 2 واحد 3</p>
+                      <p>کد پستی: 4765444129</p>
+                      <p>توضیحات: -</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row m-3">
+                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
+                    <div class="dflex flex-column">
+                      <div class="d-flex flex-row align-items-center justify-content-between">
+                        <strong>مادربزرگ</strong>
+                        <div class="d-flex flex-row my-2">
+                          <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
+                          <a href="#" class="btn btn-outline-danger">حذف</a>
+                        </div>
+                      </div>
+                      <p>قائمشهر - خ تهران - جنب باشگاه تختی- مجتمع نیلو - طبقه 2 واحد 3</p>
+                      <p>کد پستی: 4765444129</p>
+                      <p>توضیحات: -</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+
+
         </div>
         </div>
     
