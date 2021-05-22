@@ -152,3 +152,4 @@ function timestampToJalaliDate($timestamp){
  
     return gregorian_to_jalali($gYear, $gMonth, $gDay, '/');
 }
+

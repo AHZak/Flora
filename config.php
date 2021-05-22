@@ -46,6 +46,8 @@ define('PRODUCT_TABLE_NAME', 'products');
 define('CATEGORY_PRODUCT_TABLE_NAME', 'category_product');
 define('SUB_CATEGORY_PRODUCT_TABLE_NAME', 'subcategory_product');
 define('ADMIN_TABLE_NAME', 'admins');
+define('ADDRESS_TABLE_NAME', 'users_address');
+
 
 
 //ACCESS FILE TYPES
@@ -83,6 +85,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/AccountClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/server/lib/ServerClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AdminClass.php';
+require_once public_html().PROJECT_NAME.'/inc/classes/AddressClass.php';
 
 
 
