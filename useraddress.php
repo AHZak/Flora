@@ -1,5 +1,5 @@
 <?php
-    $pageUi="userProfile";
+    $pageUi="userAddress";
     include_once 'config.php';
 ?>
 <!doctype html>
@@ -50,7 +50,7 @@
         <div class="p-3">
           <nav>
             <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-              <a href="userpersonal.php" class="text-decoration-none"><button class="nav-link" aria-selected="false"><i class="fas fa-user me-1"></i>اطلاعات شخصی</button></a>
+              <a href="userprofile.php" class="text-decoration-none"><button class="nav-link" aria-selected="false"><i class="fas fa-user me-1"></i>اطلاعات شخصی</button></a>
               <a href="userorders.php" class="text-decoration-none"><button class="nav-link" aria-selected="false"><i class="fas fa-box-open me-1"></i>سفارسشات من</button></a>
               <a href="useraddress.php" class="text-decoration-none"><button class="nav-link active" aria-selected="true"><i class="fas fa-map-signs me-1"></i>آدرس های من</button></a>
             </div>
@@ -113,39 +113,31 @@
 
                         <div class="container-fluid">
 
-                            <div class="row m-3">
-                                <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
-                                <div class="dflex flex-column">
-                                    <div class="d-flex flex-row align-items-center justify-content-between">
-                                    <strong>محل کار</strong>
-                                    <div class="d-flex flex-row my-2">
-                                        <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
-                                        <a href="#" class="btn btn-outline-danger">حذف</a>
-                                    </div>
-                                    </div>
-                                    <p>قائمشهر - خ تهران - جنب باشگاه تختی- مجتمع نیلو - طبقه 2 واحد 3</p>
-                                    <p>کد پستی: 4765444129</p>
-                                    <p>توضیحات: -</p>
-                                </div>
-                                </div>
-                            </div>
-
-                            <div class="row m-3">
-                                <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
+                            <?php if($addresses): ?>
+                              <?php foreach($addresses as $address):
+                                  //address object
+                                  $addressObj=new Address($address['id']);
+                              ?>
+                                <div class="row m-3">
+                                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
                                     <div class="dflex flex-column">
-                                        <div class="d-flex flex-row align-items-center justify-content-between">
-                                        <strong>مادربزرگ</strong>
+                                      <div class="d-flex flex-row align-items-center justify-content-between">
+                                        <strong><?php echo $addressObj->getTitle(); ?></strong>
                                         <div class="d-flex flex-row my-2">
-                                            <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
-                                            <a href="#" class="btn btn-outline-danger">حذف</a>
+                                          <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
+                                          <a href="#" class="btn btn-outline-danger">حذف</a>
                                         </div>
-                                        </div>
-                                        <p>قائمشهر - خ تهران - جنب باشگاه تختی- مجتمع نیلو - طبقه 2 واحد 3</p>
-                                        <p>کد پستی: 4765444129</p>
-                                        <p>توضیحات: -</p>
+                                      </div>
+                                      <p><?php echo $addressObj->getAddress(); ?></p>
+                                      <p>کد پستی: <?php echo $addressObj->getPostalCode(); ?></p>
+                                      <p>توضیحات: <?php echo $addressObj->getAddressExplain() ? $addressObj->getAddressExplain() : "-"; ?></p>
                                     </div>
+                                  </div>
                                 </div>
-                            </div>
+                              <?php endforeach; ?>
+                            <?php else: ?>
+                              <p>آدرسی وجود ندارد</p>
+                            <?php endif; ?>
                         
                         </div>
                     </div>

@@ -50,7 +50,7 @@
         <div class="p-3">
           <nav>
             <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-              <a href="userpersonal.php" class="text-decoration-none"><button class="nav-link" aria-selected="false"><i class="fas fa-user me-1"></i>اطلاعات شخصی</button></a>
+              <a href="userprofile.php" class="text-decoration-none"><button class="nav-link" aria-selected="false"><i class="fas fa-user me-1"></i>اطلاعات شخصی</button></a>
               <a href="userorders.php" class="text-decoration-none"><button class="nav-link active" aria-selected="true"><i class="fas fa-box-open me-1"></i>سفارسشات من</button></a>
               <a href="useraddress.php" class="text-decoration-none"><button class="nav-link" aria-selected="false"><i class="fas fa-map-signs me-1"></i>آدرس های من</button></a>
             </div>

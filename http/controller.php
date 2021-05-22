@@ -426,11 +426,6 @@ if(isset($pageUi)){
             $result=$user->update(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email]);
 
 
-        }elseif(isset($_POST['addAddress'])){
-
-            //ADD NEW ADDRESS
-            $userPhone=$_SESSION['phone'];
-            Address::create(['user_phone'=>$userPhone,'address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
         }
 
         //refresh update data
@@ -441,6 +436,21 @@ if(isset($pageUi)){
         }
         
 
+    }elseif($pageUi=='userAddress'){
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+        
+        if(isset($_POST['addAddress'])){
+
+            //ADD NEW ADDRESS
+            $userPhone=$_SESSION['phone'];
+            Address::create(['user_phone'=>$userPhone,'address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
+        }
+
+        //GET ADDRESS
+        $addresses=Address::getAddresses($_SESSION['phone']);
+        
     }
 
 

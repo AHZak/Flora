@@ -17,7 +17,12 @@ class Address{
     {
         $address=$this->getAddressFullInfo($addressId);
         if($address){
-
+            $this->setTitle($address['title']);
+            $this->setFloor($address['floor']);
+            $this->setUnit($address['unit']);
+            $this->setAddress($address['address']);
+            $this->setAddressExplain($address['address_explain']);
+            $this->setPostalCode($address['postal_code']);
         }
     }
 
@@ -43,7 +48,7 @@ class Address{
     }
 
     public function setAddressExplain($addressExplain){
-        $this->addressExolain=$addressExplain;
+        $this->addressExplain=$addressExplain;
     }
 
     public function setPostalCode($postalCode){
