@@ -54,8 +54,8 @@
           <div class="">
             <div class="row m-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="address-item" id="address-1">
+                <label class="form-check-label" for="address-1">
                   <strong>خانه</strong>
                 </label>
               </div>
@@ -77,8 +77,8 @@
           <div class="">
             <div class="row m-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="address-item" id="address-2">
+                <label class="form-check-label" for="address-2">
                   <strong>مادربزرگ</strong>
                 </label>
               </div>
@@ -116,14 +116,14 @@
           </div>
           <div class="p-3">
           <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="shipping" id="ship-1">
+            <label class="form-check-label" for="ship-1">
               <p>فوری <span class="text-muted">(بین 4تا 24 ساعت)</span></p>
             </label>
           </div>
           <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="shipping" id="ship-2">
+            <label class="form-check-label" for="ship-2">
               <p>باربری <span class="text-muted">پس کرایه</span></p>
             </label>
           </div>
@@ -140,14 +140,14 @@
           </div>
           <div class="p-3">
           <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="payment" id="pay-1">
+            <label class="form-check-label" for="pay-1">
               <p>پرداخت آنلاین</p>
             </label>
           </div>
           <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="payment" id="pay-1">
+            <label class="form-check-label" for="pay-2">
               <p>پرداخت در محل</p>
             </label>
           </div>
