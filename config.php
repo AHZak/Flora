@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //SESIION
 session_start();
 setcookie(session_name(),session_id(),time()+(7*24*3600));
@@ -73,8 +76,6 @@ define('PASSWORD_TREZ','reza1356');
 define('FROM_PHONE_TREZ', '50002210003000');
 
 
-
-
 //require classes
 require_once public_html().PROJECT_NAME.'/inc/classes/MessagesClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/DbClass.php';
@@ -86,7 +87,6 @@ require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/server/lib/ServerClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AdminClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AddressClass.php';
-
 
 
 //ERROR MESSAGES
