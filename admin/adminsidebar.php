@@ -22,7 +22,7 @@
             </a>
           </li><?php endif; ?>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="#">
+            <a class="nav-link <?php active("#") ?>" href="orders.php">
             <i class="fas fa-cart-arrow-down feather"></i>
             سفارشات
             </a>
