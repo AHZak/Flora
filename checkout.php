@@ -107,7 +107,79 @@
         </div>
         <!-- address selection -->
 
-        <div>c</div>
+        <hr class="my-3">
+
+        <!-- shipping -->
+        <div class="row">
+          <div class="p-3 border-bottom border-3 mb-2">
+            <p class="h5">شیوه ارسال</p>
+          </div>
+          <div class="p-3">
+          <div class="form-check my-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              <p>فوری <span class="text-muted">(بین 4تا 24 ساعت)</span></p>
+            </label>
+          </div>
+          <div class="form-check my-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              <p>باربری <span class="text-muted">پس کرایه</span></p>
+            </label>
+          </div>
+          </div>
+        </div>
+        <!-- shipping -->
+
+        <hr class="my-3">
+
+        <!-- payment --> 
+        <div class="row">
+          <div class="p-3 border-bottom border-3 mb-2">
+            <p class="h5">شیوه پرداخت</p>
+          </div>
+          <div class="p-3">
+          <div class="form-check my-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              <p>پرداخت آنلاین</p>
+            </label>
+          </div>
+          <div class="form-check my-1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              <p>پرداخت در محل</p>
+            </label>
+          </div>
+          </div>
+        </div>
+        <!-- payment -->
+        <hr class="my-3">
+
+        <!-- payment -->
+        <div class="row">
+          <div class="p-3 border-bottom border-3 mb-2">
+            <p class="h5">پرداخت نهایی</p>
+          </div>
+          <div class="dflex flex-column p-3 pb-0">
+            <p>مبلغ کل سفارش: <span>440000 تومان</span></p>
+            <p>هزینه ارسال: <span>15000 تومان</span></p>
+            <p>مبلغ قابل پرداحت: <span>455000 تومان</span></p>
+          </div>
+        </div>
+        <!-- payment -->
+
+        <hr class="my-3">
+
+        <!-- order button -->
+        <div class="text-center pb-3">
+          <button class="btn btn-primary">ثبت سفارش</button>
+        </div>
+        <!-- order button -->
+
+
+
+        
       </div>
     </main>
     <!----------------------------- address + shipping + sum + payment ------------------------------------>
