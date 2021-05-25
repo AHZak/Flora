@@ -1,4 +1,3 @@
-
 <?php
     $pageUi='checkout';
     include_once 'config.php';
