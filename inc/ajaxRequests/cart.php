@@ -33,6 +33,7 @@ if(isset($_POST)){
             //product object
             $product=new Product($productId);
             $sumprice=$product->getPrice()*$number;
+            $_SESSION['cart']['sumprice'][$productId]=$product->getPrice()*$number;
         }
     }
 

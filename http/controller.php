@@ -451,6 +451,72 @@ if(isset($pageUi)){
         //GET ADDRESS
         $addresses=Address::getAddresses($_SESSION['phone']);
         
+    }elseif($pageUi=='checkout'){
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+        //GET USER ADDRESSES
+        $addresses=Address::getAddresses($_SESSION['phone']);
+
+        //GET PAYMENT METHODS
+        $payment_methods=Db::select(PAYMENT_MOTHODS_TABLE_NAME);
+
+        //GET SHIPPINGS
+        $shippings=Db::select(SHIPPING_TABLE_NAME);
+
+        if(isset($_SESSION['cart'])){
+           
+            //POSTAL PRICE
+            if(isset($_SESSION['cart']['fullsum']) && $_SESSION['cart']['fullsum']>MAX_PRICE){
+                $postal_price=0;
+            }else{
+                if(isset($_POST['shipping'])){
+                    if($_POST['shipping']==1){
+                        $postal_price=FAST_POSTAL_PRICE;
+                    }else{
+                        $postal_price=POSTAL_PRICE;
+                    }
+                }else{
+                    $postal_price=POSTAL_PRICE;
+                }
+                
+            }
+
+            //sum all prices
+            $sum_all_price=$_SESSION['cart']['fullsum']+$postal_price;
+
+            if(isset($_POST['pay'])){
+                //GET PRODUCTS
+                $productsId=getProductsIdFromCart();
+
+                
+                //create a new order
+                $code=rand(1000,9999);
+                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price],$message);
+
+                if($orderId){
+                    //create order detail
+                    foreach($productsId as $productId){
+                        //PRODUCT PRICE
+                        $productId=$productId['id'];
+                        $price=Db::select(PRODUCT_TABLE_NAME,"id='$productId'","single","price");
+                        $price=$price['price'];
+
+                        //create orfer detail
+                        Db::insert(ORDER_DETAIL_TABLE_NAME,['order_id'=>$orderId,'product_id'=>$productId,'ordered_price'=>$price,'quantity'=>$_SESSION['cart']['number'][$productId],'sum_price'=>$_SESSION['cart']['sumprice'][$productId]]);
+                    }
+
+                    //eo empty cart
+                    unset($_SESSION['cart']);
+
+                    //redirect to orders
+                }
+            }
+ 
+        }else{
+            //redirect to index
+            redirectTo("index.php");
+        }
     }
 
 

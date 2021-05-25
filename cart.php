@@ -124,7 +124,7 @@
               <p id="fullsum"><?php echo isset($_SESSION['cart']['fullsum']) ? number_format($_SESSION['cart']['fullsum']) : 0;?> تومان</p>
             </div>
             <div class="align-self-end">
-              <button class="btn btn-primary">ادامه خرید</button>
+              <a href="checkout.php" class="btn btn-primary">ادامه خرید</a>
             </div>
           </div>
         </div>

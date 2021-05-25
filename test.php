@@ -1,6 +1,6 @@
 <?php
 
-$user = posix_getpwuid(posix_geteuid());
-
-var_dump($user);
+include "config.php";
+unset($_SESSION['cart']);
+show($_SESSION);
 

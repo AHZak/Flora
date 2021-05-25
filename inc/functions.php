@@ -153,3 +153,15 @@ function timestampToJalaliDate($timestamp){
     return gregorian_to_jalali($gYear, $gMonth, $gDay, '/');
 }
 
+
+//get products id from cart
+function getProductsIdFromCart(){
+    if(isset($_SESSION['cart']['products']) && $_SESSION['cart']['products']){
+        foreach($_SESSION['cart']['products'] as $key=>$value){
+            $productsId[]['id']=$value;
+        }
+        return $productsId;
+    }else{
+        return false;
+    }
+}
