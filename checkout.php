@@ -1,7 +1,9 @@
+
 <?php
     $pageUi='checkout';
     include_once 'config.php';
 ?>
+
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -49,6 +51,7 @@
     <main>
       <div class="container bg-light shadow g-3 my-3 rounded">
         <!-- address selection -->
+
           <form method='post'>
             <div class=" p-3">
               <p class="h5">یک آدرس انتخاب کنید</p>
@@ -159,6 +162,7 @@
             <!-- order button -->
 
         </form>
+
       </div>
     </main>
     <!----------------------------- address + shipping + sum + payment ------------------------------------>
@@ -212,6 +216,7 @@
             ]
           });
 
+
           
                   });
 
@@ -228,6 +233,7 @@
             $("#full_sum_price").text(full_normal_price)
           }
         }
+
       </script>
   </body>
 </html>
