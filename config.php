@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //SESIION
 session_start();
 setcookie(session_name(),session_id(),time()+(7*24*3600));
@@ -47,6 +50,13 @@ define('CATEGORY_PRODUCT_TABLE_NAME', 'category_product');
 define('SUB_CATEGORY_PRODUCT_TABLE_NAME', 'subcategory_product');
 define('ADMIN_TABLE_NAME', 'admins');
 define('ADDRESS_TABLE_NAME', 'users_address');
+define('ORDERS_TABLE_NAME', 'orders');
+define('PAYMENT_MOTHODS_TABLE_NAME', 'payment_methods');
+define('SHIPPING_TABLE_NAME', 'shippings');
+define('ORDER_DETAIL_TABLE_NAME', 'order_detail');
+
+
+
 
 
 
@@ -72,6 +82,11 @@ define('USERNAME_TREZ','sharifschool');
 define('PASSWORD_TREZ','reza1356');
 define('FROM_PHONE_TREZ', '50002210003000');
 
+//POSTAL PRICD
+define('MAX_PRICE', 100000);
+define('FAST_POSTAL_PRICE', 15000);
+define('POSTAL_PRICE',5000);
+
 
 
 
@@ -86,7 +101,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/ProductClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/server/lib/ServerClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AdminClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AddressClass.php';
-
+require_once public_html().PROJECT_NAME.'/inc/classes/OrderClass.php';
 
 
 //ERROR MESSAGES

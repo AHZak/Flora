@@ -1,3 +1,9 @@
+
+<?php
+    $pageUi='checkout';
+    include_once 'config.php';
+?>
+
 <!doctype html>
 <html dir="rtl">
   <head>
@@ -45,141 +51,118 @@
     <main>
       <div class="container bg-light shadow g-3 my-3 rounded">
         <!-- address selection -->
-        <div class=" p-3">
-          <p class="h5">یک آدرس انتخاب کنید</p>
-        </div>
-        <div class="d-flex flex-column justify-content-start">
 
-          <!-- address item -->
-          <div class="">
-            <div class="row m-3">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="address-item" id="address-1">
-                <label class="form-check-label" for="address-1">
-                  <strong>خانه</strong>
-                </label>
-              </div>
-              <hr class="my-2">
-              
-              <div class="col-12 col-md-10 col-lg-8 rounded  p-3 pb-0">
-                <div class="dflex flex-column">
-                  <p>قائمشهر - خ تهران - جنب باشگاه تختی- مجتمع نیلو - طبقه 2 واحد 3</p>
-                  <p>کد پستی: 4765444129</p>
-                  <p class="mb-0">توضیحات: -</p>
-                </div>
-              </div>
-          
+          <form method='post'>
+            <div class=" p-3">
+              <p class="h5">یک آدرس انتخاب کنید</p>
             </div>
-          </div>
-          <!-- address item -->
+            <div class="d-flex flex-column justify-content-start">
+            <?php if($addresses): ?>
+                <?php foreach($addresses as $address):?>
+                      <!-- address item -->
+                      <div class="">
+                        <div class="row m-3">
+                          <div class="form-check">
+                            <input class="form-check-input" value="<?php echo $address['id']; ?>" type="radio" name="address-item" id="address-<?php echo $address['id'] ?>">
+                            <label class="form-check-label" for="address-<?php echo $address['id'] ?>">
+                              <strong><?php echo $address['title']; ?></strong>
+                            </label>
+                          </div>
+                          <hr class="my-2">
+                        </div>
+                      </div>
+                      <!-- address item -->
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>آدرسی پیدا نشد.لطفا یک آدرس اضافه کنید</p>
+            <?php endif; ?>
 
-          <!-- address item -->
-          <div class="">
-            <div class="row m-3">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="address-item" id="address-2">
-                <label class="form-check-label" for="address-2">
-                  <strong>مادربزرگ</strong>
-                </label>
-              </div>
               <hr class="my-2">
-              
-              <div class="col-12 col-md-10 col-lg-8 rounded  p-3 pb-0">
-                <div class="dflex flex-column">
-                  <p>قائمشهر - خیابان ساری</p>
-                  <p>کد پستی: 4765444129</p>
-                  <p class="mb-0">توضیحات: -</p>
-                </div>
+              <!-- add address -->
+              <a href="useraddress.php" class="text-decoration-none">
+              <div>
+              <i class="fas fa-plus me-1 ms-2"></i> افزودن آدرس جدید
               </div>
-          
+              </a>
+              <!-- add address -->
+
             </div>
-          </div>
-          <!-- address item -->
-          <hr class="my-2">
-          <!-- add address -->
-          <a href="#" class="text-decoration-none">
-          <div>
-           <i class="fas fa-plus me-1 ms-2"></i> افزودن آدرس جدید
-          </div>
-          </a>
-          <!-- add address -->
+            <!-- address selection -->
 
-        </div>
-        <!-- address selection -->
+            <hr class="my-3">
 
-        <hr class="my-3">
+            <!-- shipping -->
+            <div class="row">
+              <div class="p-3 border-bottom border-3 mb-2">
+                <p class="h5">شیوه ارسال</p>
+              </div>
+              <div class="p-3">
+                <?php if($shippings):?>
+                  <?php foreach($shippings as $shipping): ?>
+                    <div class="form-check my-1">
+                      <input onclick="postalPrice(<?php echo $_SESSION['cart']['fullsum']; ?>,<?php echo MAX_PRICE; ?>,'<?php echo number_format(FAST_POSTAL_PRICE); ?>','<?php echo number_format(POSTAL_PRICE); ?>','<?php echo $shipping['id'] ?>','<?php echo number_format($_SESSION['cart']['fullsum']+FAST_POSTAL_PRICE); ?>','<?php echo number_format($_SESSION['cart']['fullsum']+POSTAL_PRICE); ?>')" class="form-check-input" type="radio" <?php if($shipping['status']=='disable'){ echo "disabled";} ?> name="shipping" value="<?php echo $shipping['id'] ?>" id="ship-<?php echo $shipping['id'] ?>">
+                      <label class="form-check-label" for="ship-<?php echo $shipping['id'] ?>">
+                      <p><?php echo $shipping['shipping_type'] ?></p>
+                      </label>
+                    </div>
+                  <?php endforeach; ?>
+                <?php else:?>
+                  <p>روش پرداختی وجود ندارد</p>
+                <?php endif;?>
 
-        <!-- shipping -->
-        <div class="row">
-          <div class="p-3 border-bottom border-3 mb-2">
-            <p class="h5">شیوه ارسال</p>
-          </div>
-          <div class="p-3">
-          <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="shipping" id="ship-1">
-            <label class="form-check-label" for="ship-1">
-              <p>فوری <span class="text-muted">(بین 4تا 24 ساعت)</span></p>
-            </label>
-          </div>
-          <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="shipping" id="ship-2">
-            <label class="form-check-label" for="ship-2">
-              <p>باربری <span class="text-muted">پس کرایه</span></p>
-            </label>
-          </div>
-          </div>
-        </div>
-        <!-- shipping -->
+              </div>
+            </div>
+            <!-- shipping -->
 
-        <hr class="my-3">
+            <hr class="my-3">
 
-        <!-- payment --> 
-        <div class="row">
-          <div class="p-3 border-bottom border-3 mb-2">
-            <p class="h5">شیوه پرداخت</p>
-          </div>
-          <div class="p-3">
-          <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="payment" id="pay-1">
-            <label class="form-check-label" for="pay-1">
-              <p>پرداخت آنلاین</p>
-            </label>
-          </div>
-          <div class="form-check my-1">
-            <input class="form-check-input" type="radio" name="payment" id="pay-1">
-            <label class="form-check-label" for="pay-2">
-              <p>پرداخت در محل</p>
-            </label>
-          </div>
-          </div>
-        </div>
-        <!-- payment -->
-        <hr class="my-3">
+            <!-- payment --> 
+            <div class="row">
+              <div class="p-3 border-bottom border-3 mb-2">
+                <p class="h5">شیوه پرداخت</p>
+              </div>
+              <div class="p-3">
+              <?php if($payment_methods):?>
+                <?php foreach($payment_methods as $payment_method): ?>
+                  <div class="form-check my-1">
+                    <input class="form-check-input" <?php if($payment_method['status']=='disable'){ echo "disabled";} ?> type="radio" value="<?php echo $payment_method['id'] ?>" name="payment" id="pay-<?php echo $payment_method['id'] ?>">
+                    <label class="form-check-label" for="pay-<?php echo $payment_method['id'] ?>">
+                      <p><?php echo $payment_method['name'] ?></p>
+                    </label>
+                  </div>
+                <?php endforeach; ?>
+              <?php else:?>
+                <p>روش پرداختی وجود ندارد</p>
+              <?php endif;?>
 
-        <!-- payment -->
-        <div class="row">
-          <div class="p-3 border-bottom border-3 mb-2">
-            <p class="h5">پرداخت نهایی</p>
-          </div>
-          <div class="dflex flex-column p-3 pb-0">
-            <p>مبلغ کل سفارش: <span>440000 تومان</span></p>
-            <p>هزینه ارسال: <span>15000 تومان</span></p>
-            <p>مبلغ قابل پرداحت: <span>455000 تومان</span></p>
-          </div>
-        </div>
-        <!-- payment -->
+              </div>
+            </div>
+            <!-- payment -->
+            <hr class="my-3">
 
-        <hr class="my-3">
+            <!-- payment -->
+            <div class="row">
+              <div class="p-3 border-bottom border-3 mb-2">
+                <p class="h5">پرداخت نهایی</p>
+              </div>
+              <div class="dflex flex-column p-3 pb-0">
+                <p>مبلغ کل سفارش: <span><?php echo number_format($_SESSION['cart']['fullsum']); ?> تومان</span></p>
+                <p>هزینه ارسال: <span id="postal_price"><?php if($postal_price==0){ echo 'رایگان'; }else{ echo number_format($postal_price).' تومان'; } ?></span></p>
+                <p>مبلغ قابل پرداحت: <span id="full_sum_price"><?php echo number_format($sum_all_price); ?> تومان</span></p>
+              </div>
+            </div>
+            <!-- payment -->
 
-        <!-- order button -->
-        <div class="text-center pb-3">
-          <button class="btn btn-primary">ثبت سفارش</button>
-        </div>
-        <!-- order button -->
+            <hr class="my-3">
 
+            <!-- order button -->
+            <div class="text-center pb-3">
+              <button name="pay" class="btn btn-primary">ثبت سفارش</button>
+            </div>
+            <!-- order button -->
 
+        </form>
 
-        
       </div>
     </main>
     <!----------------------------- address + shipping + sum + payment ------------------------------------>
@@ -232,7 +215,25 @@
               // instead of a settings object
             ]
           });
+
+
+          
                   });
+
+
+        function postalPrice(fullsum,max_price,fast_price,normal_price,shipping_id,full_fast_price,full_normal_price){
+          
+          if(fullsum>max_price){
+            $("#postal_price").text("رایگان");
+          }else if(shipping_id=='1'){
+            $("#postal_price").text(fast_price);
+            $("#full_sum_price").text(full_fast_price)
+          }else{
+            $("#postal_price").text(normal_price);
+            $("#full_sum_price").text(full_normal_price)
+          }
+        }
+
       </script>
   </body>
 </html>
