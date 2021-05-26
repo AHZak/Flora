@@ -80,7 +80,7 @@ class Account{
     //LOGIN
     public function login($phone,$code,$redirect='editprofile.php'){
         //valid phone
-
+        $this->logout();
         //get account
         $account=Db::select(USER_TABLE_NAME,"phone='$phone'","single");
         if($account){

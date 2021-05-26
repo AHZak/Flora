@@ -1,6 +1,7 @@
 <?php
 
 include "config.php";
-unset($_SESSION['cart']);
+//unset($_SESSION['cart']);
 show($_SESSION);
+
 
