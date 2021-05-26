@@ -1,5 +1,5 @@
 <?php
-  $pageUi="";
+  $pageUi="orders";
   include_once '../config.php';
   
   include 'adminheader.php';
@@ -53,244 +53,69 @@
                           </thead>
 
                           <tbody class="">
-                                  <tr>
-                                  <td>#00395</td>
-                                  <td>1400/04/04</td>
-                                  <td>محمود کریمی</td>
-                                  <td>222,000 تومان</td>
-                                  <td>باربری</td>
-                                  <td>درحال انجام</td>
-                                  <td>
-                                      <div class="d-flex flex-row">
-                                      <a href="#" class="btn btn-outline-primary">جزئیات</a>
-                                      <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal">تغییر وضعیت</button>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <div class="modal fade" id="orderstatusmodal" tabindex="-1" aria-labelledby="orderstatusmodalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="orderstatusmodalTitle">وضعیت سفارش</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <fieldset class="mb-3">
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio1" checked="">
-                                                    <label class="form-check-label" for="exampleRadio1">ارسال شده</label>
+                                <?php if($orders): ?>
+                                    <?php foreach($orders as $order):
+                                        //order Object
+                                        $orderObj=new Order($order['id']); 
+                                        if($orderObj->getCustomerRole()=='admin'){
+                                          $user=new Admin($orderObj->getCustomerId());
+                                        }else{
+                                          $user=new User($orderObj->getCustomerId());
+                                        } 
+                                        
+                                    ?>
+                                        <tr class="<?php setWarningForFastOrder($orderObj->getShippingId()); ?>"">
+                                            <td><?php echo $orderObj->getCode(); ;?></td>
+                                            <td><?php $timestampDate=convertTimeStamp($orderObj->getCreatedAt())['date'];
+                                                echo timestampToJalaliDate($timestampDate);
+                                            ?>
+                                            <td><?php echo $user->getFirstName()." ".$user->getLastName(); ?></td>
+                                            <td><?php echo number_format($orderObj->getSumPrice()); ?> تومان</td>
+                                            <td><?php echo getShippingStatus($orderObj->getShippingId()); ?></td>
+                                            <td><?php echo getOrderStatus($orderObj->getStatus()); ?></td>
+                                            <td>
+                                                <div class="d-flex flex-row">
+                                                <a href="#" class="btn btn-outline-primary">جزئیات</a>
+                                                <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal<?php echo $orderObj->getId(); ?>">تغییر وضعیت</button>
                                                 </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">درحال انجام</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">در انتظار پرداخت</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">لغو شده</label>
-                                                </div>
-                                            </fieldset>
+                                            </td>
+                                        </tr>
+                                        <div class="modal fade" id="orderstatusmodal<?php echo $orderObj->getId(); ?>" tabindex="-1" aria-labelledby="orderstatusmodalTitle<?php echo $orderObj->getId(); ?>" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="orderstatusmodal<?php echo $orderObj->getId(); ?>Title">وضعیت سفارش</h5>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                                  </div>
+                                                  <form method="post">
+                                                  <input type="hidden" name="orderId" value="<?php echo $orderObj->getId(); ?>">
+                                                  <div class="modal-body">
+                                                      <fieldset class="mb-3">
+                                                          <div class="my-1 form-check">
+                                                              <input type="radio" name="status" value="done" class="form-check-input" id="exampleRadio1<?php echo $orderObj->getId(); ?>">
+                                                              <label class="form-check-label" for="exampleRadio1<?php echo $orderObj->getId(); ?>">ارسال شده</label>
+                                                          </div>
+                                                          <div class="my-1 form-check">
+                                                              <input type="radio" name="status" value="doing" class="form-check-input" id="exampleRadio2<?php echo $orderObj->getId(); ?>">
+                                                              <label class="form-check-label" for="exampleRadio2<?php echo $orderObj->getId(); ?>">درحال انجام</label>
+                                                          </div>
+                                                          <div class="my-1 form-check">
+                                                              <input type="radio" name="status" value="canceled" class="form-check-input" id="exampleRadio3<?php echo $orderObj->getId(); ?>">
+                                                              <label class="form-check-label" for="exampleRadio3<?php echo $orderObj->getId(); ?>">لغو شده</label>
+                                                          </div>
+                                                      </fieldset>
+                                                    </div>
+                                                  <div class="modal-footer">
+                                                      <button type="submit" name="update" class="btn btn-primary">بروزرسانی وضعیت</button>
+                                                  </div>
+                                                  </form>
+                                              </div>
                                             </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">بروزرسانی وضعیت</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
+                                          </div>
+                                    <?php endforeach; ?>
+                                    
+                                <?php endif; ?>
 
-                                  <tr class="bg-warning">
-                                  <td>#00394</td>
-                                  <td>1400/04/04</td>
-                                  <td>محمود کریمی</td>
-                                  <td>445,000 تومان</td>
-                                  <td>فوری</td>
-                                  <td>درحال انجام</td>
-                                  <td>
-                                      <div class="d-flex flex-row">
-                                      <a href="#" class="btn btn-outline-primary">جزئیات</a>
-                                      <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal">تغییر وضعیت</button>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <div class="modal fade" id="orderstatusmodal" tabindex="-1" aria-labelledby="orderstatusmodalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="orderstatusmodalTitle">وضعیت سفارش</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <fieldset class="mb-3">
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio1" checked="">
-                                                    <label class="form-check-label" for="exampleRadio1">ارسال شده</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">درحال انجام</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">در انتظار پرداخت</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">لغو شده</label>
-                                                </div>
-                                            </fieldset>
-                                            </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">بروزرسانی وضعیت</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                  <tr>
-                                  <td>#00393</td>
-                                  <td>1400/04/04</td>
-                                  <td>محمود کریمی</td>
-                                  <td>100,000 تومان</td>
-                                  <td>باربری</td>
-                                  <td>درحال انجام</td>
-                                  <td>
-                                      <div class="d-flex flex-row">
-                                        <a href="#" class="btn btn-outline-primary">جزئیات</a>
-                                        <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal">تغییر وضعیت</button>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <div class="modal fade" id="orderstatusmodal" tabindex="-1" aria-labelledby="orderstatusmodalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="orderstatusmodalTitle">وضعیت سفارش</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <fieldset class="mb-3">
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio1" checked="">
-                                                    <label class="form-check-label" for="exampleRadio1">ارسال شده</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">درحال انجام</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">در انتظار پرداخت</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">لغو شده</label>
-                                                </div>
-                                            </fieldset>
-                                            </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">بروزرسانی وضعیت</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-
-                                  <tr>
-                                  <td>#00392</td>
-                                  <td>1400/04/04</td>
-                                  <td>محمود کریمی</td>
-                                  <td>13,000 تومان</td>
-                                  <td>باربری</td>
-                                  <td>درحال انجام</td>
-                                  <td>
-                                      <div class="d-flex flex-row">
-                                      <a href="#" class="btn btn-outline-primary">جزئیات</a>
-                                      <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal">تغییر وضعیت</button>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <div class="modal fade" id="orderstatusmodal" tabindex="-1" aria-labelledby="orderstatusmodalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="orderstatusmodalTitle">وضعیت سفارش</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <fieldset class="mb-3">
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio1" checked="">
-                                                    <label class="form-check-label" for="exampleRadio1">ارسال شده</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">درحال انجام</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">در انتظار پرداخت</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">لغو شده</label>
-                                                </div>
-                                            </fieldset>
-                                            </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">بروزرسانی وضعیت</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                  <tr>
-                                  <td>#00391</td>
-                                  <td>1400/04/04</td>
-                                  <td>محمود کریمی</td>
-                                  <td>1,300,000 تومان</td>
-                                  <td>باربری</td>
-                                  <td>درحال انجام</td>
-                                  <td>
-                                      <div class="d-flex flex-row">
-                                      <a href="#" class="btn btn-outline-primary">جزئیات</a>
-                                      <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal">تغییر وضعیت</button>
-                                      </div>
-                                  </td>
-                                  </tr>
-                                  <div class="modal fade" id="orderstatusmodal" tabindex="-1" aria-labelledby="orderstatusmodalTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="orderstatusmodalTitle">وضعیت سفارش</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <fieldset class="mb-3">
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio1" checked="">
-                                                    <label class="form-check-label" for="exampleRadio1">ارسال شده</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">درحال انجام</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">در انتظار پرداخت</label>
-                                                </div>
-                                                <div class="my-1 form-check">
-                                                    <input type="radio" name="radios" class="form-check-input" id="exampleRadio2">
-                                                    <label class="form-check-label" for="exampleRadio2">لغو شده</label>
-                                                </div>
-                                            </fieldset>
-                                            </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">بروزرسانی وضعیت</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </div>
                           </tbody>
 
                           

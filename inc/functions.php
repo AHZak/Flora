@@ -165,3 +165,29 @@ function getProductsIdFromCart(){
         return false;
     }
 }
+
+//GET SHIPPING STATUS
+function getShippingStatus($id){
+    if($id==1){
+        return "فوری";
+    }else{
+        return "عادی";
+    }
+}
+
+//GET ORDER STATUS
+function getOrderStatus($status){
+    if($status=='doing'){
+        return "در حال انجام";
+    }elseif($status=='done'){
+        return 'انجام شده';
+    }elseif($status=='canceled'){
+        return 'لغو شده';
+    }
+}
+
+function setWarningForFastOrder($shippingId){
+    if($shippingId==1){
+        echo  'bg-warning';
+    }
+}

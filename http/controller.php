@@ -492,7 +492,12 @@ if(isset($pageUi)){
                 
                 //create a new order
                 $code=rand(1000,9999);
-                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price],$message);
+                if(isset($_SESSION['permission'])){
+                    $role="admin";
+                }else{
+                    $role="user";
+                }
+                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price,'customer_role'=>$role],$message);
 
                 if($orderId){
                     //create order detail
@@ -501,6 +506,8 @@ if(isset($pageUi)){
                         $productId=$productId['id'];
                         $price=Db::select(PRODUCT_TABLE_NAME,"id='$productId'","single","price");
                         $price=$price['price'];
+
+
 
                         //create orfer detail
                         Db::insert(ORDER_DETAIL_TABLE_NAME,['order_id'=>$orderId,'product_id'=>$productId,'ordered_price'=>$price,'quantity'=>$_SESSION['cart']['number'][$productId],'sum_price'=>$_SESSION['cart']['sumprice'][$productId]]);
@@ -517,8 +524,15 @@ if(isset($pageUi)){
             //redirect to index
             redirectTo("index.php");
         }
+    }elseif($pageUi=='orders'){
+        if(isset($_POST['update'])){
+            $order=new Order($_POST['orderId']);
+            $order->update(['status'=>$_POST['status']]);
+        }
+        //GET ORDERS
+        $orders=Order::getOrders();
+     
     }
-
 
 
 
