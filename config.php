@@ -60,6 +60,8 @@ define('ORDER_DETAIL_TABLE_NAME', 'order_detail');
 
 
 
+
+
 //ACCESS FILE TYPES
 define('ACCESS_IMAGES_MIME_TYPE',['image/jpeg','image/png']);
 
@@ -82,10 +84,7 @@ define('USERNAME_TREZ','sharifschool');
 define('PASSWORD_TREZ','reza1356');
 define('FROM_PHONE_TREZ', '50002210003000');
 
-//POSTAL PRICD
-define('MAX_PRICE', 100000);
-define('FAST_POSTAL_PRICE', 15000);
-define('POSTAL_PRICE',5000);
+
 
 
 
@@ -102,6 +101,15 @@ require_once public_html().PROJECT_NAME.'/inc/classes/server/lib/ServerClass.php
 require_once public_html().PROJECT_NAME.'/inc/classes/AdminClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AddressClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/OrderClass.php';
+require_once public_html().PROJECT_NAME.'/inc/classes/ShippingClass.php';
+
+
+//POSTAL PRICD
+define('MAX_PRICE', getFreePostalPrice());
+$fast_post=new Shipping(1);
+$normal_post=new Shipping(2);
+define('FAST_POSTAL_PRICE', $fast_post->getPrice());
+define('POSTAL_PRICE',$normal_post->getPrice());
 
 
 //ERROR MESSAGES

@@ -532,6 +532,20 @@ if(isset($pageUi)){
         //GET ORDERS
         $orders=Order::getOrders();
      
+    }elseif($pageUi=='shipping'){
+        
+        if(isset($_POST['shipping_update'])){
+            $shipping=new Shipping($_POST['shipping_id']);
+            $shipping->update(['shipping_type'=>$_POST['shipping_type'],'price'=>$_POST['price'],'description'=>$_POST['description']]);
+        }
+
+        if(isset($_POST['updatepostalprice'])){
+            updateFreePostalPrice($_POST['postalprice']);
+        }
+
+        //get shippings 
+        $shippings=Shipping::getShippings();
+        $freePostalPrice=getFreePostalPrice();
     }
 
 
