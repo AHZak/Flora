@@ -191,3 +191,20 @@ function setWarningForFastOrder($shippingId){
         echo  'bg-warning';
     }
 }
+
+//GET MIN PRICE FOR POSTAL
+function getFreePostalPrice(){
+    if(file_exists(public_html().PROJECT_NAME."/max_postal_price.txt")){
+        return file_get_contents(public_html().PROJECT_NAME."/max_postal_price.txt");
+    }else{
+        return false;
+    }
+}
+
+function updateFreePostalPrice($price){
+    if(file_exists(public_html().PROJECT_NAME."/max_postal_price.txt")){
+        return file_put_contents(public_html().PROJECT_NAME."/max_postal_price.txt",$price);
+    }else{
+        return false;
+    }
+}
