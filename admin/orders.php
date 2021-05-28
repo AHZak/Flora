@@ -33,8 +33,53 @@
 
         </div>
         <!----------------------------- header --------------------------->
+        <!----------------------------- filters --------------------------->
+        <div class="row">
+            
+            <div class="d-flex flex-row flex-wrap justify-content-start border-bottom border-2 p-3">
+              <!----------------------------- funnel + title --------------------------->
+              <div class="col-md-2 d-flex flex-row align-items-center me-auto my-1">
+                <i class="fas fa-filter me-2"></i>
+                <p class="h6">فیلترها</p>
+              </div>
+              <!----------------------------- funnel + title --------------------------->
 
-        <!----------------------------- users --------------------------->
+
+              <!----------------------------- to show --------------------------->
+              <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap me-2">
+                <p class="h6 me-2">نمایش</p>
+                <select id="order" class="form-select form-select-sm" aria-label=".form-select-sm">
+                  <option value="all" selected>همه</option>
+                  <option value="shipped">تحویل داده شده</option>  
+                  <option value="in-process">در حال انجام</option>   
+                  <option value="canceled">لغو شده</option>     
+                  <option value="express">سفارشات فوری</option>  
+                  <option value="ordinary">سفارشات عادی</option>
+                </select>
+              </div>
+              <!----------------------------- to show --------------------------->
+
+            </div>
+        </div>
+        <!----------------------------- filters --------------------------->
+
+        <!----------------------------- applied filters --------------------------->
+        <div class="container">
+          <div class="row p-3">
+            <div class="d-flex flex-row justify-content-start flex-wrap">
+
+            <div class="col-auto me-1 my-1">
+              <a id="selected-termbox-btn" href="" class="btn btn-outline-secondary rounded-pill" style="display:none;" title="حذف فیلتر">x متن جستجو</a>
+            </div>
+            <div class="col-auto me-1 my-1">
+              <a id="selected-cat-btn" href="" class="btn btn-outline-secondary rounded-pill" title="حذف فیلتر" style="display:none;">x تحویل شده</a>
+            </div>
+            </div>
+          </div>
+        </div>
+        <!----------------------------- applied filters --------------------------->
+
+        <!----------------------------- products --------------------------->
         <div id="tb-orders" class="row g-3 my-3">
           
                 <div class="table-responsive">
@@ -124,7 +169,7 @@
           </div>
   </div>
 
-        <!----------------------------- users --------------------------->
+        <!----------------------------- products --------------------------->
 
       </div>
     </main>
