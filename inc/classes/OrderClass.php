@@ -147,8 +147,8 @@ class Order{
         }
     }
 
-    public static function getOrders($condition=1){
-        return Db::select(ORDERS_TABLE_NAME,$condition,"all","id",0,"created_at","desc");
+    public static function getOrders($condition=1,$distinct='id',$order='created_at',$orderBy='desc',$limit=false,$perpage="",$offset=1){
+        return Db::select(ORDERS_TABLE_NAME,$condition,"all",$distinct,$limit,$order,$orderBy,$perpage,$offset);
     }
 
     //GET ORDERS DETAIL

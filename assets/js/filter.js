@@ -4,6 +4,7 @@ $(document).ready(function(){
     var instockstatus="";
     var order="";
     var term="";
+    var filter="";
     //LIVE SEARCH WITH AJAX
     $("#termbox").keyup(function(){
         term=$(this).val();
@@ -18,12 +19,28 @@ $(document).ready(function(){
         }
     });
 
+    //LIVE SEARCH ORDERS
+    $("#termboxorders").keyup(function(){
+        term=$(this).val();
+        //SEND LOAD PAGE REQUEST
+        updateContent("http://localhost/flora/inc/ajaxRequests/ordersearch.php?term="+term+"&filter="+filter,"#tb-orders");
+        
+    });
+
     //SEARCH USERS
     $("#termboxusers").keyup(function(){
         term=$(this).val();
         //console.log(term);
         //SEND LOAD PAGE REQUEST
+        console.log(term);
         updateContent("http://localhost/flora/inc/ajaxRequests/searchUsers.php?term="+term,"#tb-users");
+    });
+
+    $("#filter").change(function(){
+        filter=$(this).val();
+        //SEND LOAD PAGE REQUEST
+        updateContent("http://localhost/flora/inc/ajaxRequests/ordersearch.php?term="+term+"&filter="+filter,"#tb-orders");
+
     });
 
     //FILTER CONTENT

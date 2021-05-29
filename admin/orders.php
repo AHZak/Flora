@@ -26,7 +26,7 @@
             <p class="h5">سفارشات</p>
             <!----------------------------- search box --------------------------->
             <form class="flex-fill ms-2 ">
-              <input name="term" id="termboxusers" type="search" class="form-control rounded-pill" placeholder="جستجو در سفارشات ...">
+              <input name="term" id="termboxorders" type="search" class="form-control rounded-pill" placeholder="جستجو با کد سفارش...">
             </form>
             <!----------------------------- search box --------------------------->
           </div>
@@ -48,7 +48,7 @@
               <!----------------------------- to show --------------------------->
               <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap me-2">
                 <p class="h6 me-2">نمایش</p>
-                <select id="order" class="form-select form-select-sm" aria-label=".form-select-sm">
+                <select id="filter" class="form-select form-select-sm" aria-label=".form-select-sm">
                   <option value="all" selected>همه</option>
                   <option value="shipped">تحویل داده شده</option>  
                   <option value="in-process">در حال انجام</option>   
@@ -109,11 +109,12 @@
                                         } 
                                         
                                     ?>
-                                        <tr class="<?php setWarningForFastOrder($orderObj->getShippingId()); ?>"">
+                                        <tr id="scroll<?php echo $orderObj->getId(); ?>" class="<?php setWarningForFastOrder($orderObj->getShippingId()); ?>">
                                             <td><?php echo $orderObj->getCode(); ;?></td>
                                             <td><?php $timestampDate=convertTimeStamp($orderObj->getCreatedAt())['date'];
                                                 echo timestampToJalaliDate($timestampDate);
                                             ?>
+                                            </td>
                                             <td><?php echo $user->getFirstName()." ".$user->getLastName(); ?></td>
                                             <td><?php echo number_format($orderObj->getSumPrice()); ?> تومان</td>
                                             <td><?php echo getShippingStatus($orderObj->getShippingId()); ?></td>
