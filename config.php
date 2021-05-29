@@ -102,6 +102,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/AdminClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/AddressClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/OrderClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/ShippingClass.php';
+require_once public_html().PROJECT_NAME.'/inc/classes/OrderDetailClass.php';
 
 
 //POSTAL PRICD
@@ -141,8 +142,6 @@ define('ERR_EMAIL_EXISTS', 'خطا!این ادمین با این ایمیل قب
 define('ERR_PHONE_EXISTS', 'خطا! این شماره تلفن قبلا ثبت شده است');
 define('ERR_CREATE_ADMIN', 'خطا! اکانت ادمین مورد نظر ساخته نشد.لطفا دوباره امتحان کنید');
 define('ERR_ACCESS_DENIED', 'خطا!شما دسترسی لازم به این بخش را ندارید');
-
-
 
 
 

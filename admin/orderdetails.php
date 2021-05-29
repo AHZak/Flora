@@ -1,5 +1,5 @@
 <?php
-
+$pageUi="orderdetail";
 include_once '../config.php';
 
 //AUTH
@@ -25,7 +25,7 @@ if(isAdmin() || isMaster()){
             <div class="col-12 p-3 pb-1 border-bottom border-3 d-flex flex-row align-items-center">
               <div>
                 <strong class="me-2">جزئیات سفارش: </strong>
-                <strong>#11367</strong>
+                <strong>#<?php echo $order->getCode(); ?></strong>
               </div>
               <div class="ms-auto">
                 <a href="orders.php" class="text-decoration-none">
@@ -39,113 +39,82 @@ if(isAdmin() || isMaster()){
           <div class="row my-3 border-bottom border-2">
             <div class="col-6 my-2">
               <strong>مبلغ سفارش:</strong>
-              <span>335,000 تومان</span>
+              <span><?php echo number_format($order->getSumPrice()); ?> تومان</span>
             </div>
             <div class="col-6 my-2">
               <strong>تاریخ سفارش:</strong>
-              <span>1400/4/4</span>
+              <span>
+                  <?php 
+                      $timestampDate=convertTimeStamp($order->getCreatedAt())['date'];
+                      echo timestampToJalaliDate($timestampDate);
+                  ?>
+              </span>
             </div>
             <div class="col-6 my-2">
               <strong>شیوه پرداخت:</strong>
-              <span>آنلاین</span>
+              <span>پرداخت در محل</span>
             </div>
             <div class="col-6 my-2">
               <strong>شیوه ارسال:</strong>
-              <span>ارسال فوری</span>
+              <span><?php echo $shipping->getType(); ?></span>
             </div>
           </div>
           <div class="row my-3 border-bottom border-2">
             <div class="col-6 my-2">
               <strong>سفارش دهنده:</strong>
-              <span>علی گرایلی</span>
+              <span><?php echo $user->getFirstName()." ".$user->getLastName(); ?></span>
             </div>
             <div class="col-12 my-2">
               <strong>آدرس:</strong>
-              <span>مازندران - قائمشهر - خ بابل</span>
+              <span><?php echo $address->getAddress(); ?></span>
             </div>
             <div class="col-6 my-2">
               <strong>کد پستی:</strong>
-              <span>476555542</span>
+              <span><?php echo $address->getPostalCode(); ?></span>
             </div>
             <div class="col-12 my-2">
               <strong>هزینه ارسال:</strong>
-              <span>23,000 تومان</span>
+              <span><?php if($order->getPostalPrice()>0){ echo number_format($order->getPostalPrice()).' تومان'; }else{ echo 'رایگان'; } ?></span>
             </div>
           </div>
 
           <div class="container">
-            <!-- Item in cart -->
-            <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
-              <div class="d-flex flex-row align-items-center flex-start">
-                <div class="p-2 me-3">
-                  <img src="../../flora/upload/images/product-sample-purple.jpg" style="height: 9rem;" alt="" class="img-thumbnail">
-                </div>    
-                <div class="d-flex flex-column mt-2 align-self-start justify-content-start" style="height: 9rem">
-                  <p class="h5 mb-4">کالاتیا</p>
-                  <div class="d-flex flex-row align-items-center">
-                    <p class="m-0 me-2">تعداد:</p>
-                    <strong>4</strong>
-                  </div>
-                </div>
-                <div class="ms-auto align-self-end">
-                  <strong>قیمت هر واحد</strong>
-                  <div class=" rounded bg-info p-2 text-nowrap mt-2">
-                    <p id="13_sumprice" class="m-0">55,000 تومان</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Item in cart -->
-            <!-- Item in cart -->
-            <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
-              <div class="d-flex flex-row align-items-center flex-start">
-                <div class="p-2 me-3">
-                  <img src="../../flora/upload/images/product-sample-purple.jpg" style="height: 9rem;" alt="" class="img-thumbnail">
-                </div>    
-                <div class="d-flex flex-column mt-2 align-self-start justify-content-start" style="height: 9rem">
-                  <p class="h5 mb-4">کالاتیا</p>
-                  <div class="d-flex flex-row align-items-center">
-                    <p class="m-0 me-2">تعداد:</p>
-                    <strong>4</strong>
-                  </div>
-                </div>
-                <div class="ms-auto align-self-end">
-                  <strong>قیمت هر واحد</strong>
-                  <div class=" rounded bg-info p-2 text-nowrap mt-2">
-                    <p id="13_sumprice" class="m-0">55,000 تومان</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Item in cart -->
-            <!-- Item in cart -->
-            <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
-              <div class="d-flex flex-row align-items-center flex-start">
-                <div class="p-2 me-3">
-                  <img src="../../flora/upload/images/product-sample-purple.jpg" style="height: 9rem;" alt="" class="img-thumbnail">
-                </div>    
-                <div class="d-flex flex-column mt-2 align-self-start justify-content-start" style="height: 9rem">
-                  <p class="h5 mb-4">کالاتیا</p>
-                  <div class="d-flex flex-row align-items-center">
-                    <p class="m-0 me-2">تعداد:</p>
-                    <strong>4</strong>
-                  </div>
-                </div>
-                <div class="ms-auto align-self-end">
-                  <strong>قیمت هر واحد</strong>
-                  <div class=" rounded bg-info p-2 text-nowrap mt-2">
-                    <p id="13_sumprice" class="m-0">55,000 تومان</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Item in cart -->
+          <?php if($ordersDetail): ?>
+              <?php foreach($ordersDetail as $orderDetail):
+
+                $orderDetailObj=new OrderDetail($orderDetail['id']);
                 
+                $product=new Product($orderDetail['product_id']);
+              ?>
+                  <!-- Item in cart -->
+                  <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
+                    <div class="d-flex flex-row align-items-center flex-start">
+                      <div class="p-2 me-3">
+                        <img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail">
+                      </div>    
+                      <div class="d-flex flex-column mt-2 align-self-start justify-content-start" style="height: 9rem">
+                        <p class="h5 mb-4"><?php echo $product->getTitle(); ?></p>
+                        <div class="d-flex flex-row align-items-center">
+                          <p class="m-0 me-2">تعداد:</p>
+                          <strong><?php echo $orderDetailObj->getQuantity(); ?></strong>
+                        </div>
+                      </div>
+                      <div class="ms-auto align-self-end">
+                        <strong>قیمت هر واحد</strong>
+                        <div class=" rounded bg-info p-2 text-nowrap mt-2">
+                          <p id="13_sumprice" class="m-0"><?php echo number_format($orderDetailObj->getOrderedPrice()); ?> تومان</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Item in cart -->
+              <?php endforeach;?>
+          <?php else: ?>
+          <p>محصولی یافت نشد</p>
+          <?php endif; ?>          
         
-          </div>
+        </div>
           
-
-
         </div>
       </main>
     </div>

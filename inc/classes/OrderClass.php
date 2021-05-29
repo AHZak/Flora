@@ -10,9 +10,11 @@ class Order{
     private $paymentMethodId;
     private $shippingId;
     private $sumPrice;
+    private $postalPrice;
     private $customerId;
     private $createdAt;
     private $role;
+    private $addressId;
 
 
     public function __construct($orderId)
@@ -29,6 +31,8 @@ class Order{
             $this->setCustomerId($orderData['customer_id']);
             $this->setCreatedAt($orderData['created_at']);
             $this->setCustomerRole($orderData['customer_role']);
+            $this->setAddressId($orderData['address_id']);
+            $this->setPostalPrice($orderData['postal_price']);
         }
     }
 
@@ -68,6 +72,13 @@ class Order{
         $this->role=$role;
     }
 
+    public function setAddressId($addressId){
+        $this->addressId=$addressId;
+    }
+
+    public function setPostalPrice($postalprice){
+        $this->postalPrice=$postalprice;
+    }
 
     //GETERS
     public function getId(){
@@ -106,6 +117,14 @@ class Order{
         return $this->role;
     }
 
+    public function getAddressId(){
+        return $this->addressId;
+    }
+
+    public function getPostalPrice(){
+        return $this->postalPrice;
+    }
+
 
     //GET OEDER FULL INFO
     private function getOrderFullInfo($id){
@@ -130,5 +149,10 @@ class Order{
 
     public static function getOrders($condition=1){
         return Db::select(ORDERS_TABLE_NAME,$condition,"all","id",0,"created_at","desc");
+    }
+
+    //GET ORDERS DETAIL
+    public function getOrdersDetail(){
+        return Db::select(ORDER_DETAIL_TABLE_NAME,"order_id='$this->id'");
     }
 }

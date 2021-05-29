@@ -120,7 +120,7 @@
                                             <td><?php echo getOrderStatus($orderObj->getStatus()); ?></td>
                                             <td>
                                                 <div class="d-flex flex-row">
-                                                <a href="#" class="btn btn-outline-primary">جزئیات</a>
+                                                <a href="orderdetails.php?id=<?php echo $orderObj->getId(); ?>" class="btn btn-outline-primary">جزئیات</a>
                                                 <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal<?php echo $orderObj->getId(); ?>">تغییر وضعیت</button>
                                                 </div>
                                             </td>
