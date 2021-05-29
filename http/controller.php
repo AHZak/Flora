@@ -5,6 +5,7 @@ use Database\Db;
 if(isset($_GET['logout']) && $_GET['logout']==true){
     $account=new Account();
     $account->logout();
+    
 }
 
 if(isset($pageUi)){
@@ -559,9 +560,6 @@ if(isset($pageUi)){
             $address=new Address($order->getAddressId());
             $ordersDetail=$order->getOrdersDetail();
 
-        }else{
-            echo "404! Not Found";
-            die();
         }
     }
 
