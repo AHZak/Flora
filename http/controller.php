@@ -452,6 +452,7 @@ if(isset($pageUi)){
         $addresses=Address::getAddresses($_SESSION['phone']);
         
     }elseif($pageUi=='checkout'){
+
         $account=new Account();
         //AUTHENTICATION
         $account->checkAuth();
@@ -497,11 +498,15 @@ if(isset($pageUi)){
                 }else{
                     $role="user";
                 }
-                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price,'customer_role'=>$role],$message);
+                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price,'customer_role'=>$role,'address_id'=>$_POST['address-item'],'postal_price'=>$postal_price],$message);
 
                 if($orderId){
+
                     //create order detail
                     foreach($productsId as $productId){
+                        //reduce product instock
+                        $product=new Product($productId['id']);
+                        $product->update(['instock'=>$product->getInstock()-$_SESSION['cart']['number'][$productId['id']]]);
                         //PRODUCT PRICE
                         $productId=$productId['id'];
                         $price=Db::select(PRODUCT_TABLE_NAME,"id='$productId'","single","price");
@@ -546,6 +551,18 @@ if(isset($pageUi)){
         //get shippings 
         $shippings=Shipping::getShippings();
         $freePostalPrice=getFreePostalPrice();
+    }elseif($pageUi=='orderdetail'){
+        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+            $order=new Order($_GET['id']);
+            $shipping=new Shipping($order->getShippingId());
+            $user=new User($order->getCustomerId());
+            $address=new Address($order->getAddressId());
+            $ordersDetail=$order->getOrdersDetail();
+
+        }else{
+            echo "404! Not Found";
+            die();
+        }
     }
 
 

@@ -287,7 +287,7 @@ class Product{
     //update a product
     public function update(array $params,&$message=""){
         //VALID IMAGE
-        if($params['image']){
+        if(isset($params['image']) && $params['image']){
             $old_img=$this->getImage();
             if(!$image=uploadImage($params['image'],$msg)){
                 $this->getMessageHandler()->setErrorMessage($msg);
@@ -296,7 +296,7 @@ class Product{
             $params['image']=$image;
             //delete old img
             unlink($old_img);
-        }else{
+        }elseif(isset($params['image'])){
             $params['image']=$this->getImage();
         }
 
