@@ -71,37 +71,38 @@
 
                             <div class="col-12">
                                 <label for="address" class="form-label">آدرس</label>
-                                <input name="address" type="text" class="form-control" id="address" placeholder="" required="">
+                                <input name="address" type="text" class="form-control" id="address" placeholder="" required="" value="مازندران - قائمشهر - خ بابل - نبش امیرکبیر">
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="address-floor" class="form-label">طبقه</label>
-                                <input name="floor" type="text" class="form-control" id="address-floor" placeholder="2" value="" required="">
+                                <input name="floor" type="text" class="form-control" id="address-floor" placeholder="2" value="3" required="">
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="address-unit" class="form-label">واحد</label>
-                                <input name="unit" type="text" class="form-control" id="address-unit" placeholder="3" value="" required="">
+                                <input name="unit" type="text" class="form-control" id="address-unit" placeholder="3" value="4" required="">
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="address-postalcode" class="form-label">کد پستی</label>
-                                <input name="postal_code" type="text" class="form-control" id="address-postalcode" placeholder="" value="" required="">
+                                <input name="postal_code" type="text" class="form-control" id="address-postalcode" placeholder="" value="45644322" required="">
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="address-title" class="form-label">عنوان آدرس</label>
-                                <input name="title" type="text" class="form-control" id="address-title" placeholder="خانه" value="" required="">
+                                <input name="title" type="text" class="form-control" id="address-title" placeholder="خانه" value="خانه" required="">
                             </div>
 
                             <div class="col-12">      
                                 <label for="address-note" class="form-label">توضیحات<span class="text-muted">(اختیاری)</span></label>
-                                <textarea name="description" class="form-control" id="address-note" rows="3" placeholder=""></textarea> 
+                                <textarea name="description" class="form-control" id="address-note" rows="3" placeholder="">توضیحات اضافی</textarea> 
                             </div>
 
 
                             <div class="d-flex flex-row justify-content-between">
-                                <button name="addAddress" class="w-100 btn btn-primary mx-2" type="submit">افزودن آدرس</button>
+                                <button name="addAddress" class="w-100 btn btn-primary mx-2" type="submit">ثبت تغییرات</button>
+                                <button name="cancelEdit" class="w-100 btn btn-outline-danger mx-2" type="submit">انصراف</button>
                             </div>
                             </div>
                         </form>
