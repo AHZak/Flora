@@ -60,10 +60,6 @@ if(isAdmin() || isMaster()){
             </div>
           </div>
           <div class="row my-3 border-bottom border-2">
-            <div class="col-6 my-2">
-              <strong>سفارش دهنده:</strong>
-              <span><?php echo $user->getFirstName()." ".$user->getLastName(); ?></span>
-            </div>
             <div class="col-12 my-2">
               <strong>آدرس:</strong>
               <span><?php echo $address->getAddress(); ?></span>
