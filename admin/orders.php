@@ -93,7 +93,8 @@
                               <th>مبلغ سفارش</th>
                               <th>شیوه ارسال</th>
                               <th>وضعیت سفارش</th>
-                              <th>جزئیات سفارش</th>
+                              <th>گزینه ها</th>
+                              <th>فاکتور</th>
                               </tr>
                           </thead>
 
@@ -124,6 +125,9 @@
                                                 <a href="orderdetails.php?id=<?php echo $orderObj->getId(); ?>" class="btn btn-outline-primary">جزئیات</a>
                                                 <button type="button" class="btn btn-outline-success ms-1" data-bs-toggle="modal" data-bs-target="#orderstatusmodal<?php echo $orderObj->getId(); ?>">تغییر وضعیت</button>
                                                 </div>
+                                            </td>
+                                            <td>
+                                            <a href="#" class="btn btn-warning">فاکتور</a>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="orderstatusmodal<?php echo $orderObj->getId(); ?>" tabindex="-1" aria-labelledby="orderstatusmodalTitle<?php echo $orderObj->getId(); ?>" aria-hidden="true">
