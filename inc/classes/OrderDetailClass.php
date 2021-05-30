@@ -71,7 +71,8 @@ class OrderDetail{
     }
 
     public function getSumPrice(){
-        return $this->sumPrice();
+
+        return $this->sumPrice;
     }
 
     //get order detail info

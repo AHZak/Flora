@@ -1,5 +1,5 @@
 <?php
-    $pageUi="userProfile";
+    $pageUi="userorders";
     include_once 'config.php';
 ?>
 <!doctype html>
@@ -59,6 +59,11 @@
         
                 <div class="tab-pane fade active show" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
                 <div class="table-responsive">
+                <?php if($orders): ?>
+                            <?php foreach($orders as $order): 
+                                //order Object
+                                $orderObj=new Order($order['id']);
+                            ?>
                     <table class="table table-striped table-sm text-nowrap">
                     <thead>
                         <tr>
@@ -70,56 +75,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>10001</td>
-                        <td>300,000 تومان</td>
-                        <td>1400/03/12</td>
-                        <td><i class="far fa-question-circle me-1"></i>در انتظار پرداخت</td>
-                        <td>
-                            <div class="d-flex flex-row">
-                            <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
-                            <a href="#" class="btn btn-outline-danger">فاکتور</a>
-                            </div>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>10002</td>
-                        <td>110,000 تومان</td>
-                        <td>1400/02/01</td>
-                        <td><i class="far fa-question-circle me-1"></i>در حال انجام</td>
-                        <td>
-                            <div class="d-flex flex-row">
-                            <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
-                            <a href="#" class="btn btn-outline-danger">فاکتور</a>
-                            </div>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>10003</td>
-                        <td>74,000 تومان</td>
-                        <td>1400/01/13</td>
-                        <td><i class="far fa-question-circle me-1"></i>تحویل شده</td>
-                        <td>
-                            <div class="d-flex flex-row">
-                            <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
-                            <a href="#" class="btn btn-outline-danger">فاکتور</a>
-                            </div>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>10003</td>
-                        <td>25,000 تومان</td>
-                        <td>1400/01/01</td>
-                        <td><i class="far fa-question-circle me-1"></i>تحویل شده</td>
-                        <td>
-                            <div class="d-flex flex-row">
-                            <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
-                            <a href="#" class="btn btn-outline-danger">فاکتور</a>
-                            </div>
-                        </td>
-                        </tr>
+
+
+                          <tr>
+                            <td><?php echo $orderObj->getCode(); ?></td>
+                            <td><?php echo number_format($orderObj->getSumPrice()); ?>تومان</td>
+                            <td>1400/03/12</td>
+                            <td><i class="far fa-question-circle me-1"></i><?php echo getOrderStatus($orderObj->getStatus()); ?></td>
+                            <td>
+                                <div class="d-flex flex-row">
+                                <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
+                                <a href="orderreceipt.php?id=<?php echo $orderObj->getId(); ?>" class="btn btn-outline-danger">فاکتور</a>
+                                </div>
+                            </td>
+                          </tr>
+
+
+                            <?php endforeach; ?>
+
                     </tbody>
-                    </table>
+                  </table>
+                  <?php else: ?>
+                      <p>سفارش های شما خالی است</p>
+                  <?php endif; ?>
                 </div>
                 </div>
             </div>

@@ -54,7 +54,7 @@ if(isset($pageUi)){
                 $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
                 $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
                 //admin Id
-                $creator_id=1;
+                $creator_id=$_SESSION['userId'];
                 $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
                 
                 //add subcategory_product
@@ -88,7 +88,7 @@ if(isset($pageUi)){
                     $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
                     $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
                     //admin Id
-                    $creator_id=1;
+                    $creator_id=$_SESSION['userId'];
                     $result=$product->update(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
                     
                     
@@ -447,6 +447,7 @@ if(isset($pageUi)){
             //ADD NEW ADDRESS
             $userPhone=$_SESSION['phone'];
             Address::create(['user_phone'=>$userPhone,'address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
+            redirectTo($_SERVER['PHP_SELF']);
         }
 
         //GET ADDRESS
@@ -538,6 +539,22 @@ if(isset($pageUi)){
         //GET ORDERS
         $orders=Order::getOrders();
      
+    }elseif($pageUi=='userorders'){
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+        if(isset($_SESSION['permission'])){
+            $user=new Admin($_SESSION['userId']);
+            $customerRole="admin";
+        }else{
+            $user=new User($_SESSION['userId']);
+            $customerRole="user";
+        }
+
+        //GET ADDRESS
+        $orders=Order::getOrders("customer_id='".$user->getId()."' AND customer_role='$customerRole'",'id');
+
+
     }elseif($pageUi=='shipping'){
         
         if(isset($_POST['shipping_update'])){
@@ -557,6 +574,28 @@ if(isset($pageUi)){
             $order=new Order($_GET['id']);
             $shipping=new Shipping($order->getShippingId());
             $user=new User($order->getCustomerId());
+            $address=new Address($order->getAddressId());
+            $ordersDetail=$order->getOrdersDetail();
+
+        }
+    }elseif($pageUi=='orderrecipt'){
+        
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+
+        if(isset($_GET['id'])){
+            $order=new Order($_GET['id']);
+            $shipping=new Shipping($order->getShippingId());
+
+            if(isset($_SESSION['permission'])){
+                $user=new Admin($_SESSION['userId']);
+                $customerRole="admin";
+            }else{
+                $user=new User($_SESSION['userId']);
+                $customerRole="user";
+            }
+
             $address=new Address($order->getAddressId());
             $ordersDetail=$order->getOrdersDetail();
 
