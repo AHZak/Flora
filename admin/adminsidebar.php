@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="#">
+            <a class="nav-link <?php active("shipping.php") ?>" href="shipping.php">
             <i class="fas fa-truck feather"></i>
             تنظیمات ارسال
             </a>

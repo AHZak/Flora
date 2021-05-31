@@ -1,5 +1,5 @@
 <?php
-
+$pageUi="orderreceipt";
 include_once '../config.php';
 
 //AUTH
@@ -18,14 +18,13 @@ if(isAdmin() || isMaster()){
     ?>
 
       <!----------------------------- left panel --------------------------->
-
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="container">
           <div class="row">
             <div class="col-12 p-3 pb-1 border-bottom border-3 d-flex flex-row align-items-center">
               <div>
                 <strong class="me-2">فاکتور شماره</strong>
-                <strong>#11367</strong>
+                <strong>#<?php echo $order->getCode(); ?></strong>
               </div>
               <div class="ms-auto">
                 <a href="orders.php" class="text-decoration-none">
@@ -39,21 +38,26 @@ if(isAdmin() || isMaster()){
           <div class="row my-3 border-bottom border-2">
             <div class="col-6 my-2">
                 <strong>سفارش دهنده:</strong>
-                <span>علی گرایلی</span>
+                <span><?php echo $user->getFirstName()." ".$user->getLastName(); ?></span>
               </div>
               <div class="col-6 my-2">
                 <strong>تاریخ سفارش:</strong>
-                <span>1400/4/4</span>
+                <span>
+                  <?php 
+                      $timestampDate=convertTimeStamp($order->getCreatedAt())['date'];
+                      echo timestampToJalaliDate($timestampDate);
+                  ?>
+                </span>
               </div>
           </div>
           <div class="row my-3 border-bottom border-2">
             <div class="col-12 my-2">
               <strong>آدرس:</strong>
-              <span>مازندران - قائمشهر - خ بابل</span>
+              <span><?php echo $address->getAddress(); ?></span>
             </div>
             <div class="col-6 my-2">
               <strong>کد پستی:</strong>
-              <span>476555542</span>
+              <span><?php echo $address->getPostalCode(); ?></span>
             </div>
           </div>
 
@@ -71,28 +75,19 @@ if(isAdmin() || isMaster()){
                 </thead>
 
                 <tbody class="">
-                <tr>
-                    <td>1</td>
-                    <td>اپونتیا</td>
-                    <td>3</td>
-                    <td>12000</td>
-                    <td>26,000</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>برگ انجیری</td>
-                    <td>2</td>
-                    <td>33,000</td>
-                    <td>66,000</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>اچینو</td>
-                    <td>1</td>
-                    <td>20,000</td>
-                    <td>20,000</td>
-                </tr>
-                
+                <?php $counter=0; foreach($ordersDetail as $orderDetail): $counter++;
+                    $orderDetailObj=new OrderDetail($orderDetail['id']);
+    
+                    $product=new Product($orderDetail['product_id']);
+                ?>
+                  <tr>
+                    <td><?php echo $counter; ?></td>
+                    <td><?php echo $product->getTitle(); ?></td>
+                    <td><?php echo $orderDetailObj->getQuantity(); ?></td>
+                    <td><?php echo number_format($orderDetailObj->getOrderedPrice()); ?></td>
+                    <td><?php echo number_format($orderDetailObj->getSumPrice()); ?> </td>
+                  </tr>
+                <?php endforeach; ?>
 
                 </tbody>
 
@@ -103,11 +98,11 @@ if(isAdmin() || isMaster()){
           <div>
             <div class="col-12 my-2">
                 <strong>هزینه ارسال</strong>
-                <span>10,000 تومان</span>
+                <span><?php if($order->getPostalPrice()>0){ echo number_format($order->getPostalPrice()).' تومان'; }else{ echo 'رایگان'; } ?></span>
               </div>
               <div class="col-12 my-2">
                 <strong>مبلغ پرداخت شده:</strong>
-                <span>150,000 تومان</span>
+                <span><?php echo number_format($order->getSumPrice()); ?> تومان</span>
               </div>
             </div>
             <div>

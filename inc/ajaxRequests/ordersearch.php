@@ -119,7 +119,9 @@ if(isAdmin() || isMaster()){
                                       </div>
                                     </div>
                                       </td>
-
+                                    <td>
+                                        <a href="orderreceipt.php?id=<?php echo $orderObj->getId(); ?>" class="btn btn-warning">فاکتور</a>
+                                    </td>
                                   </tr>
 
                               <?php endforeach; ?>

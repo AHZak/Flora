@@ -578,7 +578,7 @@ if(isset($pageUi)){
             $ordersDetail=$order->getOrdersDetail();
 
         }
-    }elseif($pageUi=='orderrecipt'){
+    }elseif($pageUi=='orderreceipt'){
         
         $account=new Account();
         //AUTHENTICATION

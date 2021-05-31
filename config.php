@@ -57,11 +57,6 @@ define('ORDER_DETAIL_TABLE_NAME', 'order_detail');
 
 
 
-
-
-
-
-
 //ACCESS FILE TYPES
 define('ACCESS_IMAGES_MIME_TYPE',['image/jpeg','image/png']);
 
