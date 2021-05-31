@@ -35,7 +35,7 @@ include_once 'config.php';
                 <strong>#<?php echo $order->getCode(); ?></strong>
               </div>
               <div class="ms-auto">
-                <a href="orders.php" class="text-decoration-none">
+                <a href="userorders.php" class="text-decoration-none">
                   <strong>بازگشت به سفارشات</strong>
                   <i class="fas fa-long-arrow-alt-left ms-1"></i>
                 </a>

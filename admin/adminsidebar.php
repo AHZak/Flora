@@ -28,12 +28,6 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="#">
-            <i class="fas fa-receipt feather"></i>
-            فاکتورها
-            </a>
-          </li>
-          <li class="nav-item border-bottom">
             <a class="nav-link <?php active("addproduct.php") ?>" href="addproduct.php">
             <i class="fas fa-plus feather"></i>
             افزودن محصول
