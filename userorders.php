@@ -84,7 +84,7 @@
                             <td><i class="far fa-question-circle me-1"></i><?php echo getOrderStatus($orderObj->getStatus()); ?></td>
                             <td>
                                 <div class="d-flex flex-row">
-                                <a href="#" class="btn btn-outline-primary me-1">جزئیات</a>
+                                <a href="userorderdetails.php?id=<?php echo $orderObj->getId(); ?>" class="btn btn-outline-primary me-1">جزئیات</a>
                                 <a href="orderreceipt.php?id=<?php echo $orderObj->getId(); ?>" class="btn btn-outline-danger">فاکتور</a>
                                 </div>
                             </td>

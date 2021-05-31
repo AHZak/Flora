@@ -1,21 +1,27 @@
 <?php
 $pageUi="orderdetail";
-include_once '../config.php';
-
-//AUTH
-if(isAdmin() || isMaster()){
-
-  include 'adminheader.php';
+include_once 'config.php';
 
 ?>
+<!doctype html>
+<html dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/css/admin.css">
+
+    <title>فلورا</title>
+    <!-- Fontawesome kit -->
+    <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
     <div class="container-fluid">
     <div class="row">
-
-    <?php
-    include 'adminsidebar.php'
-
-    ?>
 
       <!----------------------------- left panel --------------------------->
 
@@ -28,7 +34,7 @@ if(isAdmin() || isMaster()){
                 <strong>#<?php echo $order->getCode(); ?></strong>
               </div>
               <div class="ms-auto">
-                <a href="orders.php" class="text-decoration-none">
+                <a href="userorders.php" class="text-decoration-none">
                   <strong>بازگشت به سفارشات</strong>
                   <i class="fas fa-long-arrow-alt-left ms-1"></i>
                 </a>
@@ -86,10 +92,10 @@ if(isAdmin() || isMaster()){
                   <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
                     <div class="d-flex flex-row align-items-center flex-start">
                       <div class="p-2 me-3">
-                        <a href="#"><img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail"></a>
+                        <a href="product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>"><img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail"></a>
                       </div>    
                       <div class="d-flex flex-column mt-2 align-self-start justify-content-start" style="height: 9rem">
-                        <a href="#" class="text-decoration-none" style="color: currentColor;"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
+                        <a href="product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>" class="text-decoration-none" style="color: currentColor;"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
                         <div class="d-flex flex-row align-items-center">
                           <p class="m-0 me-2">تعداد:</p>
                           <strong><?php echo $orderDetailObj->getQuantity(); ?></strong>
@@ -128,6 +134,3 @@ if(isAdmin() || isMaster()){
   </html>
 
   <!-- adding this line of code to test rebase -->
-<?php }else {
-  echo "Access Denied!";
-} ?>

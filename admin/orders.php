@@ -127,7 +127,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                            <a href="#" class="btn btn-warning">فاکتور</a>
+                                            <a href="orderreceipt.php?id=<?php echo $orderObj->getId(); ?>" class="btn btn-warning">فاکتور</a>
                                             </td>
                                         </tr>
                                         <div class="modal fade" id="orderstatusmodal<?php echo $orderObj->getId(); ?>" tabindex="-1" aria-labelledby="orderstatusmodalTitle<?php echo $orderObj->getId(); ?>" aria-hidden="true">

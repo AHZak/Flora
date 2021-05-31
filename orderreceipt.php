@@ -1,5 +1,5 @@
 <?php
-$pageUi="orderrecipt";
+$pageUi="orderreceipt";
 include_once 'config.php';
 
 ?>
