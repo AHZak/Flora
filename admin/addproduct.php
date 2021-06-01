@@ -1,6 +1,7 @@
 <?php 
   //page controller
   $pageUi='addProduct';
+  
   include_once '../config.php';
 ?>
 <?php
@@ -64,31 +65,23 @@ include 'adminheader.php';
                   <div class="col-md-8">
 
                     <label for="s_category" class="form-label">دسته بندی</label>
-                    <select name="subCategoryId" class="form-select" id="s_category" required="">
+                    <select name="categoryId" class="form-select" id="s_category" required="">
                         <option selected disabled>یک دسته بندی انتخاب کنید</option>
-                        <?php if($categories): ?>
+                        <?php if($categories):?>
+                      <?php foreach($categories as $category): 
+                        $categoryObj=new Category($category['id']);
+                        $subcategories=$categoryObj->getSubCategories();
+                      ?>
+                            <option disabled>____________</option>
+                            <option value="<?php echo 'cat_'.$categoryObj->getCategoryId(); ?>" style="font-weight: bold" ><?php echo $categoryObj->getName(); ?></option>
+                          <?php if($subcategories):?>
+                              <?php foreach($subcategories as $subCategory): ?>
+                                <option class="subcat" value="<?php echo 'subcat_'.$subCategory['id']; ?>">-- <?php echo $subCategory['name'] ?></option>
+                              <?php endforeach; ?>
+                          <?php endif;?>
 
-                            <?php foreach($categories as $category): ?>
-
-                                <?php
-                                    //get sub categories
-                                    $categoryObj=new Category($category['id']);
-                                    $subCategories=$categoryObj->getSubCategories();
-                                ?>
-
-                                <optgroup label="<?php echo $categoryObj->getName(); ?>">
-                                      
-                                    <?php if($subCategories): ?>
-                                        <?php foreach($subCategories as $subCategory): ?>
-                                          <option value="<?php echo $subCategory['id'] ?>"><?php echo $subCategory['name'] ?></option>
-                                        <?php endforeach;?>
-                                    <?php endif; ?>
-
-                                </optgroup>
-
-                            <?php endforeach; ?>
-
-                        <?php endif; ?>
+                      <?php endforeach; ?>
+                  <?php endif; ?>
 
                     </select>
 

@@ -97,9 +97,13 @@ class Product{
 
     public function setSubCategory(){
         $subCategory_product=Db::select(SUB_CATEGORY_PRODUCT_TABLE_NAME,"product_id='$this->id'",'single','*',1);
-        if($subCategory_product){
+        if(isset($subCategory_product['subcategory_id'])){
             $this->subCategory=new SubCategory($subCategory_product['subcategory_id']);
+        }else{
+            $this->subCategory=new SubCategory(01);
         }
+        
+        
         
     }
 

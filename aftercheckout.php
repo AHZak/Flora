@@ -1,5 +1,5 @@
 <?php
-    $pageUi="userProfile";
+    $pageUi="aftercheckout";
     include_once 'config.php';
 ?>
 <!doctype html>
@@ -52,9 +52,9 @@
             <div class="row justify-content-center p-3">
               <div class="col-md-9 bg-white rounded text-center p-3" style="border-style:dashed;">
                 <p class="h4 my-3" style="color:coral;">سفارش شما با موفقیت ثبت شد</p>
-                <div class="d-flex flex-row justify-content-center align-content-center my-3"><p class="h5 me-2">شماره سفارش:</p><p class="h5">#45332</p></div>
+                <div class="d-flex flex-row justify-content-center align-content-center my-3"><p class="h5 me-2">شماره سفارش:</p><p class="h5">#<?php echo $code; ?></p></div>
                 <p class="my-3">از خرید شما متشکریم</p>
-                <a class="btn btn-primary" href="#" role="button">بازگشت به صفحه اصلی</a>
+                <a class="btn btn-primary" href="index.php" role="button">بازگشت به صفحه اصلی</a>
                 
               </div>
             </div>

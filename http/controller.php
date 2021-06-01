@@ -45,6 +45,7 @@ if(isset($pageUi)){
         //check auth
         if(isAdmin() || isMaster()){
             if(isset($_POST['addProduct'])){
+              
                 //add product actions
                 $title=isset($_POST['title']) ? $_POST['title'] : null;
                 $price=isset($_POST['price']) ? $_POST['price'] : null;
@@ -52,17 +53,30 @@ if(isset($pageUi)){
                 $image=isset($_FILES['img']) ? $_FILES['img'] : null;
                 $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
                 $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
-                $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
-                //admin Id
-                $creator_id=$_SESSION['userId'];
-                $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
-                
-                //add subcategory_product
-                if($product_id && $subCategoryId){
-                    $subCategoryObj=new SubCategory($subCategoryId);
-                    $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
-                    $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
+                $category=isset($_POST['categoryId']) ? $_POST['categoryId'] : null;
+                if(strpos($category,"cat_")!==false){
+                    //admin Id
+                    $creator_id=$_SESSION['userId'];
+                    $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    sscanf($category,"cat_%d",$categoryId);
+                    //add category_product
+                    if($product_id && $categoryId){
+                        $categoryObj=new Category($categoryId);
+                        $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$categoryId]);
+                    }
+                }elseif(strpos($category,"subcat_")!==false){
+                    //admin Id
+                    $creator_id=$_SESSION['userId'];
+                    $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    sscanf($category,"subcat_%d",$subCategoryId);
+                    //add subcategory_product
+                    if($product_id && $subCategoryId){
+                        $subCategoryObj=new SubCategory($subCategoryId);
+                        $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
+                        $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
+                    }
                 }
+
             }
 
             //get categories 
@@ -467,7 +481,7 @@ if(isset($pageUi)){
         //GET SHIPPINGS
         $shippings=Db::select(SHIPPING_TABLE_NAME);
 
-        if(isset($_SESSION['cart'])){
+        if(isset($_SESSION['cart']['products']) && $_SESSION['cart']['products']){
            
             //POSTAL PRICE
             if(isset($_SESSION['cart']['fullsum']) && $_SESSION['cart']['fullsum']>MAX_PRICE){
@@ -524,6 +538,8 @@ if(isset($pageUi)){
                     unset($_SESSION['cart']);
 
                     //redirect to orders
+                    $_SESSION['code']=$code;
+                    redirectTo("aftercheckout.php");
                 }
             }
  
@@ -531,6 +547,14 @@ if(isset($pageUi)){
             //redirect to index
             redirectTo("index.php");
         }
+    }elseif($pageUi=='aftercheckout'){
+        if(isset($_SESSION['code']) && $_SESSION['code']){
+            $code=$_SESSION['code'];
+            unset($_SESSION['code']);
+        }else{
+            redirectTo('index.php');
+        }
+
     }elseif($pageUi=='orders'){
         if(isset($_POST['update'])){
             $order=new Order($_POST['orderId']);

@@ -35,7 +35,7 @@ function uploadImage(array $image,&$message=""){
         return false;
     }
     //upload path
-    $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.$imageName;
+    $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.rand(100,9999).$imageName;
     $result=move_uploaded_file($imageTmpName,$newFileName);
     if($result){
         return $newFileName;

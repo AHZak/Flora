@@ -7,6 +7,7 @@ if(isset($_POST)){
         $productId=$_POST['delcart'];
         unset($_SESSION['cart']['products'][$productId]);
         unset($_SESSION['cart']['number'][$productId]);
+        unset($_SESSION['cart']['sumprice'][$productId]);
         //product object
         $sumprice=0;
     }else{
