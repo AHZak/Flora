@@ -5,6 +5,7 @@ use Database\Db;
 if(isset($_GET['logout']) && $_GET['logout']==true){
     $account=new Account();
     $account->logout();
+    
 }
 
 if(isset($pageUi)){
@@ -44,6 +45,7 @@ if(isset($pageUi)){
         //check auth
         if(isAdmin() || isMaster()){
             if(isset($_POST['addProduct'])){
+              
                 //add product actions
                 $title=isset($_POST['title']) ? $_POST['title'] : null;
                 $price=isset($_POST['price']) ? $_POST['price'] : null;
@@ -51,17 +53,30 @@ if(isset($pageUi)){
                 $image=isset($_FILES['img']) ? $_FILES['img'] : null;
                 $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
                 $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
-                $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
-                //admin Id
-                $creator_id=1;
-                $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
-                
-                //add subcategory_product
-                if($product_id && $subCategoryId){
-                    $subCategoryObj=new SubCategory($subCategoryId);
-                    $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
-                    $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
+                $category=isset($_POST['categoryId']) ? $_POST['categoryId'] : null;
+                if(strpos($category,"cat_")!==false){
+                    //admin Id
+                    $creator_id=$_SESSION['userId'];
+                    $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    sscanf($category,"cat_%d",$categoryId);
+                    //add category_product
+                    if($product_id && $categoryId){
+                        $categoryObj=new Category($categoryId);
+                        $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$categoryId]);
+                    }
+                }elseif(strpos($category,"subcat_")!==false){
+                    //admin Id
+                    $creator_id=$_SESSION['userId'];
+                    $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    sscanf($category,"subcat_%d",$subCategoryId);
+                    //add subcategory_product
+                    if($product_id && $subCategoryId){
+                        $subCategoryObj=new SubCategory($subCategoryId);
+                        $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
+                        $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
+                    }
                 }
+
             }
 
             //get categories 
@@ -87,7 +102,7 @@ if(isset($pageUi)){
                     $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
                     $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
                     //admin Id
-                    $creator_id=1;
+                    $creator_id=$_SESSION['userId'];
                     $result=$product->update(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
                     
                     
@@ -446,12 +461,14 @@ if(isset($pageUi)){
             //ADD NEW ADDRESS
             $userPhone=$_SESSION['phone'];
             Address::create(['user_phone'=>$userPhone,'address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
+            redirectTo($_SERVER['PHP_SELF']);
         }
 
         //GET ADDRESS
         $addresses=Address::getAddresses($_SESSION['phone']);
         
     }elseif($pageUi=='checkout'){
+
         $account=new Account();
         //AUTHENTICATION
         $account->checkAuth();
@@ -464,7 +481,7 @@ if(isset($pageUi)){
         //GET SHIPPINGS
         $shippings=Db::select(SHIPPING_TABLE_NAME);
 
-        if(isset($_SESSION['cart'])){
+        if(isset($_SESSION['cart']['products']) && $_SESSION['cart']['products']){
            
             //POSTAL PRICE
             if(isset($_SESSION['cart']['fullsum']) && $_SESSION['cart']['fullsum']>MAX_PRICE){
@@ -492,15 +509,26 @@ if(isset($pageUi)){
                 
                 //create a new order
                 $code=rand(1000,9999);
-                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price],$message);
+                if(isset($_SESSION['permission'])){
+                    $role="admin";
+                }else{
+                    $role="user";
+                }
+                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price,'customer_role'=>$role,'address_id'=>$_POST['address-item'],'postal_price'=>$postal_price],$message);
 
                 if($orderId){
+
                     //create order detail
                     foreach($productsId as $productId){
+                        //reduce product instock
+                        $product=new Product($productId['id']);
+                        $product->update(['instock'=>$product->getInstock()-$_SESSION['cart']['number'][$productId['id']]]);
                         //PRODUCT PRICE
                         $productId=$productId['id'];
                         $price=Db::select(PRODUCT_TABLE_NAME,"id='$productId'","single","price");
                         $price=$price['price'];
+
+
 
                         //create orfer detail
                         Db::insert(ORDER_DETAIL_TABLE_NAME,['order_id'=>$orderId,'product_id'=>$productId,'ordered_price'=>$price,'quantity'=>$_SESSION['cart']['number'][$productId],'sum_price'=>$_SESSION['cart']['sumprice'][$productId]]);
@@ -510,6 +538,8 @@ if(isset($pageUi)){
                     unset($_SESSION['cart']);
 
                     //redirect to orders
+                    $_SESSION['code']=$code;
+                    redirectTo("aftercheckout.php");
                 }
             }
  
@@ -517,8 +547,84 @@ if(isset($pageUi)){
             //redirect to index
             redirectTo("index.php");
         }
-    }
+    }elseif($pageUi=='aftercheckout'){
+        if(isset($_SESSION['code']) && $_SESSION['code']){
+            $code=$_SESSION['code'];
+            unset($_SESSION['code']);
+        }else{
+            redirectTo('index.php');
+        }
 
+    }elseif($pageUi=='orders'){
+        if(isset($_POST['update'])){
+            $order=new Order($_POST['orderId']);
+            $order->update(['status'=>$_POST['status']]);
+        }
+        //GET ORDERS
+        $orders=Order::getOrders();
+     
+    }elseif($pageUi=='userorders'){
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+        if(isset($_SESSION['permission'])){
+            $user=new Admin($_SESSION['userId']);
+            $customerRole="admin";
+        }else{
+            $user=new User($_SESSION['userId']);
+            $customerRole="user";
+        }
+
+        //GET ADDRESS
+        $orders=Order::getOrders("customer_id='".$user->getId()."' AND customer_role='$customerRole'",'id');
+
+
+    }elseif($pageUi=='shipping'){
+        
+        if(isset($_POST['shipping_update'])){
+            $shipping=new Shipping($_POST['shipping_id']);
+            $shipping->update(['shipping_type'=>$_POST['shipping_type'],'price'=>$_POST['price'],'description'=>$_POST['description']]);
+        }
+
+        if(isset($_POST['updatepostalprice'])){
+            updateFreePostalPrice($_POST['postalprice']);
+        }
+
+        //get shippings 
+        $shippings=Shipping::getShippings();
+        $freePostalPrice=getFreePostalPrice();
+    }elseif($pageUi=='orderdetail'){
+        if(isset($_GET['id']) && is_numeric($_GET['id'])){
+            $order=new Order($_GET['id']);
+            $shipping=new Shipping($order->getShippingId());
+            $user=new User($order->getCustomerId());
+            $address=new Address($order->getAddressId());
+            $ordersDetail=$order->getOrdersDetail();
+
+        }
+    }elseif($pageUi=='orderreceipt'){
+        
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+
+        if(isset($_GET['id'])){
+            $order=new Order($_GET['id']);
+            $shipping=new Shipping($order->getShippingId());
+
+            if(isset($_SESSION['permission'])){
+                $user=new Admin($_SESSION['userId']);
+                $customerRole="admin";
+            }else{
+                $user=new User($_SESSION['userId']);
+                $customerRole="user";
+            }
+
+            $address=new Address($order->getAddressId());
+            $ordersDetail=$order->getOrdersDetail();
+
+        }
+    }
 
 
 

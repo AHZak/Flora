@@ -64,7 +64,7 @@
                                   ?></td>
                                   <td>
                                       <div class="d-flex flex-row">
-                                      <a href="?rm_user=<?php echo $userObj->getId(); ?>" class="btn btn-outline-danger">حذف از پایگاه داده</a>
+                                      <a href="?rm_user=<?php echo $userObj->getId(); ?>" class="btn btn-outline-danger">حذف</a>
                                       </div>
                                   </td>
                                   </tr>

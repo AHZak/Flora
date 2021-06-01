@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="assets/css/userprofile.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
+    <!-- Mapp styles -->
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/mapp.min.css">
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/fa/style.css">
   </head>
   <body class="">
     <!----------------------------- headers ------------------------------------>
@@ -61,7 +64,7 @@
                     <div class="row g-3" style="ltr">
                     
                         <!-- map box -->
-                        <div class="col-md-6 border border-3 text-center bg-warning" style="height:27rem;">map here</div>
+                        <div id="app" class="col-md-6 border border-3 text-center bg-warning" style="height:27rem;"></div>
                         <!-- map box -->
 
                         <!-- address fields -->
@@ -101,8 +104,7 @@
 
 
                             <div class="d-flex flex-row justify-content-between">
-                                <button name="addAddress" class="w-100 btn btn-primary mx-2" type="submit">ثبت آدرس</button>
-                                <button name="cancelAddress" class="w-100 btn btn-outline-danger mx-2" type="submit">انصراف</button>
+                                <button name="addAddress" class="w-100 btn btn-primary mx-2" type="submit">افزودن آدرس</button>
                             </div>
                             </div>
                         </form>
@@ -157,6 +159,10 @@
     <!-- slick carousel needed files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous"></script>
+    <!-- Mapp scripts -->
+    <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.env.js"></script>
+    <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.min.js"></script>
     <!-- slick carousel script TEMPORARY -->
     <script type="text/javascript">
         $(document).ready(function(){
@@ -195,7 +201,70 @@
               // instead of a settings object
             ]
           });
-                  });
+        });
       </script>
+
+
+      <!--MAP-->
+      <script>
+        $(document).ready(function() {
+            var app = new Mapp({
+                element: '#app',
+                presets: {
+                    latlng: {
+                            lat: 36.463625410164006,
+                            lng:  52.85794973373413,
+                    },
+                    zoom:15,
+                },
+                apiKey: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjUwZDViZGYyZTNiYmVhMjIwODNiNzRmMzI3M2Q1ODljOWU2MzU0ZjhlMmQwMDBjYmZhNTRkMTQzNDkxMDYxOTQyN2FmMzQzZjE4N2QwZGM2In0.eyJhdWQiOiIxMzYzNiIsImp0aSI6IjUwZDViZGYyZTNiYmVhMjIwODNiNzRmMzI3M2Q1ODljOWU2MzU0ZjhlMmQwMDBjYmZhNTRkMTQzNDkxMDYxOTQyN2FmMzQzZjE4N2QwZGM2IiwiaWF0IjoxNjE4OTgzNTcxLCJuYmYiOjE2MTg5ODM1NzEsImV4cCI6MTYyMTU3NTU3MSwic3ViIjoiIiwic2NvcGVzIjpbImJhc2ljIl19.WEx2apjQCZ56KFgqBiw0n1SOGTv5QIPzNuRSa54wkaAexEqhLXgNvUV7qa-7RDjBlYe44SQtJMM8XJvcIOpsmRK1g-ZsUeiAafuWjGJAax_whkDOutwQxXvUL-Zpp0yhbNfBA8tMdFpcJwIWJPZvvOYvE-Eo_TivRT0qDX0nRizQKfwRPFQjzd7h36U1_b2U6Ole_4wPUERRlJAMaQbZAr3sM6L12vJtZEc_7k_a12WDphx13poN6M2PrFA7UkeAMwWg93YN7DEDyza7n3oFNQDXxQTEQvNYZMper4xWnWCKRncoAv3YZh0MCBu-ehq9jZCKWozFodCWNUKTRakoBA'
+            });
+            app.addLayers();
+            
+            app.addFile({
+                url: 'map(2).geojson',
+                format: 'geojson',
+            });
+
+            // Add in a crosshair for the map
+            var crosshairIcon = L.icon({
+                iconUrl: 'assets/images/maopcon.png',
+                iconSize:     [40, 40], // size of the icon
+                iconAnchor:   [20, 20], // point of the icon which will correspond to marker's location
+            });
+            crosshairMarker = new L.marker(app.map.getCenter(), {icon: crosshairIcon, clickable:false});
+            crosshairMarker.addTo(app.map);
+            // Move the crosshair to the center of the map when the user pans
+            app.map.on('move', function(e) {
+                crosshairMarker.setLatLng(app.map.getCenter());
+            });
+            var lat;
+            var lng;
+            app.map.on('mouseup', function(e) {
+                crosshairMarker.setLatLng(app.map.getCenter());
+                //console.log(e);
+                app.markReverseGeocode({
+                    state: {
+                        latlng: {
+                            lat: e.latlng.lat,
+                            lng: e.latlng.lng,
+                            
+                        },
+                    },
+                });
+                getAddress(e.latlng.lat,e.latlng.lng);
+                
+            });
+
+        });
+
+
+        function getAddress(lat,lng) {
+
+            $.post("inc/ajaxRequests/map.php",{lat:lat,lng:lng},function(response) {
+                $("#address").val(response);
+            });
+        }
+    </script>
   </body>
 </html>

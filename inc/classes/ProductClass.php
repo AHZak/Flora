@@ -97,9 +97,13 @@ class Product{
 
     public function setSubCategory(){
         $subCategory_product=Db::select(SUB_CATEGORY_PRODUCT_TABLE_NAME,"product_id='$this->id'",'single','*',1);
-        if($subCategory_product){
+        if(isset($subCategory_product['subcategory_id'])){
             $this->subCategory=new SubCategory($subCategory_product['subcategory_id']);
+        }else{
+            $this->subCategory=new SubCategory(01);
         }
+        
+        
         
     }
 
@@ -287,7 +291,7 @@ class Product{
     //update a product
     public function update(array $params,&$message=""){
         //VALID IMAGE
-        if($params['image']){
+        if(isset($params['image']) && $params['image']){
             $old_img=$this->getImage();
             if(!$image=uploadImage($params['image'],$msg)){
                 $this->getMessageHandler()->setErrorMessage($msg);
@@ -296,7 +300,7 @@ class Product{
             $params['image']=$image;
             //delete old img
             unlink($old_img);
-        }else{
+        }elseif(isset($params['image'])){
             $params['image']=$this->getImage();
         }
 

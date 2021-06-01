@@ -138,18 +138,20 @@
             <div class="row slider" style="direction: ltr">
                 <?php foreach($product->getCategory()->getProducts("instock>0") as $product): ?>
                 
-                    <div class="col-md-12 p-3">
-                      <div class="card product-sliding-item">
-                        <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt'] ?>">
-                        <div class="card-body p-1">
-                          <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $product['title'] ?></p>
-                          <div class="d-flex" style="color: coral;">
-                            <p class="ms-1 m-0">تومان</p>
-                            <p class="m-0"><?php echo number_format($product['price']); ?></p>
+                    <a href="<?php echo "?pid=".$product['id']."&slug=".$product['title']; ?>">
+                      <div class="col-md-12 p-3">
+                        <div class="card product-sliding-item">
+                          <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt'] ?>">
+                          <div class="card-body p-1">
+                            <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $product['title'] ?></p>
+                            <div class="d-flex" style="color: coral;">
+                              <p class="ms-1 m-0">تومان</p>
+                              <p class="m-0"><?php echo number_format($product['price']); ?></p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </a>
                     <!-- slider -->
 
                 <?php endforeach; ?>

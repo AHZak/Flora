@@ -35,7 +35,7 @@ function uploadImage(array $image,&$message=""){
         return false;
     }
     //upload path
-    $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.$imageName;
+    $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.rand(100,9999).$imageName;
     $result=move_uploaded_file($imageTmpName,$newFileName);
     if($result){
         return $newFileName;
@@ -161,6 +161,49 @@ function getProductsIdFromCart(){
             $productsId[]['id']=$value;
         }
         return $productsId;
+    }else{
+        return false;
+    }
+}
+
+//GET SHIPPING STATUS
+function getShippingStatus($id){
+    if($id==1){
+        return "فوری";
+    }else{
+        return "عادی";
+    }
+}
+
+//GET ORDER STATUS
+function getOrderStatus($status){
+    if($status=='doing'){
+        return "در حال انجام";
+    }elseif($status=='done'){
+        return 'انجام شده';
+    }elseif($status=='canceled'){
+        return 'لغو شده';
+    }
+}
+
+function setWarningForFastOrder($shippingId){
+    if($shippingId==1){
+        echo  'bg-warning';
+    }
+}
+
+//GET MIN PRICE FOR POSTAL
+function getFreePostalPrice(){
+    if(file_exists(public_html().PROJECT_NAME."/max_postal_price.txt")){
+        return file_get_contents(public_html().PROJECT_NAME."/max_postal_price.txt");
+    }else{
+        return false;
+    }
+}
+
+function updateFreePostalPrice($price){
+    if(file_exists(public_html().PROJECT_NAME."/max_postal_price.txt")){
+        return file_put_contents(public_html().PROJECT_NAME."/max_postal_price.txt",$price);
     }else{
         return false;
     }
