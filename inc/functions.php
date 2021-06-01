@@ -192,6 +192,15 @@ function setWarningForFastOrder($shippingId){
     }
 }
 
+function setWarningForOrderBtn($shippingId){
+    if($shippingId==2){
+        echo  'bg-warning';
+    }elseif($shippingId==1){
+        echo  'btn-outline-light';
+    }
+}
+
+
 //GET MIN PRICE FOR POSTAL
 function getFreePostalPrice(){
     if(file_exists(public_html().PROJECT_NAME."/max_postal_price.txt")){
