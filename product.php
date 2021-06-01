@@ -138,7 +138,7 @@
             <div class="row slider" style="direction: ltr">
                 <?php foreach($product->getCategory()->getProducts("instock>0") as $product): ?>
                 
-                    <a href="<?php echo "?pid=".$product['id']."&slug=".$product['title']; ?>">
+                    <a href="<?php echo "?pid=".$product['id']."&slug=".$product['title']; ?>" class="text-decoration-none" style="color:currentcolor;">
                       <div class="col-md-12 p-3">
                         <div class="card product-sliding-item">
                           <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt'] ?>">
