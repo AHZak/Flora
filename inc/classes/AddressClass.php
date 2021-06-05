@@ -5,6 +5,7 @@ use Database\Db;
 
 class Address{
 
+    private $id;
     private $address;
     private $unit;
     private $floor;
@@ -15,6 +16,7 @@ class Address{
 
     public function __construct($addressId)
     {
+        $this->id=$addressId;
         $address=$this->getAddressFullInfo($addressId);
         if($address){
             $this->setTitle($address['title']);
@@ -58,6 +60,9 @@ class Address{
 
 
     //GETERS
+    public function getId(){
+        return $this->id;
+    }
     public function getAddress(){
         return $this->address;
     }
@@ -106,5 +111,15 @@ class Address{
     //get address
     public static function getAddresses($userPhone){
         return Db::select(ADDRESS_TABLE_NAME,"user_phone='$userPhone'","all","*",0,"created_at","DESC");
+    }
+
+    //update
+    public function update(array $params){
+        return Db::update(ADDRESS_TABLE_NAME,$params,"id='$this->id'");
+    }
+
+    //delete
+    public function delete(){
+        return Db::delete(ADDRESS_TABLE_NAME,"id='$this->id'");
     }
 }

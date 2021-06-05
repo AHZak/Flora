@@ -4,7 +4,6 @@ include_once '../config.php';
 
 //AUTH
 if(isAdmin() || isMaster()){
-
   include 'adminheader.php';
 
 ?>

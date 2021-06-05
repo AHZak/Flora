@@ -126,8 +126,8 @@
                                       <div class="d-flex flex-row align-items-center justify-content-between">
                                         <strong><?php echo $addressObj->getTitle(); ?></strong>
                                         <div class="d-flex flex-row my-2">
-                                          <a href="#" class="btn btn-outline-primary me-1">ویرایش</a>
-                                          <a href="#" class="btn btn-outline-danger">حذف</a>
+                                          <a href="edituseraddress.php?id=<?php echo $addressObj->getId(); ?>" class="btn btn-outline-primary me-1">ویرایش</a>
+                                          <a href="?del=<?php echo $addressObj->getId(); ?>" class="btn btn-outline-danger">حذف</a>
                                         </div>
                                       </div>
                                       <p><?php echo $addressObj->getAddress(); ?></p>
