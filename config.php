@@ -1,11 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 //SESIION
 session_start();
 setcookie(session_name(),session_id(),time()+(7*24*3600));
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 //domain
 define('DOMAIN','http://localhost/flora/');
 define('HOST_ROOT','/home/aabotsir/public_html/');

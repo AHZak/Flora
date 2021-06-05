@@ -463,6 +463,11 @@ if(isset($pageUi)){
             Address::create(['user_phone'=>$userPhone,'address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
             redirectTo($_SERVER['PHP_SELF']);
         }
+        if(isset($_GET['del'])){
+            $address=new Address($_GET['del']);
+            $address->delete();
+            redirectTo($_SERVER['PHP_SELF']);
+        }
 
         //GET ADDRESS
         $addresses=Address::getAddresses($_SESSION['phone']);
@@ -556,13 +561,16 @@ if(isset($pageUi)){
         }
 
     }elseif($pageUi=='orders'){
-        if(isset($_POST['update'])){
-            $order=new Order($_POST['orderId']);
-            $order->update(['status'=>$_POST['status']]);
+        if(isAdmin() || isMaster()){
+            if(isset($_POST['update'])){
+                $order=new Order($_POST['orderId']);
+                $order->update(['status'=>$_POST['status']]);
+            }
+            //GET ORDERS
+            $orders=Order::getOrders();
+        }else{
+            redirectTo("adminlogin.php");
         }
-        //GET ORDERS
-        $orders=Order::getOrders();
-     
     }elseif($pageUi=='userorders'){
         $account=new Account();
         //AUTHENTICATION
@@ -580,7 +588,7 @@ if(isset($pageUi)){
 
 
     }elseif($pageUi=='shipping'){
-        
+        if(isAdmin() || isMaster()){
         if(isset($_POST['shipping_update'])){
             $shipping=new Shipping($_POST['shipping_id']);
             $shipping->update(['shipping_type'=>$_POST['shipping_type'],'price'=>$_POST['price'],'description'=>$_POST['description']]);
@@ -593,6 +601,9 @@ if(isset($pageUi)){
         //get shippings 
         $shippings=Shipping::getShippings();
         $freePostalPrice=getFreePostalPrice();
+        }else{
+            redirectTo("adminlogin.php");
+        }
     }elseif($pageUi=='orderdetail'){
         if(isset($_GET['id']) && is_numeric($_GET['id'])){
             $order=new Order($_GET['id']);
@@ -624,6 +635,34 @@ if(isset($pageUi)){
             $ordersDetail=$order->getOrdersDetail();
 
         }
+    }elseif($pageUi=='updateAddress'){
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+
+        //update address
+        if(isset($_POST['updateAddress'])){
+            $address=new Address($_GET['id']);
+            $address->update(['address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
+            $address=new Address($_GET['id']);
+            redirectTo("useraddress.php");
+        }
+
+
+        if(isset($_GET['id'])){
+            $address=new Address($_GET['id']);
+
+            if(isset($_SESSION['permission'])){
+                $user=new Admin($_SESSION['userId']);
+                $customerRole="admin";
+            }else{
+                $user=new User($_SESSION['userId']);
+                $customerRole="user";
+            }
+        }
+
+
+
     }
 
 
