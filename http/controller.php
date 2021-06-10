@@ -403,7 +403,7 @@ if(isset($pageUi)){
     }
     //USER PROFILE
     elseif($pageUi=='userProfile'){
-    
+       
         $account=new Account();
         //AUTHENTICATION
         $account->checkAuth();
@@ -519,6 +519,7 @@ if(isset($pageUi)){
                 }else{
                     $role="user";
                 }
+                
                 $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price,'customer_role'=>$role,'address_id'=>$_POST['address-item'],'postal_price'=>$postal_price],$message);
 
                 if($orderId){
@@ -606,9 +607,24 @@ if(isset($pageUi)){
         }
     }elseif($pageUi=='orderdetail'){
         if(isset($_GET['id']) && is_numeric($_GET['id'])){
+            $account=new Account();
+            //AUTHENTICATION
+            $account->checkAuth();
+
             $order=new Order($_GET['id']);
             $shipping=new Shipping($order->getShippingId());
-            $user=new User($order->getCustomerId());
+
+            if(isset($_SESSION['permission'])){
+                $user=new Admin($_SESSION['userId']);
+                $customerRole="admin";
+            }else{
+                $user=new User($_SESSION['userId']);
+                $customerRole="user";
+                //AUTH
+                if($order->getCustomerId()!=$_SESSION['userId'] || $order->getCustomerRole()=='admin'){
+                    redirectTo('userorders.php');
+                }
+            }
             $address=new Address($order->getAddressId());
             $ordersDetail=$order->getOrdersDetail();
 
@@ -621,6 +637,7 @@ if(isset($pageUi)){
 
         if(isset($_GET['id'])){
             $order=new Order($_GET['id']);
+
             $shipping=new Shipping($order->getShippingId());
 
             if(isset($_SESSION['permission'])){
@@ -629,6 +646,11 @@ if(isset($pageUi)){
             }else{
                 $user=new User($_SESSION['userId']);
                 $customerRole="user";
+                //AUTH
+                if($order->getCustomerId()!=$_SESSION['userId'] || $order->getCustomerRole()=='admin'){
+                    redirectTo('userorders.php');
+                }
+
             }
 
             $address=new Address($order->getAddressId());
@@ -651,6 +673,10 @@ if(isset($pageUi)){
 
         if(isset($_GET['id'])){
             $address=new Address($_GET['id']);
+            //AUTH
+            if($address->getPhone()!=$_SESSION['phone']){
+                redirectTo('useraddress.php');
+            }
 
             if(isset($_SESSION['permission'])){
                 $user=new Admin($_SESSION['userId']);

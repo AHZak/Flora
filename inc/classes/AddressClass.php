@@ -22,6 +22,7 @@ class Address{
             $this->setTitle($address['title']);
             $this->setFloor($address['floor']);
             $this->setUnit($address['unit']);
+            $this->setUserPhone($address['user_phone']);
             $this->setAddress($address['address']);
             $this->setAddressExplain($address['address_explain']);
             $this->setPostalCode($address['postal_code']);
