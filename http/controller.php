@@ -528,7 +528,9 @@ if(isset($pageUi)){
                     foreach($productsId as $productId){
                         //reduce product instock
                         $product=new Product($productId['id']);
-                        $product->update(['instock'=>$product->getInstock()-$_SESSION['cart']['number'][$productId['id']]]);
+                        //reduce instock after pay
+                        //$product->update(['instock'=>$product->getInstock()-$_SESSION['cart']['number'][$productId['id']]]);
+                        
                         //PRODUCT PRICE
                         $productId=$productId['id'];
                         $price=Db::select(PRODUCT_TABLE_NAME,"id='$productId'","single","price");

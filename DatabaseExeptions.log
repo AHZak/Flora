@@ -1,8 +1,8 @@
-PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT id,user_phone,address,unit,floor,postal_code,title,address_explain,create' at line 1 in /var/www/html/flora/inc/classes/DbClass.php:173
+PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'unit' at row 1 in /var/www/html/flora/inc/classes/DbClass.php:46
 Stack trace:
-#0 /var/www/html/flora/inc/classes/DbClass.php(173): PDO->query('INSERT INTO ord...')
-#1 /var/www/html/flora/inc/functions.php(224): Database\Db::query('INSERT INTO ord...')
-#2 /var/www/html/flora/http/controller.php(524): copyToOrderAddress('17')
+#0 /var/www/html/flora/inc/classes/DbClass.php(46): PDO->query('INSERT INTO use...')
+#1 /var/www/html/flora/inc/classes/AddressClass.php(102): Database\Db::insert('users_address', Array)
+#2 /var/www/html/flora/http/controller.php(463): Address::create(Array)
 #3 /var/www/html/flora/config.php(159): include_once('/var/www/html/f...')
-#4 /var/www/html/flora/checkout.php(3): include_once('/var/www/html/f...')
+#4 /var/www/html/flora/useraddress.php(3): include_once('/var/www/html/f...')
 #5 {main}

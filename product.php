@@ -100,9 +100,9 @@
                   <div class="d-flex flex-row mb-3 align-items-center">
                     <p class="me-3 mb-0">تعداد:</p>
                     <div class="input-group spinner">
-                      <button class="btn btn-primary btn-2" type="button"><i class="fas fa-plus"></i></button>
-                      <button class="btn btn-danger btn-1" type="button"><i class="fas fa-minus"></i></button>
-                      <input id="a" type="text" class="form-control" value="1" min="1" max="10" step="1" size="2">  
+                      <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'increase')" class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
+                      <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'decrease')" class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
+                      <input  id="<?php echo $product->getId(); ?>_number" type="text" class="form-control" size="2" value="1">  
                     </div>
                   </div>
                   <div class="align-self-center mt-3">

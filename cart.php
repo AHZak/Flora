@@ -89,9 +89,9 @@
                   <p class="h5 mb-4"><?php echo $product->getTitle(); ?></p>
                   <div class="d-flex flex-row align-items-center">
                     <p class="m-0">تعداد:</p>
-                    <input id="<?php echo $product->getId();?>_number" type="email" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="2" value="<?php echo $number; ?>">
-                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'increase')" class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
-                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease')" class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
+                    <input id="<?php echo $product->getId();?>_number" type="text" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="2" value="<?php echo $number; ?>">
+                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'increase',<?php echo $product->getInstock(); ?>)" class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
+                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease',<?php echo $product->getInstock(); ?>)" class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
                   </div>
                   <a href="#" style="text-decoration: none; color: currentColor;">
                   <div class="d-flex flex-row align-items-center">

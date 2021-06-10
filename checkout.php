@@ -99,7 +99,7 @@
                     <div class="form-check my-1">
                       <input onclick="postalPrice(<?php echo $_SESSION['cart']['fullsum']; ?>,<?php echo MAX_PRICE; ?>,'<?php echo number_format(FAST_POSTAL_PRICE); ?>','<?php echo number_format(POSTAL_PRICE); ?>','<?php echo $shipping['id'] ?>','<?php echo number_format($_SESSION['cart']['fullsum']+FAST_POSTAL_PRICE); ?>','<?php echo number_format($_SESSION['cart']['fullsum']+POSTAL_PRICE); ?>')" class="form-check-input" type="radio" <?php if($shipping['status']=='disable'){ echo "disabled";} ?> name="shipping" value="<?php echo $shipping['id'] ?>" id="ship-<?php echo $shipping['id'] ?>">
                       <label class="form-check-label" for="ship-<?php echo $shipping['id'] ?>">
-                      <p><?php echo $shipping['shipping_type'] ?></p>
+                      <p><?php if($shipping['description']){echo $shipping['shipping_type'].' ('.$shipping['description'].')'; }else{ echo $shipping['shipping_type']; }  ?></p>
                       </label>
                     </div>
                   <?php endforeach; ?>

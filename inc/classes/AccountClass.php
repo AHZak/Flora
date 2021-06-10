@@ -140,7 +140,7 @@ class Account{
     }
     //check user loged in
     public function checkUserLogedIn(){
-        if($_SESSION['login']==true){
+        if(isset($_SESSION['login']) && $_SESSION['login']==true){
             return true;
         }else{
             return false;
