@@ -58,7 +58,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="#">
+            <a class="nav-link <?php active("#") ?>" href="setsliders.php">
             <i class="fas fa-image feather"></i>
             اسلاید ها
             </a>
