@@ -38,6 +38,12 @@ include 'adminheader.php';
                   
                 </select>
               </div>
+              <div class="col-12 my-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">نمایش در صفحه اصلی</label>
+              </div>
+              </div>
               <div class="my-4">
                   <button name="editCategory" type="submit" class="btn btn-success">ثبت تغییرات</button>
                   <button name="cancelEditCategory" type="submit" class="btn btn-danger mx-2">لغو</button>
