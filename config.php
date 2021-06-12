@@ -53,6 +53,8 @@ define('ORDERS_TABLE_NAME', 'orders');
 define('PAYMENT_MOTHODS_TABLE_NAME', 'payment_methods');
 define('SHIPPING_TABLE_NAME', 'shippings');
 define('ORDER_DETAIL_TABLE_NAME', 'order_detail');
+define('SLIDER_TABLE_NAME', 'sliders');
+
 
 
 
@@ -97,6 +99,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/AddressClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/OrderClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/ShippingClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/OrderDetailClass.php';
+require_once public_html().PROJECT_NAME.'/inc/classes/SliderClass.php';
 
 
 //POSTAL PRICD

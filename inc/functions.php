@@ -25,7 +25,7 @@ function addToLog($message,$logFileName="web.log"){
 }
 
 //uploader
-function uploadImage(array $image,&$message=""){
+function uploadImage(array $image,&$message="",$path=""){
     $imageName=isset($image['name']) ? $image['name'] : null;
     $imageType=isset($image['type']) ? $image['type'] : null;
     $imageTmpName=isset($image['tmp_name']) ? $image['tmp_name'] : null;
@@ -35,7 +35,12 @@ function uploadImage(array $image,&$message=""){
         return false;
     }
     //upload path
-    $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.rand(100,9999).$imageName;
+    if($path==""){
+        $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.rand(100,9999).$imageName;
+    }else{
+        $newFileName=public_html().PROJECT_NAME."/".$path.rand(100,9999).$imageName;
+    }
+   
     $result=move_uploaded_file($imageTmpName,$newFileName);
     if($result){
         return $newFileName;
