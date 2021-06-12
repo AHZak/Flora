@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="#">
+            <a class="nav-link <?php active("#") ?>" href="sms.php">
             <i class="fas fa-comment-alt feather"></i>
             پنل پیامک
             </a>
