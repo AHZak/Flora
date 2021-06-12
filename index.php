@@ -24,6 +24,107 @@
     <link rel="stylesheet" href="assets/css/index.css">
     <!-- Fontawesome kit -->
     <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
+
+    <!-- temp -->
+
+    <style type="text/css">
+
+/* ============ desktop view ============ */
+@media all and (min-width: 992px) {
+
+	.dropdown-menu li{
+		position: relative;
+	}
+	.dropdown-menu .submenu{ 
+		display: none;
+		position: absolute;
+		right:100%; top:-7px;
+	}
+	.dropdown-menu .submenu-left{ 
+		left:100%; right:auto;
+	}
+
+	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover > .submenu{
+		display: block;
+	}
+}	
+/* ============ desktop view .end// ============ */
+
+/* ============ small devices ============ */
+@media (max-width: 991px) {
+
+.dropdown-menu .dropdown-menu{
+		margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
+}
+
+}	
+/* ============ small devices .end// ============ */
+
+</style>
+
+
+<script type="text/javascript">
+//	window.addEventListener("resize", function() {
+//		"use strict"; window.location.reload(); 
+//	});
+
+
+	document.addEventListener("DOMContentLoaded", function(){
+        
+
+    	/////// Prevent closing from click inside dropdown
+		document.querySelectorAll('.dropdown-menu').forEach(function(element){
+			element.addEventListener('click', function (e) {
+			  e.stopPropagation();
+			});
+		})
+
+
+
+		// make it as accordion for smaller screens
+		if (window.innerWidth < 992) {
+
+			// close all inner dropdowns when parent is closed
+			document.querySelectorAll('.navbar .dropdown').forEach(function(everydropdown){
+				everydropdown.addEventListener('hidden.bs.dropdown', function () {
+					// after dropdown is hidden, then find all submenus
+					  this.querySelectorAll('.submenu').forEach(function(everysubmenu){
+					  	// hide every submenu as well
+					  	everysubmenu.style.display = 'none';
+					  });
+				})
+			});
+			
+			document.querySelectorAll('.dropdown-menu a').forEach(function(element){
+				element.addEventListener('click', function (e) {
+		
+				  	let nextEl = this.nextElementSibling;
+				  	if(nextEl && nextEl.classList.contains('submenu')) {	
+				  		// prevent opening link if link needs to open dropdown
+				  		e.preventDefault();
+				  		console.log(nextEl);
+				  		if(nextEl.style.display == 'block'){
+				  			nextEl.style.display = 'none';
+				  		} else {
+				  			nextEl.style.display = 'block';
+				  		}
+
+				  	}
+				});
+			})
+		}
+		// end if innerWidth
+
+	}); 
+	// DOMContentLoaded  end
+</script>
+
+
+
+
+
+    <!-- temp -->
   </head>
   <body class="">
     <!----------------------------- headers ------------------------------------>
@@ -49,9 +150,54 @@
           <!----------------------------- first header ------------------------------------>
 
           <!----------------------------- second header ------------------------------------>
-          <div class="row" style="background-color: coral;">
-            <div class="p-3">categories</div>
-          </div>
+          <div class="row">
+          <!-- ============= COMPONENT ============== -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+ <div class="container-fluid">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+	
+
+	<ul class="navbar-nav">
+		<li class="nav-item dropdown">
+			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-th-list"></i>  دسته بندی ها  </a>
+		    <ul class="dropdown-menu">
+			  <li><a class="dropdown-item" href="#"> کاکتوس ها </a></li>
+			  <li><a class="dropdown-item" href="#"> گیاهان آپارتمانی <i class="fas fa-angle-left"></i> </a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">آویز</a></li>
+				    <li><a class="dropdown-item" href="#">گلدانی</a></li>
+				    <li><a class="dropdown-item" href="#">هوازی</a></li>
+				 </ul>
+			  </li>
+        <li><a class="dropdown-item" href="#"> فضای باز <i class="fas fa-angle-left"></i> </a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">آویز</a></li>
+				    <li><a class="dropdown-item" href="#">هوازی</a></li>
+				 </ul>
+			  </li>
+        <li><a class="dropdown-item" href="#"> باکس گل <i class="fas fa-angle-left"></i> </a>
+			  	 <ul class="submenu dropdown-menu">
+				    <li><a class="dropdown-item" href="#">آویز</a></li>
+				 </ul>
+			  </li>
+			  
+		    </ul>
+		</li>
+    <li class="nav-item active"> <a class="nav-link" href="#">قوانین </a> </li>
+		<li class="nav-item"><a class="nav-link" href="#"> پشتیبانی </a></li>
+	</ul>
+
+
+
+  </div> <!-- navbar-collapse.// -->
+ </div> <!-- container-fluid.// -->
+</nav>
+
+<!-- ============= COMPONENT END// ============== -->
+</div>
           <!----------------------------- second header ------------------------------------>
 
         </div>
