@@ -1,5 +1,6 @@
 <?php
 
+$pageUi="sliders";
 include_once '../config.php';
 
 //AUTH
@@ -19,68 +20,76 @@ if(isAdmin() || isMaster()){
     <!----------------------------- choose sliders --------------------------->
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="container">
-            <!-- side item -->
-            <div class="row text-center p-3 border-bottom border-3">
-                <div class="col-md my-2">
-                    <p><strong class="mb-4">اسلایدر 1</strong></p>
-                    <hr class="my-1">
-                    <div class="my-2">
-                        <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
-                        <input class="form-control" type="file" id="formFile">
+        
+            <div class="container">
+                <!-- side item -->
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row text-center p-3 border-bottom border-3">
+                        <div class="col-md my-2">
+                            <p><strong class="mb-4">اسلایدر 1</strong></p>
+                            <hr class="my-1">
+                            <div class="my-2">
+                                <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
+                                <input name="slider1" class="form-control" type="file" id="formFile">
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <button type="submit" name="edit" class="btn btn-success">ذخیره تغییرات</button>
+                            </div>
+                        </div>
+                        <div class="col-md my-2">
+                            <div>
+                                <img src="<?php echo $slider1->getImgUrl(); ?>" alt="" height="150px">
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex flex-row align-items-center">
-                        <button class="btn btn-success">ذخیره تغییرات</button>
+                </form>
+                <!-- side item -->
+                <!-- side item -->
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row text-center p-3 border-bottom border-3">
+                        <div class="col-md my-2">
+                            <p><strong class="mb-4">اسلایدر 2</strong></p>
+                            <hr class="my-1">
+                            <div class="my-2">
+                                <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
+                                <input name="slider2" class="form-control" type="file" id="formFile">
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <button type="submit" name="edit" class="btn btn-success">ذخیره تغییرات</button>
+                            </div>
+                        </div>
+                        <div class="col-md my-2">
+                            <div>
+                                <img src="<?php echo $slider2->getImgUrl(); ?>" alt="" height="150px">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md my-2">
-                    <div>
-                        <img src="../assets/images/slider/slider-s1.jpg" alt="" height="150px">
+                </form>
+                <!-- side item -->
+                <!-- side item -->
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row text-center p-3 border-bottom border-3">
+                        <div class="col-md my-2">
+                            <p><strong class="mb-4">اسلایدر 3</strong></p>
+                            <hr class="my-1">
+                            <div class="my-2">
+                                <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
+                                <input name="slider3" class="form-control" type="file" id="formFile">
+                            </div>
+                            <div class="d-flex flex-row align-items-center">
+                                <button type="submit" name="edit" class="btn btn-success">ذخیره تغییرات</button>
+                            </div>
+                        </div>
+                        <div class="col-md my-2">
+                            <div>
+                                <img src="<?php echo $slider3->getImgUrl(); ?>" alt="" height="150px">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </form>
+                <!-- side item -->
             </div>
-            <!-- side item -->
-            <!-- side item -->
-            <div class="row text-center p-3 border-bottom border-3">
-                <div class="col-md my-2">
-                    <p><strong class="mb-4">اسلایدر 2</strong></p>
-                    <hr class="my-1">
-                    <div class="my-2">
-                        <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
-                        <input class="form-control" type="file" id="formFile">
-                    </div>
-                    <div class="d-flex flex-row align-items-center">
-                        <button class="btn btn-success">ذخیره تغییرات</button>
-                    </div>
-                </div>
-                <div class="col-md my-2">
-                    <div>
-                        <img src="../assets/images/slider/slider-s1.jpg" alt="" height="150px">
-                    </div>
-                </div>
-            </div>
-            <!-- side item -->
-            <!-- side item -->
-            <div class="row text-center p-3 border-bottom border-3">
-                <div class="col-md my-2">
-                    <p><strong class="mb-4">اسلایدر 3</strong></p>
-                    <hr class="my-1">
-                    <div class="my-2">
-                        <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
-                        <input class="form-control" type="file" id="formFile">
-                    </div>
-                    <div class="d-flex flex-row align-items-center">
-                        <button class="btn btn-success">ذخیره تغییرات</button>
-                    </div>
-                </div>
-                <div class="col-md my-2">
-                    <div>
-                        <img src="../assets/images/slider/slider-s1.jpg" alt="" height="150px">
-                    </div>
-                </div>
-            </div>
-            <!-- side item -->
-        </div>
+       
     </main>
 
     <!----------------------------- choose sliders --------------------------->

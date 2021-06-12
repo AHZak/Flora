@@ -69,16 +69,16 @@
           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item">
+          <div class="carousel-item active">
             <!-- <svg class="d-block w-100" width="800" height="400" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
             -->
-            <a href="#"><img src="assets/images/slider/slider-s1.jpg" class="d-block w-100" width="100%", style="max-height:500px"  alt=""></a>
+            <a href="#"><img src="<?php echo $slider1->getImgUrl(); ?>" class="d-block w-100" width="100%", style="max-height:500px"  alt=""></a>
           </div>
           <div class="carousel-item">
-            <a href="#"><img src="assets/images/slider/slider-s2.jpg" class="d-block w-100" width="100%", style="max-height:500px"  alt=""></a>
+            <a href="#"><img src="<?php echo $slider2->getImgUrl(); ?>" class="d-block w-100" width="100%", style="max-height:500px"  alt=""></a>
           </div>
-          <div class="carousel-item active">
-            <a href="#"><img src="assets/images/slider/slider-s3.jpg" class="d-block w-100" width="100%", style="max-height:500px"  alt=""></a>
+          <div class="carousel-item">
+            <a href="#"><img src="<?php echo $slider3->getImgUrl(); ?>" class="d-block w-100" width="100%", style="max-height:500px"  alt=""></a>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

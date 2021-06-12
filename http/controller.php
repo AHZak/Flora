@@ -283,11 +283,94 @@ if(isset($pageUi)){
         }
 
     }
+    //SLIDER SETTINGS
+    elseif($pageUi=='sliders'){
+        if(isset($_POST['edit'])){
+            if(isset($_FILES['slider1'])){
+                //slider 1
+                $slider=new Slider(1);
+
+                if($_FILES['slider1']){
+
+                    //upload new picture
+                    $image_path=uploadImage($_FILES['slider1'],$message,"assets/images/slider/");
+
+                    if($image_path){
+                        $old_image_path=$slider->getImgUrl();
+                        $result=$slider->update(['image_url'=>$image_path]);
+                        //set new path in class
+                        $slider->setImgUrl($image_path);
+                        if($result){
+                            //delete old image from host directory
+                            unlink($old_image_path);
+                        }
+                    }else {
+                        # code...
+                    }
+                }
+            }elseif(isset($_FILES['slider2'])){
+                //slider 2
+                $slider=new Slider(2);
+                
+                if($_FILES['slider2']){
+
+                    //upload new picture
+                    $image_path=uploadImage($_FILES['slider2'],$message,"assets/images/slider/");
+
+                    if($image_path){
+                        $old_image_path=$slider->getImgUrl();
+                        $result=$slider->update(['image_url'=>$image_path]);
+                        //set new path in class
+                        $slider->setImgUrl($image_path);
+                        if($result){
+                            //delete old image from host directory
+                            unlink($old_image_path);
+                        }
+                    }else {
+                        # code...
+                    }
+                }
+            }elseif(isset($_FILES['slider3'])){
+                //slider 3
+                $slider=new Slider(3);
+                
+                if($_FILES['slider3']){
+
+                    //upload new picture
+                    $image_path=uploadImage($_FILES['slider3'],$message,"assets/images/slider/");
+
+                    if($image_path){
+                        $old_image_path=$slider->getImgUrl();
+                        $result=$slider->update(['image_url'=>$image_path]);
+                        //set new path in class
+                        $slider->setImgUrl($image_path);
+                        if($result){
+                            //delete old image from host directory
+                            unlink($old_image_path);
+                        }
+                    }else {
+                        # code...
+                    }
+                }
+            }
+        }
+
+        //fetch sliders
+        $slider1=new Slider(1);
+        $slider2=new Slider(2);
+        $slider3=new Slider(3);
+
+    }
     //INDEX
     elseif($pageUi=='index'){
         $mostSelesProducts=Product::getProducts("instock>0","sales","DESC",20);
         $indexCategories=Category::getCategories("show_index='yes'",$message);
         $latestProducts=Product::getProducts("instock>0","id","DESC",10);
+
+        //fetch sliders
+        $slider1=new Slider(1);
+        $slider2=new Slider(2);
+        $slider3=new Slider(3);
     }
     //PRODUCT DETAILS
     elseif($pageUi=='product'){
