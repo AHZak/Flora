@@ -131,37 +131,24 @@
     <header>
 
         <div class="container-fluid">
-          <!----------------------------- fisrt header ------------------------------------>
-          <div class="row">
-
-            <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
-              <div class="col-md-4 ms-2">
-                <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
-              </div>
-              <div class="d-flex align-items-center">
-              <a href="enterphn.php" class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></a> 
-              </a> <i class="me-2">|</i>
-              <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
-              
-              </div>
-            </div>
-
-          </div>
-          <!----------------------------- first header ------------------------------------>
 
           <!----------------------------- second header ------------------------------------>
           <div class="row">
           <!-- ============= COMPONENT ============== -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#F55E61;">
  <div class="container-fluid">
+ <a class="navbar-brand" href="#"><img src="assets/images/logo/flora-white.png" alt="" width="200px"></a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="main_nav">
 	
-
-    <ul class="navbar-nav">
+  <form class="d-flex my-2">
+          <input class="form-control me-2" type="search" placeholder="جستجو در محصولات..." aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">جستجو</button>
+        </form>
+    <ul class="navbar-nav mx-2">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-th-list"></i>  دسته بندی ها  </a>
           <ul class="dropdown-menu">
@@ -189,10 +176,16 @@
 
           </ul>
       </li>
-      
-      <li class="nav-item active"> <a class="nav-link" href="#">قوانین </a> </li>
-      <li class="nav-item"><a class="nav-link" href="#"> پشتیبانی </a></li>
     </ul>
+    
+
+    <div class="d-flex align-items-center ms-auto my-2">
+              <a href="enterphn.php" class="btn btn-outline-dark rounded me-2">وارد شوید<i class="fas fa-user ms-1"></i></a> 
+       
+              <a href="enterphn.php" class="btn btn-outline-dark rounded me-2">سبد خرید<i class="fas fa-shopping-cart cart-carte mx-1"></i><span class="badge badge-light" style="    color: #212529;
+    background-color: #f8f9fa;">4</span></a>
+              
+              </div>
 
   </div> <!-- navbar-collapse.// -->
  </div> <!-- container-fluid.// -->
