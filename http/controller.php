@@ -121,6 +121,7 @@ if(isset($pageUi)){
             }
         }
     }elseif($pageUi=='editCategory'){
+       
         //check auth
         if(isAdmin() || isMaster()){
             if(isset($_GET['id']) ){
@@ -132,7 +133,13 @@ if(isset($pageUi)){
                 //do edit
                 if(isset($_POST['editCategory'])){
                     $category=new Category($_GET['id']);
-                    $category->update(['name'=>$_POST['name']]);
+                    if(isset($_POST['showindex'])){
+                        $showindex="yes";
+                    }else{
+                        $showindex="no";
+                    }
+                    
+                    $category->update(['name'=>$_POST['name'],'show_index'=>$showindex]);
                     redirectTo("categories.php");
                 }
             }

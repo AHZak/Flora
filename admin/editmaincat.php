@@ -40,7 +40,7 @@ include 'adminheader.php';
               </div>
               <div class="col-12 my-2">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input name='showindex' class="form-check-input" <?php if($category->getShowIndex()=='yes'){ echo 'checked'; } ?> type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">نمایش در صفحه اصلی</label>
               </div>
               </div>

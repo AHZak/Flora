@@ -325,8 +325,6 @@
          <!-- category 1 -->
         <?php endforeach ?>
 
-      <?php else: ?>
-            <p>دسته بندی خالی است</p>
       <?php endif;?>
 
 
