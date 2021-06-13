@@ -11,6 +11,7 @@ class Category{
     private $visibility;
     private $creatorId;
     private $subCategories;
+    private $showIndex;
 
     public function __construct($categoryId)
     {
@@ -23,6 +24,7 @@ class Category{
             $this->setUpdatedAt($category['updated_at']);
             $this->setVisibility($category['visibility']);
             $this->setCreatorId($category['creator_id']);
+            $this->setShowIndex($category['show_index']);
             $this->setSubCategories();
         }
 
@@ -56,6 +58,10 @@ class Category{
     private function setMessageHandler(){
         $messageHandler=new Message();
         $this->messages=$messageHandler;
+    }
+
+    private function setShowIndex($value){
+        $this->showIndex=$value;
     }
 
     private function setSubCategories(){
@@ -103,6 +109,10 @@ class Category{
 
     public function getMessageHandler(){
         return $this->messages;
+    }
+
+    public function getShowIndex(){
+        return $this->showIndex;
     }
 
     public function getSubCategories(){
@@ -163,7 +173,7 @@ class Category{
     public function update(array $params){
         //SECURITY OPTION
         $params=validArrayInputs($params);
-        return Db::update(CATEGORY_TABLE_NAME,['name'=>$params['name']],"id='$this->categoryId'");
+        return Db::update(CATEGORY_TABLE_NAME,$params,"id='$this->categoryId'");
     }
 
     //GET COLLECTION OF CATEGORIES
