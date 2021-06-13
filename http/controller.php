@@ -366,6 +366,8 @@ if(isset($pageUi)){
         $mostSelesProducts=Product::getProducts("instock>0","sales","DESC",20);
         $indexCategories=Category::getCategories("show_index='yes'",$message);
         $latestProducts=Product::getProducts("instock>0","id","DESC",10);
+        $allCategories=Category::getCategories();
+
 
         //fetch sliders
         $slider1=new Slider(1);

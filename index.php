@@ -156,41 +156,43 @@
  <div class="container-fluid">
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
-    </button>
+  </button>
+
   <div class="collapse navbar-collapse" id="main_nav">
 	
 
-	<ul class="navbar-nav">
-		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-th-list"></i>  دسته بندی ها  </a>
-		    <ul class="dropdown-menu">
-			  <li><a class="dropdown-item" href="#"> کاکتوس ها </a></li>
-			  <li><a class="dropdown-item" href="#"> گیاهان آپارتمانی <i class="fas fa-angle-left"></i> </a>
-			  	 <ul class="submenu dropdown-menu">
-				    <li><a class="dropdown-item" href="#">آویز</a></li>
-				    <li><a class="dropdown-item" href="#">گلدانی</a></li>
-				    <li><a class="dropdown-item" href="#">هوازی</a></li>
-				 </ul>
-			  </li>
-        <li><a class="dropdown-item" href="#"> فضای باز <i class="fas fa-angle-left"></i> </a>
-			  	 <ul class="submenu dropdown-menu">
-				    <li><a class="dropdown-item" href="#">آویز</a></li>
-				    <li><a class="dropdown-item" href="#">هوازی</a></li>
-				 </ul>
-			  </li>
-        <li><a class="dropdown-item" href="#"> باکس گل <i class="fas fa-angle-left"></i> </a>
-			  	 <ul class="submenu dropdown-menu">
-				    <li><a class="dropdown-item" href="#">آویز</a></li>
-				 </ul>
-			  </li>
-			  
-		    </ul>
-		</li>
-    <li class="nav-item active"> <a class="nav-link" href="#">قوانین </a> </li>
-		<li class="nav-item"><a class="nav-link" href="#"> پشتیبانی </a></li>
-	</ul>
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-th-list"></i>  دسته بندی ها  </a>
+          <ul class="dropdown-menu">
+            <?php if($allCategories): ?>
+              <?php foreach($allCategories as $category): 
+                  $categoryObj=new Category($category['id']);  
+                  $subCategories=$categoryObj->getSubCategories();
+              ?>
+              <?php if($subCategories): ?>
+                <li><a class="dropdown-item" href="#"><?php echo $categoryObj->getName(); ?><i class="fas fa-angle-left"></i> </a>
+                    <ul class="submenu dropdown-menu">
+                      <?php foreach($subCategories as $subCategory): ?>
+                            <li><a class="dropdown-item" href="#"><?php echo $subCategory['name']; ?></a></li>
+                      <?php endforeach; ?>
+                    </ul>
+                </li>
+              <?php else: ?>
+                <li><a class="dropdown-item" href="#"><?php echo $categoryObj->getName(); ?></a></li>
+              <?php endif; ?>
+                
+              <?php endforeach; ?>
 
+      
+            <?php endif; ?>
 
+          </ul>
+      </li>
+      
+      <li class="nav-item active"> <a class="nav-link" href="#">قوانین </a> </li>
+      <li class="nav-item"><a class="nav-link" href="#"> پشتیبانی </a></li>
+    </ul>
 
   </div> <!-- navbar-collapse.// -->
  </div> <!-- container-fluid.// -->
