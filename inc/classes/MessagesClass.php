@@ -36,27 +36,27 @@ class Message {
    //SHOW ERROR MESSAGES
    public function showError($errorMessage){
       if(in_array($errorMessage,$this->errorMessages)){
-         echo $errorMessage;
+         return $errorMessage;
       }else{
-         echo "";
+         return null;
       }
    }
 
    //SHOW ERROR MESSAGES
    public function showWarning($warningMessage){
       if(in_array($warningMessage,$this->warningMessages)){
-         echo $warningMessage;
+         return $warningMessage;
       }else{
-         echo "";
+         return null;
       }
    }
 
          //SHOW ERROR MESSAGES
    public function showSuccess($successMessage){
       if(in_array($successMessage,$this->successMessages)){
-         echo $successMessage;
+         return $successMessage;
       }else{
-         echo "";
+         return null;
       }
    }
 
