@@ -5,7 +5,7 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link border-bottom <?php active("admin.php") ?>" aria-current="page" href="admin.php">
-            <i class="fas fa-home"></i>
+            <i class="fas fa-home feather"></i>
             خانه
             </a>
           </li>
@@ -17,7 +17,7 @@
           </li>
           <?php if(isMaster()): ?><li class="nav-item border-bottom">
             <a class="nav-link <?php active("adminman.php") ?>" href="adminman.php">
-            <i class="fas fa-users-cog"></i>
+            <i class="fas fa-users-cog feather"></i>
             ادمین ها
             </a>
           </li><?php endif; ?>
@@ -67,6 +67,12 @@
             <a class="nav-link <?php active("#") ?>" href="#">
             <i class="fas fa-map-marked-alt feather"></i>
             تنظیمات نقشه
+            </a>
+          </li>
+          <li class="nav-item border-bottom">
+            <a class="nav-link <?php active("#") ?>" href="termsdraft.php">
+            <i class="fas fa-balance-scale feather"></i>
+            متن ها و قوانین
             </a>
           </li>
         </ul>
