@@ -1,5 +1,5 @@
 body {
-    background-color:rgb(250, 186, 223);
+    /* background-color:rgb(250, 186, 223); */
 }
 .product-sliding-item {
     border: 1px solid rgba(225, 64, 64, 0.7);
@@ -13,4 +13,17 @@ body {
 .slider a {
     text-decoration: none;
     color: currentColor;
+}
+
+[dir=rtl] .slick-prev:before {
+    content: '→';
+    color: black;
+}
+
+[dir=rtl] .slick-next:before {
+    content: '←';
+    color: black;
+}
+footer {
+    background-color: #F55E61 ;
 }
