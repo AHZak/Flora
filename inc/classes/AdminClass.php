@@ -85,11 +85,26 @@ class Admin{
         $messages=new Message();
         $email=isset($params['email']) ? $params['email'] : "";
 
+        //check first name & last name
+        if(empty($params['FName'])){
+            $messages->setErrorMessage(ERR_EMPTY_FIRST_NAME);
+            return false;
+        }
+
+        if(empty($params['LName'])){
+            $messages->setErrorMessage(ERR_EMPTY_LAST_NAME);
+            return false;
+        }
+
         //check email
-        if(Db::checkExists(ADMIN_TABLE_NAME,"email='$email'")){
+        if(empty($params['email'])){
+            $messages->setErrorMessage(ERR_EMAIL_EMPTY);
+            return false;
+        }elseif(Db::checkExists(ADMIN_TABLE_NAME,"email='$email'")){
             $messages->setErrorMessage(ERR_EMAIL_EXISTS);
             return false;
         }
+
 
         //check phone
         $phone=$params['phone'];
@@ -98,7 +113,7 @@ class Admin{
             return false;
         }
 
-        if(strlen($phone)>PHONE_NUMBER_LEN){
+        if(strlen($phone)!=PHONE_NUMBER_LEN){
             $messages->setErrorMessage(ERR_PHONE_NUMBER_LEN);
             return false;
         }

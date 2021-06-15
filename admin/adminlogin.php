@@ -19,6 +19,7 @@
   </head>
   <body class="text-center d-flex flex-column align-items-center p-4">
     <main class="form-signin shadow rounded">
+        <?php showErrorMessage(ERR_ADMIN_LOGIN,$messageObject); ?>
         <form method="post">
             <img class="mb-4" src="../assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal text-white">ورود ادمین</h1>

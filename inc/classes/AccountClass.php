@@ -31,9 +31,20 @@ class Account{
     }
 
 
+
     public function create($phone,$firstName,$lastName,$code,&$messages=""){
         //MESSAGES HANDLER
-        $messages=new Message();
+        $messages=$this->getMessageHandler();
+
+        //checkdata
+        $result[]=$this->validFirstName($firstName);
+        $result[]=$this->validLastName($lastName);
+
+
+        if(in_array(false,$result)){
+            return false;
+        }
+        
 
         $data=[
             'is_varified'=>"done",
@@ -44,8 +55,9 @@ class Account{
         //SEQURITY OPTION
         $data=validArrayInputs($data);
 
-        //do create tmp account
+        //varify account
         $account=Db::update(USER_TABLE_NAME,$data,"phone='$phone'");
+
         if($account){
             $messages->setSuccessMessage(SUCCESS_CREATE_ACCOUNT);
 
@@ -58,19 +70,26 @@ class Account{
     }
 
     //create a init account
-    public function createInitialaizeAccount($phoneNumber,$registercode){
+    public function createInitialaizeAccount($phoneNumber,$registercode,&$messageObject=""){
         //phone number validation & create a init account
         if($this->validPhoneNumber($phoneNumber)){
-            //do create
+            //do create tmp account
             $result=Db::insert(USER_TABLE_NAME,['phone'=>$phoneNumber,'register_code'=>$registercode,'is_varified'=>'none']);
+
             if($result){
                 $this->getMessageHandler()->setSuccessMessage(SUCCES_CREATE_INIT_ACCOUNT);
+                //set message object
+                $messageObject=$this->getMessageHandler();
                 return true;
             }
+
             $this->getMessageHandler()->setErrorMessage(ERR_CREATE_INIT_ACCOUNT);
+            //set message object
+            $messageObject=$this->getMessageHandler();
             return false;
         }else{
-            $this->getMessageHandler()->setErrorMessage(ERR_PHONE_NUMBER_LEN);
+            //set message object
+            $messageObject=$this->getMessageHandler();
             return false;
         }
 
@@ -79,14 +98,19 @@ class Account{
 
     //LOGIN
     public function login($phone,$code,$redirect='editprofile.php'){
-        //valid phone
+        //before login, do logout to prepare for login
         $this->logout();
+
         //get account
         $account=Db::select(USER_TABLE_NAME,"phone='$phone'","single");
+
         if($account){
+            //check live code
             if($account['register_code']!='expired'){
                 
+                //check code 
                 if($account['register_code']==$code){
+                    //set sessions to login
                     $_SESSION['login']=true;
                     $_SESSION['FName']=$account['FName'];
                     $_SESSION['LName']=$account['LName'];
@@ -94,12 +118,14 @@ class Account{
                     $_SESSION['password']=$account['password'];
                     $_SESSION['phone']=$account['phone'];
                     
-                    //destroy register code
+                    //destroy register code after login
                     Db::update(USER_TABLE_NAME,['register_code'=>"expired"],"phone='$phone'");
-                    //redirect to dashboard
-                    redirectTo("userprofile.php");
+
+                    //redirect to index page
+                    redirectTo("index.php");
                 }else{
-                    echo 'کد وارد شده اشتباه است';
+                    $_SESSION['phone']=$phone;
+                    $this->getMessageHandler()->setErrorMessage(ERR_REGISTER_CODE_INCORRECT);
                 }
             }else{
                 redirectTo($redirect);
@@ -131,11 +157,14 @@ class Account{
                     //redirect to dashboard
                     redirectTo($redirect);
                 }else{
-                    echo 'نام کاربری یا رمز عبور اشتباه است';
+                    $this->getMessageHandler()->setErrorMessage(ERR_ADMIN_LOGIN);
+                    return false;
                 }
             
         }else{
             //err message
+            $this->getMessageHandler()->setErrorMessage(ERR_ADMIN_LOGIN);
+            return false;
         }
     }
     //check user loged in
@@ -167,9 +196,41 @@ class Account{
     public function updateUserLoginData($redirect='editprofile.php'){
         $this->login($_SESSION['phone'],$_SESSION['password'],$redirect);
     }
-    //VALID FIRSTNAME
+    //VALID FIRSTNAME & LASTNAME
+    public function validFirstName($name){
+        $error=false;
+        if(empty($name)){
+            $error=true;
+            $this->getMessageHandler()->setErrorMessage(ERR_EMPTY_FIRST_NAME);
+        }elseif(strlen($name)<3 || strlen($name)>20){
+            $error=true;
+            $this->getMessageHandler()->setErrorMessage(ERR_FIRST_NAME_LEN);
+        }
 
-    //VALID LASTNAME
+        if($error==true){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function validLastName($name){
+        $error=false;
+        if(empty($name)){
+            $error=true;
+            $this->getMessageHandler()->setErrorMessage(ERR_EMPTY_LAST_NAME);
+        }
+        elseif(strlen($name)<3 || strlen($name)>20){
+            $error=true;
+            $this->getMessageHandler()->setErrorMessage(ERR_LAST_NAME_LEN);
+        }
+
+        if($error==true){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
     //VALID PHONE NUMBER
     private function validPhoneNumber($phoneNumber){
@@ -182,13 +243,14 @@ class Account{
         }
 
         //check phone number is numeric
-        if(!preg_match("/[0-9]/",$phoneNumber)){
+        $test=preg_match("/(^[0-9]{11}$)/",$phoneNumber);
+        if(!$test){
             $this->getMessageHandler()->setErrorMessage(ERR_PHONE_NUMBER_FORMAT);
             $error=true;
         }
 
         //check phone number length
-        if(strlen($phoneNumber)>PHONE_NUMBER_LEN){
+        if(strlen($phoneNumber)!=PHONE_NUMBER_LEN){
             $error=true;
             $this->getMessageHandler()->setErrorMessage(ERR_PHONE_NUMBER_LEN);
         }
@@ -205,10 +267,4 @@ class Account{
         return true;
     }
 
-    //VALID PASSWORD
-
-    //VALID REGISTER CODE
-    private function validRegistercode($registercode){
-        //code
-    }
 }
