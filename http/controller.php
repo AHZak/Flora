@@ -188,16 +188,43 @@ if(isset($pageUi)){
     }
     //ADD ADMIN
     elseif($pageUi=='adminman'){
+        //message object init
+        $messageObject=new Message();
+        $messages=null;
+
+
         //check auth
-        if(isMaster()){       
+        if(isMaster()){     
+            
+            //DELETE AN ADMIN
             if(isset($_GET['del_admin']) && is_numeric($_GET['del_admin'])){
+
                 $adminId=$_GET['del_admin'];
-                $result=Db::delete(ADMIN_TABLE_NAME,"id='$adminId'");
-                if($result){
+
+                //check admin exists
+                $admin=Db::checkExists(ADMIN_TABLE_NAME,"id='$adminId'");
+                if($admin){
+                    //do delete admin
+                    $result=Db::delete(ADMIN_TABLE_NAME,"id='$adminId'");
+
+                    if($result){
+                        //set message
+                        $_SESSION['successMessage']=SUCCESS_REMOVE_ADMIN;
+                        redirectTo($_SERVER['PHP_SELF']);
+                        //show('ادمین مورد نظر با موفقیت حذف شد');
+                    }else{
+                        //set message
+                        $_SESSION['errorMessage']=ERR_REMOVE_ADMIN;
+                        redirectTo($_SERVER['PHP_SELF']);
+                    }
+                }else{
+                    //set message
+                    $_SESSION['errorMessage']=ERR_REMOVE_ADMIN;
                     redirectTo($_SERVER['PHP_SELF']);
-                    //show('ادمین مورد نظر با موفقیت حذف شد');
                 }
+
             }
+
             if(isset($_POST['addadmin'])){
                 $firstName=isset($_POST['first_name']) && $_POST['first_name'] ? $_POST['first_name'] : "";
                 $lastName=isset($_POST['last_name']) && $_POST['last_name'] ? $_POST['last_name'] : "";
@@ -208,6 +235,16 @@ if(isset($pageUi)){
                 //create a nee admin
                 Admin::create(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email,'admined_by'=>1,'phone'=>$phone,'password'=>$password,'permission'=>$adminpermission],$messages);
                 //$messages->showMessages();
+                $_SESSION['errorMessage'][]=$messages->showError(ERR_EMPTY_LAST_NAME);
+                $_SESSION['errorMessage'][]=$messages->showError(ERR_EMPTY_FIRST_NAME);
+                $_SESSION['errorMessage'][]=$messages->showError(ERR_EMAIL_EMPTY);
+                $_SESSION['errorMessage'][]=$messages->showError(ERR_EMAIL_EXISTS);
+                $_SESSION['errorMessage'][]=$messages->showError(ERR_PHONE_EXISTS);
+                $_SESSION['errorMessage'][]=$messages->showError(ERR_PHONE_NUMBER_LEN);
+                $_SESSION['errorMessage'][]=$messages->showError(ERR_CREATE_ADMIN);
+                $_SESSION['errorMessage'][]=$messages->showError(SUCCESS_CREATE_ADMIN);
+                redirectTo($_SERVER['PHP_SELF']);
+
             }
 
             //get admins
@@ -260,14 +297,25 @@ if(isset($pageUi)){
     }
     //LOGIN ADMIN
     elseif($pageUi=='adminlogin'){
+
+        //message handler object init
+        $messageObject=null;
+
         if(isset($_POST['adminlogin'])){
+
             $phone=isset($_POST['phone']) ? $_POST['phone'] : "";
             $password=isset($_POST['password']) ? sha1($_POST['password']) : "";
+
+            //instance of Account Class
             $account=new Account();
 
             //do admin login
             $account->adminLogin($phone,$password);
+
+            //set message object
+            $messageObject=$account->getMessageHandler();
         }
+
     }
     //MANAGE USERS 
     elseif($pageUi=='users'){
@@ -404,43 +452,55 @@ if(isset($pageUi)){
     //ENTER PHONE
     elseif($pageUi=='enterphn'){
 
+        //def variable
+        $messageObject=null;
+
+
         if(isset($_POST['phone'])){
 
-            $_SESSION['phone']=$_POST['phone'];
-            $phone=$_POST['phone'];
-            
-            //check user sign up or not
-            $checkUserExistsOrNot=Db::checkExists('users',"phone='$phone'","is_varified");
+            if($_POST['phone']){
+                $_SESSION['phone']=$_POST['phone'];
+                $phone=$_POST['phone'];
+                
+                //check user sign up or not
+                $checkUserExistsOrNot=Db::checkExists('users',"phone='$phone'","is_varified");
+    
+                if($checkUserExistsOrNot==true){
+                    //create a register code
+                    $registerCode=rand(1000,9999);
+    
+                    //update register code in db
+                    Db::update(USER_TABLE_NAME,['register_code'=>$registerCode],"phone='$phone'");
+    
+                    //send register code
+                   // sendMessageTrez($phone,"کد شما: $registerCode");
+                   //similor
+                   $_SESSION['sim-code']=$registerCode;
+    
+                    //redirect to check code page
+                    redirectTo("entercode.php");
+                }else{
+                    //create register code
+                    $registerCode=rand(1000,9999);
+    
+                    //create init account
+                    $account=new Account();
+                    $check=$account->createInitialaizeAccount($phone,$registerCode,$messageObject);
+                    if($check){
+                        //send register code
+                        //sendMessageTrez($phone,"کد ثبت نام شما: $registerCode");
+                        //similor
+                        $_SESSION['sim-code']=$registerCode;
+        
+                        //redirect to check code page
+                        redirectTo("signup.php");
+                    }
+    
 
-            if($checkUserExistsOrNot==true){
-                //create a register code
-                $registerCode=rand(1000,9999);
-
-                //update register code in db
-                Db::update(USER_TABLE_NAME,['register_code'=>$registerCode],"phone='$phone'");
-
-                //send register code
-               // sendMessageTrez($phone,"کد شما: $registerCode");
-               //similor
-               $_SESSION['sim-code']=$registerCode;
-
-                //redirect to check code page
-                redirectTo("entercode.php");
+                }
             }else{
-                //create register code
-                $registerCode=rand(1000,9999);
-
-                //create init account
-                $account=new Account();
-                $account->createInitialaizeAccount($phone,$registerCode);
-
-                //send register code
-                //sendMessageTrez($phone,"کد ثبت نام شما: $registerCode");
-                //similor
-                $_SESSION['sim-code']=$registerCode;
-
-                //redirect to check code page
-                redirectTo("signup.php");
+                $messageObject=new Message();
+                $messageObject->setErrorMessage(ERR_PHONE_NUMBER_EMPTY);
             }
         }
         
@@ -448,9 +508,13 @@ if(isset($pageUi)){
     //SIGNUP USER
     elseif($pageUi=='signup'){
 
+        //def variable
+        $messageObject=null;
+        
         if(isset($_POST['signup'])){
-
+            
             if(isset($_SESSION['phone'])){
+
                 $phone=$_SESSION['phone'];
                 $code=isset($_POST['code']) && $_POST['code'] ? $_POST['code'] : "";
                 $FName=isset($_POST['first_name']) && $_POST['first_name'] ? $_POST['first_name'] : "";
@@ -465,31 +529,36 @@ if(isset($pageUi)){
                 if($code==$initAccount['register_code']){
                     //ACCOUNT OBJECT
                     $account=new Account();
-                    $result=$account->create($phone,$FName,$LName,$code,$messages);
-                    if($result){
-                        //do login
-                        
-                        //redirect to dashboard
-                    }else{
-                        //show err
-                    }
+                    $result=$account->create($phone,$FName,$LName,$code,$messageObject);
+
                 }else{
-                    echo 'کد وارد شده اشتباه است';
+                    $messageObject=new Message();
+                    $messageObject->setErrorMessage(ERR_REGISTER_CODE_INCORRECT);
                 }
+                
+
 
             }else{
                 redirectTo("enterphn.php");
             }
         }
     }elseif($pageUi=='entercode'){
+        $messageObject=null;
+
         if(isset($_POST['login'])){
+            if($_POST['code'] && $_POST['code']){
+                $phone=$_SESSION['phone'];
+                $code=isset($_POST['code']) && $_POST['code'] ? $_POST['code'] : "";
+    
+                //ACCOUNT OBJECT
+                $account=new Account();
+                $messageObject=$account->getMessageHandler();
+                $account->login($phone,$code);
+            }else{
+                $messageObject=new Message();
+                $messageObject->setErrorMessage(ERR_REGISTER_CODE_INCORRECT);
+            }
 
-            $phone=$_SESSION['phone'];
-            $code=isset($_POST['code']) && $_POST['code'] ? $_POST['code'] : "";
-
-            //ACCOUNT OBJECT
-            $account=new Account();
-            $account->login($phone,$code);
             
         }
     }

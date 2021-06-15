@@ -20,6 +20,38 @@ function validArrayInputs(array $inputs){
     }
 }
 
+//SHOW ERRORS MESSAGE
+function showErrorMessage($errorMessage,$messageObject):void{
+    if($messageObject){
+        $checkError=$messageObject->showError($errorMessage);
+        if($checkError){
+            echo 
+            '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <small>'.$checkError.'
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+            </div>';
+    
+        }
+    }
+
+}
+
+//SHOW SUCCESS MESSAGE
+function showSuccessMessage($successMessage,$messageObject):void{
+    if($messageObject){
+        $checkSuccess=$messageObject->showSuccess($successMessage);
+        if($checkSuccess){
+            echo 
+            '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <small>'.$checkSuccess.'
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+            </div>';
+    
+        }
+    }
+}
+
+
 function addToLog($message,$logFileName="web.log"){
     file_put_contents($logFileName,$message,FILE_APPEND);
 }

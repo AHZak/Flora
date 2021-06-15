@@ -20,6 +20,11 @@
   </head>
   <body class="text-center d-flex flex-column align-items-center p-4">
     <main class="form-signin shadow rounded">
+            <?php showErrorMessage(ERR_REGISTER_CODE_INCORRECT,$messageObject); ?>
+            <?php showErrorMessage(ERR_EMPTY_FIRST_NAME,$messageObject); ?>
+            <?php showErrorMessage(ERR_EMPTY_LAST_NAME,$messageObject); ?>
+            <?php showErrorMessage(ERR_LAST_NAME_LEN,$messageObject); ?>
+            <?php showErrorMessage(ERR_FIRST_NAME_LEN,$messageObject); ?>
         <form method="post">
             <img class="mb-4" src="assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal">ثبت نام</h1>
