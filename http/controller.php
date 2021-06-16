@@ -54,35 +54,83 @@ if(isset($pageUi)){
                 $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
                 $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
                 $category=isset($_POST['categoryId']) ? $_POST['categoryId'] : null;
-                if(strpos($category,"cat_")!==false){
+
+                //CREATE PRODUCT BY CATEGORY
+                if(strpos($category,"mcat_")!==false){
                     //admin Id
                     $creator_id=$_SESSION['userId'];
                     $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
-                    //ADD PRODUCT MESSAGES
 
-                    sscanf($category,"cat_%d",$categoryId);
+                    //ADD PRODUCT MESSAGES
+                    //MESSAGE HANDLERS
+                    if(!$product_id){
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_CREATE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_UNSUPPORT_IMAGE_FORMAT);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EXISTS);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_TITLE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_PRICE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_PRICE_FORMAT);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_INSTOCK);    
+                        redirectTo($_SERVER['PHP_SELF']);
+                    }else{
+                        $_SESSION['successMessage']=$message->showSuccess(SUCCESS_CREATE_PRODUCT);
+                    }
+
+                    sscanf($category,"mcat_%d",$categoryId);
+
                     //add category_product
                     if($product_id && $categoryId){
                         $categoryObj=new Category($categoryId);
                         $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$categoryId]);
-
-                        //ADD PRODUCT CATEGORY MESSAGES
+                    }else{
+                        $_SESSION['errorMessage']=ERR_ADD_PRODUCT;
+                        //reload current page
+                        redirectTo($_SERVER['PHP_SELF']);
                     }
-                }elseif(strpos($category,"subcat_")!==false){
+
+                }
+                //CREATE PRODUCT BY SUB CATEGORY
+                elseif(strpos($category,"subcat_")!==false){
                     //admin Id
                     $creator_id=$_SESSION['userId'];
                     $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
                     //ADD PRODUCT MESSAGES
-                    
+                    //MESSAGE HANDLERS
+                    if(!$product_id){
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_CREATE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EXISTS);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_TITLE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_PRICE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_PRICE_FORMAT);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_INSTOCK);    
+                        redirectTo($_SERVER['PHP_SELF']);
+                    }else{
+                        $_SESSION['successMessage']=$message->showSuccess(SUCCESS_CREATE_PRODUCT);
+                    }
+
                     sscanf($category,"subcat_%d",$subCategoryId);
                     //add subcategory_product
+
                     if($product_id && $subCategoryId){
                         $subCategoryObj=new SubCategory($subCategoryId);
                         $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
                         $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$subCategoryObj->getCategory()->getCategoryId()]);
+                    }else{
+                        $_SESSION['errorMessage']=ERR_ADD_PRODUCT;
+                        //reload current page
+                        redirectTo($_SERVER['PHP_SELF']);
                     }
+
+                }else{
+                    $_SESSION['errorMessage']=ERR_SUBCATEGORY_OR_CATEGORY_REQUIRED;
+                    //reload current page
+                    redirectTo($_SERVER['PHP_SELF']);
                 }
 
+
+
+                //reload current page
+                redirectTo($_SERVER['PHP_SELF']);
             }
 
             //get categories 

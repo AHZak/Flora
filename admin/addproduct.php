@@ -1,8 +1,8 @@
 <?php 
   //page controller
   $pageUi='addProduct';
-  
   include_once '../config.php';
+
 ?>
 <?php
 
@@ -106,7 +106,7 @@ include 'adminheader.php';
                         $subcategories=$categoryObj->getSubCategories();
                       ?>
                             <option disabled>____________</option>
-                            <option value="<?php echo 'cat_'.$categoryObj->getCategoryId(); ?>" style="font-weight: bold" ><?php echo $categoryObj->getName(); ?></option>
+                            <option value="<?php echo 'mcat_'.$categoryObj->getCategoryId(); ?>" style="font-weight: bold" ><?php echo $categoryObj->getName(); ?></option>
                           <?php if($subcategories):?>
                               <?php foreach($subcategories as $subCategory): ?>
                                 <option class="subcat" value="<?php echo 'subcat_'.$subCategory['id']; ?>">-- <?php echo $subCategory['name'] ?></option>

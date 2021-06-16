@@ -149,6 +149,9 @@ define('ERR_REMOVE_ADMIN', 'خطا!ادمین موردنظر حذف نشد');
 define('ERR_EMAIL_EMPTY', 'خطا! فیلد ایمیل شما خالی است');
 define('SUCCESS_REMOVE_USER', 'کاربر موردنظر با موفقیت حذف شد');
 define('ERR_PHONE_REQUIRED', 'خطا! لطفا شماره تلفن را وارد کنید');
+define('ERR_SUBCATEGORY_OR_CATEGORY_REQUIRED', 'خطا! حداقل باید یک دسته بندی یا زیردسته بندی انتخاب کنید');
+define('ERR_ADD_PRODUCT', 'خطا! هنگام ثبت محصول خطایی رخ داده است');
+
 
 
 
