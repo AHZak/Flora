@@ -180,7 +180,8 @@
     
 
     <div class="d-flex align-items-center ms-auto my-2">
-              <a href="enterphn.php" class="btn btn-outline-dark rounded me-2">وارد شوید<i class="fas fa-user ms-1"></i></a> 
+              <a href="enterphn.php" class="btn btn-outline-dark rounded me-2">وارد شوید<i class="fas fa-user ms-1"></i></a>
+              <a href="enterphn.php" class="btn btn-outline-dark rounded me-2 d-none">امیر ذکریا<i class="fas fa-user ms-1"></i></a> 
        
               <a href="cart.php" class="btn btn-outline-dark rounded me-2">سبد خرید<i class="fas fa-shopping-cart cart-carte mx-1"></i><span class="badge badge-light" style="    color: #212529;
     background-color: #f8f9fa;"><?php if(isset($_SESSION['cart']['products']) && count($_SESSION['cart']['products'])>0){ echo count($_SESSION['cart']['products']);} ?></span></a>
@@ -369,7 +370,7 @@
     <!----------------------------- carousel + category cards + products ------------------------------------>
 
     <!-- Footer -->
-    <footer class="text-center text-lg-start bg-light text-muted">
+    <footer class="text-center text-lg-start">
       <!-- Section: Social media -->
       <section class="d-flex justify-content-center justify-content-lg-start p-4 border-bottom">
         <!-- Left -->
@@ -400,7 +401,7 @@
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
               <!-- Content -->
               <h6 class="text-uppercase fw-bold mb-4">
-                <img src="assets/images/logo/flora-lo.png" alt="" height="32px">       فلورا
+                <img src="assets/images/logo/flora-lo-white.png" alt="" height="32px">       فلورا
               </h6>
               <p>
                 این توضیحات کوتاه مربوط به شرکت فلورا میباشد.
