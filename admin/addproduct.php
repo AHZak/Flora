@@ -55,7 +55,40 @@ include 'adminheader.php';
             <!---- add product form ---->
 
             <div class="col-md-7 col-lg-8">
+            <?php 
+                  if(isset($_SESSION['successMessage'])){
+                      echo
+                      '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['successMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
 
+                      unset($_SESSION['successMessage']);
+
+                  }elseif(isset($_SESSION['errorMessage'])){
+                    if(is_array($_SESSION['errorMessage'])){
+                      foreach($_SESSION['errorMessage'] as $errMsg){
+                        if($errMsg){
+                          echo
+                          '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <small>'.$errMsg.'
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                          </div>';
+                        }
+
+                      }
+
+                    }else{
+                      echo
+                      '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['errorMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+                    }
+                    unset($_SESSION['errorMessage']);
+
+                  }
+              ?>
               <form class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
 
                 <div class="row g-3">

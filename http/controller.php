@@ -58,16 +58,22 @@ if(isset($pageUi)){
                     //admin Id
                     $creator_id=$_SESSION['userId'];
                     $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    //ADD PRODUCT MESSAGES
+
                     sscanf($category,"cat_%d",$categoryId);
                     //add category_product
                     if($product_id && $categoryId){
                         $categoryObj=new Category($categoryId);
                         $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$categoryId]);
+
+                        //ADD PRODUCT CATEGORY MESSAGES
                     }
                 }elseif(strpos($category,"subcat_")!==false){
                     //admin Id
                     $creator_id=$_SESSION['userId'];
                     $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    //ADD PRODUCT MESSAGES
+                    
                     sscanf($category,"subcat_%d",$subCategoryId);
                     //add subcategory_product
                     if($product_id && $subCategoryId){
@@ -242,7 +248,7 @@ if(isset($pageUi)){
                 $_SESSION['errorMessage'][]=$messages->showError(ERR_PHONE_EXISTS);
                 $_SESSION['errorMessage'][]=$messages->showError(ERR_PHONE_NUMBER_LEN);
                 $_SESSION['errorMessage'][]=$messages->showError(ERR_CREATE_ADMIN);
-                $_SESSION['errorMessage'][]=$messages->showError(SUCCESS_CREATE_ADMIN);
+                $_SESSION['successMessage']=$messages->showSuccess(SUCCESS_CREATE_ADMIN);
                 redirectTo($_SERVER['PHP_SELF']);
 
             }
@@ -258,6 +264,7 @@ if(isset($pageUi)){
     }
     //EDIT ADMIN
     elseif($pageUi=='editadmin'){
+        $messages=null;
         //check auth
         if(isMaster()){
             if(isset($_GET['aid'])){
@@ -274,21 +281,32 @@ if(isset($pageUi)){
 
                 $admin=new Admin($adminId);
                 if($password && $password!=""){
-                    $result=$admin->update(['FName'=>$firstName,'LName'=>$lastName,'password'=>sha1($password),'email'=>$email,'admined_by'=>1,'phone'=>$phone,'permission'=>$adminpermission]);
+                    $result=$admin->update(['FName'=>$firstName,'LName'=>$lastName,'password'=>sha1($password),'email'=>$email,'admined_by'=>1,'phone'=>$phone,'permission'=>$adminpermission],$messages);
                 }else{
-                    $result=$admin->update(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email,'admined_by'=>1,'phone'=>$phone,'permission'=>$adminpermission]);
+                    $result=$admin->update(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email,'admined_by'=>1,'phone'=>$phone,'permission'=>$adminpermission],$messages);
                 }
                 
                 if($result){
                     //update login data
                     $account=new Account();
+                    $_SESSION['successMessage']=SUCCESS_UPDATE_ADMIN;
                     $account->updateAdminLoginData("adminman.php");
+                    
+                }else{
+                    $_SESSION['errorMessage'][]=$messages->showError(ERR_EMPTY_LAST_NAME);
+                    $_SESSION['errorMessage'][]=$messages->showError(ERR_EMPTY_FIRST_NAME);
+                    $_SESSION['errorMessage'][]=$messages->showError(ERR_EMAIL_EMPTY);
+                    $_SESSION['errorMessage'][]=$messages->showError(ERR_EMAIL_EXISTS);
+                    $_SESSION['errorMessage'][]=$messages->showError(ERR_PHONE_EXISTS);
+                    $_SESSION['errorMessage'][]=$messages->showError(ERR_PHONE_NUMBER_LEN);
+                    $_SESSION['errorMessage'][]=$messages->showError(ERR_CREATE_ADMIN);
+                    $_SESSION['errorMessage'][]=$messages->showError(SUCCESS_CREATE_ADMIN);
+                    redirectTo($_SERVER['PHP_SELF']."?aid=$adminId");
 
-                    $admin=new Admin($adminId);
-                    //redirect to admins list
-                   // redirectTo("admin.php");
                 }
 
+            }elseif(isset($_POST['cancel'])){
+                redirectTo("adminman.php");
             }
         }else{
             $message=new Message();
@@ -325,6 +343,8 @@ if(isset($pageUi)){
                 $user=new User($_GET['rm_user']);
                 if($user){
                     $user->delete();
+                    $_SESSION['successMessage']=SUCCESS_REMOVE_USER;
+                    redirectTo($_SERVER['PHP_SELF']);
                 }
                 
             }
