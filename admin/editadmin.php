@@ -35,6 +35,40 @@
         <!----------------------------- edit admin form --------------------------->
         <div class="row">
           <div class="col-md-7 col-lg-8 my-2">
+          <?php 
+                  if(isset($_SESSION['successMessage'])){
+                      echo
+                      '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['successMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+
+                      unset($_SESSION['successMessage']);
+
+                  }elseif(isset($_SESSION['errorMessage'])){
+                    if(is_array($_SESSION['errorMessage'])){
+                      foreach($_SESSION['errorMessage'] as $errMsg){
+                        if($errMsg){
+                          echo
+                          '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <small>'.$errMsg.'
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                          </div>';
+                        }
+
+                      }
+
+                    }else{
+                      echo
+                      '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['errorMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+                    }
+                    unset($_SESSION['errorMessage']);
+
+                  }
+              ?>
             <form class="needs-validation" method="post" novalidate="">
               <input type="hidden" name="admin_id" value="<?php echo $admin->getId(); ?>">
               <div class="row g-3">
@@ -83,7 +117,7 @@
               <hr class="my-4">
               <div class="d-flex flex-row mt-0">
               <button name="editadmin" class="w-100 btn btn-success btn-lg m-0 mx-2" type="submit">ثبت تغییرات</button>
-              <button name="canceledit" class="w-100 btn btn-danger btn-lg m-0 mx-2" type="submit">لغو</button>
+              <button name="cancel" class="w-100 btn btn-danger btn-lg m-0 mx-2" type="submit">لغو</button>
               </div>
             </form>
           </div>

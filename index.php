@@ -183,8 +183,8 @@
               <a href="enterphn.php" class="btn btn-outline-dark rounded me-2">وارد شوید<i class="fas fa-user ms-1"></i></a>
               <a href="enterphn.php" class="btn btn-outline-dark rounded me-2 d-none">امیر ذکریا<i class="fas fa-user ms-1"></i></a> 
        
-              <a href="enterphn.php" class="btn btn-outline-dark rounded me-2">سبد خرید<i class="fas fa-shopping-cart cart-carte mx-1"></i><span class="badge badge-light" style="    color: #212529;
-    background-color: #f8f9fa;">4</span></a>
+              <a href="cart.php" class="btn btn-outline-dark rounded me-2">سبد خرید<i class="fas fa-shopping-cart cart-carte mx-1"></i><span class="badge badge-light" style="    color: #212529;
+    background-color: #f8f9fa;"><?php if(isset($_SESSION['cart']['products']) && count($_SESSION['cart']['products'])>0){ echo count($_SESSION['cart']['products']);} ?></span></a>
               
               </div>
 

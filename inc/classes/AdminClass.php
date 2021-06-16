@@ -134,7 +134,40 @@ class Admin{
     }
 
     //UPDATE
-    public function update(array $params){
+    public function update(array $params,&$messages=""){
+        //MESSAGE OBJECT
+        $messages=new Message();
+
+        //check first name & last name
+        if(empty($params['FName'])){
+            $messages->setErrorMessage(ERR_EMPTY_FIRST_NAME);
+            return false;
+        }
+
+        if(empty($params['LName'])){
+            $messages->setErrorMessage(ERR_EMPTY_LAST_NAME);
+            return false;
+        }
+
+        //check email
+        if(empty($params['email'])){
+            $messages->setErrorMessage(ERR_EMAIL_EMPTY);
+            return false;
+        }
+
+
+        //check phone
+        $phone=$params['phone'];
+        if(empty($phone)){
+            $messages->setErrorMessage(ERR_PHONE_REQUIRED);
+            return false;
+        }
+
+        if(strlen($phone)!=PHONE_NUMBER_LEN){
+            $messages->setErrorMessage(ERR_PHONE_NUMBER_LEN);
+            return false;
+        }
+        
         return Db::update(ADMIN_TABLE_NAME,$params,"id='$this->id'");
     }
 
