@@ -187,25 +187,13 @@ class Product{
         //messages handler
         $message=new Message();
 
-        //VALID IMAGE
-        if(!$image=uploadImage($params['image'],$msg)){
-            $message->setErrorMessage($msg);
-            return false;
-        }
-        $params['image']=$image;
 
-        //SECURITY OPTION
-        $params=validArrayInputs($params);
-
-        //product title
-        $title=str_replace("'","\'",$params['title']);
-        
         //VALID INPUT PARAMS
         if(!self::validProductTitle($params['title'],$msg)){
             $message->setErrorMessage($msg);
             return false;
         }
-      
+        
         if(! self::validProductPrice($params['price'],$msg)){
             $message->setErrorMessage($msg);
             return false;
@@ -215,6 +203,19 @@ class Product{
             $message->setErrorMessage($msg);
             return false; 
         }
+
+
+        //VALID IMAGE
+        if(!$image=uploadImage($params['image'],$msg)){
+            $message->setErrorMessage($msg);
+            return false;
+        }
+        $params['image']=$image;
+
+        //SECURITY OPTION
+        $params=validArrayInputs($params);
+        $title=$params['title'];
+
 
 
         //check to product already exists or not
@@ -254,9 +255,12 @@ class Product{
             return false;
         }
 
-        if(!preg_match("/[0-9]/",$price)){
-            $messages=ERR_PRODUCT_PRICE_FORMAT;
-            return false;
+        if(!preg_match("/(^[0-9]+$)/",$price,$matches)){
+            if(!$matches){
+                $messages=ERR_PRODUCT_PRICE_FORMAT;
+                return false;
+            }
+
         }
 
         return true;
