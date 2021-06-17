@@ -15,11 +15,15 @@ if(isset($pageUi)){
                 $category=new Category($_GET['rm_cat']);
                 $category->delete();
                 $category->deleteSubCategories();
+                $_SESSION['successMessage']=SUCCESS_DELETE_CATEGORY;
+                redirectTo($_SERVER['PHP_SELF']);
     
             // $category->getMessageHandler()->showMessages();
             }elseif(isset($_GET['rm_sub'])){
                 $subCategory=new SubCategory($_GET['rm_sub']);
                 $subCategory->delete();
+                $_SESSION['successMessage']=SUCCESS_DELETE_SUBCATEGORY;
+                redirectTo($_SERVER['PHP_SELF']);
                 
             // $subCategory->getMessageHandler()->showMessages();
             }elseif(isset($_POST['addCategory'])){
@@ -31,9 +35,13 @@ if(isset($pageUi)){
                         //add category
                         Category::create(['name'=>$catName,'creator_id'=>1],$message);
                         //$message->showMessages();
+                        $_SESSION['successMessage']=SUCCESS_CREATE_CATEGORY;
+                        redirectTo($_SERVER['PHP_SELF']);
                     }else{
                         //add sub category
                         SubCategory::create(['name'=>$catName,'creator_id'=>1,'category_id'=>$catType]);
+                        $_SESSION['successMessage']=SUCCESS_CREATE_SUBCATEGORY;
+                        redirectTo($_SERVER['PHP_SELF']);
                     }
                 }
             }

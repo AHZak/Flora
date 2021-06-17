@@ -165,6 +165,12 @@ define('WARNING_UPDATE_TERM_TXT', 'هشدار! متن حریم شخصی خالی
 
 
 
+
+
+
+
+
+
 //SUCCESS MESSAGES
 define('SUCCESS_CREATE_CATEGORY', 'دسته بندی با موفقیت ثبت شد');
 define('SUCCESS_CREATE_SUB_CATEGORY', 'زیر دسته بندی با موفقیت ساخته شد');
@@ -181,7 +187,8 @@ define('SUCCESS_UPDATE_ABOUT_TXT', 'متن درباره ما با موفقیت �
 define('SUCCESS_UPDATE_TERM_TXT', 'متن حریم شخصی با موفقیت تغییر کرد');
 define('SUCCESS_UPDATE_PRODUCT', 'محصول موردنظر با موفقیت ویرایش شد');
 define('SUCCESS_DELETE_PRODUCT', 'محصول موردنظر با موفقیت حذف شد');
-
+define('SUCCESS_CREATE_SUBCATEGORY', 'زیردسته بندی موردنظر با موفقیت ایجاد شد');
+define('SUCCESS_DELETE_SUBCATEGORY', 'زیردسته بندی موردنظر با موفقیت حذف شد');
 
 
 
