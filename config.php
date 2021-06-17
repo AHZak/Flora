@@ -179,7 +179,8 @@ define('SUCCESS_UPDATE_ADMIN', 'اطلاعات ادمین با موفقیت وی
 define('SUCCESS_UPDATE_LAW_TXT', 'متن قوانین با موفقیت تغییر کرد');
 define('SUCCESS_UPDATE_ABOUT_TXT', 'متن درباره ما با موفقیت تغییر کرد');
 define('SUCCESS_UPDATE_TERM_TXT', 'متن حریم شخصی با موفقیت تغییر کرد');
-
+define('SUCCESS_UPDATE_PRODUCT', 'محصول موردنظر با موفقیت ویرایش شد');
+define('SUCCESS_DELETE_PRODUCT', 'محصول موردنظر با موفقیت حذف شد');
 
 
 

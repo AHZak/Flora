@@ -155,16 +155,25 @@ if(isset($pageUi)){
                     $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
                     $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
                     $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
+                    $discount=isset($_POST['discount']) ? $_POST['discount'] : 0;
                     //admin Id
                     $creator_id=$_SESSION['userId'];
-                    $result=$product->update(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
-                    
+                    $result=$product->update(['title'=>$title,'price'=>$price,'discount'=>$discount,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
+                    if(!$result){
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_TITLE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_PRICE);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_PRICE_FORMAT);
+                        $_SESSION['errorMessage'][]=$message->showError(ERR_PRODUCT_EMPTY_INSTOCK);    
+                        redirectTo($_SERVER['PHP_SELF']."?id=".$_GET['id']);
+                    }
                     
                     //add subcategory_product
                     if($result && $subCategoryId){
                         $product_id=$product->getId();
                         $result=Db::update(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product->getId(),'subcategory_id'=>$subCategoryId],"product_id='$product_id'");
                     }
+
+                    $_SESSION['successMessage']=SUCCESS_UPDATE_PRODUCT;
                     //or redirect to list
                     redirectTo("products.php");
                 }
@@ -227,6 +236,8 @@ if(isset($pageUi)){
             if(isset($_GET['del_pro'])){
                 $productObj=new Product($_GET['del_pro']);
                 $productObj->delete();
+                $_SESSION['successMessage']=SUCCESS_DELETE_PRODUCT;
+                redirectTo($_SERVER['PHP_SELF']);
             }
 
             if(isset($_GET['term'])){

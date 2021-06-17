@@ -19,6 +19,7 @@ class Product{
     private $category;
     private $subCategory;
     private $messages;
+    private $discount;
 
     public function __construct($productId)
     {
@@ -38,6 +39,7 @@ class Product{
             $this->setSubCategory();
             $this->setImageAlt($product['image_alt']);
             $this->setMessageHandler();
+            $this->setDiscount($product['discount']);
 
         }
     }
@@ -85,6 +87,10 @@ class Product{
 
     public function setMessageHandler(){
         $this->messages=new Message();
+    }
+
+    public function setDiscount($discount){
+        $this->discount=$discount;
     }
 
     public function setCategory(){
@@ -164,6 +170,10 @@ class Product{
 
     public function getMessageHandler(){
         return $this->messages;
+    }
+
+    public function getDiscount(){
+        return $this->discount;
     }
 
     //GET PRODUCT FULL INFO
@@ -294,8 +304,10 @@ class Product{
 
     //update a product
     public function update(array $params,&$message=""){
+        $message=$this->getMessageHandler();
         //VALID IMAGE
         if(isset($params['image']) && $params['image']){
+            
             $old_img=$this->getImage();
             if(!$image=uploadImage($params['image'],$msg)){
                 $this->getMessageHandler()->setErrorMessage($msg);
@@ -304,8 +316,26 @@ class Product{
             $params['image']=$image;
             //delete old img
             unlink($old_img);
-        }elseif(isset($params['image'])){
+        }elseif($params['image']==null){
+            
             $params['image']=$this->getImage();
+            
+     
+        }
+
+        if(!Product::validProductTitle($params['title'],$msg)){
+            $message->setErrorMessage($msg);
+            return false;
+        }
+
+        if(! Product::validProductPrice($params['price'],$msg)){
+            $message->setErrorMessage($msg);
+            return false;
+        }
+        
+        if(! Product::validProductInstock($params['instock'],$msg)){
+            $message->setErrorMessage($msg);
+            return false; 
         }
 
 
