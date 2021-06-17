@@ -207,7 +207,7 @@
             <div class="col-2 border-bottom border-3 my-3">
                 <p class="h5">قوانین</p>
             </div>
-            <p>متن قوانین</p>
+            <p><?php echo file_get_contents("law.txt") ?></p>
           </div>
         </div>
       </div>

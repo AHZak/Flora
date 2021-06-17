@@ -360,6 +360,45 @@ if(isset($pageUi)){
             $message=new Message();
             $message->setErrorMessage(ERR_ACCESS_DENIED);
         }
+    }//TERMS SETTINGS
+    elseif($pageUi=='termsdraft'){
+
+        if(isset($_POST['law'])){
+
+            //replace law text
+            $result=file_put_contents("../law.txt",$_POST['lawtxt']);
+            if($result){
+                $_SESSION['successMessage']=SUCCESS_UPDATE_LAW_TXT;
+            }else{
+                $_SESSION['errorMessage']=WARNING_UPDATE_LAW_TXT;
+            }
+            //reload page
+            redirectTo($_SERVER['PHP_SELF']);
+        }elseif(isset($_POST['term'])){
+
+            //replace term text
+            $result=file_put_contents("../term_service.txt",$_POST['termtxt']);
+
+            if($result){
+                $_SESSION['successMessage']=SUCCESS_UPDATE_TERM_TXT;
+            }else{
+                $_SESSION['errorMessage']=WARNING_UPDATE_TERM_TXT;
+            }
+            //reload page
+            redirectTo($_SERVER['PHP_SELF']);
+        }elseif(isset($_POST['about'])){
+
+            //replace about text
+            $result=file_put_contents("../about.txt",$_POST['abouttxt']);
+            if($result){
+                $_SESSION['successMessage']=SUCCESS_UPDATE_ABOUT_TXT;
+            }else{
+                $_SESSION['errorMessage']=WARNING_UPDATE_ABOUT_TXT;
+            }
+            //reload page
+            redirectTo($_SERVER['PHP_SELF']);
+        }
+
     }
     //LOGIN ADMIN
     elseif($pageUi=='adminlogin'){

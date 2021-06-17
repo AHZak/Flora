@@ -416,13 +416,13 @@
                 بیشتر بدانید
               </h6>
               <p>
-                <a href="#!" class="text-reset text-decoration-none">درباره ما</a>
+                <a href="about.php" class="text-reset text-decoration-none">درباره ما</a>
               </p>
               <p>
-                <a href="#!" class="text-reset text-decoration-none">قوانین</a>
+                <a href="terms.php" class="text-reset text-decoration-none">قوانین</a>
               </p>
               <p>
-                <a href="#!" class="text-reset text-decoration-none">حریم خصوصی</a>
+                <a href="privacy.php" class="text-reset text-decoration-none">حریم خصوصی</a>
               </p>
               
             </div>
