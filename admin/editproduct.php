@@ -138,6 +138,18 @@ include 'adminheader.php';
                   </div>
 
                   <!-- product inventory -->
+                  <div class="w-100"></div>
+                  <!-- product inventory -->
+
+                  <div class="col-md-3">
+              <label for="offper" class="form-label">تخفیف (به درصد)</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="offper" placeholder="40" required="">
+                <span class="input-group-text">%</span>
+              </div>
+            </div>
+
+                  <!-- product inventory -->
 
                   <!-- product new image selection -->
 
