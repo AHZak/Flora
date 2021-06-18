@@ -3,6 +3,12 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" style="">
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
+          <li class="nav-item border-bottom">
+            <a class="nav-link" href="../index.php" target="__blank">
+            <i class="fas fa-external-link-alt"></i>
+            مشاهده وبسایت
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link border-bottom <?php active("admin.php") ?>" aria-current="page" href="admin.php">
             <i class="fas fa-home feather"></i>
