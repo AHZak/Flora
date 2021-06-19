@@ -91,7 +91,7 @@
             <!-- shipping -->
             <div class="row">
               <div class="p-3 border-bottom border-3 mb-2">
-                <p class="h5">شیوه ارسال</p>
+                <p class="h5">شیوه و زمان ارسال</p>
               </div>
               <div class="p-3">
                 <?php if($shippings):?>
@@ -108,6 +108,37 @@
                 <?php endif;?>
 
               </div>
+              <div class="d-none" id="shipping-date">
+              <div class="border-bottom border-2 d-inline-block mb-2">روز دریافت</div>
+                <div class="d-flex flex-row align-items-center">
+                
+                  
+                  <div class="form-check mx-2 my-2">
+                    <input type="radio" name="date" class="form-check-input" id="exampleRadio1">
+                    <label class="form-check-label" for="exampleRadio1">فردا (1400/4/4)</label>
+                  </div>
+                  <div class="form-check mx-2 my-2">
+                    <input type="radio" name="date" class="form-check-input" id="exampleRadio1">
+                    <label class="form-check-label" for="exampleRadio1">دوشنبه (1400/4/5)</label>
+                  </div>
+                  <div class="form-check mx-2 my-2">
+                    <input type="radio" name="date" class="form-check-input" id="exampleRadio1">
+                    <label class="form-check-label" for="exampleRadio1">سه شنبه (1400/4/6)</label>
+                  </div>
+                </div>
+                <div class="border-bottom border-2 d-inline-block mb-2">زمان دریافت</div>
+                <div class="d-flex flex-row align-items-center">
+                  <div class="form-check mx-2 my-2">
+                    <input type="radio" name="time" class="form-check-input" id="exampleRadio1">
+                    <label class="form-check-label" for="exampleRadio1">8 تا 12 (صبح)</label>
+                  </div>
+                  <div class="form-check mx-2 my-2">
+                    <input type="radio" name="time" class="form-check-input" id="exampleRadio1">
+                    <label class="form-check-label" for="exampleRadio1">13 تا 24 (بعد از ظهر)</label>
+                  </div>
+                </div>
+              </div>
+              
             </div>
             <!-- shipping -->
 
@@ -229,5 +260,18 @@
           }
         }
       </script>
+      <script>
+        $(document).ready(function(){
+          $("#ship-2").click(function(){
+            $("#shipping-date").removeClass("d-none");
+            
+          });
+          $("#ship-1").click(function(){
+            $("#shipping-date").addClass("d-none");
+            
+          });
+        });
+      </script>
+      
   </body>
 </html>
