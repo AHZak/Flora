@@ -1,6 +1,6 @@
 <?php 
   //page controller
-  $pageUi='index';
+  $pageUi='categoryitems';
   include_once 'config.php';
 ?>
 <!doctype html>
@@ -204,7 +204,6 @@
     <main>
       <div class="container  border-bottom border-3 p-3">
         <div class="row ">
-              
               <div class="col-10 col-md-auto d-flex flex-row align-items-center text-nowrap me-2 my-3">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
@@ -215,16 +214,16 @@
               </div>
               <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap me-2 my-3">
                 <p class="h6 me-2">به ترتیب :</p>
-                <select id="order" class="form-select form-select">
+                <select id="ordercatitem" name="order" id="order" class="form-select form-select">
+                  <option value="all">بدون فیلتر</option>
                   <option value="mostexpensive">گران ترین</option>   
                   <option value="cheapest">ارزان ترین</option>     
                   <option value="mostsells">پرفروش ترین</option>
-                  <option value="mostsells">بیشترین تخفیف</option>
                 </select>
               </div>
             <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap my-3">
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
+                <input name="instockcheck" class="form-check-input instockcheck" type="checkbox" id="flexSwitchCheckChecked" checked="">
                 <label class="form-check-label" for="flexSwitchCheckChecked">فقط نمایش کالاهای موجود</label>
               </div>
             </div>
@@ -233,96 +232,32 @@
       <div class="container-fluid" style="min-height:35vh;">
         <div class="row my-3 g-3">
           
-          <div class="col">
-          <div class="container">
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 g-lg-3 justify-content-end p-3">
-              <div class="col">
-                <div class="card shadow">
-                  <img src="assets/images/product-sample.jpg" class="card-img-top" alt="">
-                  <div class="card-body p-1">
-                    <p class="card-title text-center mb-3" style="font-weight:bold;">پتوس</p>
-                    <div class="d-flex justify-content-end" style="color: coral;">
-                      <p class="m-0">33,000</p>
-                      <p class="ms-1 m-0">تومان</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow">
-                  <img src="assets/images/product-sample.jpg" class="card-img-top" alt="">
-                  <div class="card-body p-1">
-                    <p class="card-title text-center mb-3" style="font-weight:bold;">پتوس</p>
-                    <div class="d-flex justify-content-end" style="color: coral;">
-                      <p class="m-0">33,000</p>
-                      <p class="ms-1 m-0">تومان</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow">
-                  <img src="assets/images/product-sample.jpg" class="card-img-top" alt="">
-                  <div class="card-body p-1">
-                    <p class="card-title text-center mb-3" style="font-weight:bold;">پتوس</p>
-                    <div class="d-flex justify-content-end" style="color: coral;">
-                      <p class="m-0">33,000</p>
-                      <p class="ms-1 m-0">تومان</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow">
-                  <img src="assets/images/product-sample.jpg" class="card-img-top" alt="">
-                  <div class="card-body p-1">
-                    <p class="card-title text-center mb-3" style="font-weight:bold;">پتوس</p>
-                    <div class="d-flex justify-content-end" style="color: coral;">
-                      <p class="m-0">33,000</p>
-                      <p class="ms-1 m-0">تومان</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow">
-                  <img src="assets/images/product-sample.jpg" class="card-img-top" alt="">
-                  <div class="card-body p-1">
-                    <p class="card-title text-center mb-3" style="font-weight:bold;">پتوس</p>
-                    <div class="d-flex justify-content-end" style="color: coral;">
-                      <p class="m-0">33,000</p>
-                      <p class="ms-1 m-0">تومان</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow">
-                  <img src="assets/images/product-sample.jpg" class="card-img-top" alt="">
-                  <div class="card-body p-1">
-                    <p class="card-title text-center mb-3" style="font-weight:bold;">پتوس</p>
-                    <div class="d-flex justify-content-end" style="color: coral;">
-                      <p class="m-0">33,000</p>
-                      <p class="ms-1 m-0">تومان</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow">
-                  <img src="assets/images/product-sample.jpg" class="card-img-top" alt="">
-                  <div class="card-body p-1">
-                    <p class="card-title text-center mb-3" style="font-weight:bold;">پتوس</p>
-                    <div class="d-flex justify-content-end" style="color: coral;">
-                      <p class="m-0">33,000</p>
-                      <p class="ms-1 m-0">تومان</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                 
+        <div class="col">
+          <div class="container" id="wrapper">
+                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 g-lg-3 justify-content-end p-3 ">
+                      <?php if($products): ?>
+                          <?php foreach($products as $product): 
+                            $productObj=new Product($product['id']);  
+                          ?>
+                            <div class="col">
+                              <div class="card shadow">
+                                <img src="<?php echo $productObj->getImage(); ?>" class="card-img-top" alt="<?php echo $productObj->getImageAlt(); ?>">
+                                <div class="card-body p-1">
+                                  <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $productObj->getTitle(); ?></p>
+                                  <div class="d-flex justify-content-end" style="color: coral;">
+                                    <p class="m-0"><?php echo number_format($productObj->getPrice()); ?></p>
+                                    <p class="ms-1 m-0">تومان</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <?php endforeach; ?>
+                      <?php else: ?>
+                        <p>محصولی وجود ندارد</p>
+                      <?php endif; ?>
+                </div>     
+          </div>
         </div>
-      </div>
       
     
     </main>
@@ -479,5 +414,8 @@
           });
                   });
       </script>
+
+    <!--Filter js -->  
+    <script src="assets/js/filter.js"></script> 
   </body>
 </html>

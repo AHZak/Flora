@@ -978,6 +978,20 @@ if(isset($pageUi)){
 
 
 
+    }elseif($pageUi=='categoryitems'){
+    
+        if(isset($_GET['catid']) && is_numeric($_GET['catid'])){
+            //get category items
+            $catId=$_GET['catid'];
+            $products=Db::select(CATEGORY_PRODUCT_TABLE_NAME,"category_id=$catId",'all','id');
+
+        }elseif(isset($_GET['subid']) && is_numeric($_GET['subid'])){
+            $subId=$_GET['subid'];
+            $products=Db::select(SUB_CATEGORY_PRODUCT_TABLE_NAME,"subcategory_id=$subId",'all','id');
+        }else{
+            echo 'خطا! پارامتر ورودی صحیح نمی باشد';
+            die();
+        }
     }
 
 

@@ -38,7 +38,7 @@ function updateNumberOfCart(productId,type,maxInstock){
 
 function controllStockRange(productId,maxInstock,type){
     var number=$("#"+productId+"_number").val();
-    console.log(number);
+   
     if(type=='increase'){
         number= parseInt(number)+1;
     }else if(type=='decrease'){
