@@ -280,7 +280,7 @@ if(isset($pageUi)){
             }
 
             if(isset($_GET['term'])){
-                $term=Db::correctTermFormat($_GET['term']);
+                $term=Db::correctTermFormat($_GET['term'],'simple');
                 $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"title LIKE '%$term%'");
             }else{
                 $products=Product::getProducts();
@@ -1019,6 +1019,11 @@ if(isset($pageUi)){
         }elseif(isset($_GET['subid']) && is_numeric($_GET['subid'])){
             $subId=$_GET['subid'];
             $products=Db::select(SUB_CATEGORY_PRODUCT_TABLE_NAME,"subcategory_id=$subId",'all','id');
+        }elseif(isset($_GET['term'])){
+
+            $term=Db::correctTermFormat($_GET['term'],'simple');
+            $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"title LIKE '%$term%'");
+
         }else{
             echo 'خطا! پارامتر ورودی صحیح نمی باشد';
             die();
