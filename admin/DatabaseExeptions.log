@@ -1,7 +1,0 @@
-PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'category_id' at row 11 in /var/www/html/flora/inc/classes/DbClass.php:139
-Stack trace:
-#0 /var/www/html/flora/inc/classes/DbClass.php(139): PDO->query('UPDATE category...')
-#1 /var/www/html/flora/http/controller.php(201): Database\Db::update('category_produc...', Array, 'product_id='29'')
-#2 /var/www/html/flora/config.php(199): include_once('/var/www/html/f...')
-#3 /var/www/html/flora/admin/editproduct.php(4): include_once('/var/www/html/f...')
-#4 {main}
