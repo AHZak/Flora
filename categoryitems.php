@@ -205,12 +205,29 @@
       <div class="container  border-bottom border-3 p-3">
         <div class="row ">
               <div class="col-10 col-md-auto d-flex flex-row align-items-center text-nowrap me-2 my-3">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="#">دسته بندی اصلی</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">زیر دسته</li>
-                </ol>
-              </nav>
+              <?php if(isset($catId)): 
+                $catObj=new Category($catId);  
+              ?>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="?catid=<?php echo $catId; ?>"><?php echo $catObj->getName(); ?></a></li>
+                  </ol>
+                </nav>
+              <?php endif; ?>
+
+              <?php if(isset($subId)): 
+                $subObj=new SubCategory($subId);  
+              ?>
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="?catid=<?php echo $subObj->getCategory()->getCategoryId(); ?>"><?php echo $subObj->getCategory()->getName(); ?></a></li>
+                    <li class="breadcrumb-item active" aria-current="page"><?php echo $subObj->getName(); ?></li>
+                  </ol>
+                </nav>
+              <?php endif; ?>
+
+
+
               </div>
               <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap me-2 my-3">
                 <p class="h6 me-2">به ترتیب :</p>

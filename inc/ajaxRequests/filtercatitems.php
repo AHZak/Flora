@@ -79,6 +79,17 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id='$subid')",'all','id',0,$order,$orderBy);
         }    
     }
+}elseif(isset($_GET['term'])){
+    $term=$_GET['term'];
+    $term=str_replace(" ","%",$term);
+    $term=str_replace("'","\'",$term);
+    if($instock=="ok"){
+        $products=Db::select(PRODUCT_TABLE_NAME,"title LIKE '%$term%' AND instock>0",'all','id',0,$order,$orderBy);
+    }elseif($instock=="none"){
+        $products=Db::select(PRODUCT_TABLE_NAME," title LIKE '%$term%' AND instock=0",'all','id',0,$order,$orderBy);
+    }else{
+        $products=Db::select(PRODUCT_TABLE_NAME," title LIKE '%$term%'",'all','id',0,$order,$orderBy);
+    }
 }
 
 ?>

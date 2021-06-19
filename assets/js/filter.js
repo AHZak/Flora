@@ -114,9 +114,10 @@ $(document).ready(function(){
 
     $("#ordercatitem").change(function(){
         filter=$(this).val();
-        updateContent("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+location.search+"&term="+term+"&order="+filter+"&instockstatus="+instockstatus,"#wrapper");
         
-        console.log("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+location.search+"&term="+term+"&order="+filter+"&instockstatus="+instockstatus);
+        updateContent("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+decodeURIComponent(location.search)+"&order="+filter+"&instockstatus="+instockstatus,"#wrapper");
+        
+        console.log("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+decodeURIComponent(location.search)+"&order="+filter+"&instockstatus="+instockstatus);
         //SEND LOAD PAGE REQUEST
         
 
@@ -128,7 +129,7 @@ $(document).ready(function(){
         }else{
             instockstatus="noninstock";
         }
-        updateContent("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+location.search+"&term="+term+"&order="+filter+"&instockstatus="+instockstatus,"#wrapper");
+        updateContent("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+decodeURIComponent(location.search)+"&order="+filter+"&instockstatus="+instockstatus,"#wrapper");
     });
 
 });

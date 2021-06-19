@@ -144,10 +144,10 @@
 
   <div class="collapse navbar-collapse" id="main_nav">
 	
-  <form class="d-flex my-2">
-          <input class="form-control me-2" type="search" placeholder="جستجو در محصولات..." aria-label="Search">
+    <form class="d-flex my-2" method="get" action="categoryitems.php">
+          <input name="term" class="form-control me-2" type="search" placeholder="جستجو در محصولات..." aria-label="Search">
           <button class="btn btn-outline-light" type="submit">جستجو</button>
-        </form>
+    </form>
     <ul class="navbar-nav mx-2">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-th-list"></i>  دسته بندی ها  </a>
