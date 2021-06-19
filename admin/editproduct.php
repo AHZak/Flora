@@ -63,7 +63,40 @@ include 'adminheader.php';
             <div class="col-md-7 col-lg-8">
 
               <form class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
+              <?php 
+                  if(isset($_SESSION['successMessage'])){
+                      echo
+                      '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['successMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
 
+                      unset($_SESSION['successMessage']);
+
+                  }elseif(isset($_SESSION['errorMessage'])){
+                    if(is_array($_SESSION['errorMessage'])){
+                      foreach($_SESSION['errorMessage'] as $errMsg){
+                        if($errMsg){
+                          echo
+                          '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <small>'.$errMsg.'
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                          </div>';
+                        }
+
+                      }
+
+                    }else{
+                      echo
+                      '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['errorMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+                    }
+                    unset($_SESSION['errorMessage']);
+
+                  }
+              ?>
                 <div class="row g-3">
 
                   <!-- category selection -->
@@ -142,6 +175,13 @@ include 'adminheader.php';
                   <div class="col-md-4">
                     <label for="firstName" class="form-label">متن جایگزین تصویر</label>
                     <input name="image_alt" type="text" class="form-control" id="product-price" placeholder="متن جایگزین" value="<?php echo $product->getImageAlt(); ?>" required="">
+                  </div>
+                  <div class="col-md-3">
+                    <label for="offper" class="form-label">تخفیف (به درصد)</label>
+                    <div class="input-group">
+                      <input name="discount" type="text" class="form-control" id="offper" value="<?php echo $product->getDiscount(); ?>" placeholder="40" required="">
+                      <span class="input-group-text">%</span>
+                    </div>
                   </div>
                   
                   <!-- product new image selection -->

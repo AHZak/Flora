@@ -154,6 +154,7 @@ define('ERR_ADD_PRODUCT', 'خطا! هنگام ثبت محصول خطایی رخ 
 define('WARNING_UPDATE_LAW_TXT', 'هشدار!‌متن قوانین خالی است');
 define('WARNING_UPDATE_ABOUT_TXT', 'هشدار! متن درباره ما خالی است');
 define('WARNING_UPDATE_TERM_TXT', 'هشدار! متن حریم شخصی خالی است');
+define('ERR_DATE_OR_TIME_EMPTY', 'خطا! لطفا تاریخ و ساعت دریافت سفارش را انتخاب کنید');
 
 
 

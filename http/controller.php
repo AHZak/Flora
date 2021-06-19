@@ -173,7 +173,7 @@ if(isset($pageUi)){
                     }
                     
 
-                    $discount=isset($_POST['discount']) ? $_POST['discount'] : 0;
+                    $discount=isset($_POST['discount']) && $_POST['discount'] ? $_POST['discount'] : 0;
                     //admin Id
                     $creator_id=$_SESSION['userId'];
                     $result=$product->update(['title'=>$title,'price'=>$price,'discount'=>$discount,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
@@ -791,7 +791,9 @@ if(isset($pageUi)){
         $addresses=Address::getAddresses($_SESSION['phone']);
         
     }elseif($pageUi=='checkout'){
-
+        $date="";
+        $time="";
+        
         $account=new Account();
         //AUTHENTICATION
         $account->checkAuth();
@@ -814,6 +816,17 @@ if(isset($pageUi)){
                     if($_POST['shipping']==1){
                         $postal_price=FAST_POSTAL_PRICE;
                     }else{
+
+                        if(isset($_POST['date']) && $_POST['date'] && isset($_POST['time']) && $_POST['time']){
+                            $date=$_POST['date'];
+                            $time=$_POST['time'];
+        
+                        }else{
+                            $_SESSION['errorMessage']=ERR_DATE_OR_TIME_EMPTY;
+                            redirectTo($_SERVER['PHP_SELF']);
+                        }
+
+
                         $postal_price=POSTAL_PRICE;
                     }
                 }else{
@@ -837,8 +850,10 @@ if(isset($pageUi)){
                 }else{
                     $role="user";
                 }
+
+
                 
-                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'sum_price'=>$sum_all_price,'customer_role'=>$role,'address_id'=>$_POST['address-item'],'postal_price'=>$postal_price],$message);
+                $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'order_date'=>$date,'order_time'=>$time,'sum_price'=>$sum_all_price,'customer_role'=>$role,'address_id'=>$_POST['address-item'],'postal_price'=>$postal_price],$message);
 
                 if($orderId){
 
