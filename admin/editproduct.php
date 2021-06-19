@@ -47,11 +47,11 @@ include 'adminheader.php';
                 <div class="flex-shrink-0 mb-3">
                 <img src="<?php echo $product->getImage() ?>" alt="" class="img-thumbnail" height="250px" width="250px">
                 </div>
-              <!--
-                <div>
+    
+                <!--<div>
                 <button type="button" class="btn btn-outline-danger btn-sm">حذف تصویر</button>
-                </div>
-              -->
+                </div>-->
+              
               </div>
               
             </div>
@@ -63,70 +63,30 @@ include 'adminheader.php';
             <div class="col-md-7 col-lg-8">
 
               <form class="needs-validation" novalidate="" method="post" enctype="multipart/form-data">
-              <?php 
-                  if(isset($_SESSION['successMessage'])){
-                      echo
-                      '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                          <small>'.$_SESSION['successMessage'].'
-                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
-                      </div>';
 
-                      unset($_SESSION['successMessage']);
-
-                  }elseif(isset($_SESSION['errorMessage'])){
-                    if(is_array($_SESSION['errorMessage'])){
-                      foreach($_SESSION['errorMessage'] as $errMsg){
-                        if($errMsg){
-                          echo
-                          '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                              <small>'.$errMsg.'
-                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
-                          </div>';
-                        }
-
-                      }
-
-                    }else{
-                      echo
-                      '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                          <small>'.$_SESSION['errorMessage'].'
-                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
-                      </div>';
-                    }
-                    unset($_SESSION['errorMessage']);
-
-                  }
-              ?>
                 <div class="row g-3">
 
                   <!-- category selection -->
 
                   <div class="col-md-8">
                     <label for="s_category" class="form-label">دسته بندی</label>
-                    <select name="subCategoryId" class="form-select" id="s_category" required="">
-                        <?php if($categories): ?>
+                    <select name="categoryId" class="form-select" id="s_category" required="">
+                        <option disabled>یک دسته بندی انتخاب کنید</option>
+                        <?php if($categories):?>
+                      <?php foreach($categories as $category): 
+                        $categoryObj=new Category($category['id']);
+                        $subcategories=$categoryObj->getSubCategories();
+                      ?>
+                            <option disabled>____________</option>
+                            <option <?php if($product->getCategory()->getCategoryId()==$categoryObj->getCategoryId()){ echo 'selected'; } ?> value="<?php echo 'catid_'.$categoryObj->getCategoryId(); ?>" style="font-weight: bold" ><?php echo $categoryObj->getName(); ?></option>
+                          <?php if($subcategories):?>
+                              <?php foreach($subcategories as $subCategory): ?>
+                                <option <?php if($product->getSubCategory()->getSubCategoryId()==$subCategory['id']){ echo 'selected'; } ?> class="subcat" value="<?php echo 'subid_'.$subCategory['id']; ?>" <?php if($subCategory['id']==$product->getSubCategory()->getSubCategoryId()){ echo 'selected';} ?>>-- <?php echo $subCategory['name'] ?></option>
+                              <?php endforeach; ?>
+                          <?php endif;?>
 
-                            <?php foreach($categories as $category): ?>
-
-                                <?php
-                                    //get sub categories
-                                    $categoryObj=new Category($category['id']);
-                                    $subCategories=$categoryObj->getSubCategories();
-                                ?>
-
-                                <optgroup label="<?php echo $categoryObj->getName(); ?>">
-                                      
-                                    <?php if($subCategories): ?>
-                                        <?php foreach($subCategories as $subCategory): ?>
-                                          <option  value="<?php echo $subCategory['id'] ?>" <?php if($subCategory['id']==$product->getSubCategory()->getSubCategoryId()){ echo 'selected';} ?> > <?php echo $subCategory['name'] ?> </option>
-                                        <?php endforeach;?>
-                                    <?php endif; ?>
-
-                                </optgroup>
-
-                            <?php endforeach; ?>
-
-                        <?php endif; ?>
+                      <?php endforeach; ?>
+                  <?php endif; ?>
 
                     </select>
                   </div>
@@ -169,18 +129,6 @@ include 'adminheader.php';
                     <label for="firstName" class="form-label">موجودی</label>
                     <input name="instock" type="text" class="form-control" id="product-inventory" placeholder="مثال : 12" value="<?php echo $product->getInstock(); ?>" required="">
                   </div>
-
-                  <!-- product inventory -->
-                  <div class="w-100"></div>
-                  <!-- product inventory -->
-
-                  <div class="col-md-3">
-              <label for="offper" class="form-label">تخفیف (به درصد)</label>
-              <div class="input-group">
-                <input name="discount" type="text" class="form-control" id="offper" value="<?php echo $product->getDiscount(); ?>" placeholder="40" required="">
-                <span class="input-group-text">%</span>
-              </div>
-            </div>
 
                   <!-- product inventory -->
 

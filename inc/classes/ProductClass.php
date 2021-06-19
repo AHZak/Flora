@@ -351,7 +351,13 @@ class Product{
         return Db::delete(PRODUCT_TABLE_NAME,"id='$this->id'");
     }
 
+    public function deleteSubCategory(){
+        return Db::delete(SUB_CATEGORY_PRODUCT_TABLE_NAME,"product_id='$this->id'");
+    }
 
+    public function deleteCategory(){
+        return Db::delete(CATEGORY_PRODUCT_TABLE_NAME,"product_id='$this->id'");
+    }
 
 
 

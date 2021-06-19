@@ -162,7 +162,17 @@ if(isset($pageUi)){
                     $image=isset($_FILES['img']['name']) && $_FILES['img']['name']!="" ? $_FILES['img'] : null;
                     $image_alt=isset($_POST['image_alt']) ? $_POST['image_alt'] : null;
                     $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
-                    $subCategoryId=isset($_POST['subCategoryId']) ? $_POST['subCategoryId'] : null;
+
+                    if(isset($_POST['categoryId'])){
+                        if(strpos($_POST['categoryId'],"catid_")!==false){
+                            sscanf($_POST['categoryId'],"catid_%d",$categoryId);
+                        }
+                        elseif(strpos($_POST['categoryId'],"subid_")!==false){
+                            sscanf($_POST['categoryId'],"subid_%d",$subCategoryId);
+                        }
+                    }
+                    
+
                     $discount=isset($_POST['discount']) ? $_POST['discount'] : 0;
                     //admin Id
                     $creator_id=$_SESSION['userId'];
@@ -176,9 +186,30 @@ if(isset($pageUi)){
                     }
                     
                     //add subcategory_product
-                    if($result && $subCategoryId){
+                    if($result && isset($subCategoryId) && $subCategoryId){
                         $product_id=$product->getId();
-                        $result=Db::update(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product->getId(),'subcategory_id'=>$subCategoryId],"product_id='$product_id'");
+                        if(Db::checkExists(SUB_CATEGORY_PRODUCT_TABLE_NAME,"product_id='$product_id'",'id')){
+                            $result=Db::update(SUB_CATEGORY_PRODUCT_TABLE_NAME,['subcategory_id'=>$subCategoryId],"product_id='$product_id'");
+                            if($result){
+                                $mcategoryId=Db::select(SUB_CATEGORY_TABLE_NAME,"id='$subCategoryId'",'single','category_id')['category_id'];
+                                $result=Db::update(CATEGORY_PRODUCT_TABLE_NAME,['category_id'=>$mcategoryId],"product_id='$product_id'");
+                            }
+                        }else{
+                            $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
+                            if($result){
+                                $mcategoryId=Db::select(SUB_CATEGORY_TABLE_NAME,"id='$subCategoryId'",'single','category_id')['category_id'];
+                                $result=Db::update(CATEGORY_PRODUCT_TABLE_NAME,['category_id'=>$mcategoryId],"product_id='$product_id'");
+                            }
+                        }
+                        
+                    }
+
+                    if($result && isset($categoryId) && $categoryId){
+                        $product_id=$product->getId();
+                        $result=Db::update(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product->getId(),'category_id'=>$categoryId],"product_id='$product_id'");
+                        if($result){
+                            $product->deleteSubCategory();
+                        }
                     }
 
                     $_SESSION['successMessage']=SUCCESS_UPDATE_PRODUCT;
