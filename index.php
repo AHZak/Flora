@@ -158,15 +158,15 @@
                   $subCategories=$categoryObj->getSubCategories();
               ?>
               <?php if($subCategories): ?>
-                <li><a class="dropdown-item" href="#"><?php echo $categoryObj->getName(); ?><i class="fas fa-angle-left"></i> </a>
+                <li><a class="dropdown-item" href="categoryitems.php?catid=<?php echo $categoryObj->getCategoryId(); ?>"><?php echo $categoryObj->getName(); ?><i class="fas fa-angle-left"></i> </a>
                     <ul class="submenu dropdown-menu">
                       <?php foreach($subCategories as $subCategory): ?>
-                            <li><a class="dropdown-item" href="#"><?php echo $subCategory['name']; ?></a></li>
+                            <li><a class="dropdown-item" href="categoryitems.php?subid=<?php echo $subCategory['id']; ?>"><?php echo $subCategory['name']; ?></a></li>
                       <?php endforeach; ?>
                     </ul>
                 </li>
               <?php else: ?>
-                <li><a class="dropdown-item" href="#"><?php echo $categoryObj->getName(); ?></a></li>
+                <li><a class="dropdown-item" href="categoryitems.php?catid=<?php echo $categoryObj->getCategoryId(); ?>"><?php echo $categoryObj->getName(); ?></a></li>
               <?php endif; ?>
                 
               <?php endforeach; ?>

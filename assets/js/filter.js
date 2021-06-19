@@ -111,6 +111,26 @@ $(document).ready(function(){
         //SEND LOAD PAGE REQUEST
         updateProTbContent("http://localhost/flora/inc/ajaxRequests/updateFilter.php?term="+term+"&cat="+cat+"&instock="+instockstatus+"&order="+order);
     });
+
+    $("#ordercatitem").change(function(){
+        filter=$(this).val();
+        updateContent("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+location.search+"&term="+term+"&order="+filter+"&instockstatus="+instockstatus,"#wrapper");
+        
+        console.log("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+location.search+"&term="+term+"&order="+filter+"&instockstatus="+instockstatus);
+        //SEND LOAD PAGE REQUEST
+        
+
+    });
+
+    $(".instockcheck").change(function(){
+        if($(".instockcheck").is(":checked")){
+            instockstatus="instock";
+        }else{
+            instockstatus="noninstock";
+        }
+        updateContent("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+location.search+"&term="+term+"&order="+filter+"&instockstatus="+instockstatus,"#wrapper");
+    });
+
 });
 
 function updateProTbContent(url){
