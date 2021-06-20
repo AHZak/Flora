@@ -269,6 +269,30 @@ if(isset($pageUi)){
        
         //check auth
         if(isAdmin() || isMaster()){
+
+            //remove a category
+            if(isset($_GET['rm_cat'])){
+
+                $category=new Category($_GET['rm_cat']);
+                $category->delete();
+
+                /*delete sub categories after removing parent category*/
+                $category->deleteSubCategories();
+                $_SESSION['successMessage']=SUCCESS_DELETE_CATEGORY;
+
+                redirectTo("categories.php");
+    
+            }elseif(isset($_GET['rm_sub'])){
+                //remove a sub category
+                $subCategory=new SubCategory($_GET['rm_sub']);
+                $subCategory->delete();
+
+                //set a success message after remove sub category
+                $_SESSION['successMessage']=SUCCESS_DELETE_SUBCATEGORY;
+                redirectTo("categories.php");
+                
+            }
+
             if(isset($_GET['id']) ){
                 //cancel edit
                 if(isset($_POST['cancelEditCategory'])){
@@ -301,6 +325,30 @@ if(isset($pageUi)){
             //cancel edit sub category
             if(isset($_POST['cancelEditSubCategory'])){
                 redirectTo("categories.php");
+            }
+
+            //remove a category
+            if(isset($_GET['rm_cat'])){
+
+                $category=new Category($_GET['rm_cat']);
+                $category->delete();
+
+                /*delete sub categories after removing parent category*/
+                $category->deleteSubCategories();
+                $_SESSION['successMessage']=SUCCESS_DELETE_CATEGORY;
+
+                redirectTo("categories.php");
+
+            }elseif(isset($_GET['rm_sub'])){
+                //remove a sub category
+                $subCategory=new SubCategory($_GET['rm_sub']);
+                $subCategory->delete();
+
+                //set a success message after remove sub category
+                $_SESSION['successMessage']=SUCCESS_DELETE_SUBCATEGORY;
+
+                redirectTo("categories.php");
+                
             }
 
             if(isset($_POST['editSubCategory']) ){

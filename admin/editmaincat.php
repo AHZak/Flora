@@ -95,8 +95,8 @@ include 'adminheader.php';
                       </a>
                     </div>
                     <div>
-                      <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                      <button type="button" class="btn btn-outline-danger">حذف</button>
+                    <a href="<?php echo DOMAIN.'admin/editmaincat.php?id='.$category['id']; ?>" class="btn btn-outline-warning mx-2">ویرایش</a>
+                    <a href="?rm_cat=<?php echo $category['id'] ?>" class="btn btn-outline-danger">حذف</a>
                     </div>
                   </li>
 
@@ -113,8 +113,8 @@ include 'adminheader.php';
                         <h6 class="my-0"><?php echo $subCategory['name'];?></h6>
                       </div>
                       <div>
-                        <button type="button" class="btn btn-outline-warning btn-sm mx-2">ویرایش</button>
-                        <button type="button" class="btn btn-outline-danger btn-sm">حذف</button>
+                        <a href="<?php echo DOMAIN.'admin/editsubcat.php?id='.$subCategory['id'] ?>" class="btn btn-outline-warning btn-sm mx-2">ویرایش</a>
+                        <a href="?rm_sub=<?php echo $subCategory['id']; ?>"  class="btn btn-outline-danger btn-sm">حذف</a>
                       </div>
                     </li>
               <?php
@@ -134,8 +134,8 @@ include 'adminheader.php';
                     <h6 class="my-0"><?php echo $category['name'] ?></h6>
                   </div>
                   <div>
-                    <button type="button" class="btn btn-outline-warning mx-2">ویرایش</button>
-                    <button type="button" class="btn btn-outline-danger">حذف</button>
+                    <a href="<?php echo DOMAIN.'admin/editmaincat.php?id='.$category['id']; ?>" class="btn btn-outline-warning mx-2">ویرایش</a>
+                    <a href="?rm_cat=<?php echo $category['id'] ?>" class="btn btn-outline-danger">حذف</a>
                   </div>
                 </li>
             <?php endif; ?>
@@ -152,6 +152,8 @@ include 'adminheader.php';
   </ul>
 
   <!-- ++++++ Listing categories End ++++++ -->
+
+
 
 </div>
 
