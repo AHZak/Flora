@@ -1,0 +1,8 @@
+PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '' for column 'payment_method_id' at row 1 in /var/www/html/flora/inc/classes/DbClass.php:46
+Stack trace:
+#0 /var/www/html/flora/inc/classes/DbClass.php(46): PDO->query('INSERT INTO ord...')
+#1 /var/www/html/flora/inc/classes/OrderClass.php(141): Database\Db::insert('orders', Array)
+#2 /var/www/html/flora/http/controller.php(895): Order::create(Array, Object(Message))
+#3 /var/www/html/flora/config.php(202): include_once('/var/www/html/f...')
+#4 /var/www/html/flora/checkout.php(3): include_once('/var/www/html/f...')
+#5 {main}

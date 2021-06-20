@@ -156,6 +156,8 @@ define('WARNING_UPDATE_ABOUT_TXT', 'هشدار! متن درباره ما خال�
 define('WARNING_UPDATE_TERM_TXT', 'هشدار! متن حریم شخصی خالی است');
 define('ERR_DATE_OR_TIME_EMPTY', 'خطا! لطفا تاریخ و ساعت دریافت سفارش را انتخاب کنید');
 define('ERR_GEOJSON_FORMAT', 'خطا! فایل با فرمت geojson وارد نمایید');
+define('ERR_DATA_UPDATED', 'خطا! اطلاعات شما ویرایش نشد');
+
 
 
 
@@ -191,7 +193,7 @@ define('SUCCESS_DELETE_PRODUCT', 'محصول موردنظر با موفقیت ح
 define('SUCCESS_CREATE_SUBCATEGORY', 'زیردسته بندی موردنظر با موفقیت ایجاد شد');
 define('SUCCESS_DELETE_SUBCATEGORY', 'زیردسته بندی موردنظر با موفقیت حذف شد');
 define('SUCCESS_UPLOAD_GEOJSON', 'فایل geojson با موفقیت آپلود شد');
-
+define('SUCCESS_DATA_UPDATED', 'اطلاعات شما با موفقیت ویرایش شد');
 
 
 

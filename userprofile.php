@@ -29,7 +29,7 @@
                 <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
               </div>
               <div class="d-flex align-items-center">
-              <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
+              <a href="?logout=true" class="btn btn-danger me-2">خروج<i class="fas fa-user ms-1"></i></a> 
               </a> <i class="me-2">|</i>
               <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
               
@@ -59,6 +59,40 @@
             <div class="tab-pane fade active show" id="nav-personal" role="tabpanel" aria-labelledby="nav-personal-tab">
               <div class="container">
                 <form method="post">
+                <?php 
+                  if(isset($_SESSION['successMessage'])){
+                      echo
+                      '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['successMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+
+                      unset($_SESSION['successMessage']);
+
+                  }elseif(isset($_SESSION['errorMessage'])){
+                    if(is_array($_SESSION['errorMessage'])){
+                      foreach($_SESSION['errorMessage'] as $errMsg){
+                        if($errMsg){
+                          echo
+                          '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <small>'.$errMsg.'
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                          </div>';
+                        }
+
+                      }
+
+                    }else{
+                      echo
+                      '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['errorMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+                    }
+                    unset($_SESSION['errorMessage']);
+
+                  }
+              ?>
                   <div class="row">
                     <div class="col-md-5 p-2">
                       <label for="name" class="form-label">نام<a href="#"><i class="fas fa-pencil-alt ms-1"></i></a></label>

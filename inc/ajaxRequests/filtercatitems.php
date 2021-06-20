@@ -25,8 +25,8 @@ if(isset($_GET['order']) && $_GET['order']!=""){
 if(isset($_GET['instockstatus']) && $_GET['instockstatus']!=""){
     if($_GET['instockstatus']=='instock'){
         $instock="ok";
-    }elseif($_GET['instockstatus']=='noninstock'){
-        $instock="none";
+    }elseif($_GET['instockstatus']=='all'){
+        $instock="all";
     }else{
         $instock="all";
     }
@@ -41,8 +41,6 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
         $term=str_replace("'","\'",$term);
         if($instock=="ok"){
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id='$catId') AND title LIKE '%$term%' AND instock>0",'all','id',0,$order,$orderBy);
-        }elseif($instock=="none"){
-            $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id='$catId') AND title LIKE '%$term%' AND instock=0",'all','id',0,$order,$orderBy);
         }else{
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id='$catId') AND title LIKE '%$term%'",'all','id',0,$order,$orderBy);
         }
@@ -50,8 +48,6 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
     }else{
         if($instock=="ok"){
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id='$catId') AND instock>0",'all','id',0,$order,$orderBy);
-        }elseif($instock=="none"){
-            $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id='$catId') AND instock=0",'all','id',0,$order,$orderBy);
         }else{
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id='$catId')",'all','id',0,$order,$orderBy);
         }    
@@ -64,8 +60,6 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
         $term=str_replace("'","\'",$term);
         if($instock=="ok"){
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id='$subid') AND title LIKE '%$term%' AND instock>0",'all','id',0,$order,$orderBy);
-        }elseif($instock=="none"){
-            $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id='$subid') AND title LIKE '%$term%' AND instock=0",'all','id',0,$order,$orderBy);
         }else{
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id='$subid') AND title LIKE '%$term%'",'all','id',0,$order,$orderBy);
         }
@@ -73,8 +67,6 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
     }else{
         if($instock=="ok"){
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id='$subid') AND instock>0",'all','id',0,$order,$orderBy);
-        }elseif($instock=="none"){
-            $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id='$subid') AND instock=0",'all','id',0,$order,$orderBy);
         }else{
             $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id='$subid')",'all','id',0,$order,$orderBy);
         }    
@@ -85,8 +77,6 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
     $term=str_replace("'","\'",$term);
     if($instock=="ok"){
         $products=Db::select(PRODUCT_TABLE_NAME,"title LIKE '%$term%' AND instock>0",'all','id',0,$order,$orderBy);
-    }elseif($instock=="none"){
-        $products=Db::select(PRODUCT_TABLE_NAME," title LIKE '%$term%' AND instock=0",'all','id',0,$order,$orderBy);
     }else{
         $products=Db::select(PRODUCT_TABLE_NAME," title LIKE '%$term%'",'all','id',0,$order,$orderBy);
     }
