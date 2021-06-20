@@ -151,7 +151,7 @@
     <ul class="navbar-nav mx-2">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="fas fa-th-list"></i>  دسته بندی ها  </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu catu">
             <?php if($allCategories): ?>
               <?php foreach($allCategories as $category): 
                   $categoryObj=new Category($category['id']);  
@@ -159,7 +159,7 @@
               ?>
               <?php if($subCategories): ?>
                 <li><a class="dropdown-item" href="categoryitems.php?catid=<?php echo $categoryObj->getCategoryId(); ?>"><?php echo $categoryObj->getName(); ?><i class="fas fa-angle-left"></i> </a>
-                    <ul class="submenu dropdown-menu">
+                    <ul class="submenu dropdown-menu catu">
                       <?php foreach($subCategories as $subCategory): ?>
                             <li><a class="dropdown-item" href="categoryitems.php?subid=<?php echo $subCategory['id']; ?>"><?php echo $subCategory['name']; ?></a></li>
                       <?php endforeach; ?>

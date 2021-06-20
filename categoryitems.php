@@ -232,7 +232,7 @@
               <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap me-2 my-3">
                 <p class="h6 me-2">به ترتیب :</p>
                 <select id="ordercatitem" name="order" id="order" class="form-select form-select">
-                  <option value="all">بدون فیلتر</option>
+                  <option value="all">پیشفرض</option>
                   <option value="mostexpensive">گران ترین</option>   
                   <option value="cheapest">ارزان ترین</option>     
                   <option value="mostsells">پرفروش ترین</option>
@@ -240,7 +240,7 @@
               </div>
             <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap my-3">
               <div class="form-check form-switch">
-                <input name="instockcheck" class="form-check-input instockcheck" type="checkbox" id="flexSwitchCheckChecked" checked="">
+                <input name="instockcheck" class="form-check-input instockcheck" type="checkbox" id="flexSwitchCheckChecked">
                 <label class="form-check-label" for="flexSwitchCheckChecked">فقط نمایش کالاهای موجود</label>
               </div>
             </div>

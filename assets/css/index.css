@@ -1,6 +1,10 @@
 body {
     /* background-color:rgb(250, 186, 223); */
 }
+
+.catu {
+    background-color: #F55E61;
+}
 .product-sliding-item {
     border: 1px solid rgba(225, 64, 64, 0.7);
     
