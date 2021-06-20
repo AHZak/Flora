@@ -155,7 +155,7 @@ define('WARNING_UPDATE_LAW_TXT', 'هشدار!‌متن قوانین خالی ا�
 define('WARNING_UPDATE_ABOUT_TXT', 'هشدار! متن درباره ما خالی است');
 define('WARNING_UPDATE_TERM_TXT', 'هشدار! متن حریم شخصی خالی است');
 define('ERR_DATE_OR_TIME_EMPTY', 'خطا! لطفا تاریخ و ساعت دریافت سفارش را انتخاب کنید');
-
+define('ERR_GEOJSON_FORMAT', 'خطا! فایل با فرمت geojson وارد نمایید');
 
 
 
@@ -190,7 +190,7 @@ define('SUCCESS_UPDATE_PRODUCT', 'محصول موردنظر با موفقیت و
 define('SUCCESS_DELETE_PRODUCT', 'محصول موردنظر با موفقیت حذف شد');
 define('SUCCESS_CREATE_SUBCATEGORY', 'زیردسته بندی موردنظر با موفقیت ایجاد شد');
 define('SUCCESS_DELETE_SUBCATEGORY', 'زیردسته بندی موردنظر با موفقیت حذف شد');
-
+define('SUCCESS_UPLOAD_GEOJSON', 'فایل geojson با موفقیت آپلود شد');
 
 
 

@@ -82,6 +82,38 @@ function uploadImage(array $image,&$message="",$path=""){
     }
 }
 
+//uploader
+function uploadFile(array $file,&$message="",$path="",$newfilename=""){
+    $fileName=isset($file['name']) ? $file['name'] : null;
+    $fileType=isset($file['type']) ? $file['type'] : null;
+    $fileTmpName=isset($file['tmp_name']) ? $file['tmp_name'] : null;
+
+    //upload path
+    if($path==""){
+        if($newfilename!=""){
+            $newFileName=public_html().PROJECT_NAME."/".$path.$newfilename;
+        }else{
+            $newFileName=public_html().PROJECT_NAME."/".UPLOAD_PATH.rand(100,9999).$fileName;
+        }
+        
+    }else{
+        if($newfilename!=""){
+            $newFileName=public_html().PROJECT_NAME."/".$path.$newfilename;
+        }else{
+            $newFileName=public_html().PROJECT_NAME."/".$path.rand(100,9999).$imageName;
+        }
+       
+    }
+   
+    $result=move_uploaded_file($fileTmpName,$newFileName);
+    if($result){
+        return $newFileName;
+    }else{
+        $message=ERR_FAILED_UPLOAD;
+        return false;
+    }
+}
+
 //SORT ARRAY
 function array_orderby()
 {

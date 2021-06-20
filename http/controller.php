@@ -495,6 +495,28 @@ if(isset($pageUi)){
         }
 
     }
+    //UPLOAD GEOJSON file
+    elseif($pageUi=="geojson"){
+
+        if(isset($_FILES['geojson']) && $_FILES['geojson']){
+
+            //CHECK FILE FORMAT
+            if($_FILES['geojson']['type']!="application/geo+json"){
+                $_SESSION['errorMessage']=ERR_GEOJSON_FORMAT;
+                redirectTo($_SERVER['PHP_SELF']);
+            }
+
+            $result=uploadFile($_FILES['geojson'],$msg,"/","map(2).geojson");
+            if($result){
+                $_SESSION['successMessage']=SUCCESS_UPLOAD_GEOJSON;
+                redirectTo($_SERVER['PHP_SELF']);
+            }else{
+                $_SESSION['errorMessage']=$msg;
+                redirectTo($_SERVER['PHP_SELF']);
+            }
+        }
+        
+    }
     //SLIDER SETTINGS
     elseif($pageUi=='sliders'){
         if(isset($_POST['edit'])){
