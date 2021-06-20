@@ -1,3 +1,3 @@
 <?php 
 include "config.php";
-show($_SESSION);
+echo exec("whoami");
