@@ -70,6 +70,40 @@
                         <!-- address fields -->
                         <div class="col-md-6 order-md-first">
                         <form method="post" class="needs-validation" novalidate="">
+                        <?php 
+                  if(isset($_SESSION['successMessage'])){
+                      echo
+                      '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['successMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+
+                      unset($_SESSION['successMessage']);
+
+                  }elseif(isset($_SESSION['errorMessage'])){
+                    if(is_array($_SESSION['errorMessage'])){
+                      foreach($_SESSION['errorMessage'] as $errMsg){
+                        if($errMsg){
+                          echo
+                          '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <small>'.$errMsg.'
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                          </div>';
+                        }
+
+                      }
+
+                    }else{
+                      echo
+                      '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['errorMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+                    }
+                    unset($_SESSION['errorMessage']);
+
+                  }
+              ?>
                             <div class="row g-3">
 
                             <div class="col-12">

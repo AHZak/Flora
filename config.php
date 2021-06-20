@@ -157,18 +157,14 @@ define('WARNING_UPDATE_TERM_TXT', 'هشدار! متن حریم شخصی خالی
 define('ERR_DATE_OR_TIME_EMPTY', 'خطا! لطفا تاریخ و ساعت دریافت سفارش را انتخاب کنید');
 define('ERR_GEOJSON_FORMAT', 'خطا! فایل با فرمت geojson وارد نمایید');
 define('ERR_DATA_UPDATED', 'خطا! اطلاعات شما ویرایش نشد');
-
-
-
-
-
-
-
-
-
-
-
-
+define('ERR_PAYMENT_EMPTY', 'خطا! لطفا روش پرداخت را انتخاب کنید');
+define('ERR_SHIPPING_EMPTY', 'خطا!‌لطفا یک روش ارسال انتخاب کنید');
+define('ERR_ADDRESS_EMPTY', 'خطا! لطفا یک آدرس انتخاب کنید');
+define('ERR_ADDRESS_UPDATED', 'خطا! آدرس ویرایش نشد');
+define('ERR_POSTAL_CODE_EMPTY', 'خطا! کد پستی را وارد کنید');
+define('ERR_ADDRESS_NAME_EMPTY', 'خطا! لطفا آدرس را وارد کنید');
+define('ERR_TITLE_EMPTY', 'خطا! لطفا یک عنوان وارد کنید');
+define('ERR_CREATE_ADDRESS', 'خطا! آدرس ایجاد نشد');
 
 
 
@@ -194,6 +190,10 @@ define('SUCCESS_CREATE_SUBCATEGORY', 'زیردسته بندی موردنظر ب�
 define('SUCCESS_DELETE_SUBCATEGORY', 'زیردسته بندی موردنظر با موفقیت حذف شد');
 define('SUCCESS_UPLOAD_GEOJSON', 'فایل geojson با موفقیت آپلود شد');
 define('SUCCESS_DATA_UPDATED', 'اطلاعات شما با موفقیت ویرایش شد');
+define('SUCCESS_ADDRESS_UPDATED', 'آدرس شما با موفقیت ویرایش شد');
+define('SUCCESS_CREATE_ADDRESS', 'آدرس شما با موفقیت اضافه شد');
+define('SUCCESS_DELETE_ADDRESS', 'آدرس شما با موفقیت حذف شد');
+
 
 
 

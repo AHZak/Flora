@@ -28,7 +28,7 @@
             </a>
           </li><?php endif; ?>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="orders.php">
+            <a class="nav-link <?php active("orders.php") ?>" href="orders.php">
             <i class="fas fa-cart-arrow-down feather"></i>
             سفارشات
             </a>
@@ -58,25 +58,25 @@
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="sms.php">
+            <a class="nav-link <?php active("sms.php") ?>" href="sms.php">
             <i class="fas fa-comment-alt feather"></i>
             پنل پیامک
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="setsliders.php">
+            <a class="nav-link <?php active("setsliders.php") ?>" href="setsliders.php">
             <i class="fas fa-image feather"></i>
             اسلاید ها
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="#">
+            <a class="nav-link <?php active("geojson.php") ?>" href="geojson.php">
             <i class="fas fa-map-marked-alt feather"></i>
             تنظیمات نقشه
             </a>
           </li>
           <li class="nav-item border-bottom">
-            <a class="nav-link <?php active("#") ?>" href="termsdraft.php">
+            <a class="nav-link <?php active("termsdraft.php") ?>" href="termsdraft.php">
             <i class="fas fa-balance-scale feather"></i>
             متن ها و قوانین
             </a>
