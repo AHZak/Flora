@@ -781,6 +781,23 @@ if(isset($pageUi)){
             $result=$user->update(['FName'=>$firstName,'LName'=>$lastName,'email'=>$email]);
 
 
+
+            if($result){
+
+                $_SESSION['successMessage']=SUCCESS_DATA_UPDATED;
+
+                //update loged session data
+                $_SESSION['FName']=$firstName;
+                $_SESSION['LName']=$lastName;
+                $_SESSION['email']=$email;
+                redirectTo($_SERVER['PHP_SELF']);
+            }else{
+
+                $_SESSION['errorMessage']=ERR_DATA_UPDATED;
+                redirectTo($_SERVER['PHP_SELF']);
+            }
+
+
         }
 
         //refresh update data
@@ -1051,11 +1068,11 @@ if(isset($pageUi)){
         if(isset($_GET['catid']) && is_numeric($_GET['catid'])){
             //get category items
             $catId=$_GET['catid'];
-            $products=Db::select(CATEGORY_PRODUCT_TABLE_NAME,"category_id=$catId",'all','id');
+            $products=Db::select(CATEGORY_PRODUCT_TABLE_NAME,"category_id=$catId",'all','product_id');
 
         }elseif(isset($_GET['subid']) && is_numeric($_GET['subid'])){
             $subId=$_GET['subid'];
-            $products=Db::select(SUB_CATEGORY_PRODUCT_TABLE_NAME,"subcategory_id=$subId",'all','id');
+            $products=Db::select(SUB_CATEGORY_PRODUCT_TABLE_NAME,"subcategory_id=$subId",'all','product_id');
         }elseif(isset($_GET['term'])){
 
             $term=Db::correctTermFormat($_GET['term'],'simple');

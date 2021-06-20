@@ -127,7 +127,7 @@ $(document).ready(function(){
         if($(".instockcheck").is(":checked")){
             instockstatus="instock";
         }else{
-            instockstatus="noninstock";
+            instockstatus="all";
         }
         updateContent("http://localhost/flora/inc/ajaxRequests/filtercatitems.php"+decodeURIComponent(location.search)+"&order="+filter+"&instockstatus="+instockstatus,"#wrapper");
     });

@@ -254,7 +254,7 @@
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 g-lg-3 justify-content-end p-3 ">
                       <?php if($products): ?>
                           <?php foreach($products as $product): 
-                            $productObj=new Product($product['id']);  
+                            $productObj=new Product($product['product_id']);  
                           ?>
                             <div class="col">
                               <div class="card shadow">
