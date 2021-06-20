@@ -144,7 +144,7 @@
 
   <div class="collapse navbar-collapse" id="main_nav">
 	
-    <form class="d-flex my-2" method="get" action="categoryitems.php">
+    <form class="d-flex my-2" method="get" action="searchedfor.php">
           <input name="term" class="form-control me-2" type="search" placeholder="جستجو در محصولات..." aria-label="Search">
           <button class="btn btn-outline-light" type="submit">جستجو</button>
     </form>

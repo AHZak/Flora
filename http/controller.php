@@ -9,52 +9,82 @@ if(isset($_GET['logout']) && $_GET['logout']==true){
 }
 
 if(isset($pageUi)){
+
+    //PAGES CONTROLLER
     if($pageUi=='addCategory'){
+        //ADD CATEGORY
+
+        /* check is admin/owner auth */
         if(isAdmin() || isMaster()){
+
+            //remove a category
             if(isset($_GET['rm_cat'])){
+
                 $category=new Category($_GET['rm_cat']);
                 $category->delete();
+
+                /*delete sub categories after removing parent category*/
                 $category->deleteSubCategories();
                 $_SESSION['successMessage']=SUCCESS_DELETE_CATEGORY;
+
+                //redirect to current page
                 redirectTo($_SERVER['PHP_SELF']);
     
-            // $category->getMessageHandler()->showMessages();
             }elseif(isset($_GET['rm_sub'])){
+                //remove a sub category
                 $subCategory=new SubCategory($_GET['rm_sub']);
                 $subCategory->delete();
+
+                //set a success message after remove sub category
                 $_SESSION['successMessage']=SUCCESS_DELETE_SUBCATEGORY;
+
+                //redirect to current page
                 redirectTo($_SERVER['PHP_SELF']);
                 
-            // $subCategory->getMessageHandler()->showMessages();
             }elseif(isset($_POST['addCategory'])){
+                //add a new category
+
+                //check inputs
                 $catName=isset($_POST['name']) ? $_POST['name'] : "";
-                $catType=isset($_POST['catType']) ? $_POST['catType'] : "";
+                $catType=isset($_POST['catType']) ? $_POST['catType'] : ""; //parent or sub category
                 
                 if($catType!=""){
                     if($catType=='parent'){
-                        //add category
+                        //add a category
                         Category::create(['name'=>$catName,'creator_id'=>1],$message);
-                        //$message->showMessages();
+                        
+                        //set a success message
                         $_SESSION['successMessage']=SUCCESS_CREATE_CATEGORY;
+
+                        //redirect to current page
                         redirectTo($_SERVER['PHP_SELF']);
                     }else{
                         //add sub category
                         SubCategory::create(['name'=>$catName,'creator_id'=>1,'category_id'=>$catType]);
+
+                        //set a success message
                         $_SESSION['successMessage']=SUCCESS_CREATE_SUBCATEGORY;
+
+                        //redirect to current page
                         redirectTo($_SERVER['PHP_SELF']);
                     }
                 }
             }
             
-            //get categories and sub categories
+            //get all categories and sub categories
             $categories=Category::getCategories();
         }
-    }elseif($pageUi=='addProduct'){
-        //check auth
+    }elseif($pageUi=='addProduct'){ //ADD PRODUCT PAGE
+
+        //check admin/owner auth
         if(isAdmin() || isMaster()){
+
+            
             if(isset($_POST['addProduct'])){
-              
+
                 //add product actions
+
+                //check inputs
                 $title=isset($_POST['title']) ? $_POST['title'] : null;
                 $price=isset($_POST['price']) ? $_POST['price'] : null;
                 $description=isset($_POST['description']) ? $_POST['description'] : null;
@@ -63,10 +93,12 @@ if(isset($pageUi)){
                 $instock=isset($_POST['instock']) ? $_POST['instock'] : null;
                 $category=isset($_POST['categoryId']) ? $_POST['categoryId'] : null;
 
-                //CREATE PRODUCT BY CATEGORY
+                //CREATE PRODUCT WITH CATEGORY
                 if(strpos($category,"mcat_")!==false){
-                    //admin Id
+
+                    //product creator id
                     $creator_id=$_SESSION['userId'];
+                    //create a product
                     $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
 
                     //ADD PRODUCT MESSAGES
@@ -84,23 +116,28 @@ if(isset($pageUi)){
                         $_SESSION['successMessage']=$message->showSuccess(SUCCESS_CREATE_PRODUCT);
                     }
 
+                    //export category id in string
                     sscanf($category,"mcat_%d",$categoryId);
 
-                    //add category_product
+                    //add to category_product table ***** Database relation between category & product *****
                     if($product_id && $categoryId){
                         $categoryObj=new Category($categoryId);
                         $result=Db::insert(CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'category_id'=>$categoryId]);
                     }else{
+                        //set error message
                         $_SESSION['errorMessage']=ERR_ADD_PRODUCT;
                         //reload current page
                         redirectTo($_SERVER['PHP_SELF']);
                     }
 
                 }
-                //CREATE PRODUCT BY SUB CATEGORY
+                //CREATE PRODUCT WITH SUB CATEGORY
                 elseif(strpos($category,"subcat_")!==false){
-                    //admin Id
+
+                    //creator id
                     $creator_id=$_SESSION['userId'];
+
+                    //create a product
                     $product_id=Product::create(['title'=>$title,'price'=>$price,'description'=>$description,'image'=>$image,'image_alt'=>$image_alt,'instock'=>$instock,'creator_id'=>$creator_id],$message);
                     //ADD PRODUCT MESSAGES
                     //MESSAGE HANDLERS
@@ -116,9 +153,10 @@ if(isset($pageUi)){
                         $_SESSION['successMessage']=$message->showSuccess(SUCCESS_CREATE_PRODUCT);
                     }
 
+                    //export sub category id in string
                     sscanf($category,"subcat_%d",$subCategoryId);
-                    //add subcategory_product
 
+                    //add to subcategory_product *** relation between sub category & product ***
                     if($product_id && $subCategoryId){
                         $subCategoryObj=new SubCategory($subCategoryId);
                         $result=Db::insert(SUB_CATEGORY_PRODUCT_TABLE_NAME,['product_id'=>$product_id,'subcategory_id'=>$subCategoryId]);
@@ -147,15 +185,20 @@ if(isset($pageUi)){
     }elseif($pageUi=='editProduct'){
         //check auth
         if(isAdmin() || isMaster()){
+
+            //cancel edit
             if(isset($_POST['cancelEditProduct'])){
                 redirectTo("products.php");
             }
+
             if(isset($_GET['id'])){
 
                 $product=new Product($_GET['id']);
 
                 if(isset($_POST['editProduct'])){
                     //add product actions
+
+                    //check inputs
                     $title=isset($_POST['title']) ? $_POST['title'] : null;
                     $price=isset($_POST['price']) ? $_POST['price'] : null;
                     $description=isset($_POST['description']) ? $_POST['description'] : null;
@@ -412,41 +455,44 @@ if(isset($pageUi)){
         }
     }//TERMS SETTINGS
     elseif($pageUi=='termsdraft'){
+        //check auth
+        if(isMaster() || isAdmin()){
 
-        if(isset($_POST['law'])){
+            if(isset($_POST['law'])){
 
-            //replace law text
-            $result=file_put_contents("../law.txt",$_POST['lawtxt']);
-            if($result){
-                $_SESSION['successMessage']=SUCCESS_UPDATE_LAW_TXT;
-            }else{
-                $_SESSION['errorMessage']=WARNING_UPDATE_LAW_TXT;
+                //replace law text
+                $result=file_put_contents("../law.txt",$_POST['lawtxt']);
+                if($result){
+                    $_SESSION['successMessage']=SUCCESS_UPDATE_LAW_TXT;
+                }else{
+                    $_SESSION['errorMessage']=WARNING_UPDATE_LAW_TXT;
+                }
+                //reload page
+                redirectTo($_SERVER['PHP_SELF']);
+            }elseif(isset($_POST['term'])){
+
+                //replace term text
+                $result=file_put_contents("../term_service.txt",$_POST['termtxt']);
+
+                if($result){
+                    $_SESSION['successMessage']=SUCCESS_UPDATE_TERM_TXT;
+                }else{
+                    $_SESSION['errorMessage']=WARNING_UPDATE_TERM_TXT;
+                }
+                //reload page
+                redirectTo($_SERVER['PHP_SELF']);
+            }elseif(isset($_POST['about'])){
+
+                //replace about text
+                $result=file_put_contents("../about.txt",$_POST['abouttxt']);
+                if($result){
+                    $_SESSION['successMessage']=SUCCESS_UPDATE_ABOUT_TXT;
+                }else{
+                    $_SESSION['errorMessage']=WARNING_UPDATE_ABOUT_TXT;
+                }
+                //reload page
+                redirectTo($_SERVER['PHP_SELF']);
             }
-            //reload page
-            redirectTo($_SERVER['PHP_SELF']);
-        }elseif(isset($_POST['term'])){
-
-            //replace term text
-            $result=file_put_contents("../term_service.txt",$_POST['termtxt']);
-
-            if($result){
-                $_SESSION['successMessage']=SUCCESS_UPDATE_TERM_TXT;
-            }else{
-                $_SESSION['errorMessage']=WARNING_UPDATE_TERM_TXT;
-            }
-            //reload page
-            redirectTo($_SERVER['PHP_SELF']);
-        }elseif(isset($_POST['about'])){
-
-            //replace about text
-            $result=file_put_contents("../about.txt",$_POST['abouttxt']);
-            if($result){
-                $_SESSION['successMessage']=SUCCESS_UPDATE_ABOUT_TXT;
-            }else{
-                $_SESSION['errorMessage']=WARNING_UPDATE_ABOUT_TXT;
-            }
-            //reload page
-            redirectTo($_SERVER['PHP_SELF']);
         }
 
     }
@@ -497,103 +543,104 @@ if(isset($pageUi)){
     }
     //UPLOAD GEOJSON file
     elseif($pageUi=="geojson"){
+        if(isAdmin() || isMaster()){
+            if(isset($_FILES['geojson']) && $_FILES['geojson']){
 
-        if(isset($_FILES['geojson']) && $_FILES['geojson']){
+                //CHECK FILE FORMAT
+                if($_FILES['geojson']['type']!="application/geo+json"){
+                    $_SESSION['errorMessage']=ERR_GEOJSON_FORMAT;
+                    redirectTo($_SERVER['PHP_SELF']);
+                }
 
-            //CHECK FILE FORMAT
-            if($_FILES['geojson']['type']!="application/geo+json"){
-                $_SESSION['errorMessage']=ERR_GEOJSON_FORMAT;
-                redirectTo($_SERVER['PHP_SELF']);
-            }
-
-            $result=uploadFile($_FILES['geojson'],$msg,"/","map(2).geojson");
-            if($result){
-                $_SESSION['successMessage']=SUCCESS_UPLOAD_GEOJSON;
-                redirectTo($_SERVER['PHP_SELF']);
-            }else{
-                $_SESSION['errorMessage']=$msg;
-                redirectTo($_SERVER['PHP_SELF']);
+                $result=uploadFile($_FILES['geojson'],$msg,"/","map(2).geojson");
+                if($result){
+                    $_SESSION['successMessage']=SUCCESS_UPLOAD_GEOJSON;
+                    redirectTo($_SERVER['PHP_SELF']);
+                }else{
+                    $_SESSION['errorMessage']=$msg;
+                    redirectTo($_SERVER['PHP_SELF']);
+                }
             }
         }
-        
     }
     //SLIDER SETTINGS
     elseif($pageUi=='sliders'){
-        if(isset($_POST['edit'])){
-            if(isset($_FILES['slider1'])){
-                //slider 1
-                $slider=new Slider(1);
+        if(isAdmin() || isMaster()){
+            if(isset($_POST['edit'])){
+                if(isset($_FILES['slider1'])){
+                    //slider 1
+                    $slider=new Slider(1);
 
-                if($_FILES['slider1']){
+                    if($_FILES['slider1']){
 
-                    //upload new picture
-                    $image_path=uploadImage($_FILES['slider1'],$message,"assets/images/slider/");
+                        //upload new picture
+                        $image_path=uploadImage($_FILES['slider1'],$message,"assets/images/slider/");
 
-                    if($image_path){
-                        $old_image_path=$slider->getImgUrl();
-                        $result=$slider->update(['image_url'=>$image_path]);
-                        //set new path in class
-                        $slider->setImgUrl($image_path);
-                        if($result){
-                            //delete old image from host directory
-                            unlink($old_image_path);
+                        if($image_path){
+                            $old_image_path=$slider->getImgUrl();
+                            $result=$slider->update(['image_url'=>$image_path]);
+                            //set new path in class
+                            $slider->setImgUrl($image_path);
+                            if($result){
+                                //delete old image from host directory
+                                unlink($old_image_path);
+                            }
+                        }else {
+                            # code...
                         }
-                    }else {
-                        # code...
                     }
-                }
-            }elseif(isset($_FILES['slider2'])){
-                //slider 2
-                $slider=new Slider(2);
-                
-                if($_FILES['slider2']){
+                }elseif(isset($_FILES['slider2'])){
+                    //slider 2
+                    $slider=new Slider(2);
+                    
+                    if($_FILES['slider2']){
 
-                    //upload new picture
-                    $image_path=uploadImage($_FILES['slider2'],$message,"assets/images/slider/");
+                        //upload new picture
+                        $image_path=uploadImage($_FILES['slider2'],$message,"assets/images/slider/");
 
-                    if($image_path){
-                        $old_image_path=$slider->getImgUrl();
-                        $result=$slider->update(['image_url'=>$image_path]);
-                        //set new path in class
-                        $slider->setImgUrl($image_path);
-                        if($result){
-                            //delete old image from host directory
-                            unlink($old_image_path);
+                        if($image_path){
+                            $old_image_path=$slider->getImgUrl();
+                            $result=$slider->update(['image_url'=>$image_path]);
+                            //set new path in class
+                            $slider->setImgUrl($image_path);
+                            if($result){
+                                //delete old image from host directory
+                                unlink($old_image_path);
+                            }
+                        }else {
+                            # code...
                         }
-                    }else {
-                        # code...
                     }
-                }
-            }elseif(isset($_FILES['slider3'])){
-                //slider 3
-                $slider=new Slider(3);
-                
-                if($_FILES['slider3']){
+                }elseif(isset($_FILES['slider3'])){
+                    //slider 3
+                    $slider=new Slider(3);
+                    
+                    if($_FILES['slider3']){
 
-                    //upload new picture
-                    $image_path=uploadImage($_FILES['slider3'],$message,"assets/images/slider/");
+                        //upload new picture
+                        $image_path=uploadImage($_FILES['slider3'],$message,"assets/images/slider/");
 
-                    if($image_path){
-                        $old_image_path=$slider->getImgUrl();
-                        $result=$slider->update(['image_url'=>$image_path]);
-                        //set new path in class
-                        $slider->setImgUrl($image_path);
-                        if($result){
-                            //delete old image from host directory
-                            unlink($old_image_path);
+                        if($image_path){
+                            $old_image_path=$slider->getImgUrl();
+                            $result=$slider->update(['image_url'=>$image_path]);
+                            //set new path in class
+                            $slider->setImgUrl($image_path);
+                            if($result){
+                                //delete old image from host directory
+                                unlink($old_image_path);
+                            }
+                        }else {
+                            # code...
                         }
-                    }else {
-                        # code...
                     }
                 }
             }
+
+            //fetch sliders
+            $slider1=new Slider(1);
+            $slider2=new Slider(2);
+            $slider3=new Slider(3);
         }
-
-        //fetch sliders
-        $slider1=new Slider(1);
-        $slider2=new Slider(2);
-        $slider3=new Slider(3);
-
     }
     //INDEX
     elseif($pageUi=='index'){
@@ -817,12 +864,38 @@ if(isset($pageUi)){
 
             //ADD NEW ADDRESS
             $userPhone=$_SESSION['phone'];
-            Address::create(['user_phone'=>$userPhone,'address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
+
+            if(!isset($_POST['address']) || empty($_POST['address'])){
+                $_SESSION['errorMessage']=ERR_ADDRESS_NAME_EMPTY;
+                redirectTo($_SERVER['PHP_SELF']);
+            }
+
+            if(!isset($_POST['postal_code']) || empty($_POST['postal_code'])){
+                $_SESSION['errorMessage']=ERR_POSTAL_CODE_EMPTY;
+                redirectTo($_SERVER['PHP_SELF']);
+            }
+
+            if(!isset($_POST['title']) || empty($_POST['title'])){
+                $_SESSION['errorMessage']=ERR_TITLE_EMPTY;
+                redirectTo($_SERVER['PHP_SELF']);
+            }
+
+            $unit=isset($_POST['unit']) ? $_POST['unit'] : null;
+            $floor=isset($_POST['floor']) ? $_POST['floor'] : null;
+            $result=Address::create(['user_phone'=>$userPhone,'address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
+
+            if($result){
+                $_SESSION['successMessage']=SUCCESS_CREATE_ADDRESS;
+            }else{
+                $_SESSION['errorMessage']=ERR_CREATE_ADDRESS;
+            }
+            
             redirectTo($_SERVER['PHP_SELF']);
         }
         if(isset($_GET['del'])){
             $address=new Address($_GET['del']);
             $address->delete();
+            $_SESSION['successMessage']=SUCCESS_DELETE_ADDRESS;
             redirectTo($_SERVER['PHP_SELF']);
         }
 
@@ -890,6 +963,26 @@ if(isset($pageUi)){
                     $role="user";
                 }
 
+                //check inputs
+
+                if(!isset($_POST['address-item']) || !$_POST['address-item']){
+                    $_SESSION['errorMessage']=ERR_ADDRESS_EMPTY;
+                    redirectTo($_SERVER['PHP_SELF']);
+                }
+
+
+                if(!isset($_POST['shipping']) || !$_POST['shipping']){
+                    $_SESSION['errorMessage']=ERR_SHIPPING_EMPTY;
+                    redirectTo($_SERVER['PHP_SELF']);
+                }
+
+
+                if(!isset($_POST['payment']) || !$_POST['payment']){
+                    $_SESSION['errorMessage']=ERR_PAYMENT_EMPTY;
+                    redirectTo($_SERVER['PHP_SELF']);
+                }
+
+
 
                 
                 $orderId=Order::create(['customer_id'=>$_SESSION['userId'],'code'=>$code,'payment_method_id'=>$_POST['payment'],'shipping_id'=>$_POST['shipping'],'order_date'=>$date,'order_time'=>$time,'sum_price'=>$sum_all_price,'customer_role'=>$role,'address_id'=>$_POST['address-item'],'postal_price'=>$postal_price],$message);
@@ -928,6 +1021,11 @@ if(isset($pageUi)){
             redirectTo("index.php");
         }
     }elseif($pageUi=='aftercheckout'){
+
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+
         if(isset($_SESSION['code']) && $_SESSION['code']){
             $code=$_SESSION['code'];
             unset($_SESSION['code']);
@@ -964,26 +1062,25 @@ if(isset($pageUi)){
 
     }elseif($pageUi=='shipping'){
         if(isAdmin() || isMaster()){
-        if(isset($_POST['shipping_update'])){
-            $shipping=new Shipping($_POST['shipping_id']);
-            $shipping->update(['shipping_type'=>$_POST['shipping_type'],'price'=>$_POST['price'],'description'=>$_POST['description']]);
-        }
+            if(isset($_POST['shipping_update'])){
+                $shipping=new Shipping($_POST['shipping_id']);
+                $shipping->update(['shipping_type'=>$_POST['shipping_type'],'price'=>$_POST['price'],'description'=>$_POST['description']]);
+            }
 
-        if(isset($_POST['updatepostalprice'])){
-            updateFreePostalPrice($_POST['postalprice']);
-        }
+            if(isset($_POST['updatepostalprice'])){
+                updateFreePostalPrice($_POST['postalprice']);
+            }
 
-        //get shippings 
-        $shippings=Shipping::getShippings();
-        $freePostalPrice=getFreePostalPrice();
-        }else{
-            redirectTo("adminlogin.php");
+            //get shippings 
+            $shippings=Shipping::getShippings();
+            $freePostalPrice=getFreePostalPrice();
         }
     }elseif($pageUi=='orderdetail'){
+        $account=new Account();
+        //AUTHENTICATION
+        $account->checkAuth();
+
         if(isset($_GET['id']) && is_numeric($_GET['id'])){
-            $account=new Account();
-            //AUTHENTICATION
-            $account->checkAuth();
 
             $order=new Order($_GET['id']);
             $shipping=new Shipping($order->getShippingId());
@@ -1004,7 +1101,7 @@ if(isset($pageUi)){
 
         }
     }elseif($pageUi=='orderreceipt'){
-        
+
         $account=new Account();
         //AUTHENTICATION
         $account->checkAuth();
@@ -1036,12 +1133,24 @@ if(isset($pageUi)){
         //AUTHENTICATION
         $account->checkAuth();
 
+        if(isset($_POST['cancelEdit'])){
+            redirectTo("useraddress.php");
+        }
+
         //update address
         if(isset($_POST['updateAddress'])){
+
             $address=new Address($_GET['id']);
-            $address->update(['address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
-            $address=new Address($_GET['id']);
-            redirectTo("useraddress.php");
+            $result=$address->update(['address'=>$_POST['address'],'unit'=>$_POST['unit'],'floor'=>$_POST['floor'],'postal_code'=>$_POST['postal_code'],'title'=>$_POST['title'],'address_explain'=>$_POST['description']]);
+            
+            if($result){
+                $_SESSION['successMessage']=SUCCESS_ADDRESS_UPDATED;
+                redirectTo($_SERVER['PHP_SELF']."?id=".$_GET['id']);
+            }else{
+                $_SESSION['errorMessage']=ERR_ADDRESS_UPDATED;
+                redirectTo($_SERVER['PHP_SELF']."?id=".$_GET['id']);
+            }
+
         }
 
 
@@ -1082,9 +1191,16 @@ if(isset($pageUi)){
             echo 'خطا! پارامتر ورودی صحیح نمی باشد';
             die();
         }
+    }elseif($pageUi=='searchedfor'){
+        if(isset($_GET['term'])){
+
+            $term=Db::correctTermFormat($_GET['term'],'simple');
+            $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"title LIKE '%$term%'");
+
+        }else{
+            echo 'خطا! پارامتر ورودی صحیح نمی باشد';
+            die();
+        }
     }
-
-
-
 
 }
