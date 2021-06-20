@@ -13,6 +13,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
     
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     
 
@@ -242,7 +244,7 @@
       <!-- most purchased -->
       <div class="container p-3" >
         <!-- header -->
-        <div class="row p-3 border-bottom border-secondary border-3">
+        <div class="row p-3 border-bottom border-coral border-3">
           <div class="col-md-10">
             <p class="h5">پرفروش ترین محصولات</p>
           </div>
@@ -251,19 +253,20 @@
         <!-- header -->
 
         <!-- slider -->
-        <div class="row slider" style="direction: ltr">
-          
+        <div class="row justify-content-center my-2" style="direction: ltr">
+          <div class="col-10 col-md-12 slider">
             <?php if($mostSelesProducts): ?>
               <?php foreach($mostSelesProducts as $mostSelesProduct): 
                   $mostSelesProductId=$mostSelesProduct['id'];
                   $mostSelesProductTitle=$mostSelesProduct['title'];
               ?>
-              <a href="<?php echo DOMAIN."product.php?pid=$mostSelesProductId&slug=$mostSelesProductTitle"?>">
-                <div class="col-md-12 p-3">
-                  <div class="card product-sliding-item">
+              <a href="<?php echo DOMAIN."product.php?pid=$mostSelesProductId&slug=$mostSelesProductTitle"?>" class="text-decoration-none">
+                <div class="col-12 p-2">
+                  <div class="card shadow">
                     <img src="<?php echo $mostSelesProduct['image'] ?>" class="card-img-top" alt="<?php echo $mostSelesProduct['image_alt'] ?>">
                     <div class="card-body p-1">
-                      <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $mostSelesProduct['title'] ?></p>
+                      <p class="card-title text-center mb-3" style=""><?php echo $mostSelesProduct['title'] ?></p>
+                      <p class="m-0 text-muted">قیمت</p>
                       <div class="d-flex" style="color: coral;">
                         <p class="ms-1 m-0">تومان</p>
                         <p class="m-0"><?php echo number_format($mostSelesProduct['price']) ?></p>
@@ -278,7 +281,7 @@
             <?php endif; ?>
 
             <!-- slider -->
-            
+            </div>
         </div>
       </div>
       <!-- most purchased -->
@@ -291,25 +294,26 @@
             <!-- category 1 -->
             <div class="container p-3" >
                 <!-- header -->
-                <div class="row p-3 border-bottom border-secondary border-3">
+                <div class="row p-3 border-bottom border-coral border-3">
                   <div class="col-md-10">
                     <p class="h5"><?php echo $categoryObj->getName(); ?></p>
                   </div>
                 </div>
                 <!-- header -->
                 <!-- slider -->
-                <div class="row slider" style="direction: ltr">
-            
+                <div class="row justify-content-center my-2" style="direction: ltr">
+                <div class="col-10 col-md-12 slider">
                     <?php foreach($products as $product):
                         $productId=$product['id'];
                         $productTitle=$product['title'];
                     ?>
-                      <a href="<?php echo DOMAIN."product.php?pid=$productId&slug=$productTitle" ?>">
-                        <div class="col-md-12 p-3">
-                          <div class="card product-sliding-item">
+                      <a href="<?php echo DOMAIN."product.php?pid=$productId&slug=$productTitle" ?>" class="text-decoration-none">
+                        <div class="col-12 p-2">
+                          <div class="card shadow">
                             <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt']; ?>">
                             <div class="card-body p-1">
-                              <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $product['title']; ?></p>
+                              <p class="card-title text-center mb-3" style=""><?php echo $product['title']; ?></p>
+                              <p class="m-0 text-muted text-decoration-line-through">44,000 <span class="badge bg-primary">22%</span></p>
                               <div class="d-flex" style="color: coral;">
                                 <p class="ms-1 m-0">تومان</p>
                                 <p class="m-0"><?php echo number_format($product['price']); ?></p>
@@ -320,6 +324,7 @@
                         </a>
                     <?php endforeach; ?>
                 </div>
+              </div>
             </div>
          <!-- category 1 -->
         <?php endforeach ?>
@@ -330,7 +335,7 @@
       <!-- new products -->
       <div class="container p-3" >
         <!-- header -->
-        <div class="row p-3 border-bottom border-secondary border-3">
+        <div class="row p-3 border-bottom border-3 border-coral">
           <div class="col-md-10">
             <p class="h5">جدید ترین محصولات</p>
           </div>
@@ -339,19 +344,20 @@
         <!-- header -->
 
           <!-- slider -->
-          <div class="row slider" style="direction: ltr">
-            
+          <div class="row justify-content-center my-2" style="direction: ltr">
+            <div class="col-10 col-md-12 slider">   
               <?php if($latestProducts): ?>
                 <?php foreach($latestProducts as $latestProduct):
                       $latestProductId=$latestProduct['id'];
                       $latestProductTitle=$latestProduct['title'];
                 ?>
-                <a href="<?php echo DOMAIN."product.php?pid=$latestProductId&slug=$latestProductTitle" ?>">
-                  <div class="col-md-12 p-3">
-                    <div class="card product-sliding-item">
+                <a href="<?php echo DOMAIN."product.php?pid=$latestProductId&slug=$latestProductTitle" ?>" class="text-decoration-none">
+                  <div class="col-12 p-2">
+                    <div class="card shadow">
                       <img src="<?php echo $latestProduct['image'] ?>" class="card-img-top" alt="<?php echo $latestProduct['image_alt'] ?>">
                       <div class="card-body p-1">
-                        <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $latestProduct['title'] ?></p>
+                        <p class="card-title text-center mb-3" style=""><?php echo $latestProduct['title'] ?></p>
+                        <p class="m-0 text-muted">قیمت</p>
                         <div class="d-flex" style="color: coral;">
                           <p class="ms-1 m-0">تومان</p>
                           <p class="m-0"><?php echo number_format($latestProduct['price']) ?></p>
@@ -366,7 +372,7 @@
               <?php endif; ?>
 
               <!-- slider -->
-              
+              </div>
           </div>
       </div>
       <!-- new products -->

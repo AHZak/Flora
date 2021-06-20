@@ -1,21 +1,23 @@
 body {
     /* background-color:rgb(250, 186, 223); */
+    font-family: 'El Messiri', sans-serif;
 }
 
 .catu {
     background-color: #F55E61;
 }
-.product-sliding-item {
-    border: 1px solid rgba(225, 64, 64, 0.7);
-    
-}
+
 
 .cart-cart {
     color: rgb(255, 93, 35);
 }
 
+.border-coral {
+    border-color: #F55E61 !important;
+}
+
 .slider a {
-    text-decoration: none;
+    
     color: currentColor;
 }
 
