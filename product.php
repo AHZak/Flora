@@ -3,76 +3,30 @@
   $pageUi='product';
   include_once 'config.php';
 ?>
-<!doctype html>
-<html dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
-    
-    
-    
-
-    
-
-    <title>فلورا - نام محصول</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/product.css">
-    <!-- Fontawesome kit -->
-    <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
-  </head>
-  <body class="">
-    <!----------------------------- headers ------------------------------------>
-    <header>
-
-        <div class="container-fluid">
-          <!----------------------------- fisrt header ------------------------------------>
-          <div class="row">
-
-            <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
-              <div class="col-md-4 ms-2">
-                <a href="index.php"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
-              </div>
-              <div class="d-flex align-items-center">
-              <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
-              </a> <i class="me-2">|</i>
-              <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
-              
-              </div>
-            </div>
-
-          </div>
-          <!----------------------------- first header ------------------------------------>
-
-          <!----------------------------- second header ------------------------------------>
-          <div class="row" style="background-color: coral;">
-            <div class="p-3">categories</div>
-          </div>
-          <!----------------------------- second header ------------------------------------>
-
-        </div>
-    
-    </header>
-    <!----------------------------- headers ------------------------------------>
+<?php include 'commonheader.php'; ?>
     <!----------------------------- product details + similar products ------------------------------------>
-    <main>
+    <main id="productpage">
+    <!-- this id is not being used yet -->
 
-    <!-- category mapping -->
+    <!-- category mapping 
     <div class="container-fluid">
-      <div class="row bg-warning" >
-        <div class="p-3">category mapping</div>
+      <div class="row bg-warning p-2" >
+      <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">دسته اصلی</a></li>
+    <li class="breadcrumb-item"><a href="#">زیر دسته</a></li>
+    <li class="breadcrumb-item active" aria-current="page">اسم محصول</li>
+  </ol>
+</nav>
       </div>
       </div>
-    <!-- category mapping -->
+    category mapping -->
+
 
     <!-- product -->
       <div class="container bg-light mt-3">
         <?php if(isset($product) && $product): ?>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center rounded" id="product-container">
 
               <!-- image -->
               <div class="col-md p-3">
@@ -83,7 +37,7 @@
               <!-- name + description -->
               <div class="col-md p-3">
                 <div class="d-flex flex-column align-items-start">
-                  <p class="h5 mb-5"><?php echo $product->getTitle(); ?></p>
+                  <p class="h5 mb-5 border-bottom border-3 border-dark"><?php echo $product->getTitle(); ?></p>
                   <p>توضیحات:</p>
                   <p><?php echo $product->getDescription(); ?></p>
                 </div>
@@ -93,6 +47,7 @@
               <!-- price card -->
               <div class="col-auto p-3">
                 <div class="p-5 price-card d-flex flex-column shadow">
+                <p class="text-muted text-decoration-line-through">44,000 <span class="badge bg-primary ms-2">22%</span></p>
                   <div class="d-flex flex-row">
                     <p class="me-3">قیمت:</p>
                     <p><?php echo number_format($product->getPrice()); ?> تومان</p>
@@ -100,9 +55,10 @@
                   <div class="d-flex flex-row mb-3 align-items-center">
                     <p class="me-3 mb-0">تعداد:</p>
                     <div class="input-group spinner">
-                      <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'increase')" class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
-                      <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'decrease')" class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
                       <input  id="<?php echo $product->getId(); ?>_number" type="text" class="form-control" size="2" value="1">  
+                      <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'increase')" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-plus"></i></button>
+                      <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'decrease')" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-minus"></i></button>
+                      
                     </div>
                   </div>
                   <div class="align-self-center mt-3">
@@ -126,7 +82,7 @@
         <!-- header -->
         <?php if(isset($product) && $product && $product->getCategory()->getProducts("instock>0") ): ?>
 
-            <div class="row p-3 border-bottom border-secondary border-3">
+            <div class="row p-3 border-bottom border-coral border-3">
               <div class="col-md-10">
                 <p class="h5">محصولات مشابه</p>
               </div>
@@ -135,15 +91,17 @@
             <!-- header -->
 
             <!-- slider -->
-            <div class="row slider" style="direction: ltr">
-                <?php foreach($product->getCategory()->getProducts("instock>0") as $product): ?>
+            <div class="row justify-content-center my-2" style="direction: ltr">
+            <div class="col-10 col-md-12 slider">
+                    <?php foreach($product->getCategory()->getProducts("instock>0") as $product): ?>
                 
                     <a href="<?php echo "?pid=".$product['id']."&slug=".$product['title']; ?>" class="text-decoration-none" style="color:currentcolor;">
-                      <div class="col-md-12 p-3">
-                        <div class="card product-sliding-item">
+                      <div class="col-12 p-3">
+                        <div class="card shadow">
                           <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt'] ?>">
                           <div class="card-body p-1">
-                            <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $product['title'] ?></p>
+                            <p class="card-title text-center mb-3" style=""><?php echo $product['title'] ?></p>
+                            <p class="m-0 text-muted">قیمت</p>
                             <div class="d-flex" style="color: coral;">
                               <p class="ms-1 m-0">تومان</p>
                               <p class="m-0"><?php echo number_format($product['price']); ?></p>
@@ -156,7 +114,7 @@
 
                 <?php endforeach; ?>
             </div>
-
+              </div>
         <?php endif; ?>
 
       </div>
@@ -165,16 +123,7 @@
     </main>
     <!----------------------------- product details + similar products ------------------------------------>
 
-    <!-- footer -->
-    <footer>
-      <div class="container-fluid">
-      <div class="row" style="background-color: grey;">
-        <div class="col-md-12">footer</div>
-      </div>
-      </div>
-      
-    </footer>
-    <!-- footer -->
+    <?php include 'commonfooter.php'; ?>
 
     
 
@@ -215,7 +164,7 @@
               {
                 breakpoint: 480,
                 settings: {
-                  slidesToShow: 1,
+                  slidesToShow: 2,
                   slidesToScroll: 1
                 }
               }

@@ -33,3 +33,21 @@ body {
 footer {
     background-color: #F55E61 ;
 }
+
+#product-container {
+    background-color: antiquewhite;
+}
+
+.price-card {
+    background-color: rgba(250, 0, 0, 0.5);
+
+}
+
+
+
+.buy-quantity-btn:active{
+    color: white;
+}
+.buy-quantity-btn:focus {
+    box-shadow: none;
+}
