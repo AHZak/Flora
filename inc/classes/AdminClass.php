@@ -157,16 +157,20 @@ class Admin{
 
 
         //check phone
-        $phone=$params['phone'];
-        if(empty($phone)){
-            $messages->setErrorMessage(ERR_PHONE_REQUIRED);
-            return false;
+        $phone=isset($params['phone']) ? $params['phone'] : false;
+
+        if($phone){
+            if(empty($phone)){
+                $messages->setErrorMessage(ERR_PHONE_REQUIRED);
+                return false;
+            }
+    
+            if(strlen($phone)!=PHONE_NUMBER_LEN){
+                $messages->setErrorMessage(ERR_PHONE_NUMBER_LEN);
+                return false;
+            }
         }
 
-        if(strlen($phone)!=PHONE_NUMBER_LEN){
-            $messages->setErrorMessage(ERR_PHONE_NUMBER_LEN);
-            return false;
-        }
         
         return Db::update(ADMIN_TABLE_NAME,$params,"id='$this->id'");
     }

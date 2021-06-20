@@ -791,6 +791,7 @@ if(isset($pageUi)){
     //USER PROFILE
     elseif($pageUi=='userProfile'){
        
+
         $account=new Account();
         //AUTHENTICATION
         $account->checkAuth();
