@@ -120,19 +120,26 @@
                             <div class="card-body p-1">
                               <p class="card-title text-center mb-3" style=""><?php echo $product['title']; ?></p>
 
-                              <?php if($product['discount']>0): $price=getPriceAfterOff($product['price'],$product['discount']);?>
+                              <?php if($product['discount']>0): $price=getPriceAfterOff($product['price'],$product['discount']);
+                                  if($product['instock']==0):
+                              ?>
+   ‍‍                                <p class="m-0 text-decoration-line-through">ناموجود</p>
+                                <?php else: ?>
                                   <p class="m-0 text-decoration-line-through"><?php echo number_format($product['price']); ?><span class="badge bg-primary me-1"> <?php echo $product['discount']; ?>%</span></p>
-
                                   <div class="d-flex" style="color: coral;">
                                     <p class="ms-1 m-0">تومان</p>
                                     <p class="m-0"><?php echo number_format($price); ?></p>
                                   </div>
-
+                                <?php endif; ?>
                               <?php else: $price=$product['price']; ?>
-                                <div class="d-flex" style="color: coral;">
-                                  <p class="ms-1 m-0">تومان</p>
-                                  <p class="m-0"><?php echo number_format($price); ?></p>
-                                </div>
+                                  <?php if($product['instock']==0): ?>
+                                    <p class="m-0 text-decoration-line-through">ناموجود</p>
+                                  <?php else: ?>
+                                    <div class="d-flex" style="color: coral;">
+                                      <p class="ms-1 m-0">تومان</p>
+                                      <p class="m-0"><?php echo number_format($price); ?></p>
+                                    </div>
+                                <?php endif; ?>
                               <?php endif; ?>
 
                             </div>

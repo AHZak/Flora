@@ -278,7 +278,7 @@ class Product{
 
     //valid instock
     public static function validProductInstock($instock,&$messages=""){
-        if(empty($instock)){
+        if(empty($instock) && $instock!=='0'){
             $messages=ERR_PRODUCT_EMPTY_INSTOCK;
             return false;
         }
