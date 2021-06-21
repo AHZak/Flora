@@ -34,7 +34,7 @@
 
               </div>
               <div class="col-10 col-md-3 d-flex flex-row align-items-center text-nowrap me-2 my-3">
-                <p class="h6 me-2">به ترتیب :</p>
+                <p class="h6 me-2 mb-0">به ترتیب :</p>
                 <select id="ordercatitem" name="order" id="order" class="form-select form-select">
                   <option value="all">پیشفرض</option>
                   <option value="mostexpensive">گران ترین</option>   
@@ -67,10 +67,10 @@
                                 <div class="card-body p-1">
                                   <p class="card-title text-center mb-3" style=""><?php echo $productObj->getTitle(); ?></p>
                                   <div class="d-flex-flex-column" style="direction:ltr;">
-                                  <p class="m-0 text-decoration-line-through">44,000 <span class="badge bg-primary me-1">22%</span></p>
+                                    <p class="m-0 text-decoration-line-through">44,000 <span class="badge bg-primary me-1">22%</span></p>
                                     <div class="d-flex" style="color: coral;">
-                                      <p class="m-0"><?php echo number_format($productObj->getPrice()); ?></p>
                                       <p class="ms-1 m-0">تومان</p>
+                                      <p class="m-0"><?php echo number_format($productObj->getPrice()); ?></p>
                                     </div>
                                   </div>
                                 </div>
