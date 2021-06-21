@@ -1,7 +1,7 @@
 <?php
 include '../../config.php';
 use Database\Db;
-if(isAdmin() || isMaster()){
+if(isset($_SESSION['permission'])){
     if(isset($_GET['term'])){
         $term=DB::correctTermFormat($_GET['term'],'simple');
         $users=Db::simpleSearch(USER_TABLE_NAME,"FName LIKE '%$term%' OR LName LIKE '%$term%' OR phone LIKE '%$term%'","id");

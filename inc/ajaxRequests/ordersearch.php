@@ -2,7 +2,7 @@
 include '../../config.php';
 use Database\Db;
 
-if(isAdmin() || isMaster()){
+if(isset($_SESSION['permission'])){
 
 
 
@@ -134,4 +134,7 @@ if(isAdmin() || isMaster()){
                 </table>
 
     </div>
-<?php }?>
+<?php }else {
+    echo "access denied!";
+    die();
+}
