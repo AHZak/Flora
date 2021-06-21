@@ -84,7 +84,7 @@ if(isAdmin() || isMaster()){
             </div>
           </div>
 
-          <div class="container">
+          <div class="container p-0">
           <?php if($ordersDetail): ?>
               <?php foreach($ordersDetail as $orderDetail):
 
@@ -93,13 +93,13 @@ if(isAdmin() || isMaster()){
                 $product=new Product($orderDetail['product_id']);
               ?>
                   <!-- Item in cart -->
-                  <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
+                  <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded shadow" style="background-color:antiquewhite;">
                     <div class="d-flex flex-row align-items-center flex-start">
-                      <div class="p-2 me-3">
-                        <a href="../product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>"><img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail"></a>
+                      <div class="col-2 me-3">
+                        <a href="../product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>"><img src="<?php echo $product->getImage(); ?>" style="width: 150px;" alt="" class="img-fluid ordrd-img rounded"></a>
                       </div>    
                       <div class="d-flex flex-column mt-2 align-self-start justify-content-start" style="height: 9rem">
-                        <a href="../product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>" class="text-decoration-none" style="color: currentColor;"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
+                        <a href="../product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>" class="text-decoration-none" style="color: currentColor;"><p class="fw-bold mb-4 border-bottom border-2 border-dark"><?php echo $product->getTitle(); ?></p></a>
                         <div class="d-flex flex-row align-items-center">
                           <p class="m-0 me-2">تعداد:</p>
                           <strong><?php echo $orderDetailObj->getQuantity(); ?></strong>
@@ -107,7 +107,7 @@ if(isAdmin() || isMaster()){
                       </div>
                       <div class="ms-auto align-self-end">
                         <strong>قیمت هر واحد</strong>
-                        <div class=" rounded bg-info p-2 text-nowrap mt-2">
+                        <div class=" rounded p-2 text-nowrap mt-2" style="background-color:coral;">
                           <p id="13_sumprice" class="m-0"><?php echo number_format($orderDetailObj->getOrderedPrice()); ?> تومان</p>
                         </div>
                       </div>
