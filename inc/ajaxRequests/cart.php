@@ -8,6 +8,7 @@ if(isset($_POST)){
         unset($_SESSION['cart']['products'][$productId]);
         unset($_SESSION['cart']['number'][$productId]);
         unset($_SESSION['cart']['sumprice'][$productId]);
+        unset($_SESSION['cart']['orgprice'][$productId]);
         //product object
         $sumprice=0;
     }else{
@@ -33,8 +34,18 @@ if(isset($_POST)){
 
             //product object
             $product=new Product($productId);
+
             $sumprice=$product->getPrice()*$number;
-            $_SESSION['cart']['sumprice'][$productId]=$product->getPrice()*$number;
+
+            if($product->getDiscount()>0){
+                $orgprice=$sumprice;
+                $sumprice=getPriceAfterOff($sumprice,$product->getDiscount());
+            }else{
+                $orgprice="none";
+            }
+
+            $_SESSION['cart']['orgprice'][$productId]=$orgprice;
+            $_SESSION['cart']['sumprice'][$productId]=$sumprice;
         }
     }
 
@@ -45,13 +56,26 @@ if(isset($_POST)){
         foreach($_SESSION['cart']['products'] as $productId){
             //product object
             $product=new Product($productId);
-            $sum=$sum+$product->getPrice()*$_SESSION['cart']['number'][$productId];
+
+
+            if($product->getDiscount()>0){
+                $sum=$sum+getPriceAfterOff($product->getPrice()*$_SESSION['cart']['number'][$productId],$product->getDiscount());
+            }else{
+                $sum=$sum+$product->getPrice()*$_SESSION['cart']['number'][$productId];
+            }
+            
+            
         }
         $_SESSION['cart']['fullsum']=$sum;
     }else{
         $_SESSION['cart']['fullsum']=0;
     }
-    echo json_encode(['ok'=>true,'sumprice'=>number_format($sumprice),'fullsum'=>number_format($sum)]);
+
+    $_SESSION['countProducts']=count($_SESSION['cart']['products']);
+    
+
+   
+    echo json_encode(['ok'=>true,'sumprice'=>number_format($sumprice),'fullsum'=>number_format($sum),'orgprice'=>isset($orgprice) ? $orgprice :0,'countProducts'=>$_SESSION['countProducts']]);
 
 
 

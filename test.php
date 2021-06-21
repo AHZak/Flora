@@ -1,3 +1,4 @@
 <?php 
 include "config.php";
-echo exec("whoami");
+//session_destroy();
+show($_SESSION);

@@ -256,7 +256,7 @@
                           <?php foreach($products as $product): 
                             $productObj=new Product($product['product_id']);  
                           ?>
-                          <a href="#" class="text-decoration-none">
+                          <a href="product.php?pid=<?php echo $productObj->getId()."&slug=".$productObj->getTitle();  ?>" class="text-decoration-none">
                             <div class="col">
                               <div class="card shadow">
                                 <img src="<?php echo $productObj->getImage(); ?>" class="card-img-top" alt="<?php echo $productObj->getImageAlt(); ?>">

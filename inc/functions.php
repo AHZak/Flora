@@ -286,3 +286,9 @@ function updateFreePostalPrice($price){
         return false;
     }
 }
+
+function getPriceAfterOff(int $price,int $off){
+    $step1=$price*($off/100);
+    $step2=$price-$step1;
+    return $step2;
+}

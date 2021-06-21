@@ -63,11 +63,20 @@
                     <img src="<?php echo $mostSelesProduct['image'] ?>" class="card-img-top" alt="<?php echo $mostSelesProduct['image_alt'] ?>">
                     <div class="card-body p-1">
                       <p class="card-title text-center mb-3" style=""><?php echo $mostSelesProduct['title'] ?></p>
-                      <p class="m-0 text-muted">قیمت</p>
-                      <div class="d-flex" style="color: coral;">
-                        <p class="ms-1 m-0">تومان</p>
-                        <p class="m-0"><?php echo number_format($mostSelesProduct['price']) ?></p>
-                      </div>
+                      <?php if($mostSelesProduct['discount']>0): $price=getPriceAfterOff($mostSelesProduct['price'],$mostSelesProduct['discount']);?>
+                            <p class="m-0 text-muted text-decoration-line-through"><?php echo number_format($mostSelesProduct['price']); ?><span class="badge bg-primary"> <?php echo $mostSelesProduct['discount']; ?>%</span></p>
+
+                            <div class="d-flex" style="color: coral;">
+                              <p class="ms-1 m-0">تومان</p>
+                              <p class="m-0"><?php echo number_format($price); ?></p>
+                            </div>
+
+                        <?php else: $price=$mostSelesProduct['price']; ?>
+                          <div class="d-flex" style="color: coral;">
+                            <p class="ms-1 m-0">تومان</p>
+                            <p class="m-0"><?php echo number_format($price); ?></p>
+                          </div>
+                        <?php endif; ?>
                     </div>
                   </div>
                 </div>
@@ -110,11 +119,22 @@
                             <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt']; ?>">
                             <div class="card-body p-1">
                               <p class="card-title text-center mb-3" style=""><?php echo $product['title']; ?></p>
-                              <p class="m-0 text-muted text-decoration-line-through">44,000 <span class="badge bg-primary">22%</span></p>
-                              <div class="d-flex" style="color: coral;">
-                                <p class="ms-1 m-0">تومان</p>
-                                <p class="m-0"><?php echo number_format($product['price']); ?></p>
-                              </div>
+
+                              <?php if($product['discount']>0): $price=getPriceAfterOff($product['price'],$product['discount']);?>
+                                  <p class="m-0 text-muted text-decoration-line-through"><?php echo number_format($product['price']); ?><span class="badge bg-primary"> <?php echo $product['discount']; ?>%</span></p>
+
+                                  <div class="d-flex" style="color: coral;">
+                                    <p class="ms-1 m-0">تومان</p>
+                                    <p class="m-0"><?php echo number_format($price); ?></p>
+                                  </div>
+
+                              <?php else: $price=$product['price']; ?>
+                                <div class="d-flex" style="color: coral;">
+                                  <p class="ms-1 m-0">تومان</p>
+                                  <p class="m-0"><?php echo number_format($price); ?></p>
+                                </div>
+                              <?php endif; ?>
+
                             </div>
                           </div>
                         </div>
@@ -154,11 +174,20 @@
                       <img src="<?php echo $latestProduct['image'] ?>" class="card-img-top" alt="<?php echo $latestProduct['image_alt'] ?>">
                       <div class="card-body p-1">
                         <p class="card-title text-center mb-3" style=""><?php echo $latestProduct['title'] ?></p>
-                        <p class="m-0 text-muted">قیمت</p>
-                        <div class="d-flex" style="color: coral;">
-                          <p class="ms-1 m-0">تومان</p>
-                          <p class="m-0"><?php echo number_format($latestProduct['price']) ?></p>
-                        </div>
+                        <?php if($latestProduct['discount']>0): $price=getPriceAfterOff($latestProduct['price'],$latestProduct['discount']);?>
+                            <p class="m-0 text-muted text-decoration-line-through"><?php echo number_format($latestProduct['price']); ?><span class="badge bg-primary"> <?php echo $latestProduct['discount']; ?>%</span></p>
+
+                            <div class="d-flex" style="color: coral;">
+                              <p class="ms-1 m-0">تومان</p>
+                              <p class="m-0"><?php echo number_format($price); ?></p>
+                            </div>
+
+                        <?php else: $price=$latestProduct['price']; ?>
+                          <div class="d-flex" style="color: coral;">
+                            <p class="ms-1 m-0">تومان</p>
+                            <p class="m-0"><?php echo number_format($price); ?></p>
+                          </div>
+                        <?php endif; ?>
                       </div>
                     </div>
                   </div>

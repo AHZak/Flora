@@ -2,7 +2,11 @@ function addToCart(productId){
     var number=$("#"+productId+"_number").val();
     
     $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{productid:productId,number:number},function(response){
+        var response=JSON.parse(response);
+        
+        $("#badgetxt").text(response['countProducts']);
         alert("محصول مورد نظر به سبد خرید اضافه شد");
+
     });
 }
 
@@ -24,6 +28,7 @@ function updateNumberOfCart(productId,type,maxInstock){
         number=maxInstock;
     }
 
+
     //update number input value
     $("#"+productId+"_number").val(number);
 
@@ -31,8 +36,13 @@ function updateNumberOfCart(productId,type,maxInstock){
         var response=JSON.parse(response);
         
         //update price text
+        if(response['orgsum']!="none"){
+            $("#"+productId+"_orgprice").text(response['orgprice']);
+        }
+        
         $("#"+productId+"_sumprice").text(response['sumprice']+" تومان ");
         $("#fullsum").text(response['fullsum']+" تومان");
+       
     });
 }
 
@@ -55,12 +65,14 @@ function controllStockRange(productId,maxInstock,type){
    
     //update number input value
     $("#"+productId+"_number").val(number);
+    
 }
 function deleteFromCart(productId){
     $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{delcart:productId},function(response){
         var response=JSON.parse(response);
-       // console.log(response);
+        //console.log(response);
         $("#delcart_"+productId).remove();
         $("#fullsum").text(response['fullsum']+" تومان");
+        $("#badge").text(response['countProducts']);
     });
 }

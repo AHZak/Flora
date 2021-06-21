@@ -12,7 +12,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
     
@@ -89,7 +89,7 @@
                   <p class="h5 mb-4"><?php echo $product->getTitle(); ?></p>
                   <div class="d-flex flex-row align-items-center">
                     <p class="m-0">تعداد:</p>
-                    <input id="<?php echo $product->getId();?>_number" type="text" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="2" value="<?php echo $number; ?>">
+                    <input id="<?php echo $product->getId();?>_number" type="text" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="3" value="<?php echo $number; ?>">
                     <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'increase',<?php echo $product->getInstock(); ?>)" class="btn p-1" type="button"><i class="fas fa-plus"></i></button>
                     <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease',<?php echo $product->getInstock(); ?>)" class="btn p-1" type="button"><i class="fas fa-minus"></i></button>
                   </div>
@@ -101,7 +101,26 @@
                   </a>
                 </div>
                 <div class="ms-auto align-self-end rounded bg-info p-2 text-nowrap">
-                  <p id="<?php echo $product->getId();?>_sumprice" class="m-0"><?php echo number_format($product->getPrice()*$number) ?> تومان</p>
+                <script>
+                  $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{productid:<?php echo $product->getId(); ?>,number:<?php echo $_SESSION['cart']['number'][$product->getId()]; ?>},function(response){
+                    var response=JSON.parse(response);
+                    $("#<?php echo $product->getId(); ?>_orgprice").text(response['orgprice']+" تومان");
+                    $("#fullsum").text(response['fullsum']+" تومان");
+                    $("#<?php echo $product->getId(); ?>_sumprice").text(response['sumprice']+" تومان");
+                  });
+                </script>
+                <?php if($product->getDiscount()>0): ?>
+                  <span id="<?php echo $product->getId(); ?>_orgprice" class="text-muted text-decoration-line-through"><?php echo number_format($_SESSION['cart']['orgprice'][$product->getId()]);?></span><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span>
+                  <div class="d-flex flex-row">
+                    <p  class="me-3">قیمت:</p>
+                    <p id="<?php echo $product->getId();?>_sumprice" ></p>
+                  </div>
+                <?php else: ?>
+                  <div class="d-flex flex-row">
+                    <p class="me-3">قیمت:</p>
+                    <p id="<?php echo $product->getId();?>_sumprice"><?php echo number_format($_SESSION['cart']['sumprice'][$product->getId()]); ?> تومان</p>
+                  </div>
+                <?php endif; ?>
                 </div>
               </div>
             </div>
@@ -140,7 +159,7 @@
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="assets/js/cart.js"></script>
    
   </body>

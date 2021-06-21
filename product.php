@@ -47,11 +47,19 @@
               <!-- price card -->
               <div class="col-auto p-3">
                 <div class="p-5 price-card d-flex flex-column shadow">
-                <p class="text-muted text-decoration-line-through">44,000 <span class="badge bg-primary ms-2">22%</span></p>
+                <?php if($product->getDiscount()>0): $price=getPriceAfterOff($product->getPrice(),$product->getDiscount()); ?>
+                  <p class="text-muted text-decoration-line-through"><?php echo number_format($product->getPrice()); ?><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span></p>
+                  <div class="d-flex flex-row">
+                    <p class="me-3">قیمت:</p>
+                    <p><?php echo number_format($price); ?> تومان</p>
+                  </div>
+                <?php else: ?>
                   <div class="d-flex flex-row">
                     <p class="me-3">قیمت:</p>
                     <p><?php echo number_format($product->getPrice()); ?> تومان</p>
                   </div>
+                <?php endif; ?>
+
                   <div class="d-flex flex-row mb-3 align-items-center">
                     <p class="me-3 mb-0">تعداد:</p>
                     <div class="input-group spinner">
@@ -101,11 +109,20 @@
                           <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt'] ?>">
                           <div class="card-body p-1">
                             <p class="card-title text-center mb-3" style=""><?php echo $product['title'] ?></p>
-                            <p class="m-0 text-muted">قیمت</p>
-                            <div class="d-flex" style="color: coral;">
-                              <p class="ms-1 m-0">تومان</p>
-                              <p class="m-0"><?php echo number_format($product['price']); ?></p>
-                            </div>
+                            <?php if($product['discount']>0): $price=getPriceAfterOff($product['price'],$product['discount']);?>
+                                  <p class="m-0 text-muted text-decoration-line-through"><?php echo number_format($product['price']); ?><span class="badge bg-primary"> <?php echo $product['discount']; ?>%</span></p>
+
+                                  <div class="d-flex" style="color: coral;">
+                                    <p class="ms-1 m-0">تومان</p>
+                                    <p class="m-0"><?php echo number_format($price); ?></p>
+                                  </div>
+
+                              <?php else: $price=$product['price']; ?>
+                                <div class="d-flex" style="color: coral;">
+                                  <p class="ms-1 m-0">تومان</p>
+                                  <p class="m-0"><?php echo number_format($price); ?></p>
+                                </div>
+                              <?php endif; ?>
                           </div>
                         </div>
                       </div>
