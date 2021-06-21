@@ -102,7 +102,7 @@
 
               </div>
               <div class="d-none" id="shipping-date">
-              <div class="border-bottom border-2 d-inline-block mb-2">روز دریافت</div>
+              <div class="border-bottom border-2 d-inline-block m-2">روز دریافت</div>
                 <div class="d-flex flex-row align-items-center">
                 
                   
@@ -119,7 +119,7 @@
                     <label class="form-check-label" for="exampleRadio1"><?php echo jdate("l Y/m/d",time()+3*24*3600); ?></label>
                   </div>
                 </div>
-                <div class="border-bottom border-2 d-inline-block mb-2">زمان دریافت</div>
+                <div class="border-bottom border-2 d-inline-block m-2">زمان دریافت</div>
                 <div class="d-flex flex-row align-items-center">
                   <div class="form-check mx-2 my-2">
                     <input type="radio" checked name="time" value="8 تا 12 (صبح)" class="form-check-input" id="exampleRadio1">
