@@ -27,7 +27,7 @@
             <a class="logologo" href="index.php"><img src="assets/images/logo/flora-white.png" alt="" width="200px"></a>
             </div>
             <div class="d-flex align-items-center">
-              <a href="?logout=true" class="btn btn-danger me-2">خروج</a> 
+              <a href="?logout=true" class="btn btn-warning me-2"><i class="fas fa-sign-out-alt me-1"></i>خروج</a> 
             </div>
           </div>
         </div>
