@@ -61,7 +61,7 @@ if(isAdmin() || isMaster()){
             <!-- only for ordinary shipping -->
             <div class="col-12 my-2">
               <strong>روز و بازه زمانی ارسال:</strong>
-              <span>دوشنبه(1400/3/3) - 8 تا 12</span>
+              <span><?php echo $order->getOrderedDate(); ?> - <?php echo $order->getOrderedTime(); ?></span>
             </div>
             <!-- only for ordinary shipping -->
           </div>

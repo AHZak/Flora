@@ -107,7 +107,7 @@
                 
                   
                   <div class="form-check mx-2 my-2">
-                    <input type="radio" name="date" value="<?php echo jdate("l Y/m/d",time()+24*3600); ?>" class="form-check-input" id="exampleRadio1">
+                    <input checked type="radio" name="date" value="<?php echo jdate("l Y/m/d",time()+24*3600); ?>" class="form-check-input" id="exampleRadio1">
                     <label class="form-check-label" for="exampleRadio1"><?php echo jdate("l Y/m/d",time()+24*3600); ?></label>
                   </div>
                   <div class="form-check mx-2 my-2">
@@ -122,7 +122,7 @@
                 <div class="border-bottom border-2 d-inline-block mb-2">زمان دریافت</div>
                 <div class="d-flex flex-row align-items-center">
                   <div class="form-check mx-2 my-2">
-                    <input type="radio" name="time" value="8 تا 12 (صبح)" class="form-check-input" id="exampleRadio1">
+                    <input type="radio" checked name="time" value="8 تا 12 (صبح)" class="form-check-input" id="exampleRadio1">
                     <label class="form-check-label" for="exampleRadio1">8 تا 12 (صبح)</label>
                   </div>
                   <div class="form-check mx-2 my-2">
