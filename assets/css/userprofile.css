@@ -2,3 +2,17 @@ body {
   
     background-color: #f5f5f5;
   }
+
+#app {
+  height: 27rem;
+}
+
+  @media only screen and (max-width: 600px) {
+    .logologo img{
+        width: 150px;
+    }
+
+    #app {
+      height: 20rem;
+    }
+  }

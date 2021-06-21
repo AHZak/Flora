@@ -60,33 +60,38 @@
                           <?php foreach($products as $product): 
                             $productObj=new Product($product['id']);  
                           ?>
-                          <a href="product.php?pid=<?php echo $productObj->getId()."&slug=".$productObj->getTitle();  ?>" class="text-decoration-none">
+                          <a href="product.php?pid=<?php echo $productObj->getId()."&slug=".$productObj->getTitle();  ?>" class="text-decoration-none catproitem">
                             <div class="col">
                               <div class="card shadow">
                                 <img src="<?php echo $productObj->getImage(); ?>" class="card-img-top" alt="<?php echo $productObj->getImageAlt(); ?>">
                                 <div class="card-body p-1">
-                                  <p class="card-title text-center mb-3" style="font-weight:bold;"><?php echo $productObj->getTitle(); ?></p>
+                                  <p class="card-title text-center mb-3" style=""><?php echo $productObj->getTitle(); ?></p>
 
                                   <?php if($productObj->getDiscount()>0): $price=getPriceAfterOff($productObj->getPrice(),$productObj->getDiscount());?>
 
                                       <?php if($productObj->getInstock()==0): ?>
-      ‍‍                                   <p class="m-0 text-decoration-line-through">ناموجود</p>
+      ‍‍                                   <p class="ms-1 m-0">ناموجود</p>
                                       <?php else: ?>
+                                      <div class="d-flex-flex-column" style="direction:ltr;">
                                         <p class="m-0 text-decoration-line-through"><?php echo number_format($productObj->getPrice()); ?><span class="badge bg-primary me-1"> <?php echo $productObj->getDiscount(); ?>%</span></p>
                                         <div class="d-flex" style="color: coral;">
                                           <p class="ms-1 m-0">تومان</p>
                                           <p class="m-0"><?php echo number_format($price); ?></p>
                                         </div>
+                                      </div>
                                       <?php endif; ?>
                                   <?php else: $price=$productObj->getPrice(); ?>
 
                                       <?php if($productObj->getInstock()==0): ?>
-      ‍‍                                   <p class="m-0 text-decoration-line-through">ناموجود</p>
+      ‍‍                                   <p class="ms-1 m-0">ناموجود</p>
                                       <?php else: ?>
+                                      <div class="d-flex-flex-column" style="direction:ltr;">
+                                      <p class="m-0 text-muted">قیمت</p>
                                         <div class="d-flex" style="color: coral;">
                                           <p class="ms-1 m-0">تومان</p>
                                           <p class="m-0"><?php echo number_format($price); ?></p>
                                         </div>
+                                      </div>
                                       <?php endif; ?>
 
                               <?php endif; ?>

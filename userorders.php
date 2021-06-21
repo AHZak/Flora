@@ -2,48 +2,7 @@
     $pageUi="userorders";
     include_once 'config.php';
 ?>
-<!doctype html>
-<html dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
-    <title>فلورا</title>
-    <link rel="stylesheet" href="assets/css/userprofile.css">
-    <!-- Fontawesome kit -->
-    <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
-  </head>
-  <body class="">
-    <!----------------------------- headers ------------------------------------>
-    <header>
-
-        <div class="container-fluid">
-          <!----------------------------- fisrt header ------------------------------------>
-          <div class="row">
-
-            <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
-              <div class="col-md-4 ms-2">
-                <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
-              </div>
-              <div class="d-flex align-items-center">
-              <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
-              </a> <i class="me-2">|</i>
-              <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
-              
-              </div>
-            </div>
-
-          </div>
-          <!----------------------------- first header ------------------------------------>
-
-
-        </div>
-    
-    </header>
-    <!----------------------------- headers ------------------------------------>
+<?php include 'upcommonheader.php'; ?>
 
     <!----------------------------- ordrs ------------------------------------>
     <main>

@@ -2,51 +2,7 @@
     $pageUi="userAddress";
     include_once 'config.php';
 ?>
-<!doctype html>
-<html dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
-    <title>فلورا</title>
-    <link rel="stylesheet" href="assets/css/userprofile.css">
-    <!-- Fontawesome kit -->
-    <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
-    <!-- Mapp styles -->
-    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/mapp.min.css">
-    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/fa/style.css">
-  </head>
-  <body class="">
-    <!----------------------------- headers ------------------------------------>
-    <header>
-
-        <div class="container-fluid">
-          <!----------------------------- fisrt header ------------------------------------>
-          <div class="row">
-
-            <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
-              <div class="col-md-4 ms-2">
-                <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
-              </div>
-              <div class="d-flex align-items-center">
-              <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
-              </a> <i class="me-2">|</i>
-              <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
-              
-              </div>
-            </div>
-
-          </div>
-          <!----------------------------- first header ------------------------------------>
-
-
-        </div>
-    
-    </header>
-    <!----------------------------- headers ------------------------------------>
+<?php include 'upcommonheader.php'; ?>
 
     <!----------------------------- personal info + ordrs + addresses + receipts ------------------------------------>
     <main>
@@ -64,7 +20,7 @@
                     <div class="row g-3" style="ltr">
                     
                         <!-- map box -->
-                        <div id="app" class="col-md-6 border border-3 text-center bg-warning" style="height:27rem;"></div>
+                        <div id="app" class="col-md-6 border border-3 text-center bg-warning" ></div>
                         <!-- map box -->
 
                         <!-- address fields -->
@@ -155,7 +111,7 @@
                                   $addressObj=new Address($address['id']);
                               ?>
                                 <div class="row m-3">
-                                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
+                                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white shadow p-3">
                                     <div class="dflex flex-column">
                                       <div class="d-flex flex-row align-items-center justify-content-between">
                                         <strong><?php echo $addressObj->getTitle(); ?></strong>
@@ -166,7 +122,6 @@
                                       </div>
                                       <p><?php echo $addressObj->getAddress(); ?></p>
                                       <p>کد پستی: <?php echo $addressObj->getPostalCode(); ?></p>
-                                      <p>توضیحات: <?php echo $addressObj->getAddressExplain() ? $addressObj->getAddressExplain() : "-"; ?></p>
                                     </div>
                                   </div>
                                 </div>

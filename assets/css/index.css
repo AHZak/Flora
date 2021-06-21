@@ -1,5 +1,4 @@
 body {
-    /* background-color:rgb(250, 186, 223); */
     font-family: 'El Messiri', sans-serif;
 }
 
@@ -43,8 +42,6 @@ footer {
 
 }
 
-
-
 .buy-quantity-btn:active{
     color: white;
 }
@@ -55,3 +52,10 @@ footer {
 .catproitem {
     color: currentColor;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .logologo img{
+        width: 150px;
+    }
+  }
