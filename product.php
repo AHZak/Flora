@@ -63,14 +63,14 @@
                   <div class="d-flex flex-row mb-3 align-items-center">
                     <p class="me-3 mb-0">تعداد:</p>
                     <div class="input-group spinner">
-                      <input  id="<?php echo $product->getId(); ?>_number" type="text" class="form-control" size="2" value="1">  
+                      <input  id="<?php echo $product->getId(); ?>_number" type="text" class="form-control" size="2" value="0">  
                       <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'increase')" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-plus"></i></button>
                       <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'decrease')" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-minus"></i></button>
                       
                     </div>
                   </div>
                   <div class="align-self-center mt-3">
-                    <button onclick="addToCart(<?php echo $product->getId(); ?>)" class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
+                    <button <?php if($product->getInstock()==0){ echo 'disabled'; } ?> onclick="addToCart(<?php echo $product->getId(); ?>)" class="btn btn-primary">افزودن به سبد خرید<i class="fas fa-cart-plus ms-2"></i></button>
                   </div>
                 </div>
               </div>
