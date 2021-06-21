@@ -2,48 +2,7 @@
     $pageUi='checkout';
     include_once 'config.php';
 ?>
-<!doctype html>
-<html dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
-    <title>فلورا</title>
-    <link rel="stylesheet" href="assets/css/userprofile.css">
-    <!-- Fontawesome kit -->
-    <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
-  </head>
-  <body class="">
-    <!----------------------------- headers ------------------------------------>
-    <header>
-
-        <div class="container-fluid">
-          <!----------------------------- fisrt header ------------------------------------>
-          <div class="row">
-
-            <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
-              <div class="col-md-4 ms-2">
-                <a href="#"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
-              </div>
-              <div class="d-flex align-items-center">
-              <button class="btn btn-outline-dark rounded-pill me-2">وارد شوید<i class="fas fa-user ms-1"></i></button> 
-              </a> <i class="me-2">|</i>
-              <a href="cart.php"><i class="fas fa-shopping-cart cart-cart"></i></a>
-              
-              </div>
-            </div>
-
-          </div>
-          <!----------------------------- first header ------------------------------------>
-
-
-        </div>
-    
-    </header>
-    <!----------------------------- headers ------------------------------------>
+<?php include 'commonheader.php'; ?>
 
     <!----------------------------- address + shipping + sum + payment ------------------------------------>
     <main>
@@ -85,10 +44,10 @@
                   }
               ?>
             <div class=" p-3">
-              <p class="h5">یک آدرس انتخاب کنید</p>
-            </div>
+              <p class="h5 border-bottom border-3 border-dark d-inline-block">یک آدرس انتخاب کنید</p>
+            
             <div class="d-flex flex-column justify-content-start">
-            <?php if($addresses): ?>
+              <?php if($addresses): ?>
                 <?php foreach($addresses as $address):?>
                       <!-- address item -->
                       <div class="">
@@ -104,11 +63,10 @@
                       </div>
                       <!-- address item -->
                 <?php endforeach; ?>
-            <?php else: ?>
+              <?php else: ?>
                 <p>آدرسی پیدا نشد.لطفا یک آدرس اضافه کنید</p>
-            <?php endif; ?>
+              <?php endif; ?>
 
-              <hr class="my-2">
               <!-- add address -->
               <a href="useraddress.php" class="text-decoration-none">
               <div>
@@ -118,14 +76,15 @@
               <!-- add address -->
 
             </div>
+          </div>
             <!-- address selection -->
 
             <hr class="my-3">
 
             <!-- shipping -->
             <div class="row">
-              <div class="p-3 border-bottom border-3 mb-2">
-                <p class="h5">شیوه و زمان ارسال</p>
+              <div class="p-3 mb-2">
+                <p class="h5 border-bottom border-3 border-dark d-inline-block">شیوه و زمان ارسال</p>
               </div>
               <div class="p-3">
                 <?php if($shippings):?>
@@ -180,8 +139,8 @@
 
             <!-- payment --> 
             <div class="row">
-              <div class="p-3 border-bottom border-3 mb-2">
-                <p class="h5">شیوه پرداخت</p>
+              <div class="p-3 mb-2">
+                <p class="h5 border-bottom border-3 border-dark d-inline-block">شیوه پرداخت</p>
               </div>
               <div class="p-3">
               <?php if($payment_methods):?>
@@ -204,8 +163,8 @@
 
             <!-- payment -->
             <div class="row">
-              <div class="p-3 border-bottom border-3 mb-2">
-                <p class="h5">پرداخت نهایی</p>
+              <div class="p-3 mb-2">
+                <p class="h5 border-bottom border-3 border-dark d-inline-block">پرداخت نهایی</p>
               </div>
               <div class="dflex flex-column p-3 pb-0">
                 <p>مبلغ کل سفارش: <span><?php echo number_format($_SESSION['cart']['fullsum']); ?> تومان</span></p>
@@ -215,7 +174,7 @@
             </div>
             <!-- payment -->
 
-            <hr class="my-3">
+            <hr class="my-3 border-bottom border-3 border-dark">
 
             <!-- order button -->
             <div class="text-center pb-3">
@@ -227,6 +186,8 @@
       </div>
     </main>
     <!----------------------------- address + shipping + sum + payment ------------------------------------>
+
+    <?php include 'commonfooter.php'; ?>
 
 
     

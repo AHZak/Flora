@@ -33,10 +33,10 @@
             <div id="delcart_<?php echo $product->getId(); ?>" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color: antiquewhite;">
               <div class="d-flex flex-row align-items-center flex-start">
                 <div class="p-2 me-3">
-                  <img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail">
+                  <a href="#" class="text-decoration-none cart-item"><img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail"></a>
                 </div>    
                 <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
-                  <p class="h5 mb-4"><?php echo $product->getTitle(); ?></p>
+                <a href="#" class="text-decoration-none cart-item"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
                   <div class="d-flex flex-row align-items-center">
                     <p class="m-0">تعداد:</p>
                     <input id="<?php echo $product->getId();?>_number" type="text" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="3" value="<?php echo $number; ?>">
@@ -44,10 +44,7 @@
                     <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease',<?php echo $product->getInstock(); ?>)" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-minus"></i></button>
                   </div>
                   <a href="#" style="text-decoration: none; color: currentColor;">
-                  <div class="d-flex flex-row align-items-center">
-                  <i class="fas fa-trash-alt me-2"></i>
-                  <p onclick="deleteFromCart(<?php echo $product->getId();?>)" class="m-0">حذف از سبد خرید</p>
-                  </div>
+                  <i onclick="deleteFromCart(<?php echo $product->getId();?>)" class="fas fa-trash-alt me-2"></i>
                   </a>
                 </div>
                 <div class="ms-auto align-self-end rounded p-2 text-nowrap" style="background-color: coral;">

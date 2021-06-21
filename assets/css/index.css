@@ -50,7 +50,8 @@ footer {
     box-shadow: none;
 }
 
-.catproitem {
+.catproitem,
+.cart-item {
     color: currentColor;
 }
 
