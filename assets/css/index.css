@@ -55,6 +55,10 @@ footer {
     color: currentColor;
 }
 
+.cart-item-img {
+  padding: 0 !important;
+}
+
 
 @media only screen and (max-width: 600px) {
     .logologo img{

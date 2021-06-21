@@ -30,13 +30,13 @@
 
           ?>
             <!-- Item in cart -->
-            <div id="delcart_<?php echo $product->getId(); ?>" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color: antiquewhite;">
+            <div id="delcart_<?php echo $product->getId(); ?>" class="col-12 col-md-10 p-2 my-3 rounded shadow" style="background-color: antiquewhite;">
               <div class="d-flex flex-row align-items-center flex-start">
-                <div class="p-2 me-3">
-                  <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail"></a>
+                <div class="me-3">
+                  <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><img src="<?php echo $product->getImage(); ?>" style="width: 10rem;" alt="" class="img-thumbnail cart-item-img"></a>
                 </div>    
                 <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
-                <a href="#" class="text-decoration-none cart-item"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
+                <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
                   <div class="d-flex flex-row align-items-center">
                     <p class="m-0">تعداد:</p>
                     <input id="<?php echo $product->getId();?>_number" type="text" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="3" value="<?php echo $number; ?>">
@@ -59,12 +59,10 @@
                 <?php if($product->getDiscount()>0): ?>
                   <span id="<?php echo $product->getId(); ?>_orgprice" class="text-muted text-decoration-line-through"><?php echo number_format($_SESSION['cart']['orgprice'][$product->getId()]);?></span><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span>
                   <div class="d-flex flex-row">
-                    <p  class="me-3">قیمت:</p>
                     <p id="<?php echo $product->getId();?>_sumprice" ></p>
                   </div>
                 <?php else: ?>
                   <div class="d-flex flex-row">
-                    <p class="me-3 mb-0">قیمت:</p>
                     <p class="mb-0" id="<?php echo $product->getId();?>_sumprice"><?php echo number_format($_SESSION['cart']['sumprice'][$product->getId()]); ?> تومان</p>
                   </div>
                 <?php endif; ?>
