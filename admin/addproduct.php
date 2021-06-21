@@ -29,7 +29,7 @@ include 'adminheader.php';
 
           <div class="row">
 
-            <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
+            <div class="col-12 p-3 border-bottom border-3 border-dark d-flex flex-row align-items-center">
               <i class="fas fa-plus feather mx-2"></i>
               <p class="h5">افزودن محصول</p>
             </div>

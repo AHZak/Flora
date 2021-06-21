@@ -26,7 +26,7 @@ include_once 'config.php';
 
       <!----------------------------- left panel --------------------------->
 
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <main class="col-md-9 m-auto col-lg-10 px-md-4">
         <div class="container">
           <div class="row">
             <div class="col-12 p-3 pb-1 border-bottom border-3 d-flex flex-row align-items-center">

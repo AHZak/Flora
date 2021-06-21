@@ -3,32 +3,17 @@ $pageUi="orderdetail";
 include_once 'config.php';
 
 ?>
-<!doctype html>
-<html dir="rtl">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php include 'upcommonheader.php'; ?>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.rtl.min.css" integrity="sha384-trxYGD5BY4TyBTvU5H23FalSCYwpLA0vWEvXXGm5eytyztxb+97WzzY+IWDOSbav" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="assets/css/admin.css">
-
-    <title>فلورا</title>
-    <!-- Fontawesome kit -->
-    <script src="https://kit.fontawesome.com/2370aca281.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
     <div class="container-fluid">
     <div class="row">
 
       <!----------------------------- left panel --------------------------->
 
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <main class="col-md-9 m-auto col-lg-10 px-md-4 my-3">
         <div class="container">
           <div class="row">
-            <div class="col-12 p-3 pb-1 border-bottom border-3 d-flex flex-row align-items-center">
+            <div class="col-12 p-3 pb-1 border-bottom border-3 border-dark d-flex flex-row align-items-center">
               <div>
                 <strong class="me-2">جزئیات سفارش: </strong>
                 <strong>#<?php echo $order->getCode(); ?></strong>
@@ -80,7 +65,7 @@ include_once 'config.php';
             </div>
           </div>
 
-          <div class="container">
+          <div class="container p-0">
           <?php if($ordersDetail): ?>
               <?php foreach($ordersDetail as $orderDetail):
 
@@ -89,13 +74,13 @@ include_once 'config.php';
                 $product=new Product($orderDetail['product_id']);
               ?>
                   <!-- Item in cart -->
-                  <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 rounded" style="background-color:#ffcdda;">
+                  <div id="delcart_13" class="col-12 col-md-10 p-2 my-3 shadow rounded" style="background-color: antiquewhite;">
                     <div class="d-flex flex-row align-items-center flex-start">
-                      <div class="p-2 me-3">
-                        <a href="product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>"><img src="<?php echo $product->getImage(); ?>" style="height: 9rem;" alt="" class="img-thumbnail"></a>
+                      <div class="col-2 me-3">
+                        <a href="product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>"><img src="<?php echo $product->getImage(); ?>" style="width: 150px;" alt="" class="img-fluid rounded"></a>
                       </div>    
                       <div class="d-flex flex-column mt-2 align-self-start justify-content-start" style="height: 9rem">
-                        <a href="product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>" class="text-decoration-none" style="color: currentColor;"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
+                        <a href="product.php?pid=<?php echo $product->getId(); ?>&slug=<?php echo $product->getTitle(); ?>" class="text-decoration-none" style="color: currentColor;"><p class="fw-bold border-bottom border-2 border-dark mb-4"><?php echo $product->getTitle(); ?></p></a>
                         <div class="d-flex flex-row align-items-center">
                           <p class="m-0 me-2">تعداد:</p>
                           <strong><?php echo $orderDetailObj->getQuantity(); ?></strong>
@@ -103,7 +88,7 @@ include_once 'config.php';
                       </div>
                       <div class="ms-auto align-self-end">
                         <strong>قیمت هر واحد</strong>
-                        <div class=" rounded bg-info p-2 text-nowrap mt-2">
+                        <div class=" rounded p-2 text-nowrap mt-2" style="background-color: coral">
                           <p id="13_sumprice" class="m-0"><?php echo number_format($orderDetailObj->getOrderedPrice()); ?> تومان</p>
                         </div>
                       </div>
