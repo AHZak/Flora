@@ -1,6 +1,0 @@
-PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM products WHERE id IN (SELECT product_id FROM category_product WHERE categor' at line 1 in /var/www/html/flora/inc/classes/DbClass.php:175
-Stack trace:
-#0 /var/www/html/flora/inc/classes/DbClass.php(175): PDO->query('SELECT all FROM...')
-#1 /var/www/html/flora/inc/classes/DbClass.php(201): Database\Db::query('SELECT all FROM...')
-#2 /var/www/html/flora/inc/ajaxRequests/filtercatitems.php(90): Database\Db::simpleSearch('products', 'id IN (SELECT p...', 'all', 'id', 0, 'id', 'ASC')
-#3 {main}
