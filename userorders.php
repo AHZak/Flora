@@ -18,21 +18,23 @@
         
                 <div class="tab-pane fade active show" id="nav-orders" role="tabpanel" aria-labelledby="nav-orders-tab">
                 <div class="table-responsive">
-                <?php if($orders): ?>
-                            <?php foreach($orders as $order): 
-                                //order Object
-                                $orderObj=new Order($order['id']);
-                            ?>
-                    <table class="table table-striped table-sm text-nowrap">
+                <table class="table table-striped table-sm text-nowrap">
+                  <?php if($orders): ?>
                     <thead>
-                        <tr>
-                        <th>#شماره سفارش</th>
-                        <th>مبلغ</th>
-                        <th>تاریخ سفارش</th>
-                        <th>وضعیت</th>
-                        <th>جزئیات/فاکتور</th>
-                        </tr>
+                          <tr>
+                          <th>#شماره سفارش</th>
+                          <th>مبلغ</th>
+                          <th>تاریخ سفارش</th>
+                          <th>وضعیت</th>
+                          <th>جزئیات/فاکتور</th>
+                          </tr>
                     </thead>
+                    <?php foreach($orders as $order): 
+                        //order Object
+                        $orderObj=new Order($order['id']);
+                    ?>
+                   
+
                     <tbody>
 
 
