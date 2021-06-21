@@ -77,18 +77,33 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
     $term=str_replace("'","\'",$term);
     if($instock=="ok"){
         $products=Db::select(PRODUCT_TABLE_NAME,"title LIKE '%$term%' AND instock>0",'all','id',0,$order,$orderBy);
+        if(!$products){
+            $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id IN(SELECT id FROM categories WHERE name LIKE '%$term%')) AND instock>0",'all','id',0,$order,$orderBy);
+
+            if(!$products){
+                $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id IN(SELECT id FROM sub_categories WHERE name LIKE '%$term%')) AND instock>0",'all','id',0,$order,$orderBy);
+            }
+        }
     }else{
         $products=Db::select(PRODUCT_TABLE_NAME," title LIKE '%$term%'",'all','id',0,$order,$orderBy);
+        if(!$products){
+            $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id IN(SELECT id FROM categories WHERE name LIKE '%$term%'))",'all','id',0,$order,$orderBy);
+
+            if(!$products){
+                $products=Db::select(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id IN(SELECT id FROM sub_categories WHERE name LIKE '%$term%'))",'all','id',0,$order,$orderBy);
+            }
+        }
     }
 }
 
 ?>
 
-<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 g-lg-3 justify-content-end p-3 " id="wrapper">
+<div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-2 g-lg-3 justify-content-end p-3 ">
                       <?php if($products): ?>
                           <?php foreach($products as $product): 
                             $productObj=new Product($product['id']);  
                           ?>
+                          <a href="product.php?pid=<?php echo $productObj->getId()."&slug=".$productObj->getTitle();  ?>" class="text-decoration-none">
                             <div class="col">
                               <div class="card shadow">
                                 <img src="<?php echo $productObj->getImage(); ?>" class="card-img-top" alt="<?php echo $productObj->getImageAlt(); ?>">
@@ -101,6 +116,7 @@ if(isset($_GET['catid']) && $_GET['catid']!=""){
                                 </div>
                               </div>
                             </div>
+                          </a>
                           <?php endforeach; ?>
                       <?php else: ?>
                         <p>محصولی وجود ندارد</p>

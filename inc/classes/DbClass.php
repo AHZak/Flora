@@ -96,7 +96,7 @@ class Db {
             $sql="SELECT $disdinct FROM $table WHERE $conditions ORDER BY $orderBy $orderType";
         }
     
-        
+ 
         if($sql){
             $result=Db::connect()->query($sql);
             if(strtolower($fetchType)=='all'){

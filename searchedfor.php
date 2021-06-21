@@ -256,6 +256,7 @@
                           <?php foreach($products as $product): 
                             $productObj=new Product($product['id']);  
                           ?>
+                          <a href="product.php?pid=<?php echo $productObj->getId()."&slug=".$productObj->getTitle();  ?>" class="text-decoration-none">
                             <div class="col">
                               <div class="card shadow">
                                 <img src="<?php echo $productObj->getImage(); ?>" class="card-img-top" alt="<?php echo $productObj->getImageAlt(); ?>">
@@ -268,6 +269,7 @@
                                 </div>
                               </div>
                             </div>
+                          </a>
                           <?php endforeach; ?>
                       <?php else: ?>
                         <p>محصولی وجود ندارد</p>

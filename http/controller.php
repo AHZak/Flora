@@ -5,6 +5,7 @@ use Database\Db;
 if(isset($_GET['logout']) && $_GET['logout']==true){
     $account=new Account();
     $account->logout();
+    session_destroy();
     
 }
 
@@ -1232,9 +1233,18 @@ if(isset($pageUi)){
             $subId=$_GET['subid'];
             $products=Db::select(SUB_CATEGORY_PRODUCT_TABLE_NAME,"subcategory_id=$subId",'all','product_id');
         }elseif(isset($_GET['term'])){
-
+            
             $term=Db::correctTermFormat($_GET['term'],'simple');
             $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"title LIKE '%$term%'");
+            
+            if(!$products){
+                $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM category_product WHERE category_id IN(SELECT id FROM categories WHERE name LIKE '%$term%'))");
+
+                if(!$products){
+                    $products=Db::simpleSearch(PRODUCT_TABLE_NAME,"id IN (SELECT product_id FROM subcategory_product WHERE subcategory_id IN(SELECT id FROM sub_categories WHERE name LIKE '%$term%'))");
+                }
+            }
+
 
         }else{
             echo 'خطا! پارامتر ورودی صحیح نمی باشد';
