@@ -20,7 +20,7 @@
                     <div class="row g-3" style="ltr">
                     
                         <!-- map box -->
-                        <div id="app" class="col-md-6 border border-3 text-center bg-warning" style="height:27rem;"></div>
+                        <div id="app" class="col-md-6 border border-3 text-center bg-warning" ></div>
                         <!-- map box -->
 
                         <!-- address fields -->
@@ -111,7 +111,7 @@
                                   $addressObj=new Address($address['id']);
                               ?>
                                 <div class="row m-3">
-                                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white p-3">
+                                  <div class="col-12 col-md-10 col-lg-8 rounded bg-white shadow p-3">
                                     <div class="dflex flex-column">
                                       <div class="d-flex flex-row align-items-center justify-content-between">
                                         <strong><?php echo $addressObj->getTitle(); ?></strong>
@@ -122,7 +122,6 @@
                                       </div>
                                       <p><?php echo $addressObj->getAddress(); ?></p>
                                       <p>کد پستی: <?php echo $addressObj->getPostalCode(); ?></p>
-                                      <p>توضیحات: <?php echo $addressObj->getAddressExplain() ? $addressObj->getAddressExplain() : "-"; ?></p>
                                     </div>
                                   </div>
                                 </div>
