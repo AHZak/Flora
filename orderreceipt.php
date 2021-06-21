@@ -113,9 +113,7 @@ include_once 'config.php';
                 <span><?php echo number_format($order->getSumPrice()); ?> تومان</span>
               </div>
             </div>
-            <div>
-              <strong>محل مهر و امضا</strong>
-            </div>
+            
           </div>
 
 
