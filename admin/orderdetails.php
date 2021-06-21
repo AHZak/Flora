@@ -58,6 +58,12 @@ if(isAdmin() || isMaster()){
               <strong>شیوه ارسال:</strong>
               <span><?php echo $shipping->getType(); ?></span>
             </div>
+            <!-- only for ordinary shipping -->
+            <div class="col-12 my-2">
+              <strong>روز و بازه زمانی ارسال:</strong>
+              <span>دوشنبه(1400/3/3) - 8 تا 12</span>
+            </div>
+            <!-- only for ordinary shipping -->
           </div>
           <div class="row my-3 border-bottom border-2">
             <div class="col-6 my-2">
