@@ -68,12 +68,12 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="address-floor" class="form-label">طبقه</label>
-                                <input name="floor" type="text" class="form-control" id="address-floor" placeholder="2" value="" required="">
+                                <label for="address-title" class="form-label">عنوان آدرس</label>
+                                <input name="title" type="text" class="form-control" id="address-title" placeholder="خانه" value="" required="">
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="address-unit" class="form-label">واحد</label>
+                                <label for="address-unit" class="form-label">واحد(اختیاری)</label>
                                 <input name="unit" type="text" class="form-control" id="address-unit" placeholder="3" value="" required="">
                             </div>
 
@@ -83,8 +83,8 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="address-title" class="form-label">عنوان آدرس</label>
-                                <input name="title" type="text" class="form-control" id="address-title" placeholder="خانه" value="" required="">
+                                <label for="address-floor" class="form-label">طبقه(اختیاری)</label>
+                                <input name="floor" type="text" class="form-control" id="address-floor" placeholder="2" value="" required="">
                             </div>
 
                             <div class="col-12">      
