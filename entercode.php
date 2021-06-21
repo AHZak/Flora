@@ -26,7 +26,7 @@
             <h1 class="h5 mb-3 fw-normal">کد تایید را وارد کنید</h1>
 
             <div class="form-floating">
-                <input name="code" type="text" class="form-control" id="floatingInput" placeholder="phone-number">
+                <input name="code" type="text" value="<?php if(isset($_POST['code']) && $_POST['code']){ echo $_POST['code']; } ?>" class="form-control" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">کد تایید</label>
             </div>
         

@@ -30,17 +30,17 @@
             <h1 class="h5 mb-3 fw-normal">ثبت نام</h1>
 
             <div class="form-floating my-2">
-                <input name="code" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
+                <input name="code" value="<?php if(isset($_POST['code']) && $_POST['code']){ echo $_POST['code']; } ?>" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">کد تایید ارسال شده</label>
             </div>
 
             <div class="form-floating my-2">
-                <input name="first_name" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
+                <input name="first_name" value="<?php if(isset($_POST['first_name']) && $_POST['first_name']){ echo $_POST['first_name']; } ?>" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">نام</label>
             </div>
 
             <div class="form-floating my-2">
-                <input name="last_name" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
+                <input name="last_name" value="<?php if(isset($_POST['last_name']) && $_POST['last_name']){ echo $_POST['last_name']; } ?>" type="text" class="form-control rounded" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">نام خانوادگی</label>
             </div>
         

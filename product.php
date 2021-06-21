@@ -47,12 +47,15 @@
               <!-- price card -->
               <div class="col-auto p-3">
                 <div class="p-5 price-card d-flex flex-column shadow">
-                <?php if($product->getDiscount()>0): $price=getPriceAfterOff($product->getPrice(),$product->getDiscount()); ?>
+                <?php if($product->getInstock()==0): ?>
+                  <p>ناموجود</p>
+                <?php elseif($product->getDiscount()>0): $price=getPriceAfterOff($product->getPrice(),$product->getDiscount()); ?>
                   <p class="text-decoration-line-through"><?php echo number_format($product->getPrice()); ?><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span></p>
                   <div class="d-flex flex-row">
                     <p class="me-3">قیمت:</p>
                     <p><?php echo number_format($price); ?> تومان</p>
                   </div>
+
                 <?php else: ?>
                   <div class="d-flex flex-row">
                     <p class="me-3">قیمت:</p>
@@ -63,7 +66,7 @@
                   <div class="d-flex flex-row mb-3 align-items-center">
                     <p class="me-3 mb-0">تعداد:</p>
                     <div class="input-group spinner">
-                      <input  id="<?php echo $product->getId(); ?>_number" type="text" class="form-control" size="2" value="0">  
+                      <input  id="<?php echo $product->getId(); ?>_number" type="text" class="form-control" size="2" value="<?php if($product->getInstock()==0){ echo 0; }else{ echo 1; } ?>">  
                       <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'increase')" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-plus"></i></button>
                       <button onclick="controllStockRange(<?php echo $product->getId(); ?>,<?php echo $product->getInstock(); ?>,'decrease')" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-minus"></i></button>
                       

@@ -27,7 +27,7 @@
             <h1 class="h5 mb-3 fw-normal">لطفا شماره موبایل خود را وارد کنید</h1>
 
             <div class="form-floating">
-                <input name="phone" type="text" class="form-control" id="floatingInput" placeholder="phone-number">
+                <input name="phone" value="<?php if(isset($_POST['phone']) && $_POST['phone']){ echo $_POST['phone']; } ?>" type="text" class="form-control" id="floatingInput" placeholder="phone-number">
                 <label for="floatingInput">شماره موبایل</label>
             </div>
         

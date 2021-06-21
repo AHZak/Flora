@@ -720,7 +720,7 @@ if(isset($pageUi)){
     }
     //CART
     elseif($pageUi=='cart'){
-        if(isset($_SESSION['cart']) && $_SESSION['cart']['products']){
+        if(isset($_SESSION['cart']) && isset($_SESSION['cart']['products']) && $_SESSION['cart']['products']){
             $productsId=$_SESSION['cart']['products'];
         }
     }
