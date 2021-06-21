@@ -13,6 +13,7 @@ class User {
     private $registerCode;
     private $createdAt;
     private $updatedAt;
+    
 
     public function __construct($userId)
     {
@@ -89,6 +90,12 @@ class User {
         }else{
             return false;
         }
+    }
+
+    //count users
+    public static function getCount(){
+        $result=Db::query("SELECT COUNT(id) FROM users");
+        return $result->fetchColumn();
     }
 
     //delete

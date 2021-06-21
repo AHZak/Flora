@@ -125,6 +125,11 @@ class Order{
         return $this->postalPrice;
     }
 
+    //count orders
+    public static function getCount(){
+        $result=Db::query("SELECT COUNT(id) FROM orders");
+        return $result->fetchColumn();
+    }
 
     //GET OEDER FULL INFO
     private function getOrderFullInfo($id){

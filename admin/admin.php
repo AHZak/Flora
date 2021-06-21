@@ -25,10 +25,10 @@ if(isAdmin() || isMaster()){
             <div class="d-flex flex-wrap justify-content-center m-3">
               <div class="bg-info shadow rounded tmp-card p-3">
                 <div class="d-flex flex-column align-items-start">
-                  <P class="fw-bolder">تعداد کاربران: <span>333</span></P>
-                  <P class="fw-bolder">تعداد کل سفارشات: <span>1500</span></P>
-                  <P class="fw-bolder">تعداد محصولات: <span>1500</span></P>
-                  <P class="fw-bolder">تعداد دسته بندی ها: <span>4</span></P>
+                  <P class="fw-bolder">تعداد کاربران: <span><?php echo User::getCount(); ?></span></P>
+                  <P class="fw-bolder">تعداد کل سفارشات: <span><?php echo Order::getCount(); ?></span></P>
+                  <P class="fw-bolder">تعداد محصولات: <span><?php echo Product::getCount(); ?></span></P>
+                  <P class="fw-bolder">تعداد دسته بندی ها: <span><?php echo Category::getCount(); ?></span></P>
                 </div>
               </div>
               <div class="bg-warning rounded tmp-card"></div>

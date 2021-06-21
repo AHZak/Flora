@@ -190,7 +190,11 @@ class Product{
         return $this->image_alt;
     }
 
-
+    //count products
+    public static function getCount(){
+        $result=Db::query("SELECT COUNT(id) FROM products");
+        return $result->fetchColumn();
+    }
 
     //create a product
     public static function create(array $params,&$message=""){

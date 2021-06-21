@@ -80,7 +80,11 @@ class Category{
         }
     }
 
-
+    //count categories
+    public static function getCount(){
+        $result=Db::query("SELECT COUNT(id) FROM categories");
+        return $result->fetchColumn();
+    }
 
     //GET VARIABELS
     public function getCategoryId(){
