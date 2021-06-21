@@ -32,8 +32,8 @@
             <!-- Item in cart -->
             <div id="delcart_<?php echo $product->getId(); ?>" class="col-12 col-md-10 p-2 my-3 rounded shadow" style="background-color: antiquewhite;">
               <div class="d-flex flex-row align-items-center flex-start">
-                <div class="me-3">
-                  <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><img src="<?php echo $product->getImage(); ?>" style="width: 10rem;" alt="" class="img-thumbnail cart-item-img"></a>
+                <div class="col-2 me-3">
+                  <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><img src="<?php echo $product->getImage(); ?>" style="width: 150px" alt="" class="img-fluid rounded"></a>
                 </div>    
                 <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
                 <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
