@@ -21,7 +21,7 @@
         <!----------------------------- header --------------------------->
         <div class="row">
 
-          <div class="col-12 p-3  border-bottom border-3 d-flex flex-row align-items-center">
+          <div class="col-12 p-3  border-bottom border-3 border-dark d-flex flex-row align-items-center">
             <i class="fas fa-users feather mx-2"></i>
             <p class="h5">کاربران</p>
             <!----------------------------- search box --------------------------->

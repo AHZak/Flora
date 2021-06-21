@@ -27,7 +27,7 @@ if(isAdmin() || isMaster()){
                     <div class="row text-center p-3 border-bottom border-3">
                         <div class="col-md my-2">
                             <p><strong class="mb-4">اسلایدر 1</strong></p>
-                            <hr class="my-1">
+                            <hr class="my-1 border-bottom border-3 border-dark">
                             <div class="my-2">
                                 <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
                                 <input name="slider1" class="form-control" type="file" id="formFile">
@@ -49,7 +49,7 @@ if(isAdmin() || isMaster()){
                     <div class="row text-center p-3 border-bottom border-3">
                         <div class="col-md my-2">
                             <p><strong class="mb-4">اسلایدر 2</strong></p>
-                            <hr class="my-1">
+                            <hr class="my-1 border-bottom border-3 border-dark">
                             <div class="my-2">
                                 <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
                                 <input name="slider2" class="form-control" type="file" id="formFile">
@@ -71,7 +71,7 @@ if(isAdmin() || isMaster()){
                     <div class="row text-center p-3 border-bottom border-3">
                         <div class="col-md my-2">
                             <p><strong class="mb-4">اسلایدر 3</strong></p>
-                            <hr class="my-1">
+                            <hr class="my-1 border-bottom border-3 border-dark">
                             <div class="my-2">
                                 <label for="formFile" class="form-label">سایز فایل انتخابی: 600 * 1520</label>
                                 <input name="slider3" class="form-control" type="file" id="formFile">

@@ -21,7 +21,7 @@ if(isAdmin() || isMaster()){
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div class="container">
           <div class="row">
-            <div class="col-12 p-3 pb-1 border-bottom border-3 d-flex flex-row align-items-center">
+            <div class="col-12 p-3 pb-1 border-bottom border-3 border-dark d-flex flex-row align-items-center">
               <i class="fas fa-balance-scale mx-2" aria-hidden="true"></i>
               <p class="h5">قوانین</p>
             </div>
@@ -73,7 +73,7 @@ if(isAdmin() || isMaster()){
             </form>
           </div>
           <div class="row">
-            <div class="col-12 p-3 pb-1 border-bottom border-3 d-flex flex-row align-items-center">
+            <div class="col-12 p-3 pb-1 border-bottom border-3 border-dark d-flex flex-row align-items-center">
               <i class="fas fa-key mx-2" aria-hidden="true"></i>
               <p class="h5">حریم خصوصی</p>
             </div>
@@ -90,7 +90,7 @@ if(isAdmin() || isMaster()){
             </form>
           </div>
           <div class="row mb-3">
-            <div class="col-12 p-3 pb-1 border-bottom border-3 d-flex flex-row align-items-center">
+            <div class="col-12 p-3 pb-1 border-bottom border-3 border-dark d-flex flex-row align-items-center">
               <i class="fas fa-file-alt mx-2" aria-hidden="true"></i>
               <p class="h5">درباره ما</p>
             </div>

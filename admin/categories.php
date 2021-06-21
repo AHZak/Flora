@@ -25,7 +25,7 @@ include 'adminheader.php';
       <div class="container">
         <div class="row">
           <div class="col-md g-3">
-            <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
+            <div class="col-12 p-3 border-bottom border-3 border-dark d-flex flex-row align-items-center">
               <i class="fas fa-plus feather mx-2"></i>
               <p class="h5">افزودن دسته</p>
             </div>
@@ -87,7 +87,7 @@ include 'adminheader.php';
 
           <!-- ++++++ header START ++++++ -->
 
-            <div class="col-12 p-3 border-bottom border-3 d-flex flex-row align-items-center">
+            <div class="col-12 p-3 border-bottom border-3 mb-2 d-flex flex-row align-items-center">
               <i class="fas fa-list mx-2"></i>
               <p class="h5">دسته بندی ها</p>
             </div>
