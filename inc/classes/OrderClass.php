@@ -15,6 +15,8 @@ class Order{
     private $createdAt;
     private $role;
     private $addressId;
+    private $orderedDate;
+    private $orderedTime;
 
 
     public function __construct($orderId)
@@ -33,6 +35,8 @@ class Order{
             $this->setCustomerRole($orderData['customer_role']);
             $this->setAddressId($orderData['address_id']);
             $this->setPostalPrice($orderData['postal_price']);
+            $this->setOrderedDate($orderData['order_date']);
+            $this->setOrderedTime($orderData['order_time']);
         }
     }
 
@@ -46,6 +50,14 @@ class Order{
 
     public function setStatus($status){
         $this->status=$status;
+    }
+
+    public function setOrderedDate($date){
+        $this->orderedDate=$date;
+    }
+
+    public function setOrderedTime($time){
+        $this->orderedTime=$time;
     }
 
     public function setPaymentMethodId($payMethodId){
@@ -119,6 +131,14 @@ class Order{
 
     public function getAddressId(){
         return $this->addressId;
+    }
+
+    public function getOrderedTime(){
+        return $this->orderedTime;
+    }
+
+    public function getOrderedDate(){
+        return $this->orderedDate;
     }
 
     public function getPostalPrice(){

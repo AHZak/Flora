@@ -962,7 +962,7 @@ if(isset($pageUi)){
     }elseif($pageUi=='checkout'){
         $date="";
         $time="";
-        
+
         $account=new Account();
         //AUTHENTICATION
         $account->checkAuth();
@@ -985,29 +985,25 @@ if(isset($pageUi)){
                     if($_POST['shipping']==1){
                         $postal_price=FAST_POSTAL_PRICE;
                     }else{
-
-                        if(isset($_POST['date']) && $_POST['date'] && isset($_POST['time']) && $_POST['time']){
-                            $date=$_POST['date'];
-                            $time=$_POST['time'];
-        
-                        }else{
-                            $_SESSION['errorMessage']=ERR_DATE_OR_TIME_EMPTY;
-                            redirectTo($_SERVER['PHP_SELF']);
-                        }
-
-
                         $postal_price=POSTAL_PRICE;
                     }
+
                 }else{
                     $postal_price=POSTAL_PRICE;
                 }
                 
             }
 
+            if(isset($_POST['date']) && $_POST['date'] && isset($_POST['time']) && $_POST['time']){
+                $date=$_POST['date'];
+                $time=$_POST['time'];
+            }
+
             //sum all prices
             $sum_all_price=$_SESSION['cart']['fullsum']+$postal_price;
 
             if(isset($_POST['pay'])){
+               
                 //GET PRODUCTS
                 $productsId=getProductsIdFromCart();
 
