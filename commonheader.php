@@ -185,7 +185,11 @@
              
               
               <?php $logedin=new Account(); if($logedin->checkUserLogedIn()):?> 
-                  <a href="userprofile.php" class="btn btn-outline-dark rounded me-2"><?php echo $_SESSION['FName']." ".$_SESSION['LName']; ?><i class="fas fa-user ms-1"></i></a>
+                  <?php if(isAdmin() || isMaster()): ?>
+                    <a href="admin/admin.php" class="btn btn-outline-dark rounded me-2">پنل ادمین<i class="fas fa-user ms-1"></i></a>
+                  <?php else: ?>
+                    <a href="userprofile.php" class="btn btn-outline-dark rounded me-2"><?php echo $_SESSION['FName']." ".$_SESSION['LName']; ?><i class="fas fa-user ms-1"></i></a>
+                  <?php endif; ?>
               <?php else: ?>
                   <a href="enterphn.php" class="btn btn-outline-dark rounded me-2">وارد شوید<i class="fas fa-user ms-1"></i></a>
               <?php endif; ?>
