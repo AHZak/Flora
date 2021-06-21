@@ -822,13 +822,20 @@ if(isset($pageUi)){
 
         if(isset($_POST['login'])){
             if($_POST['code'] && $_POST['code']){
-                $phone=$_SESSION['phone'];
+                $phone=isset($_SESSION['phone']) ? $_SESSION['phone'] : "";
                 $code=isset($_POST['code']) && $_POST['code'] ? $_POST['code'] : "";
-    
+                if(!$phone){
+                    $_SESSION['phone']=$phone;
+                    $_SESSION['errorMessage']=ERR_REGISTER_CODE_INCORRECT;
+
+                }else{
                 //ACCOUNT OBJECT
                 $account=new Account();
                 $messageObject=$account->getMessageHandler();
                 $account->login($phone,$code);
+                }
+    
+
             }else{
                 $messageObject=new Message();
                 $messageObject->setErrorMessage(ERR_REGISTER_CODE_INCORRECT);

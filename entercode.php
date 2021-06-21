@@ -22,6 +22,40 @@
     <main class="form-signin shadow rounded">
         <?php showErrorMessage(ERR_REGISTER_CODE_INCORRECT,$messageObject); ?>
         <form method="post">
+        <?php 
+                  if(isset($_SESSION['successMessage'])){
+                      echo
+                      '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['successMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+
+                      unset($_SESSION['successMessage']);
+
+                  }elseif(isset($_SESSION['errorMessage'])){
+                    if(is_array($_SESSION['errorMessage'])){
+                      foreach($_SESSION['errorMessage'] as $errMsg){
+                        if($errMsg){
+                          echo
+                          '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                              <small>'.$errMsg.'
+                              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                          </div>';
+                        }
+
+                      }
+
+                    }else{
+                      echo
+                      '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                          <small>'.$_SESSION['errorMessage'].'
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></small>
+                      </div>';
+                    }
+                    unset($_SESSION['errorMessage']);
+
+                  }
+              ?>
             <img class="mb-4" src="assets/images/logo/flora-lo.png" alt="" width="72" height="72">
             <h1 class="h5 mb-3 fw-normal">کد تایید را وارد کنید</h1>
 
@@ -34,7 +68,7 @@
             <p class="mt-5 mb-3 text-muted">فلورا - فروشگاه آنلاین گل و گیاه</p>
         </form>  
     </main>
-    <a class="back-link" href="#">
+    <a class="back-link" href="enterphn.php">
         <p>تغییر شماره تلفن</p>
         <i class="fas fa-phone"></i>
     </a>

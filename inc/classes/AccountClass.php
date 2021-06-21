@@ -107,7 +107,6 @@ class Account{
         if($account){
             //check live code
             if($account['register_code']!='expired'){
-                
                 //check code 
                 if($account['register_code']==$code){
                     //set sessions to login
@@ -128,10 +127,16 @@ class Account{
                     $this->getMessageHandler()->setErrorMessage(ERR_REGISTER_CODE_INCORRECT);
                 }
             }else{
+                $_SESSION['phone']=$phone;
+                $_SESSION['errorMessage']=ERR_REGISTER_CODE_INCORRECT;
+                
                 redirectTo($redirect);
             }
         }else{
             //err message
+            $_SESSION['errorMessage']="اکانت شما ساخته نشد";
+                
+            redirectTo($redirect);
         }
     }
 
