@@ -36,7 +36,7 @@
                   <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><img src="<?php echo $product->getImage(); ?>" style="width: 150px" alt="" class="img-fluid rounded"></a>
                 </div>    
                 <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
-                <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
+                <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><p class="fw-bold border-bottom border-2 border-dark mb-4"><?php echo $product->getTitle(); ?></p></a>
                   
                   <a href="#" style="text-decoration: none; color: currentColor;">
                   <i onclick="deleteFromCart(<?php echo $product->getId();?>)" class="fas fa-trash-alt me-2"></i>
@@ -53,7 +53,7 @@
 
                   </div>
                 
-                <div class="ms-auto align-self-end rounded p-2 text-nowrap" style="background-color: coral;">
+                <div class="ms-auto align-self-end rounded p-2 text-nowrap" >
                   <script>
                     $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{productid:<?php echo $product->getId(); ?>,number:<?php echo $_SESSION['cart']['number'][$product->getId()]; ?>},function(response){
                       var response=JSON.parse(response);
@@ -63,13 +63,15 @@
                     });
                   </script>
                   <?php if($product->getDiscount()>0): ?>
+                    <div class="d-flex flex-row justify-content-end">
                     <span id="<?php echo $product->getId(); ?>_orgprice" class="text-muted text-decoration-line-through"><?php echo number_format($_SESSION['cart']['orgprice'][$product->getId()]);?></span><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span>
-                    <div class="d-flex flex-row">
-                      <p id="<?php echo $product->getId();?>_sumprice" ></p>
+                    </div>
+                    <div class="d-flex flex-row justify-content-end my-1">
+                      <p id="<?php echo $product->getId();?>_sumprice" class="rounded p-2 mb-0 bg-warning"></p>
                     </div>
                   <?php else: ?>
-                  <div class="d-flex flex-row">
-                    <p class="mb-0" id="<?php echo $product->getId();?>_sumprice"><?php echo number_format($_SESSION['cart']['sumprice'][$product->getId()]); ?> تومان</p>
+                  <div class="d-flex flex-row justify-content-end">
+                    <p class="mb-0 rounded p-2" style="background-color:coral;" id="<?php echo $product->getId();?>_sumprice"><?php echo number_format($_SESSION['cart']['sumprice'][$product->getId()]); ?> تومان</p>
                   </div>
                   <?php endif; ?>
                 </div>
