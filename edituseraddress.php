@@ -69,12 +69,12 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="address-floor" class="form-label">طبقه</label>
-                                <input name="floor" type="text" class="form-control" id="address-floor" placeholder="2" value="<?php echo $address->getFloor(); ?>" required="">
+                                <label for="address-title" class="form-label">عنوان آدرس</label>
+                                <input name="title" type="text" class="form-control" id="address-title" placeholder="خانه" value="<?php echo $address->getTitle(); ?>" required="">
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="address-unit" class="form-label">واحد</label>
+                                <label for="address-unit" class="form-label">واحد(اختیاری)</label>
                                 <input name="unit" type="text" class="form-control" id="address-unit" placeholder="3" value="<?php echo $address->getUnit(); ?>" required="">
                             </div>
 
@@ -84,8 +84,8 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="address-title" class="form-label">عنوان آدرس</label>
-                                <input name="title" type="text" class="form-control" id="address-title" placeholder="خانه" value="<?php echo $address->getTitle(); ?>" required="">
+                                <label for="address-floor" class="form-label">طبقه(اختیاری)</label>
+                                <input name="floor" type="text" class="form-control" id="address-floor" placeholder="2" value="<?php echo $address->getFloor(); ?>" required="">
                             </div>
 
                             <div class="col-12">      

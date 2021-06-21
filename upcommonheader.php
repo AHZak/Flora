@@ -22,9 +22,9 @@
       <div class="container-fluid">
         <!----------------------------- fisrt header ------------------------------------>
         <div class="row">
-          <div class="d-flex flex-row justify-content-between align-items-end bg-light p-3 pb-2">
+          <div class="d-flex flex-row justify-content-between align-items-end p-3 pb-2" style="background-color:#F55E61;">
             <div class="col-md-4 ms-2">
-              <a href="#" class="logologo"><img src="assets/images/logo/flora.png" alt="" width="200px"></a>
+            <a class="logologo" href="index.php"><img src="assets/images/logo/flora-white.png" alt="" width="200px"></a>
             </div>
             <div class="d-flex align-items-center">
               <a href="?logout=true" class="btn btn-danger me-2">خروج</a> 
