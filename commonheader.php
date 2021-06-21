@@ -135,7 +135,7 @@
           <!-- ============= COMPONENT ============== -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#F55E61;">
  <div class="container-fluid">
- <a class="navbar-brand" href="#"><img src="assets/images/logo/flora-white.png" alt="" width="200px"></a>
+ <a class="navbar-brand" href="index.php"><img src="assets/images/logo/flora-white.png" alt="" width="200px"></a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
   </button>

@@ -48,7 +48,7 @@
               <div class="col-auto p-3">
                 <div class="p-5 price-card d-flex flex-column shadow">
                 <?php if($product->getDiscount()>0): $price=getPriceAfterOff($product->getPrice(),$product->getDiscount()); ?>
-                  <p class="text-muted text-decoration-line-through"><?php echo number_format($product->getPrice()); ?><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span></p>
+                  <p class="text-decoration-line-through"><?php echo number_format($product->getPrice()); ?><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span></p>
                   <div class="d-flex flex-row">
                     <p class="me-3">قیمت:</p>
                     <p><?php echo number_format($price); ?> تومان</p>
@@ -104,13 +104,13 @@
                     <?php foreach($product->getCategory()->getProducts("instock>0") as $product): ?>
                 
                     <a href="<?php echo "?pid=".$product['id']."&slug=".$product['title']; ?>" class="text-decoration-none" style="color:currentcolor;">
-                      <div class="col-12 p-3">
+                      <div class="col-12 p-2">
                         <div class="card shadow">
                           <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="<?php echo $product['image_alt'] ?>">
                           <div class="card-body p-1">
                             <p class="card-title text-center mb-3" style=""><?php echo $product['title'] ?></p>
                             <?php if($product['discount']>0): $price=getPriceAfterOff($product['price'],$product['discount']);?>
-                                  <p class="m-0 text-muted text-decoration-line-through"><?php echo number_format($product['price']); ?><span class="badge bg-primary"> <?php echo $product['discount']; ?>%</span></p>
+                                  <p class="m-0 text-decoration-line-through"><?php echo number_format($product['price']); ?><span class="badge bg-primary"> <?php echo $product['discount']; ?>%</span></p>
 
                                   <div class="d-flex" style="color: coral;">
                                     <p class="ms-1 m-0">تومان</p>

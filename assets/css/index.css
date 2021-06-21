@@ -51,3 +51,7 @@ footer {
 .buy-quantity-btn:focus {
     box-shadow: none;
 }
+
+.catproitem {
+    color: currentColor;
+}
