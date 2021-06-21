@@ -37,36 +37,43 @@
                 </div>    
                 <div class="d-flex flex-column mt-2 align-self-start justify-content-between" style="height: 9rem">
                 <a href="product.php?pid=<?php echo $product->getId()."&slug=".$product->getTitle(); ?>" class="text-decoration-none cart-item"><p class="h5 mb-4"><?php echo $product->getTitle(); ?></p></a>
-                  <div class="d-flex flex-row align-items-center">
-                    <p class="m-0">تعداد:</p>
-                    <input id="<?php echo $product->getId();?>_number" type="text" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="3" value="<?php echo $number; ?>">
-                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'increase',<?php echo $product->getInstock(); ?>)" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-plus"></i></button>
-                    <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease',<?php echo $product->getInstock(); ?>)" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-minus"></i></button>
-                  </div>
+                  
                   <a href="#" style="text-decoration: none; color: currentColor;">
                   <i onclick="deleteFromCart(<?php echo $product->getId();?>)" class="fas fa-trash-alt me-2"></i>
                   </a>
                 </div>
-                <div class="ms-auto align-self-end rounded p-2 text-nowrap" style="background-color: coral;">
-                <script>
-                  $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{productid:<?php echo $product->getId(); ?>,number:<?php echo $_SESSION['cart']['number'][$product->getId()]; ?>},function(response){
-                    var response=JSON.parse(response);
-                    $("#<?php echo $product->getId(); ?>_orgprice").text(response['orgprice']+" تومان");
-                    $("#fullsum").text(response['fullsum']+" تومان");
-                    $("#<?php echo $product->getId(); ?>_sumprice").text(response['sumprice']+" تومان");
-                  });
-                </script>
-                <?php if($product->getDiscount()>0): ?>
-                  <span id="<?php echo $product->getId(); ?>_orgprice" class="text-muted text-decoration-line-through"><?php echo number_format($_SESSION['cart']['orgprice'][$product->getId()]);?></span><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span>
-                  <div class="d-flex flex-row">
-                    <p id="<?php echo $product->getId();?>_sumprice" ></p>
+              <div class="ms-auto">
+
+                  <div class="d-flex flex-row align-items-center my-3">
+                      <p class="m-0">تعداد:</p>
+                      <input id="<?php echo $product->getId();?>_number" type="text" class="form-control mx-1 ms-2" id="exampleInputEmail1" aria-describedby="emailHelp" size="3" value="<?php echo $number; ?>">
+
+                      <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'increase',<?php echo $product->getInstock(); ?>)" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-plus"></i></button>
+                      <button onclick="updateNumberOfCart(<?php echo $product->getId(); ?>,'decrease',<?php echo $product->getInstock(); ?>)" class="btn p-1 buy-quantity-btn" type="button"><i class="fas fa-minus"></i></button>
+
                   </div>
-                <?php else: ?>
+                
+                <div class="ms-auto align-self-end rounded p-2 text-nowrap" style="background-color: coral;">
+                  <script>
+                    $.post("http://localhost/flora/inc/ajaxRequests/cart.php",{productid:<?php echo $product->getId(); ?>,number:<?php echo $_SESSION['cart']['number'][$product->getId()]; ?>},function(response){
+                      var response=JSON.parse(response);
+                      $("#<?php echo $product->getId(); ?>_orgprice").text(response['orgprice']+" تومان");
+                      $("#fullsum").text(response['fullsum']+" تومان");
+                      $("#<?php echo $product->getId(); ?>_sumprice").text(response['sumprice']+" تومان");
+                    });
+                  </script>
+                  <?php if($product->getDiscount()>0): ?>
+                    <span id="<?php echo $product->getId(); ?>_orgprice" class="text-muted text-decoration-line-through"><?php echo number_format($_SESSION['cart']['orgprice'][$product->getId()]);?></span><span class="badge bg-primary ms-2"><?php echo $product->getDiscount(); ?>%</span>
+                    <div class="d-flex flex-row">
+                      <p id="<?php echo $product->getId();?>_sumprice" ></p>
+                    </div>
+                  <?php else: ?>
                   <div class="d-flex flex-row">
                     <p class="mb-0" id="<?php echo $product->getId();?>_sumprice"><?php echo number_format($_SESSION['cart']['sumprice'][$product->getId()]); ?> تومان</p>
                   </div>
-                <?php endif; ?>
+                  <?php endif; ?>
                 </div>
+              </div>
               </div>
             </div>
             <!-- Item in cart -->
