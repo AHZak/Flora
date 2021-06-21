@@ -994,10 +994,13 @@ if(isset($pageUi)){
                 
             }
 
-            if(isset($_POST['date']) && $_POST['date'] && isset($_POST['time']) && $_POST['time']){
-                $date=$_POST['date'];
-                $time=$_POST['time'];
+            if(isset($_POST['shipping']) && $_POST['shipping']!=1){
+                if(isset($_POST['date']) && $_POST['date'] && isset($_POST['time']) && $_POST['time']){
+                    $date=$_POST['date'];
+                    $time=$_POST['time'];
+                }
             }
+
 
             //sum all prices
             $sum_all_price=$_SESSION['cart']['fullsum']+$postal_price;
