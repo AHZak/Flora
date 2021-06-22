@@ -2,7 +2,6 @@ body {
     font-family: 'El Messiri', sans-serif;
 }
 
-
 .catu {
     background-color: #F55E61;
 }
@@ -86,4 +85,9 @@ footer {
     html {
       font-size: 1.6rem;
     }
+  }
+
+  .term-text,
+  .product-text {
+    font-family: 'Markazi Text', serif;
   }

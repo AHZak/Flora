@@ -12,7 +12,7 @@
             <div class="col-2 border-bottom border-3 my-3">
                 <p class="h5">درباره ما</p>
             </div>
-            <p><?php echo file_get_contents("about.txt") ?></p>
+            <p class="term-text"><?php echo file_get_contents("about.txt") ?></p>
           </div>
         </div>
       </div>
