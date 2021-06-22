@@ -632,7 +632,10 @@ if(isset($pageUi)){
                             $slider->setImgUrl($image_path);
                             if($result){
                                 //delete old image from host directory
-                                unlink($old_image_path);
+                                if(file_exists($old_image_path)){
+                                    unlink($old_image_path);
+                                }
+                               
                             }
                         }else {
                             # code...
@@ -654,7 +657,9 @@ if(isset($pageUi)){
                             $slider->setImgUrl($image_path);
                             if($result){
                                 //delete old image from host directory
-                                unlink($old_image_path);
+                                if(file_exists($old_image_path)){
+                                    unlink($old_image_path);
+                                }
                             }
                         }else {
                             # code...
@@ -676,7 +681,9 @@ if(isset($pageUi)){
                             $slider->setImgUrl($image_path);
                             if($result){
                                 //delete old image from host directory
-                                unlink($old_image_path);
+                                if(file_exists($old_image_path)){
+                                    unlink($old_image_path);
+                                }
                             }
                         }else {
                             # code...
