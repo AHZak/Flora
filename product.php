@@ -36,10 +36,10 @@
 
               <!-- name + description -->
               <div class="col-md p-3">
-                <div class="d-flex flex-column align-items-start">
+                <div class="d-flex flex-column align-items-start border-bottom border-3 border-dark">
                   <p class="h5 mb-5 border-bottom border-3 border-dark"><?php echo $product->getTitle(); ?></p>
                   <p>توضیحات:</p>
-                  <p><?php echo $product->getDescription(); ?></p>
+                  <p class="product-text"><?php echo $product->getDescription(); ?></p>
                 </div>
               </div>
               <!-- name + description -->

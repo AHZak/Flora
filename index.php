@@ -40,12 +40,12 @@
 
       <div class="container p-3">
         <div class="row row-cols-2 row-cols-md-3">
-          <a href="http://localhost/flora/categoryitems.php?subid=6"><div class="col my-2"><img src="assets/images/cat-card-1.jpg" alt="" class="img-fluid rounded"></div></a>
-          <a href="http://localhost/flora/categoryitems.php?subid=5"><div class="col my-2"><img src="assets/images/cat-card-2.jpg" alt="" class="img-fluid rounded"></div></a>
-          <a href="http://localhost/flora/categoryitems.php?catid=3"><div class="col my-2"><img src="assets/images/cat-card-3.jpg" alt="" class="img-fluid rounded"></div></a>
-          <a href="http://localhost/flora/categoryitems.php?subid=3"><div class="col my-2"><img src="assets/images/cat-card-4.jpg" alt="" class="img-fluid rounded"></div></a>
-          <a href="http://localhost/flora/categoryitems.php?subid=8"><div class="col my-2"><img src="assets/images/cat-card-5.jpg" alt="" class="img-fluid rounded"></div></a>
-          <a href="6"><div class="col my-2"><img src="assets/images/cat-card-6.jpg" alt="" class="img-fluid rounded"></div></a>
+          <a href="http://localhost/flora/categoryitems.php?subid=6"><div class="col my-2"><img src="assets/images/cat-card-1.jpg" alt="" class="img-fluid rounded shadow"></div></a>
+          <a href="http://localhost/flora/categoryitems.php?subid=5"><div class="col my-2"><img src="assets/images/cat-card-2.jpg" alt="" class="img-fluid rounded shadow"></div></a>
+          <a href="http://localhost/flora/categoryitems.php?catid=3"><div class="col my-2"><img src="assets/images/cat-card-3.jpg" alt="" class="img-fluid rounded shadow"></div></a>
+          <a href="http://localhost/flora/categoryitems.php?subid=3"><div class="col my-2"><img src="assets/images/cat-card-4.jpg" alt="" class="img-fluid rounded shadow"></div></a>
+          <a href="http://localhost/flora/categoryitems.php?subid=8"><div class="col my-2"><img src="assets/images/cat-card-5.jpg" alt="" class="img-fluid rounded shadow"></div></a>
+          <a href="http://localhost/flora/categoryitems.php?subid=8"><div class="col my-2"><img src="assets/images/cat-card-6.jpg" alt="" class="img-fluid rounded shadow"></div></a>
 
 
           

@@ -12,7 +12,7 @@
             <div class="col-2 border-bottom border-3 my-3">
                 <p class="h5">حریم خصوصی</p>
             </div>
-            <p><?php echo file_get_contents("term_service.txt") ?></p>
+            <p class="term-text"><?php echo file_get_contents("term_service.txt") ?></p>
           </div>
         </div>
       </div>
