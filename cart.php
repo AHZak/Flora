@@ -97,7 +97,7 @@
               <p id="fullsum"><?php echo isset($_SESSION['cart']['fullsum']) ? number_format($_SESSION['cart']['fullsum']) : 0;?> تومان</p>
             </div>
             <div class="align-self-end">
-              <a href="checkout.php" class="btn btn-primary">ادامه خرید</a>
+              <a href="checkout.php" class="btn <?php if(isset($_SESSION['cart']) && count($_SESSION['cart']['products'])>0){ echo 'btn-primary'; }else{ echo 'btn-primary disabled'; } ?> ">ادامه خرید</a>
             </div>
           </div>
         </div>
