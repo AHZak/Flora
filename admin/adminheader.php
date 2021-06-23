@@ -27,7 +27,7 @@
       
       <ul class="navbar-nav px-3 d-flex flex-row align-items-center justify-content-end w-100">
       <li class="nav-item text-nowrap text-light me-auto">
-          <p class="m-0">
+          <p class="m-0 fw-bold date-admin">
           <?php echo jdate("l Y/m/d"); ?>
           </p>
       </li>

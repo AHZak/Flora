@@ -2,6 +2,10 @@ body {
   font-family: 'El Messiri', sans-serif;
 }
 
+.date-admin {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 html {
     font-size: 1rem;
   }
