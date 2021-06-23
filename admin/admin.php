@@ -26,7 +26,7 @@ if(isAdmin() || isMaster()){
                   <P class="fw-bolder"><i class="fas fa-users me-2"></i>تعداد کاربران : <span><?php echo User::getCount(); ?></span></P>
                   <P class="fw-bolder"><i class="fas fa-cart-arrow-down me-2"></i>تعداد کل سفارشات : <span><?php echo Order::getCount(); ?></span></P>
                   <P class="fw-bolder"><i class="fas fa-shopping-bag me-2"></i>تعداد محصولات : <span><?php echo Product::getCount(); ?></span></P>
-                  <P class="fw-bolder"><i class="fas fa-archive me-2"></i>تعداد کل سفارشات : <span><?php echo Category::getCount(); ?></span></P>
+                  <P class="fw-bolder"><i class="fas fa-archive me-2"></i>تعداد کل دسته بندی ها : <span><?php echo Category::getCount(); ?></span></P>
                 </div>
               </div>
         </div>
