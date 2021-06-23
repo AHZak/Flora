@@ -66,7 +66,7 @@
 
         <!-- slider -->
         <div class="row justify-content-center my-2" style="direction: ltr">
-          <div class="col-10 col-md-12 slider">
+          <div class="col-10 col-md-12 slider pb-3">
             <?php if($mostSelesProducts): ?>
               <?php foreach($mostSelesProducts as $mostSelesProduct): 
                   $mostSelesProductId=$mostSelesProduct['id'];
@@ -269,7 +269,7 @@
                 breakpoint: 480,
                 settings: {
                   slidesToShow: 2,
-                  slidesToScroll: 1
+                  slidesToScroll: 2
                 }
               }
               // You can unslick at a given breakpoint now by adding:
