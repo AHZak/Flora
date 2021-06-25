@@ -1,4 +1,5 @@
 <?php
+//** CREATED BY ARASH ABEDI - SEE ON MY GITHUB: https://github.com/ArashAbedii/server */
 
 //ERR MESSAGES
 define("ERR_URL_EMPTY","\nERR MESSAGE: Url required !\t".date("d M Y H:i:s"));

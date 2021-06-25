@@ -1,13 +1,16 @@
 <?php
 //SESIION
 session_start();
+//set coockie to 7 days
 setcookie(session_name(),session_id(),time()+(7*24*3600));
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
 //domain
 define('DOMAIN','http://localhost/flora/');
-define('HOST_ROOT','/home/aabotsir/public_html/');
+define('HOST_ROOT','');
 define('PROJECT_NAME', 'flora');
 
 
@@ -81,10 +84,6 @@ define('PASSWORD_TREZ','**password**');
 define('FROM_PHONE_TREZ', '**public-number**');
 
 
-
-
-
-
 //require classes
 require_once public_html().PROJECT_NAME.'/inc/classes/MessagesClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/DbClass.php';
@@ -102,7 +101,7 @@ require_once public_html().PROJECT_NAME.'/inc/classes/OrderDetailClass.php';
 require_once public_html().PROJECT_NAME.'/inc/classes/SliderClass.php';
 
 
-//POSTAL PRICD
+//POSTAL PRICE
 define('MAX_PRICE', getFreePostalPrice());
 $fast_post=new Shipping(1);
 $normal_post=new Shipping(2);
@@ -168,8 +167,6 @@ define('ERR_CREATE_ADDRESS', 'خطا! آدرس ایجاد نشد');
 
 
 
-
-
 //SUCCESS MESSAGES
 define('SUCCESS_CREATE_CATEGORY', 'دسته بندی با موفقیت ثبت شد');
 define('SUCCESS_CREATE_SUB_CATEGORY', 'زیر دسته بندی با موفقیت ساخته شد');
@@ -193,8 +190,6 @@ define('SUCCESS_DATA_UPDATED', 'اطلاعات شما با موفقیت ویرا
 define('SUCCESS_ADDRESS_UPDATED', 'آدرس شما با موفقیت ویرایش شد');
 define('SUCCESS_CREATE_ADDRESS', 'آدرس شما با موفقیت اضافه شد');
 define('SUCCESS_DELETE_ADDRESS', 'آدرس شما با موفقیت حذف شد');
-
-
 
 
 

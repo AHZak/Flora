@@ -48,7 +48,7 @@
             <p class="mt-5 mb-3 text-muted">فلورا - فروشگاه آنلاین گل و گیاه</p>
         </form>  
     </main>
-    <a class="back-link" href="#">
+    <a class="back-link" href="index.php">
         <p>بازگشت به صفحه اصلی</p>
         <i class="fas fa-long-arrow-alt-left"></i>
     </a>

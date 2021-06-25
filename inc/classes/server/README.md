@@ -29,3 +29,6 @@ after you can call Server::sendRequest() to send your requests. <br />
   $headers=['Authorization'=>'Bearer **SPOTIFY_ACCESS_TOKEN**']; <br />
   //send request <br />
   $response=Server::sendRequest($url,[],$request_type,$headers); <br />
+
+
+//** CREATED BY ARASH ABEDI - SEE ON MY GITHUB: https://github.com/ArashAbedii/server */

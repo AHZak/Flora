@@ -1,6 +1,7 @@
 <?php
 
-//****MY DATABASE CLASS***** Github: Database github link 
+//** CREATED BY ARASH ABEDI - SEE MORE ON MY GITHUB: https://github.com/ArashAbedii/myDb */
+//****MY DATABASE CLASS*****//
 
 
 namespace Database;
