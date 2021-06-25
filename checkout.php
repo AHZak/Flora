@@ -2,7 +2,9 @@
     $pageUi='checkout';
     include_once 'config.php';
 ?>
+<!-- common header -->
 <?php include 'commonheader.php'; ?>
+<!-- common header -->
 
     <!----------------------------- address + shipping + sum + payment ------------------------------------>
     <main>
@@ -187,7 +189,9 @@
     </main>
     <!----------------------------- address + shipping + sum + payment ------------------------------------>
 
+    <!-- common footer -->
     <?php include 'commonfooter.php'; ?>
+    <!-- common footer -->
 
 
     

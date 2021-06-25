@@ -2,21 +2,17 @@
   //page controller
   $pageUi='addProduct';
   include_once '../config.php';
-
 ?>
-<?php
-
-include 'adminheader.php';
-
-?>
+<!-- admin header -->
+<?php include 'adminheader.php'; ?>
+<!-- admin header -->
 
     <div class="container-fluid">
   <div class="row">
 
-<?php
-  include 'adminsidebar.php'
-
-?>
+<!-- admin sidebar -->
+<?php include 'adminsidebar.php'; ?>
+<!-- admin sidebar -->
 
     <!----------------------------- left panel --------------------------->
 

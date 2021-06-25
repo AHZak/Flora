@@ -13,7 +13,7 @@ include 'adminheader.php';
   <div class="row">
 
 <?php
-  include 'adminsidebar.php'
+  include 'adminsidebar.php';
 ?>
 
     <!-- ++++++++++++++++++++++++++ edit sub-category +++++++++++++++++++++++ -->

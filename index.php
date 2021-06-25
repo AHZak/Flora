@@ -3,7 +3,9 @@
   $pageUi='index';
   include_once 'config.php';
 ?>
+<!-- common header -->
 <?php include 'commonheader.php'; ?>
+<!-- common header -->
     <!----------------------------- carousel + category cards + products ------------------------------------>
     <main>
     
@@ -16,8 +18,6 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <!-- <svg class="d-block w-100" width="800" height="400" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
-            -->
             <a href="#"><img src="<?php echo $slider1->getImgUrl(); ?>" class="d-block w-100" width="100%", style="max-height:500px"  alt=""></a>
           </div>
           <div class="carousel-item">
@@ -46,10 +46,6 @@
           <a href="http://localhost/flora/categoryitems.php?subid=3"><div class="col my-2"><img src="assets/images/cat-card-4.jpg" alt="" class="img-fluid rounded shadow"></div></a>
           <a href="http://localhost/flora/categoryitems.php?subid=8"><div class="col my-2"><img src="assets/images/cat-card-5.jpg" alt="" class="img-fluid rounded shadow"></div></a>
           <a href="http://localhost/flora/categoryitems.php?subid=8"><div class="col my-2"><img src="assets/images/cat-card-6.jpg" alt="" class="img-fluid rounded shadow"></div></a>
-
-
-          
-
         </div>
       </div>
 
@@ -228,7 +224,9 @@
     </main>
     <!----------------------------- carousel + category cards + products ------------------------------------>
 
+    <!-- common footer -->
     <?php include 'commonfooter.php'; ?>
+    <!-- common footer -->
 
     
 

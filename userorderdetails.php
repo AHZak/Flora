@@ -3,12 +3,13 @@ $pageUi="orderdetail";
 include_once 'config.php';
 
 ?>
+<!-- user profile common header -->
 <?php include 'upcommonheader.php'; ?>
+<!-- user profile common header -->
 
     <div class="container-fluid">
     <div class="row">
 
-      <!----------------------------- left panel --------------------------->
 
       <main class="col-md-9 m-auto col-lg-10 px-md-4 my-3">
         <div class="container">

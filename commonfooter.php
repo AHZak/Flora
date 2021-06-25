@@ -1,6 +1,6 @@
 <!-- Footer -->
 <footer class="text-center text-lg-start">
-      <!-- Section: Social media -->
+      <!-- Social media -->
       <section class="d-flex justify-content-center justify-content-lg-start p-4 border-bottom">
         <!-- Left -->
         <div class="me-5 d-none d-lg-block">
@@ -19,9 +19,9 @@
         </div>
         <!-- Right -->
       </section>
-      <!-- Section: Social media -->
+      <!-- Social media -->
 
-      <!-- Section: Links  -->
+      <!-- Links  -->
       <section class="">
         <div class="container text-center text-md-start mt-5">
           <!-- Grid row -->
@@ -90,7 +90,7 @@
           <!-- Grid row -->
         </div>
       </section>
-      <!-- Section: Links  -->
+      <!-- Links  -->
 
       <!-- Copyright -->
       <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">

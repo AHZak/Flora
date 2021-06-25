@@ -3,7 +3,10 @@
   $pageUi='cart';
   include_once 'config.php';
 ?>
+<!-- common header -->
 <?php include 'commonheader.php'; ?>
+<!-- common header -->
+
     <!----------------------------- cart items + summary ------------------------------------>
     <main>
       <!-- heading -->
@@ -20,15 +23,15 @@
 
       <!-- cart items -->
       <div class="container" style="min-height:50vh">
-      <?php if(isset($productsId) && $productsId): ?>
+        <?php if(isset($productsId) && $productsId): ?>
         
-          <?php foreach($productsId as $productId):
+        <?php foreach($productsId as $productId):
             
-              //product object
-              $product=new Product($productId);
-              $number=$_SESSION['cart']['number'][$product->getId()];
+          //product object
+          $product=new Product($productId);
+          $number=$_SESSION['cart']['number'][$product->getId()];
 
-          ?>
+        ?>
             <!-- Item in cart -->
             <div id="delcart_<?php echo $product->getId(); ?>" class="col-12 col-md-10 p-2 my-3 rounded shadow" style="background-color: antiquewhite;">
               <div class="d-flex flex-row align-items-center flex-start">
@@ -103,10 +106,12 @@
         </div>
       </div>
       <!-- summary -->
-  
     </main>
     <!----------------------------- cart items + summary ------------------------------------>
+    
+    <!-- common footer -->
     <?php include 'commonfooter.php'; ?>
+    <!-- common footer -->
 
     
 

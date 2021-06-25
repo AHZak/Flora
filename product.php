@@ -3,7 +3,10 @@
   $pageUi='product';
   include_once 'config.php';
 ?>
+<!-- common header -->
 <?php include 'commonheader.php'; ?>
+<!-- common header -->
+
     <!----------------------------- product details + similar products ------------------------------------>
     <main id="productpage">
     <!-- this id is not being used yet -->
@@ -143,7 +146,9 @@
     </main>
     <!----------------------------- product details + similar products ------------------------------------>
 
+    <!-- common footer -->
     <?php include 'commonfooter.php'; ?>
+    <!-- common footer -->
 
     
 

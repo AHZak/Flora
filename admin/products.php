@@ -9,7 +9,7 @@
   <div class="row">
 
 <?php
-  include 'adminsidebar.php'
+  include 'adminsidebar.php';
 ?>
 
     <!----------------------------- left panel --------------------------->
